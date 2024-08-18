@@ -1,9 +1,12 @@
 name: Build and Upload Artifacts
 
 on:
-    pull_request:
-      branches:
-        - master
+  push:
+    paths:
+      - .github/workflows/build.yml
+  pull_request:
+    branches:
+      - master
 
 env:
   SOURCE_FILE: test.asm

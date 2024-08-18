@@ -23,7 +23,7 @@ try {
     console.log(`50% - Switching to the compiler directory: ${process.cwd()};`);
     process.chdir(config.fasmPath);
 
-    console.log(`55% - Try to build`);
+    console.log(`55% - Try to build;`);
     const command = `fasm ${buildConfig.input} ${buildConfig.output}`;
     execSync(command, { stdio: 'inherit' });
     console.log(`85% - Success`);

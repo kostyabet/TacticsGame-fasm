@@ -1,0 +1,4 @@
+# build files
+*.exe
+*.bin
+/Debag

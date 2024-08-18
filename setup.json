@@ -1,0 +1,12 @@
+{
+    "debug": {
+        "input": "e:/GitHub/TacticsGame-fasm/startup.asm",
+        "output": "e:/GitHub/TacticsGame-fasm/bin/Debag/tactickgame.exe"
+    },
+    "release": {
+        "input": "e:/GitHub/TacticsGame-fasm/startup.asm",
+        "output": "e:/GitHub/TacticsGame-fasm/bin/Release/tactickgame.exe"
+    },
+    "fasmPath": "e:/fasm",
+    "projectDir": "e:/GitHub/TacticsGame-fasm"
+}

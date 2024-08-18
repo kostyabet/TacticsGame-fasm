@@ -9,7 +9,7 @@ on:
       - master
 
 env:
-  SOURCE_FILE: test.asm
+  SOURCE_FILE: startup.asm
   OUTPUT: output.exe
 
 jobs:

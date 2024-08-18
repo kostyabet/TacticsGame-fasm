@@ -3,3 +3,9 @@
 *.bin
 /Debug
 /Release
+
+# temp close
+.github/
+workflows/
+build.yml/
+*yml/

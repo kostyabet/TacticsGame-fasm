@@ -6,7 +6,7 @@ console.log("10% - Read setup.json;");
 const config = JSON.parse(fs.readFileSync('setup.json', 'utf8'));
 
 console.log("20% - Check build parameters;");
-const buildType = process.argv[2];
+const buildType = process.argv[2] || 'Debug';
 if (!buildType || (buildType !== 'Debug' && buildType !== 'Release')) {
     console.error("Usage: node build.js <Debug|Release>");
     process.exit(1);

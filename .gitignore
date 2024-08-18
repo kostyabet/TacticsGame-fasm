@@ -1,4 +1,5 @@
 # build files
 *.exe
 *.bin
-/Debag
+/Debug
+/Release

@@ -1,12 +1,14 @@
 {
     "debug": {
         "input": "e:/GitHub/TacticsGame-fasm/startup.asm",
-        "output": "e:/GitHub/TacticsGame-fasm/bin/Debag/tactickgame.exe"
+        "output": "e:/GitHub/TacticsGame-fasm/bin/Debug/tactickgame.exe"
     },
     "release": {
         "input": "e:/GitHub/TacticsGame-fasm/startup.asm",
         "output": "e:/GitHub/TacticsGame-fasm/bin/Release/tactickgame.exe"
     },
-    "fasmPath": "e:/fasm",
-    "projectDir": "e:/GitHub/TacticsGame-fasm"
+    "fasmPath": "e:/fasm/fasm",
+    "projectDir": "e:/GitHub/TacticsGame-fasm",
+    "ollyDbgPath": "e:/fasm/OllyDbg/OllyDbg.exe",
+    "debugExecutablePath": "e:/GitHub/TacticsGame-fasm/bin/Debug/tactickgame.exe"
 }

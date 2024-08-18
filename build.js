@@ -15,7 +15,7 @@ if (!buildType || (buildType !== 'Debug' && buildType !== 'Release')) {
 console.log("35% - Branching by parameter;");
 const buildConfig = config[buildType.toLowerCase()];
 if (!buildConfig) {
-    console.error(`Unknown build type: ${buildType}`);
+    console.error(`Error: Unknown build type: ${buildType}`);
     process.exit(1);
 }
 

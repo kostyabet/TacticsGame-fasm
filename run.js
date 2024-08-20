@@ -22,7 +22,7 @@ if (!buildConfig) {
 try {
     console.log(`40% - check is file exist;`);
     if (!fs.existsSync(buildConfig.output)) 
-        {
+    {
         throw new Error(`Executable file not found: ${buildConfig.output}`);
     }  
 

@@ -1,4 +1,3 @@
-
 ; GL types
 
 GLenum	   fix dd
@@ -15,6 +14,12 @@ GLfloat    fix dd
 GLclampf   fix dd
 GLdouble   fix dq
 GLclampd   fix dq
+
+; My GL benefits
+
+GLf_NULL        GLfloat       0.0
+GLf_MAX         GLfloat       1.0
+GLf_MIN         GLfloat      -1.0
 
 ; GL errors
 

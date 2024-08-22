@@ -1,3 +1,4 @@
+; =================== Color =================== ;
 proc Scripts.Getters.Color uses eax ecx,\
      hex, resAdress
     locals
@@ -20,30 +21,43 @@ proc Scripts.Getters.Color uses eax ecx,\
         mov       [ebx + BackgroundColor.Red], eax     
     ret
 endp
-
-proc Scripts.Getters.Rect uses eax ebx,\
-     x1, y1, x2, y2, br_r, resAdress
-        mov     ebx, [resAdress]
-        stdcall GetXGLfloatCoord, [x1]
-        mov     [ebx + RectDesign.v1.x], eax
-        mov     [ebx + RectDesign.v2.x], eax
-        stdcall GetXGLfloatCoord, [x2]
-        mov     [ebx + RectDesign.v3.x], eax
-        mov     [ebx + RectDesign.v4.x], eax
-        stdcall GetYGLfloatCoord, [y1]
-        mov     [ebx + RectDesign.v1.y], eax
-        mov     [ebx + RectDesign.v4.y], eax
-        stdcall GetYGLfloatCoord, [y2]
-        mov     [ebx + RectDesign.v2.y], eax
-        mov     [ebx + RectDesign.v3.y], eax
-        mov     eax, [br_r]
-        mov     [ebx + RectDesign.borderRadius], eax
+proc GetGLfloatColor\
+     num
+    locals
+        res     dd       ?
+        divider GLfloat  256.0
+    endl
+        fild    dword [num]
+        fdiv    [divider]
+        fstp    [res]
+        mov     eax, [res]
     ret
 endp
 
-;=========== private ===========;
+; =================== Rect =================== ;
+proc Scripts.Getters.ConvertRect uses eax ebx ecx,\
+     resAdress
+    locals
+        multiplier  dd  4
+    endl
+    mov     ebx, [resAdress]
+    mov     eax, [ebx]
+    mul     dword [multiplier]
+    xchg    ecx, eax
+    add     ebx, 4
+    .convert:
+        mov     eax, [ebx]
+        stdcall GetXGLfloatCoord, eax
+        mov     [ebx], eax
 
-;==== for Rect ====
+        mov     eax, [ebx + 4]
+        stdcall GetYGLfloatCoord, eax
+        mov     [ebx + 4], eax
+
+        add     ebx, 8
+        loop    .convert
+    ret
+endp
 proc GetXGLfloatCoord\ ; x/960.0-1.0
      x
     locals
@@ -58,7 +72,6 @@ proc GetXGLfloatCoord\ ; x/960.0-1.0
         mov     eax, [res]
     ret
 endp
-
 proc GetYGLfloatCoord\ ; -(y/540.0-1.0)
      y
     locals
@@ -71,20 +84,6 @@ proc GetYGLfloatCoord\ ; -(y/540.0-1.0)
         fdiv    [DeviceHalfWidth]
         fsub    [floatNum]
         fimul   [minus]
-        fstp    [res]
-        mov     eax, [res]
-    ret
-endp
-
-;==== for color ====
-proc GetGLfloatColor\
-     num
-    locals
-        res     dd       ?
-        divider GLfloat  256.0
-    endl
-        fild    dword [num]
-        fdiv    [divider]
         fstp    [res]
         mov     eax, [res]
     ret

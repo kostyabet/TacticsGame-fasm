@@ -3,13 +3,11 @@ entry start
 
 include 'include/win32a.inc'
 include 'opengl.inc'
-include 'setup.inc'
 
 include 'Graphics/Colors/Colors.inc'
 include 'Graphics/Draw/Shapes/Shapes.inc'
 
-include 'Graphics/Draw/Shapes/Rect.asm'
-include 'Scripts/Getters.asm'
+include 'Graphics/Graphics.asm'
 
 section '.text' code readable executable
 
@@ -31,8 +29,8 @@ section '.text' code readable executable
 	invoke	CreateWindowEx, 0, _class, _title, WS_VISIBLE+WS_OVERLAPPEDWINDOW+WS_CLIPCHILDREN+WS_CLIPSIBLINGS, 0, 0, ebx, ecx, NULL, NULL, [wc.hInstance], NULL
 	mov		[hwnd],eax
 
-	invoke  ShowWindow,[hwnd],SW_MAXIMIZE
-    invoke  UpdateWindow,[hwnd]
+	;invoke  ShowWindow,[hwnd],SW_MAXIMIZE
+    ;invoke  UpdateWindow,[hwnd]
 
   msg_loop:
 	invoke	GetMessage, msg,NULL,0,0
@@ -93,103 +91,21 @@ proc WindowProc hwnd,wmsg,wparam,lparam
   .wmpaint:
 	invoke	glClear,GL_COLOR_BUFFER_BIT
 
-	stdcall Scripts.Getters.Rect, [MIN_X], [MIN_Y], [MAX_X], [MAX_Y], 0, rectDesign
-	stdcall Scripts.Getters.Color, [cl_background], cl_rect
-	stdcall Graphics.Draw.Shapes.Rect, rectDesign, cl_rect
+	; font
+	;stdcall Graphics.DrawRect, Font_design, [cl_background]
+	
+	; book
+		; stroke
+		stdcall Graphics.DrawRect, Book_root_design, [cl_root]
+		;stdcall Graphics.DrawRectWithRepeate, Book_strk_coords, [Book_strk_brdRud], [cl_stroke], [Book_strk_step], [REP_DIRECT_BOTTOM], [Book_strk_cnt]
 
-	stdcall Scripts.Getters.Rect, [Book_Root], [Book_Root + 4], [Book_Root + 8], [Book_Root + 12], 20, rectDesign
-	stdcall Scripts.Getters.Color, [cl_root], cl_rect
-	stdcall Graphics.Draw.Shapes.Rect, rectDesign, cl_rect
-
-	mov		ecx, [Book_strk_cnt]
-	push    [Book_Strk + 4] [Book_Strk + 12]
-	@@:
-		push 	ecx
-
-		stdcall Scripts.Getters.Rect, [Book_Strk], [Book_Strk + 4], [Book_Strk + 8], [Book_Strk + 12], 20, rectDesign
-		stdcall Scripts.Getters.Color, [cl_stroke], cl_rect
-		stdcall Graphics.Draw.Shapes.Rect, rectDesign, cl_rect
-
-		push edx
-		mov 	edx, [Book_strk_step]
-		add 	[Book_Strk + 4], edx
-		add 	[Book_Strk + 12], edx
-		pop edx
+		; ending
+		stdcall Graphics.DrawRect, Book_endg_design, [cl_ending]
 		
-		pop		ecx
-		dec     ecx
-		jnz 	@B
-	pop    [Book_Strk + 12] [Book_Strk + 4]
-
-;	movss	xmm0, [strk_y]
-;	movss	[stroke_y], xmm0
-;	movss	xmm0, [strk_y + 4]
-;	movss	[stroke_y + 4], xmm0
-;
-;	mov		ecx, [strk_cnt]
-;	@@:
-;		push 	ecx
-;		invoke	glBegin,	GL_QUADS
-;		invoke	glColor3f,  [cl_stroke],  [cl_stroke + 4], [cl_stroke + 8]
-;		invoke  glVertex3f, [strk_x],     [stroke_y],      [GLf_NULL]
-;		invoke  glVertex3f, [strk_x],     [stroke_y + 4],  [GLf_NULL]
-;		invoke  glVertex3f, [strk_x + 4], [stroke_y + 4],  [GLf_NULL]
-;		invoke  glVertex3f, [strk_x + 4], [stroke_y],      [GLf_NULL]
-;		invoke	glEnd
-;
-;		movss   xmm0, [strk_step]
-;		movss   xmm1, [stroke_y] 
-;		subss   xmm1, xmm0
-;		movss   [stroke_y], xmm1
-;
-;		movss   xmm0, [strk_step]
-;		movss   xmm1, [stroke_y + 4] 
-;		subss   xmm1, xmm0
-;		movss   [stroke_y + 4], xmm1
-;
-;		pop		ecx
-;		dec     ecx
-;		jnz 	@B
-;
-;--------------------------------ending-----------------------------------------;
-;	invoke 	glBegin, GL_QUADS
-;	invoke 	glColor3f, [cl_ending], [cl_ending + 4], [cl_ending + 8]
-;    invoke  glVertex3f, -0.6145833333333333, 0.4444444444444444, 0.0
-;    invoke  glVertex3f, -0.6145833333333333, -0.7925925925925925, 0.0
-;    invoke  glVertex3f, -0.1875, -0.7925925925925925, 0.0
-;    invoke  glVertex3f, -0.1875, 0.4444444444444444, 0.0
-;	invoke  glEnd
-;
-;	invoke 	glBegin, GL_QUADS
-;    invoke  glVertex3f, -0.1875,  0.37037037037037035, 0.0
-;    invoke  glVertex3f, -0.1875, -0.71851851851851860, 0.0
-;    invoke  glVertex3f, -0.14583333333333337, -0.71851851851851860, 0.0
-;    invoke  glVertex3f, -0.14583333333333337,  0.37037037037037035, 0.0
-;	invoke  glEnd
-;
-;----------------------------------border-----------------------------------------;
-;	invoke 	glBegin, GL_QUADS
-;	invoke 	glColor3f, [cl_bookborder], [cl_bookborder + 4], [cl_bookborder + 8]
-;    invoke  glVertex3f, -0.6114583333333333, 0.4296296296296296, 0.0
-;    invoke  glVertex3f, -0.6114583333333333, 0.42407407407407405, 0.0
-;    invoke  glVertex3f, -0.18854166666666672, 0.42407407407407405, 0.0
-;    invoke  glVertex3f, -0.18854166666666672, 0.4296296296296296, 0.0
-;	invoke  glEnd
-;
-;	invoke 	glBegin, GL_QUADS
-;    invoke  glVertex3f, -0.6114583333333333, -0.7722222222222221, 0.0
-;    invoke  glVertex3f, -0.6114583333333333, -0.7777777777777777, 0.0
-;    invoke  glVertex3f, -0.19062500000000004, -0.7777777777777777, 0.0
-;    invoke  glVertex3f, -0.19062500000000004, -0.7722222222222221, 0.0
-;	invoke  glEnd
-;
-;	invoke 	glBegin, GL_QUADS
-;    invoke  glVertex3f, -0.15833333333333333, -0.712962962962963, 0.0
-;    invoke  glVertex3f, -0.15833333333333333, 0.36111111111111116, 0.0
-;    invoke  glVertex3f, -0.15520833333333328, 0.36111111111111116, 0.0
-;    invoke  glVertex3f, -0.15520833333333328, -0.712962962962963, 0.0
-;	invoke  glEnd
-;---------------------------------------------------------------------------------;
+		; border
+		;stdcall Graphics.DrawRect, Book_brd_top, [Book_brd_radius], [cl_border]
+		;stdcall Graphics.DrawRect, Book_brd_right, [Book_brd_radius], [cl_border]
+		;stdcall Graphics.DrawRect, Book_brd_bottom, [Book_brd_radius], [cl_border]
 
 	invoke	SwapBuffers,[hdc]
 	xor	eax,eax
@@ -225,9 +141,11 @@ section '.data' data readable writeable
   rc 	 RECT
   pfd 	 PIXELFORMATDESCRIPTOR
 
-  rectDesign RectDesign 		?
   cl_rect	 BackgroundColor	?
   point      Point 				?
+
+  y1 		 dd					?
+  y2		 dd 				?
 
 section '.idata' import data readable writeable
 

@@ -1,17 +1,33 @@
-proc Graphics.Draw.Shapes.Rect uses ebx,\
+proc Graphics.Draw.Shapes.Rect uses edi ebx ecx ,\
      rectDesign, cl_background
     locals
-        NULL    GLfloat     0.0
+        NULL        GLfloat     0.0
+        multiplier  dd          4
     endl
-        invoke  glBegin, GL_QUADS
-        mov     ebx, [cl_background]
-        invoke  glColor3f, [ebx], [ebx + 4], [ebx + 8]
+        ;mov     ebx, [rectDesign]
+        ;mov     ecx, [ebx]
+        ;add     ebx, 4
+        ;.blocks:
+        ;    push    ecx   
+        ;    invoke  glBegin, GL_QUADS   
+        ;    mov     edi, [cl_background]
+        ;    invoke  glColor3f, [edi + BackgroundColor.Red], [edi + BackgroundColor.Green], [edi + BackgroundColor.Blue]
+        ;    invoke  glVertex3f,      [ebx],  [ebx + 4], [NULL]
+        ;    invoke  glVertex3f,  [ebx + 8], [ebx + 12], [NULL]
+        ;    invoke  glVertex3f, [ebx + 16], [ebx + 20], [NULL]
+        ;    invoke  glVertex3f, [ebx + 24], [ebx + 28], [NULL]    
+        ;    invoke  glEnd
+        ;    pop     ecx
+        ;    add     ebx, 32
+        ;    loop    .blocks
         mov     ebx, [rectDesign]
-        invoke  glVertex3f, [ebx + RectDesign.v1 + Point.x], [ebx + RectDesign.v1 + Point.y], [NULL]
-        invoke  glVertex3f, [ebx + RectDesign.v2 + Point.x], [ebx + RectDesign.v2 + Point.y], [NULL]
-        invoke  glVertex3f, [ebx + RectDesign.v3 + Point.x], [ebx + RectDesign.v3 + Point.y], [NULL]
-        invoke  glVertex3f, [ebx + RectDesign.v4 + Point.x], [ebx + RectDesign.v4 + Point.y], [NULL]
-
+        invoke  glBegin, GL_QUADS
+        mov     edi, [cl_background]
+        invoke  glColor3f, [edi + BackgroundColor.Red], [edi + BackgroundColor.Green], [edi + BackgroundColor.Blue]
+        invoke  glVertex3f,      [ebx],  [ebx + 4], [NULL]
+        invoke  glVertex3f,  [ebx + 8], [ebx + 12], [NULL]
+        invoke  glVertex3f, [ebx + 16], [ebx + 20], [NULL]
+        invoke  glVertex3f, [ebx + 24], [ebx + 28], [NULL]
         invoke  glEnd
     ret
 endp

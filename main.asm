@@ -3,7 +3,11 @@ entry start
 
 include 'include/win32a.inc'
 include 'opengl.inc'
-include 'setup.inc'
+
+include 'Graphics/Colors/Colors.inc'
+include 'Graphics/Draw/Shapes/Shapes.inc'
+
+include 'Graphics/Graphics.asm'
 
 section '.text' code readable executable
 
@@ -16,8 +20,17 @@ section '.text' code readable executable
 	invoke	LoadCursor, 0, IDC_ARROW
 	mov		[wc.hCursor], eax
 	invoke	RegisterClass, wc
-	invoke	CreateWindowEx, 0, _class, _title, WS_VISIBLE+WS_OVERLAPPEDWINDOW+WS_CLIPCHILDREN+WS_CLIPSIBLINGS, 0, 0, 1280, 720, NULL, NULL, [wc.hInstance], NULL
+
+	invoke  GetSystemMetrics, SM_CXSCREEN
+    mov     ebx, eax
+    invoke  GetSystemMetrics, SM_CYSCREEN
+    mov     ecx, eax
+
+	invoke	CreateWindowEx, 0, _class, _title, WS_VISIBLE+WS_OVERLAPPEDWINDOW+WS_CLIPCHILDREN+WS_CLIPSIBLINGS, 0, 0, ebx, ecx, NULL, NULL, [wc.hInstance], NULL
 	mov		[hwnd],eax
+
+	;invoke  ShowWindow,[hwnd],SW_MAXIMIZE
+    ;invoke  UpdateWindow,[hwnd]
 
   msg_loop:
 	invoke	GetMessage, msg,NULL,0,0
@@ -68,7 +81,6 @@ proc WindowProc hwnd,wmsg,wparam,lparam
 	invoke	GetClientRect,[hwnd],rc
 	invoke	glViewport,0,0,[rc.right],[rc.bottom]
 	invoke	GetTickCount
-	mov	[clock],eax
 	xor	eax,eax
 	jmp	.finish
   .wmsize:
@@ -79,121 +91,21 @@ proc WindowProc hwnd,wmsg,wparam,lparam
   .wmpaint:
 	invoke	glClear,GL_COLOR_BUFFER_BIT
 
-	invoke	glBegin,GL_QUADS
-	invoke	glColor3f,  [cl_background], [cl_background + 4], [cl_background + 8]
-	invoke	glVertex3f, [GLf_MIN],       [GLf_MIN],           [GLf_NULL]
-	invoke	glVertex3f, [GLf_MAX],       [GLf_MIN],           [GLf_NULL]
-	invoke	glVertex3f, [GLf_MAX],       [GLf_MAX],           [GLf_NULL]
-	invoke	glVertex3f, [GLf_MIN],       [GLf_MAX],           [GLf_NULL]
-	invoke	glEnd
+	; font
+	;stdcall Graphics.DrawRect, Font_design, [cl_background]
+	
+	; book
+		; stroke
+		stdcall Graphics.DrawRect, Book_root_design, [cl_root]
+		;stdcall Graphics.DrawRectWithRepeate, Book_strk_coords, [Book_strk_brdRud], [cl_stroke], [Book_strk_step], [REP_DIRECT_BOTTOM], [Book_strk_cnt]
 
-	invoke	glBegin,GL_QUADS
-	invoke	glColor3f,  [cl_root],  [cl_root + 4], [cl_root + 8]
-	invoke  glVertex3f, [rt_x],     [rt_y],        [GLf_NULL]
-	invoke  glVertex3f, [rt_x],     [rt_y + 4],    [GLf_NULL]
-	invoke  glVertex3f, [rt_x + 4], [rt_y + 4],    [GLf_NULL]
-	invoke  glVertex3f, [rt_x + 4],  [rt_y],        [GLf_NULL]
-	invoke	glEnd
-
-	movss	xmm0, [strk_y]
-	movss	[stroke_y], xmm0
-	movss	xmm0, [strk_y + 4]
-	movss	[stroke_y + 4], xmm0
-
-	mov		ecx, [strk_cnt]
-	@@:
-		push 	ecx
-		invoke	glBegin,	GL_QUADS
-		invoke	glColor3f,  [cl_stroke],  [cl_stroke + 4], [cl_stroke + 8]
-		invoke  glVertex3f, [strk_x],     [stroke_y],      [GLf_NULL]
-		invoke  glVertex3f, [strk_x],     [stroke_y + 4],  [GLf_NULL]
-		invoke  glVertex3f, [strk_x + 4], [stroke_y + 4],  [GLf_NULL]
-		invoke  glVertex3f, [strk_x + 4], [stroke_y],      [GLf_NULL]
-		invoke	glEnd
-
-		movss   xmm0, [strk_step]
-		movss   xmm1, [stroke_y] 
-		subss   xmm1, xmm0
-		movss   [stroke_y], xmm1
-
-		movss   xmm0, [strk_step]
-		movss   xmm1, [stroke_y + 4] 
-		subss   xmm1, xmm0
-		movss   [stroke_y + 4], xmm1
-
-		pop		ecx
-		dec     ecx
-		jnz 	@B
-
-;--------------------------------ending-----------------------------------------;
-	invoke 	glBegin, GL_QUADS
-	invoke 	glColor3f, [cl_ending], [cl_ending + 4], [cl_ending + 8]
-    invoke  glVertex3f, -0.6145833333333333, 0.4444444444444444, 0.0
-    invoke  glVertex3f, -0.6145833333333333, -0.7925925925925925, 0.0
-    invoke  glVertex3f, -0.1875, -0.7925925925925925, 0.0
-    invoke  glVertex3f, -0.1875, 0.4444444444444444, 0.0
-	invoke  glEnd
-
-	invoke 	glBegin, GL_QUADS
-    invoke  glVertex3f, -0.1875, 0.37037037037037035, 0.0
-    invoke  glVertex3f, -0.1875, -0.7185185185185186, 0.0
-    invoke  glVertex3f, -0.14583333333333337, -0.7185185185185186, 0.0
-    invoke  glVertex3f, -0.14583333333333337, 0.37037037037037035, 0.0
-	invoke  glEnd
-
-
-	invoke  glBegin, GL_POLYGON  ; Начало рисования полигона
-
-    mov     ecx, [segments]      ; Количество сегментов
-    fldpi                        ; Загрузить константу Pi в FPU стэк
-    fmul    dword [radius]       ; Умножить Pi на радиус
-    fmul    dword [segments]     ; Умножить на количество сегментов
-    fstp    [angle_step]         ; Сохранить шаг угла
-
-draw_circle:
-    fld     dword [angle_step]   ; Загрузить шаг угла
-    fimul   ecx                  ; Умножить шаг угла на текущий сегмент
-    fsin                         ; Синус угла (по оси Y)
-    fmul    dword [radius]       ; Умножить на радиус
-    fadd    dword [center_y]     ; Добавить центр по Y
-    fstp    dword [current_y]    ; Сохранить результат в current_y
-
-    fld     dword [angle_step]   ; Загрузить шаг угла
-    fimul   ecx                  ; Умножить шаг угла на текущий сегмент
-    fcos                        ; Косинус угла (по оси X)
-    fmul    dword [radius]       ; Умножить на радиус
-    fadd    dword [center_x]     ; Добавить центр по X
-    fstp    dword [current_x]    ; Сохранить результат в current_x
-
-    invoke  glVertex2f, [current_x], [current_y] ; Рисуем точку на окружности
-
-    loop    draw_circle          ; Переход к следующему сегменту
-
-    invoke  glEnd                ; Конец рисования полигона
-
-;----------------------------------border-----------------------------------------;
-	invoke 	glBegin, GL_QUADS
-	invoke 	glColor3f, [cl_bookborder], [cl_bookborder + 4], [cl_bookborder + 8]
-    invoke  glVertex3f, -0.6114583333333333, 0.4296296296296296, 0.0
-    invoke  glVertex3f, -0.6114583333333333, 0.42407407407407405, 0.0
-    invoke  glVertex3f, -0.18854166666666672, 0.42407407407407405, 0.0
-    invoke  glVertex3f, -0.18854166666666672, 0.4296296296296296, 0.0
-	invoke  glEnd
-
-	invoke 	glBegin, GL_QUADS
-    invoke  glVertex3f, -0.6114583333333333, -0.7722222222222221, 0.0
-    invoke  glVertex3f, -0.6114583333333333, -0.7777777777777777, 0.0
-    invoke  glVertex3f, -0.19062500000000004, -0.7777777777777777, 0.0
-    invoke  glVertex3f, -0.19062500000000004, -0.7722222222222221, 0.0
-	invoke  glEnd
-
-	invoke 	glBegin, GL_QUADS
-    invoke  glVertex3f, -0.15833333333333333, -0.712962962962963, 0.0
-    invoke  glVertex3f, -0.15833333333333333, 0.36111111111111116, 0.0
-    invoke  glVertex3f, -0.15520833333333328, 0.36111111111111116, 0.0
-    invoke  glVertex3f, -0.15520833333333328, -0.712962962962963, 0.0
-	invoke  glEnd
-;---------------------------------------------------------------------------------;
+		; ending
+		stdcall Graphics.DrawRect, Book_endg_design, [cl_ending]
+		
+		; border
+		;stdcall Graphics.DrawRect, Book_brd_top, [Book_brd_radius], [cl_border]
+		;stdcall Graphics.DrawRect, Book_brd_right, [Book_brd_radius], [cl_border]
+		;stdcall Graphics.DrawRect, Book_brd_bottom, [Book_brd_radius], [cl_border]
 
 	invoke	SwapBuffers,[hdc]
 	xor	eax,eax
@@ -219,25 +131,21 @@ section '.data' data readable writeable
 
   wc WNDCLASS 0,WindowProc,0,0,NULL,NULL,NULL,NULL,NULL,_class
 
-  hwnd 		dd 		?
-  hdc 		dd 		?
-  hrc 		dd 		?
+  hwnd 	 dd ?
+  hdc 	 dd ?
+  hrc 	 dd ?
 
   stroke_y	GLfloat ?, ? ; y1 - 0; y2 - 4 (offset)
 
-  msg MSG
-  rc RECT
-  pfd PIXELFORMATDESCRIPTOR
+  msg    MSG
+  rc 	 RECT
+  pfd 	 PIXELFORMATDESCRIPTOR
 
-  clock dd ?
+  cl_rect	 BackgroundColor	?
+  point      Point 				?
 
-
-
-  segments dd 100              ; Количество сегментов (чем больше, тем точнее окружность)
-    radius   dd 1.0              ; Радиус окружности
-    center_x dd 0.0              ; Центр окружности по оси X
-    center_y dd 0.0              ; Центр окружности по оси Y
-    angle    dd ?                ; Переменная для хранения угла
+  y1 		 dd					?
+  y2		 dd 				?
 
 section '.idata' import data readable writeable
 
@@ -253,6 +161,9 @@ section '.idata' import data readable writeable
 	 ExitProcess,'ExitProcess'
 
   import user,\
+     ShowWindow,'ShowWindow',\
+     UpdateWindow,'UpdateWindow',\
+	 GetSystemMetrics,'GetSystemMetrics',\
 	 RegisterClass,'RegisterClassA',\
 	 CreateWindowEx,'CreateWindowExA',\
 	 DefWindowProc,'DefWindowProcA',\

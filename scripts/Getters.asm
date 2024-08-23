@@ -61,7 +61,7 @@ endp
 proc GetXGLfloatCoord\ ; x/960.0-1.0
      x
     locals
-        res                 dd          ?
+        res                 dd          0x00000000
         floatNum            GLfloat     1.0
         DeviceHalfWidth     GLfloat     960.0
     endl
@@ -75,7 +75,7 @@ endp
 proc GetYGLfloatCoord\ ; -(y/540.0-1.0)
      y
     locals
-        res                 dd          ?
+        res                 dd          0x00000000
         floatNum            GLfloat     1.0
         DeviceHalfWidth     GLfloat     540.0
         minus               dd          -1

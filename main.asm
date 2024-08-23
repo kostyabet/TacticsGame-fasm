@@ -8,11 +8,17 @@ include 'Graphics/Colors/Colors.inc'
 include 'Graphics/Draw/Shapes/Shapes.inc'
 
 include 'Graphics/Graphics.asm'
+include 'Graphics/Colors/Prepear.asm'
 
 section '.text' code readable executable
 
   start:
 
+	; prepear progs ;
+	stdcall Graphics.Draw.RectPrepears
+	stdcall Graphics.Colors.Prepear
+
+	; creare window ;
 	invoke	GetModuleHandle, 0
 	mov		[wc.hInstance], eax
 	invoke	LoadIcon, 0, IDI_APPLICATION
@@ -29,8 +35,8 @@ section '.text' code readable executable
 	invoke	CreateWindowEx, 0, _class, _title, WS_VISIBLE+WS_OVERLAPPEDWINDOW+WS_CLIPCHILDREN+WS_CLIPSIBLINGS, 0, 0, ebx, ecx, NULL, NULL, [wc.hInstance], NULL
 	mov		[hwnd],eax
 
-	;invoke  ShowWindow,[hwnd],SW_MAXIMIZE
-    ;invoke  UpdateWindow,[hwnd]
+	invoke  ShowWindow,[hwnd],SW_MAXIMIZE
+    invoke  UpdateWindow,[hwnd]
 
   msg_loop:
 	invoke	GetMessage, msg,NULL,0,0
@@ -90,26 +96,28 @@ proc WindowProc hwnd,wmsg,wparam,lparam
 	jmp	.finish
   .wmpaint:
 	invoke	glClear,GL_COLOR_BUFFER_BIT
+	cmp 	[IS_INFO_PREPEAR], [PREPEAR]
+	jne 	.exit
 
 	; font
-	;stdcall Graphics.DrawRect, Font_design, [cl_background]
+	stdcall Graphics.Draw.Shapes.Rect, Font_design, [font_color]
 	
 	; book
 		; stroke
-		stdcall Graphics.DrawRect, Book_root_design, [cl_root]
+		;stdcall Graphics.Draw.Shapes.Rect, Book_root_design, [book_root_color]
 		;stdcall Graphics.DrawRectWithRepeate, Book_strk_coords, [Book_strk_brdRud], [cl_stroke], [Book_strk_step], [REP_DIRECT_BOTTOM], [Book_strk_cnt]
 
 		; ending
-		stdcall Graphics.DrawRect, Book_endg_design, [cl_ending]
+		;stdcall Graphics.DrawRect, Book_endg_design, [cl_ending]
 		
 		; border
 		;stdcall Graphics.DrawRect, Book_brd_top, [Book_brd_radius], [cl_border]
 		;stdcall Graphics.DrawRect, Book_brd_right, [Book_brd_radius], [cl_border]
 		;stdcall Graphics.DrawRect, Book_brd_bottom, [Book_brd_radius], [cl_border]
-
-	invoke	SwapBuffers,[hdc]
-	xor	eax,eax
-	jmp	.finish
+	.exit:
+		invoke	SwapBuffers,[hdc]
+		xor	eax,eax
+		jmp	.finish
   .wmkeydown:
 	cmp	[wparam],VK_ESCAPE
 	jne	.defwndproc
@@ -135,17 +143,9 @@ section '.data' data readable writeable
   hdc 	 dd ?
   hrc 	 dd ?
 
-  stroke_y	GLfloat ?, ? ; y1 - 0; y2 - 4 (offset)
-
   msg    MSG
   rc 	 RECT
   pfd 	 PIXELFORMATDESCRIPTOR
-
-  cl_rect	 BackgroundColor	?
-  point      Point 				?
-
-  y1 		 dd					?
-  y2		 dd 				?
 
 section '.idata' import data readable writeable
 

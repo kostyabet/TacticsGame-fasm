@@ -1,39 +1,3 @@
-; ============= Rect ============= ;
-struct Point   
-    x               dd              ?
-    y               dd              ?
-ends
-struct Points
-    v1              Point           ?
-    v2              Point           ?
-    v3              Point           ?
-    v4              Point           ?
-ends
-struct RectInterface 
-    r1              Points          ?
-    r2              Points          ?
-    r3              Points          ?       
-    r4              Points          ?   
-    borderRadius    dd              ? 
-ends
-rectInterfacce      RectInterface   ?
-
-rectBorderCircles       Points      ?   ;        1------2       ;
-rectBorderCirclesLen    dd          ?   ;        |      |       ;
-                                        ;        4------3       ;
-
-; ============= Book ============= ;
-;                                  ;
-;     _brdRud:        v1---v2      ;
-;         v1, v2,     |     |      ;
-;         v3, v4      v4---v3      ;
-;                                  ;
-;     _coords:        1-----=      ;
-;         x1, y1,     |     |      ;
-;         x2, y2      =-----2      ;
-;                                  ;
-;==================================;
-
     ; == Root == ;
 Book_root_design    dd  1,\
                         350, 300, 350, 968, 370, 968, 370, 300

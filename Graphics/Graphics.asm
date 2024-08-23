@@ -1,14 +1,6 @@
 include 'Draw/Shapes/Rect.asm'
 include '../Scripts/Getters.asm'
 
-proc Graphics.DrawRect\
-     rectDesign, bc_color
-    stdcall Scripts.Getters.ConvertRect, [rectDesign]
-    stdcall Scripts.Getters.Color, [bc_color], hexColor
-    stdcall Graphics.Draw.Shapes.Rect, [rectDesign], hexColor
-    ret
-endp
-
 proc Graphics.DrawRectWithRepeate uses eax ecx edx, \
      pointsLink, borderRadius, bc_color, step, direction, count
     locals

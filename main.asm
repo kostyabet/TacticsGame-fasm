@@ -3,22 +3,17 @@ entry start
 
 include 'include/win32a.inc'
 include 'opengl.inc'
+include 'main.inc'
 
-include 'Graphics/Colors/Colors.inc'
-include 'Graphics/Draw/Shapes/Shapes.inc'
 
-include 'Graphics/Graphics.asm'
-include 'Graphics/Colors/Prepear.asm'
+include 'Graphics/Includes/DataPrepears.asm'
+include 'Graphics/Includes/DataIncludes.asm'
+include 'Graphics/Includes/DrawFuncsInclude.asm'
+include 'Scripts/Getters.asm'
 
 section '.text' code readable executable
 
   start:
-
-	; prepear progs ;
-	stdcall Graphics.Draw.RectPrepears
-	stdcall Graphics.Colors.Prepear
-
-	; creare window ;
 	invoke	GetModuleHandle, 0
 	mov		[wc.hInstance], eax
 	invoke	LoadIcon, 0, IDI_APPLICATION
@@ -37,6 +32,11 @@ section '.text' code readable executable
 
 	invoke  ShowWindow,[hwnd],SW_MAXIMIZE
     invoke  UpdateWindow,[hwnd]
+	
+	; prepear data
+	stdcall Graphics.Draw.RectPrepears
+	stdcall Graphics.Colors.Prepear
+	mov 	[IS_INFO_PREPEAR], GL_TRUE
 
   msg_loop:
 	invoke	GetMessage, msg,NULL,0,0
@@ -96,24 +96,22 @@ proc WindowProc hwnd,wmsg,wparam,lparam
 	jmp	.finish
   .wmpaint:
 	invoke	glClear,GL_COLOR_BUFFER_BIT
-	cmp 	[IS_INFO_PREPEAR], [PREPEAR]
+	cmp 	[IS_INFO_PREPEAR], GL_TRUE
 	jne 	.exit
 
 	; font
-	stdcall Graphics.Draw.Shapes.Rect, Font_design, [font_color]
+	stdcall Graphics.Draw.Shapes.Rect, Font_design, font_color
 	
 	; book
 		; stroke
-		;stdcall Graphics.Draw.Shapes.Rect, Book_root_design, [book_root_color]
-		;stdcall Graphics.DrawRectWithRepeate, Book_strk_coords, [Book_strk_brdRud], [cl_stroke], [Book_strk_step], [REP_DIRECT_BOTTOM], [Book_strk_cnt]
+		stdcall Graphics.Draw.Shapes.Rect, Book_root_design, book_root_color
+		stdcall Graphics.Draw.Shapes.Rect, Book_strk_coords, book_strk_color
 
 		; ending
-		;stdcall Graphics.DrawRect, Book_endg_design, [cl_ending]
+		stdcall Graphics.Draw.Shapes.Rect, Book_endg_design, book_endg_color
 		
 		; border
-		;stdcall Graphics.DrawRect, Book_brd_top, [Book_brd_radius], [cl_border]
-		;stdcall Graphics.DrawRect, Book_brd_right, [Book_brd_radius], [cl_border]
-		;stdcall Graphics.DrawRect, Book_brd_bottom, [Book_brd_radius], [cl_border]
+		stdcall Graphics.Draw.Shapes.Rect, Book_brd, book_ebrd_color
 	.exit:
 		invoke	SwapBuffers,[hdc]
 		xor	eax,eax

@@ -1,24 +1,21 @@
 ; =================== Color =================== ;
 proc Scripts.Getters.Color uses eax ecx,\
      hex, resAdress
-    locals
-        divider   dd   100
-    endl
-        mov       ebx, [resAdress]
-        mov       eax, [hex]
-        and       eax, 0x000000FF
-        stdcall   GetGLfloatColor, eax
-        mov       [ebx + BackgroundColor.Blue], eax
-        mov       eax, [hex]
-        and       eax, 0x0000FF00
-        shr       eax, 8
-        stdcall   GetGLfloatColor, eax
-        mov       [ebx + BackgroundColor.Green], eax
-        mov       eax, [hex]
-        and       eax, 0x00FF0000
-        shr       eax, 16
-        stdcall   GetGLfloatColor, eax
-        mov       [ebx + BackgroundColor.Red], eax     
+    mov       ebx, [resAdress]
+    mov       eax, [hex]
+    and       eax, 0x000000FF
+    stdcall   GetGLfloatColor, eax
+    mov       [ebx + BackgroundColor.Blue], eax
+    mov       eax, [hex]
+    and       eax, 0x0000FF00
+    shr       eax, 8
+    stdcall   GetGLfloatColor, eax
+    mov       [ebx + BackgroundColor.Green], eax
+    mov       eax, [hex]
+    and       eax, 0x00FF0000
+    shr       eax, 16
+    stdcall   GetGLfloatColor, eax
+    mov       [ebx + BackgroundColor.Red], eax
     ret
 endp
 proc GetGLfloatColor\
@@ -86,5 +83,22 @@ proc GetYGLfloatCoord\ ; -(y/540.0-1.0)
         fimul   [minus]
         fstp    [res]
         mov     eax, [res]
+    ret
+endp
+
+proc Scripts.Getters.CovertIntToGLfloat\
+     value
+    ; x
+    mov     ebx, [value]
+    mov     eax, [ebx]
+    add     eax, 960
+    stdcall GetXGLfloatCoord, eax
+    mov     [ebx], eax
+    ; y
+    add     ebx, 4
+    mov     eax, [ebx]
+    add     eax, 540
+    stdcall GetYGLfloatCoord, eax
+    mov     [ebx], eax
     ret
 endp

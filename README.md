@@ -4,4 +4,6 @@
 21.08 -  6h   7min
 22.08 -  7h  59min
 23.08 -  1h  49min
-Total - 23h  29min
+24.08 -  2h  32min
+25.08 -   h    min
+Total - 26h   1min

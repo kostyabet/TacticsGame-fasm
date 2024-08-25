@@ -34,7 +34,7 @@ section '.text' code readable executable
     invoke  UpdateWindow,[hwnd]
 	
 	; prepear data
-	stdcall Graphics.Draw.RectPrepears
+	stdcall Graphics.Draw.CoordsRectPrepears
 	stdcall Graphics.Colors.Prepear
 	mov 	[IS_INFO_PREPEAR], GL_TRUE
 
@@ -98,20 +98,20 @@ proc WindowProc hwnd,wmsg,wparam,lparam
 	invoke	glClear,GL_COLOR_BUFFER_BIT
 	cmp 	[IS_INFO_PREPEAR], GL_TRUE
 	jne 	.exit
-
-	; font
-	stdcall Graphics.Draw.Shapes.Rect, Font_design, font_color
-	
-	; book
-		; stroke
-		stdcall Graphics.Draw.Shapes.Rect, Book_root_design, book_root_color
-		stdcall Graphics.Draw.Shapes.Rect, Book_strk_coords, book_strk_color
-
-		; ending
-		stdcall Graphics.Draw.Shapes.Rect, Book_endg_design, book_endg_color
-		
-		; border
-		stdcall Graphics.Draw.Shapes.Rect, Book_brd, book_ebrd_color
+	.draw:
+		stdcall Graphics.Draw.Shapes, font_design, font_color
+		; book
+		stdcall Graphics.Draw.Shapes, book_root_design, book_root_color
+		stdcall Graphics.Draw.Shapes, book_strk_design, book_strk_color
+		stdcall Graphics.Draw.Shapes, book_corner_design, book_endg_color
+		stdcall Graphics.Draw.Shapes, book_brdcrn_design, book_ebrd_color
+		stdcall Graphics.Draw.Shapes, book_brdfnt_design, book_endg_color
+		stdcall Graphics.Draw.Shapes, book_endg_design, book_endg_color
+		stdcall Graphics.Draw.Shapes, book_brd_design, book_ebrd_color
+		; buttons
+		stdcall Graphics.Draw.Shapes, button_play_design, button_color
+		stdcall Graphics.Draw.Shapes, button_about_design, button_color
+		stdcall Graphics.Draw.Shapes, button_stngs_design, button_color
 	.exit:
 		invoke	SwapBuffers,[hdc]
 		xor	eax,eax

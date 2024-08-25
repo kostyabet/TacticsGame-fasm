@@ -1,51 +1,131 @@
-; ============= Font ============= ;
-Font_design         dd  1,\
-                        0, 0, 1920, 0, 1920, 1080, 0, 1080
+; ================== Documentation ================== ;
+;                                                     ;
+;   _design:                                          ;
+;      X - count of rects in this design block        ;
+;      Next X strings nas coordinates:                ;
+;          x1, y1, x2, y2, x3, y3, x4, y4             ;
+;      Points visualization:  1----4                  ;
+;                             |    |                  ;
+;                             2----3                  ;
+;      Y - count of circles in this design block      ;
+;      Next Y strings has coordinates:                ;
+;          x, y, r                                    ;
+;      x, y - circle center coordinates.              ;
+;      r - circle radius                              ;
+;                                                     ;
+; =================================================== ;
 
-; ============= Book ============= ;
-    ; == Root == ;
-Book_root_design    dd  1,\
-                        350, 300, 350, 968, 370, 968, 370, 300
-    ; = Stroke = ;
-Book_strk_coords    dd  21,\
-                        353, 311, 353, 313, 367, 313, 367, 311,\
-                        353, 319, 353, 321, 367, 321, 367, 319,\
-                        353, 327, 353, 329, 367, 329, 367, 327,\
-                        353, 335, 353, 338, 367, 338, 367, 335,\
-                        353, 343, 353, 346, 367, 346, 367, 343,\
-                        353, 351, 353, 354, 367, 354, 367, 351,\
-                        353, 359, 353, 362, 367, 362, 367, 359,\
-                        353, 368, 353, 370, 367, 370, 367, 368,\
-                        353, 376, 353, 378, 367, 378, 367, 376,\
-                        353, 384, 353, 387, 367, 387, 367, 384,\
-                        353, 392, 353, 395, 367, 395, 367, 392,\
-                        353, 401, 353, 403, 367, 403, 367, 401,\
-                        353, 409, 353, 411, 367, 411, 367, 409,\
-                        353, 417, 353, 419, 367, 419, 367, 417,\
-                        353, 425, 353, 427, 367, 427, 367, 425,\
-                        353, 433, 353, 436, 367, 436, 367, 433,\
-                        353, 441, 353, 444, 367, 444, 367, 441,\
-                        353, 449, 353, 452, 367, 452, 367, 449,\
-                        353, 457, 353, 460, 367, 460, 367, 457,\
-                        353, 466, 353, 468, 367, 468, 367, 466,\
-                        353, 474, 353, 476, 367, 476, 367, 474,\
-                        382, 466, 353, 483, 367, 483, 367, 482,\
-                        390, 466, 353, 492, 367, 492, 367, 490
-    ; = Ending = ;
-Book_endg_design    dd  2,\ ; rect
-                        370, 300, 370, 968, 780, 968, 780, 300,\
-                        780, 340, 780, 928, 820, 928, 820, 340,\
-                        2,\ ; circle
-                        780, 340,\
-                        780, 928
-    ; = Border = ;
-Book_brd            dd  3,\
-                        373, 308, 373, 311, 779, 311, 779, 308,\
-                        809, 345, 809, 925, 811, 925, 811, 345,\
-                        373, 957, 373, 960, 779, 960, 779, 957
+; ====== Interfaces ====== ;
+struct Point 
+    x   GLfloat ?
+    y   GLfloat ?
+ends
 
-; =========== Repeates =========== ;
-REP_DIRECT_LEFT     =  1
-REP_DIRECT_TOP      =  2
-REP_DIRECT_RIGHT    =  3
-REP_DIRECT_BOTTOM   =  4
+struct Rect 
+    v1      Point   ?
+    v2      Point   ?
+    v3      Point   ?
+    v4      Point   ?
+ends
+
+struct Rects 
+    rct1    Rect    ?
+    rct2    Rect    ?
+    rct3    Rect    ?
+    rct4    Rect    ?
+    rct5    Rect    ?
+ends
+
+struct Circle 
+    center   Point   ?
+    dots     dd      722 dup(?)
+ends
+
+struct Circles
+    crcl1    Circle ?
+    crcl2    Circle ?
+    crcl3    Circle ?
+    crcl4    Circle ?
+ends
+
+struct DrawModel
+    rectsCount      dd      ?
+    rects           Rects   ?
+    circlesCount    dd      ?
+    circles         Circles ?
+ends
+
+degreeCount         dd  360
+curentDeg           dd  0
+curentRudDeg        dd  ?
+
+; ====== Program models ====== ;
+font_design         DrawModel   ?
+
+book_root_design    DrawModel   ?
+book_strk_design    DrawModel   ?
+book_endg_design    DrawModel   ?
+book_brdcrn_design  DrawModel   ?
+book_corner_design  DrawModel   ?
+book_brdfnt_design  DrawModel   ?
+book_brd_design     DrawModel   ?
+
+button_play_design  DrawModel   ?
+button_about_design DrawModel   ?
+button_stngs_design DrawModel   ?
+
+; ====== Business models ====== ;
+font_coords         dd  1,\
+                        0, 0, 1920, 1080,\
+                        0
+book_root_coords    dd  1,\
+                        350, 300, 370, 968,\
+                        0
+book_strk_coords    dd  1,\
+                        353, 311, 367, 313,\
+                        0
+book_endg_coords    dd  2,\
+                        370, 300, 780, 968,\
+                        780, 340, 820, 928,\
+                        0
+book_corner_coords  dd  0,\
+                        2,\
+                        780, 340, 40,\
+                        780, 928, 40
+book_brdcrn_coords  dd  0,\
+                        2,\
+                        780, 340, 32,\
+                        780, 928, 32
+book_brdfnt_coords  dd  0,\
+                        2,\
+                        780, 340, 29,\
+                        780, 928, 29
+book_brd_coords     dd  3,\
+                        373, 308, 781, 311,\
+                        809, 340, 811, 927,\
+                        373, 957, 781, 960,\
+                        0
+button_play_coords  dd  2,\
+                        1080, 316, 1540, 467,\
+                        1050, 346, 1570, 437,\
+                        4,\
+                        1080, 346, 30,\
+                        1080, 437, 30,\
+                        1540, 346, 30,\
+                        1540, 437, 30
+button_about_coords dd  2,\
+                        1080, 558, 1540, 709,\
+                        1050, 588, 1570, 679,\
+                        4,\
+                        1080, 588, 30,\
+                        1080, 679, 30,\
+                        1540, 588, 30,\
+                        1540, 679, 30
+button_stngs_coords dd  2,\
+                        1080, 800, 1540, 951,\
+                        1050, 830, 1570, 921,\
+                        4,\
+                        1080, 830, 30,\
+                        1080, 921, 30,\ ;242 y
+                        1540, 830, 30,\
+                        1540, 921, 30

@@ -1,2 +1,3 @@
 ; Shapes
-include '../Draw/Shapes/Rect.asm'
+include '../Draw/Shapes.asm'
+include '../Draw/ASCII.asm'

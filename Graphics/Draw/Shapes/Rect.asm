@@ -7,6 +7,8 @@ proc Graphics.Draw.Shapes.Rect uses ebx ecx ,\
         invoke  glColor3f, [ebx + BackgroundColor.Red], [ebx + BackgroundColor.Green], [ebx + BackgroundColor.Blue]    
         mov     ebx, [rect]
         mov     ecx, [ebx]
+        cmp     ecx, 0
+        je      @F
         add     ebx, 4
         .blocks:
             push    ecx   
@@ -19,5 +21,6 @@ proc Graphics.Draw.Shapes.Rect uses ebx ecx ,\
             pop     ecx
             add     ebx, 32
             loop    .blocks
-    ret
+    @@:
+        ret
 endp

@@ -3,16 +3,17 @@ entry start
 
 include 'include/win32a.inc'
 include 'opengl.inc'
+include 'main.inc'
 
-include 'Graphics/Colors/Colors.inc'
-include 'Graphics/Draw/Shapes/Shapes.inc'
 
-include 'Graphics/Graphics.asm'
+include 'Graphics/Includes/DataPrepears.asm'
+include 'Graphics/Includes/DataIncludes.asm'
+include 'Graphics/Includes/DrawFuncsInclude.asm'
+include 'Scripts/Getters.asm'
 
 section '.text' code readable executable
 
   start:
-
 	invoke	GetModuleHandle, 0
 	mov		[wc.hInstance], eax
 	invoke	LoadIcon, 0, IDI_APPLICATION
@@ -29,8 +30,13 @@ section '.text' code readable executable
 	invoke	CreateWindowEx, 0, _class, _title, WS_VISIBLE+WS_OVERLAPPEDWINDOW+WS_CLIPCHILDREN+WS_CLIPSIBLINGS, 0, 0, ebx, ecx, NULL, NULL, [wc.hInstance], NULL
 	mov		[hwnd],eax
 
-	;invoke  ShowWindow,[hwnd],SW_MAXIMIZE
-    ;invoke  UpdateWindow,[hwnd]
+	invoke  ShowWindow,[hwnd],SW_MAXIMIZE
+    invoke  UpdateWindow,[hwnd]
+	
+	; prepear data
+	stdcall Graphics.Draw.CoordsRectPrepears
+	stdcall Graphics.Colors.Prepear
+	mov 	[IS_INFO_PREPEAR], GL_TRUE
 
   msg_loop:
 	invoke	GetMessage, msg,NULL,0,0
@@ -90,26 +96,26 @@ proc WindowProc hwnd,wmsg,wparam,lparam
 	jmp	.finish
   .wmpaint:
 	invoke	glClear,GL_COLOR_BUFFER_BIT
-
-	; font
-	;stdcall Graphics.DrawRect, Font_design, [cl_background]
-	
-	; book
-		; stroke
-		stdcall Graphics.DrawRect, Book_root_design, [cl_root]
-		;stdcall Graphics.DrawRectWithRepeate, Book_strk_coords, [Book_strk_brdRud], [cl_stroke], [Book_strk_step], [REP_DIRECT_BOTTOM], [Book_strk_cnt]
-
-		; ending
-		stdcall Graphics.DrawRect, Book_endg_design, [cl_ending]
-		
-		; border
-		;stdcall Graphics.DrawRect, Book_brd_top, [Book_brd_radius], [cl_border]
-		;stdcall Graphics.DrawRect, Book_brd_right, [Book_brd_radius], [cl_border]
-		;stdcall Graphics.DrawRect, Book_brd_bottom, [Book_brd_radius], [cl_border]
-
-	invoke	SwapBuffers,[hdc]
-	xor	eax,eax
-	jmp	.finish
+	cmp 	[IS_INFO_PREPEAR], GL_TRUE
+	jne 	.exit
+	.draw:
+		stdcall Graphics.Draw.Shapes, font_design, font_color
+		; book
+		stdcall Graphics.Draw.Shapes, book_root_design, book_root_color
+		stdcall Graphics.Draw.Shapes, book_strk_design, book_strk_color
+		stdcall Graphics.Draw.Shapes, book_corner_design, book_endg_color
+		stdcall Graphics.Draw.Shapes, book_brdcrn_design, book_ebrd_color
+		stdcall Graphics.Draw.Shapes, book_brdfnt_design, book_endg_color
+		stdcall Graphics.Draw.Shapes, book_endg_design, book_endg_color
+		stdcall Graphics.Draw.Shapes, book_brd_design, book_ebrd_color
+		; buttons
+		stdcall Graphics.Draw.Shapes, button_play_design, button_color
+		stdcall Graphics.Draw.Shapes, button_about_design, button_color
+		stdcall Graphics.Draw.Shapes, button_stngs_design, button_color
+	.exit:
+		invoke	SwapBuffers,[hdc]
+		xor	eax,eax
+		jmp	.finish
   .wmkeydown:
 	cmp	[wparam],VK_ESCAPE
 	jne	.defwndproc
@@ -135,17 +141,9 @@ section '.data' data readable writeable
   hdc 	 dd ?
   hrc 	 dd ?
 
-  stroke_y	GLfloat ?, ? ; y1 - 0; y2 - 4 (offset)
-
   msg    MSG
   rc 	 RECT
   pfd 	 PIXELFORMATDESCRIPTOR
-
-  cl_rect	 BackgroundColor	?
-  point      Point 				?
-
-  y1 		 dd					?
-  y2		 dd 				?
 
 section '.idata' import data readable writeable
 

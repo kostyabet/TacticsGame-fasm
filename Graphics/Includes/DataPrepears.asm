@@ -22,3 +22,8 @@ proc Graphics.Colors.Prepear
     stdcall Scripts.Getters.Color, [cl_button], button_color
     ret
 endp
+
+proc Graphics.Draw.ASCIIPrepear
+    
+    ret
+endp

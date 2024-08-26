@@ -36,6 +36,7 @@ section '.text' code readable executable
 	; prepear data
 	stdcall Graphics.Draw.CoordsRectPrepears
 	stdcall Graphics.Colors.Prepear
+	stdcall Graphics.Draw.ASCIIPrepear
 	mov 	[IS_INFO_PREPEAR], GL_TRUE
 
   msg_loop:
@@ -151,7 +152,7 @@ section '.idata' import data readable writeable
 	  user,'USER32.DLL',\
 	  gdi,'GDI32.DLL',\
 	  opengl,'OPENGL32.DLL',\
-	  glu,'GLU32.DLL'
+	  glu,'GLU32.DLL',\
 
   import kernel,\
 	 GetModuleHandle,'GetModuleHandleA',\

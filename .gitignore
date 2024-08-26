@@ -9,3 +9,6 @@
 workflows/
 build.yml/
 *yml/
+
+# Texture Packer resource files
+Graphics/Draw/ASCII/TextureAtlases/Resources

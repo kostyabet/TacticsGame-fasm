@@ -20,5 +20,11 @@ proc Graphics.Colors.Prepear
     stdcall Scripts.Getters.Color, [cl_ending], book_endg_color
     stdcall Scripts.Getters.Color, [cl_border], book_ebrd_color
     stdcall Scripts.Getters.Color, [cl_button], button_color
+    stdcall Scripts.Getters.Color, [cl_headline], headline_color
+    ret
+endp
+
+proc Graphics.Draw.ASCIIPrepear
+    stdcall Graphisc.Draw.ASCII.Letters.Prepear
     ret
 endp

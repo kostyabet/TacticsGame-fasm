@@ -1,4 +1,5 @@
 include 'Shapes/Circle.asm'
+include 'Shapes/Quadrilateral.asm'
 include 'Shapes/Rect.asm'
 
 proc Graphics.Draw.Shapes uses eax ebx edx,\

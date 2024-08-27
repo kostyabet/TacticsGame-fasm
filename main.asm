@@ -36,6 +36,7 @@ section '.text' code readable executable
 	; prepear data
 	stdcall Graphics.Draw.CoordsRectPrepears
 	stdcall Graphics.Colors.Prepear
+	stdcall Graphics.Draw.ASCIIPrepear
 	mov 	[IS_INFO_PREPEAR], GL_TRUE
 
   msg_loop:
@@ -112,6 +113,8 @@ proc WindowProc hwnd,wmsg,wparam,lparam
 		stdcall Graphics.Draw.Shapes, button_play_design, button_color
 		stdcall Graphics.Draw.Shapes, button_about_design, button_color
 		stdcall Graphics.Draw.Shapes, button_stngs_design, button_color
+		; headline
+		
 	.exit:
 		invoke	SwapBuffers,[hdc]
 		xor	eax,eax

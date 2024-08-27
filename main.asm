@@ -113,6 +113,8 @@ proc WindowProc hwnd,wmsg,wparam,lparam
 		stdcall Graphics.Draw.Shapes, button_play_design, button_color
 		stdcall Graphics.Draw.Shapes, button_about_design, button_color
 		stdcall Graphics.Draw.Shapes, button_stngs_design, button_color
+		; headline
+		
 	.exit:
 		invoke	SwapBuffers,[hdc]
 		xor	eax,eax
@@ -152,7 +154,7 @@ section '.idata' import data readable writeable
 	  user,'USER32.DLL',\
 	  gdi,'GDI32.DLL',\
 	  opengl,'OPENGL32.DLL',\
-	  glu,'GLU32.DLL',\
+	  glu,'GLU32.DLL'
 
   import kernel,\
 	 GetModuleHandle,'GetModuleHandleA',\

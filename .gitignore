@@ -1,3 +1,6 @@
+# vscode temp files
+.vscode
+
 # build files
 *.exe
 *.bin

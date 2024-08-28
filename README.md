@@ -8,4 +8,5 @@
 25.08 -  6h  56min
 26.08 -  1h  31min
 27.08 -  3h  52min
-Total - 31h  24min
+28.08 -  3h  50min
+Total - 35h  14min 

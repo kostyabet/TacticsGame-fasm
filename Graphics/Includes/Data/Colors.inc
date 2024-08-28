@@ -13,12 +13,14 @@ cl_ending       dd      0x00A5582D
 cl_border       dd      0x00BA6A3D
 cl_button       dd      0x00DFB69F
 cl_headline     dd      0x00C88762
+cl_flgpl        dd      0x005B2E15
 
 ; ====== Program models ====== ;
-font_color      BackgroundColor ?
-book_root_color BackgroundColor ?
-book_strk_color BackgroundColor ?
-book_endg_color BackgroundColor ?
-book_ebrd_color BackgroundColor ?
-button_color    BackgroundColor ?
-headline_color  BackgroundColor ?
+font_color       BackgroundColor ?
+book_root_color  BackgroundColor ?
+book_strk_color  BackgroundColor ?
+book_endg_color  BackgroundColor ?
+book_ebrd_color  BackgroundColor ?
+button_color     BackgroundColor ?
+headline_color   BackgroundColor ?
+book_flgpl_color BackgroundColor ?

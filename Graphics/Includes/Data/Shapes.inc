@@ -69,6 +69,7 @@ book_brdcrn_design  DrawModel   ?
 book_corner_design  DrawModel   ?
 book_brdfnt_design  DrawModel   ?
 book_brd_design     DrawModel   ?
+book_flgpl_design   DrawModel   ?
 
 button_play_design  DrawModel   ?
 button_about_design DrawModel   ?
@@ -105,6 +106,13 @@ book_brd_coords     dd  3,\
                         809, 340, 811, 927,\
                         373, 957, 781, 960,\
                         0
+book_flgpl_coords   dd  3,\
+                        589, 504, 593, 594,\
+                        588, 594, 594, 739,\
+                        586, 739, 596, 826,\
+                        2,\
+                        591, 739, 16,\
+                        591, 594, 12
 button_play_coords  dd  2,\
                         1080, 316, 1540, 467,\
                         1050, 346, 1570, 437,\

@@ -9,7 +9,7 @@ proc Graphics.Draw.Shapes.Quadrilateral uses ebx ecx ,\
         mov     ecx, [ebx]
         cmp     ecx, 0
         je      @F
-        add     ebx, 4
+        add     ebx, 8
         .blocks:
             push    ecx   
             invoke  glBegin, GL_QUADS   

@@ -1,32 +1,69 @@
-; data
-FS_Curent       dd      ?
+; ==================== Documentation ==================== ;
+;                                                         ;
+;   fs_:                                                  ;
+;      One of the properties of the text,                 ;
+;       the value of which is the size of the text        ;
+;       in the `pt` dimension:                            ;
+;           20pt = 28px                                   ;
+;           20pt is the DEFAULT FONT SIZE.                ;
+;      DEFAULT FONT SIZE - the basic font size            ;
+;       on the basis of which the basic Letters           ;
+;       are presented.                                    ;
+;      Default font size visualization:                   ;
+;                  |      /\                              ;
+;             20pt |     /  \                             ;
+;             28px |    /____\                            ;
+;                  |   /      \                           ;
+;                                                         ;
+;   ltr_:                                                 ;
+;      Visualization of the letters of the alphabet.      ;
+;      RU_:                                               ;
+;         An abbreviation of the language                 ;
+;          to emphasize the localization of letters.      ;
+;         Russian letters contain their own serial        ;
+;          number, which corresponds to the number        ;
+;          of the letter in the Russian alphabet.         ;
+;                                                         ;
+;      Letter describe:                                   ;
+;         Count - number of QUAD in this letter           ;
+;             MIN_COUNT: 2    MAX_COUNT: 7                ;
+;         LENGTH - Letter length in `px`.                 ;
+;         The following Count lines contain 8 coords      ;
+;          each in the following format:                  ;
+;              x1 y1 x2 y2 x3 y3 x4 y4                    ;
+;         QUAD visualizatoin:                             ;
+;                   1---------2                           ;
+;                    \         \                          ;
+;                     4---------3                         ;
+;                                                         ;
+; ======================================================= ;
 
-; Font Sizes
-FS_Headline     =       79
-FS_Button       =       50
-FS_Title        =       40
-FS_Info         =       20
-FS_Cost         =       18
-FS_WtrMark      =       10
-FS_Default      =       20
-
-; EN Letters
+; Font Size
+fs_headline     =       79
+fs_play         =       50
+fs_about        =       50
+fs_settings     =       50
+fs_title        =       40
+fs_info         =       20
+fs_cost         =       18
+fs_watermark    =       10
+fs_default      =       20
 
 ; RU Letters
 ; А
-Ltr_RU_1        dd       3,\
+ltr_RU_1        dd       3, 16,\
                          6,  0,  9,  0,  3, 28,  0, 28,\ ; /
                          3, 18,  3, 22, 12, 22, 12, 18,\ ; -
                          6,  0,  9,  0, 15, 28, 12, 28   ; \
 ; Б
-Ltr_RU_2        dd       5,\
+ltr_RU_2        dd       5, 12,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)
                          4,  0, 11,  0, 11,  4,  4,  4,\ ; - (top)
                          4, 12,  4, 16, 12, 16, 12, 12,\ ; - (middle)
                          4, 24,  4, 28, 12, 28, 12, 24,\ ; - (bottom)
                          8, 16, 12, 16, 12, 28,  8, 28   ; | (right)
 ; В
-Ltr_RU_3        dd       6,\
+ltr_RU_3        dd       6, 12,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)
                          4,  0,  4,  4,  8,  4,  8,  0,\ ; - (top)
                          4, 10,  4, 14,  8, 14,  8, 10,\ ; - (middle)
@@ -34,24 +71,24 @@ Ltr_RU_3        dd       6,\
                          8, 13,  8, 27, 12, 27, 12, 13,\ ; | (bottom-right)
                          4, 24,  4, 28,  9, 28,  9, 24   ; - (bottom)    
 ; Г
-Ltr_RU_4        dd       2,\
+ltr_RU_4        dd       2, 10,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)
                          4,  0,  4,  4, 10,  4, 10,  0   ; - (top)  
 ; Д
-Ltr_RU_5        dd       5,\
+ltr_RU_5        dd       5, 16,\
                          6,  0, 11,  0,  6, 20,  2, 20,\ ; / (left)
                          6,  0, 11,  0, 14, 20, 10, 20,\ ; \ (right)
                          0, 20,  0, 24, 16, 24, 16, 20,\ ; - (middle)
                          0, 24,  0, 28,  4, 28,  4, 24,\ ; | (left)
                         12, 24, 12, 28, 16, 28, 16, 24   ; | (right)
 ; Е
-Ltr_RU_6        dd       4,\
+ltr_RU_6        dd       4, 10,\
                          0,  3,  0, 28,  4, 28,  4,  3,\ ; | (left)
                          4,  3,  4,  6, 10,  6, 10,  3,\ ; - (top)
                          4, 10,  4, 15, 10, 15, 10, 10,\ ; - (middle)
                          4, 24,  4, 28, 10, 28, 10, 24   ; - (bottom)
 ; Ё
-Ltr_RU_7        dd       6,\
+ltr_RU_7        dd       6, 10,\
                          0,  3,  0, 28,  4, 28,  4,  3,\ ; | (left)
                          4,  3,  4,  6, 10,  6, 10,  3,\ ; - (top)
                          4, 10,  4, 15, 10, 15, 10, 10,\ ; - (middle)
@@ -59,14 +96,14 @@ Ltr_RU_7        dd       6,\
                          1,  0,  1,  2,  4,  2,  4,  0,\ ; . (left)
                          6,  0,  6,  2,  9,  2,  9,  0   ; . (right)
 ; Ж
-Ltr_RU_8        dd       5,\
+ltr_RU_8        dd       5, 20,\
                          0,  0,  4,  0,  8,  8,  8, 17,\ ; \ (left-top)
                          0, 28,  4, 28,  8, 17,  8, 10,\ ; / (left-bottom)
                          8,  0, 12,  0, 12, 28,  8, 28,\ ; | (central)
                         16,  0, 20,  0, 12, 17, 12,  9,\ ; / (right-top)
                         12, 10, 12, 18, 16, 28, 20, 28   ; \ (right-bottom)
 ; З
-Ltr_RU_9        dd       7,\
+ltr_RU_9        dd       7, 12,\
                          0,  0,  0,  6,  4,  6,  4,  0,\ ; | (left-top)
                          4,  0,  4,  4,  8,  4,  8,  0,\ ; - (top)
                          8,  0,  8, 12, 12, 12, 12,  0,\ ; | (right-top)
@@ -75,130 +112,130 @@ Ltr_RU_9        dd       7,\
                          4, 24,  8, 24,  8, 28,  4, 28,\ ; - (bottom)
                          0, 28,  4, 28,  4, 22,  0, 22   ; | (left-bottom)
 ; И 
-Ltr_RU_10       dd       3,\
+ltr_RU_10       dd       3, 12,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)
                          4, 14,  4, 28,  8, 14,  8,  0,\ ; / (center)
                          8,  0,  8, 28, 14, 28, 14,  0   ; | (right)
 ; Й
-Ltr_RU_11       dd       4,\
+ltr_RU_11       dd       4, 12,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)
                          4, 14,  4, 28,  8, 14,  8,  0,\ ; / (center)
                          8,  0,  8, 28, 14, 28, 14,  0,\ ; | (right)
                          5,  0,  5,  2,  6,  2,  6,  0   ; , (top)
 ; К
-Ltr_RU_12       dd       3,\
+ltr_RU_12       dd       3, 13,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)
                          4,  9,  4, 19, 12,  0,  8,  0,\ ; / (right-top)
                          4,  9,  4, 19,  8, 28, 12, 28   ; \ (right-bottom)
 ; Л
-Ltr_RU_13       dd       2,\
+ltr_RU_13       dd       2, 12,\
                          0, 28,  4, 28,  6, 14,  6,  0,\ ; / (left)
                          6, 14,  6,  0, 12, 28,  8, 28   ; \ (right)
 ; М
-Ltr_RU_14       dd       5,\
+ltr_RU_14       dd       5, 16,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)
                          4,  0,  4, 19,  6, 28,  8, 20,\ ; \ (left)
                          6, 20, 10, 20, 10, 28,  6, 28,\ ; | (center)  
                         10, 28, 12, 19, 12,  0,  8, 20,\ ; / (right)    
                         12,  0, 12, 28, 16, 28, 16, 0    ; | (right)
 ; Н
-Ltr_RU_15       dd       3,\
+ltr_RU_15       dd       3, 12,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)
                          4, 12,  4, 16,  8, 16,  8, 12,\ ; - (center)
                          8,  0,  8, 28, 12, 28, 12,  0   ; | (right)
 ; О
-Ltr_RU_16       dd       4,\
+ltr_RU_16       dd       4, 12,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)
                          4,  0,  4,  4,  8,  4,  8,  0,\ ; - (top)
                          8,  0,  8, 28, 12, 28, 12,  0,\ ; | (right)
                          4, 24,  4, 28,  8, 28,  8, 24   ; - (bottom) 
 ; П
-Ltr_RU_17       dd       3,\
+ltr_RU_17       dd       3, 12,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)
                          4,  0,  4,  4,  8,  4,  8,  0,\ ; - (top)
                          8,  0,  8, 28, 12, 28, 12,  0   ; | (right)
 ; Р
-Ltr_RU_18       dd       4,\
+ltr_RU_18       dd       4, 12,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)
                          4,  0,  4,  4, 12,  4, 12,  0,\ ; - (top)
                          8,  4, 12,  4, 12, 12,  8, 12,\ ; | (right)
                          4,  8,  4, 12,  8, 12,  8,  8   ; - (center)  
 ; С
-Ltr_RU_19       dd       5,\
+ltr_RU_19       dd       5, 12,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)
                          4,  0,  4,  4,  8,  4,  8,  0,\ ; - (top)
                          8,  0,  8,  6, 12,  6, 12,  0,\ ; | (top-right)
                          4, 24,  4, 28,  8, 28,  8, 24,\ ; - (bottom)
                          8, 22,  8, 28, 12, 28, 12, 22   ; | (bottom-right)
 ; Т
-Ltr_RU_20       dd       2,\
+ltr_RU_20       dd       2, 12,\
                          0,  0, 12,  0, 12,  4,  0,  4,\ ; - (top)
                          4,  4,  8,  4,  8, 28,  4, 28   ; | (center) 
 ; У
-Ltr_RU_21       dd       5,\
+ltr_RU_21       dd       5, 12,\
                          0,  0,  4,  0,  4, 12,  0, 12,\ ; | (left-top)
                          4,  8,  4, 12,  8, 12,  8,  8,\ ; - (center)
                          8,  0, 12,  0, 12, 28,  8, 28,\ ; | (right)
                          0, 24,  0, 28, 12, 28, 12, 24,\ ; - (bottom)
                          0, 22,  0, 28,  4, 28,  4, 22   ; | (left-bottom) 
 ; Ф
-Ltr_RU_22       dd       5,\
+ltr_RU_22       dd       5, 20,\
                          8,  0, 12,  0, 12, 28,  8, 28,\ ; | (center)
                          0,  2,  0, 22,  4, 22,  4,  2,\ ; | (left)
                          4,  2,  4,  6, 16,  6, 16,  2,\ ; - (center-top)
                         16,  2, 20,  2, 20, 22, 16, 22,\ ; | (right)\
                          4, 16,  4, 22, 20, 22, 20, 16   ; - (bottom)
 ; Х
-Ltr_RU_23       dd       2,\
+ltr_RU_23       dd       2, 12,\    
                          0,  0,  4,  0,  8, 28, 12, 28,\ ; \
                          8,  0, 12,  0,  4, 28,  0, 28   ; /
 
 ; Ц
-Ltr_RU_24       dd       4,\
+ltr_RU_24       dd       4, 14,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)
                          0, 24,  0, 28, 10, 28, 10, 24,\ ; - (bottom)
                          8,  0, 12,  0, 12, 28,  8, 28,\ ; | (right-top)
                         10, 24, 14, 24, 14, 30, 10, 30   ; | (right-bottom) 
 ; Ч
-Ltr_RU_25       dd       3,\
+ltr_RU_25       dd       3, 12,\
                          0,  0,  4,  0,  4, 14,  0, 14,\ ; | (left)
                          4, 10,  4, 14,  8, 14,  8, 10,\ ; - (center)
                          8,  0, 12,  0, 12, 28,  8, 28   ; | (right) 
 ; Ш
-Ltr_RU_26       dd       4,\
+ltr_RU_26       dd       4, 20,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)
                          0, 24,  0, 28, 20, 28, 20, 24,\ ; - (bottom)
                          8,  0, 12,  0, 12, 24,  8, 24,\ ; | (center)
                         16,  0, 20,  0, 20, 24, 16, 24   ; \ (right)
 ; Щ
-Ltr_RU_27       dd       5,\
+ltr_RU_27       dd       5, 22,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)
                          0, 24,  0, 28, 20, 28, 20, 24,\ ; - (bottom)
                          8,  0, 12,  0, 12, 24,  8, 24,\ ; | (center)
                         16,  0, 20,  0, 20, 24, 16, 24,\ ; \ (right)
                         18, 24, 22, 24, 22, 30, 18, 30   ; | (right)
 ; Ъ
-Ltr_RU_28       dd       5,\
+ltr_RU_28       dd       5, 14,\
                          0,  0,  6,  0,  6,  4,  0,  4,\ ; - (top)
                          2,  4,  6,  4,  6, 28,  2, 28,\ ; | (center)
                          6, 10, 14, 10, 14, 14,  6, 14,\ ; - (center)
                         10, 14, 14, 14, 14, 24, 10, 24,\ ; | (right)
                          6, 24,  6, 28, 14, 28, 14, 24   ; - (bottom)
 ; Ы
-Ltr_RU_29       dd       5,\
+ltr_RU_29       dd       5, 18,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)
                          4, 10,  4, 14, 12, 14, 12, 10,\ ; - (center)
                          8, 14, 12, 14, 12, 28,  8, 28,\ ; | (center)
                          4, 24,  4, 28,  8, 28,  8, 24,\ ; - (bottom)
                         14,  0, 18,  0, 18, 28, 14, 28   ; | (right)
 ; Ь
-Ltr_RU_30       dd       4,\
+ltr_RU_30       dd       4, 12,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)
                          4, 10,  4, 14, 12, 14, 12, 10,\ ; - (center)
                          8, 14, 12, 14, 12, 28,  8, 28,\ ; | (center)
                          4, 24,  4, 28,  8, 28,  8, 24   ; - (bottom)
 ; Э
-Ltr_RU_31       dd       6,\
+ltr_RU_31       dd       6, 12,\
                          0,  0,  0,  6,  4,  6,  4,  0,\ ; | (left-top)
                          4,  0,  4,  4,  8,  4,  8,  0,\ ; - (top)
                          8,  0,  8, 28, 12, 28, 12,  0,\ ; | (right)
@@ -206,7 +243,7 @@ Ltr_RU_31       dd       6,\
                          4, 24,  8, 24,  8, 28,  4, 28,\ ; - (bottom)
                          0, 28,  4, 28,  4, 22,  0, 22   ; | (left-bottom)
 ; Ю
-Ltr_RU_32       dd       6,\
+ltr_RU_32       dd       6, 19,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)
                          4, 12,  7, 12,  7, 16,  4, 16,\ ; - (center)
                          7,  0, 11,  0, 11, 28,  7, 28,\ ; | (center)
@@ -214,7 +251,7 @@ Ltr_RU_32       dd       6,\
                         11, 24, 11, 28, 15, 28, 15, 24,\ ; - (right-bottom)
                         15,  0, 19,  0, 19, 28, 15, 28   ; | (right)
 ; Я
-Ltr_RU_33       dd       5,\
+ltr_RU_33       dd       5, 14,\
                          2,  0,  6,  0,  6, 12,  2, 12,\ ; | (left-top)
                          6,  0, 14,  0, 14,  4,  6,  4,\ ; - (top)
                          6,  8,  6, 12, 10, 12, 10,  8,\ ; - (center)

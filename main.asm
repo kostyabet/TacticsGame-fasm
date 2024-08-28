@@ -5,7 +5,6 @@ include 'include/win32a.inc'
 include 'opengl.inc'
 include 'main.inc'
 
-
 include 'Graphics/Includes/DataPrepears.asm'
 include 'Graphics/Includes/DataIncludes.asm'
 include 'Graphics/Includes/DrawFuncsInclude.asm'
@@ -109,12 +108,13 @@ proc WindowProc hwnd,wmsg,wparam,lparam
 		stdcall Graphics.Draw.Shapes, book_brdfnt_design, book_endg_color
 		stdcall Graphics.Draw.Shapes, book_endg_design, book_endg_color
 		stdcall Graphics.Draw.Shapes, book_brd_design, book_ebrd_color
+		stdcall Graphics.Draw.Shapes, book_flgpl_design, book_flgpl_color
 		; buttons
 		stdcall Graphics.Draw.Shapes, button_play_design, button_color
 		stdcall Graphics.Draw.Shapes, button_about_design, button_color
 		stdcall Graphics.Draw.Shapes, button_stngs_design, button_color
 		; headline
-		
+		stdcall Graphics.Draw.Text.Write, txt_headline, headline_color
 	.exit:
 		invoke	SwapBuffers,[hdc]
 		xor	eax,eax

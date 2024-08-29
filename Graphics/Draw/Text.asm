@@ -45,8 +45,9 @@ proc Graphics.Draw.Text.Prepear uses eax ebx edi,\
         mov     ebx, [string]
         mov     edi, [result]
         add     edi, 4
+        xor     eax, eax
         .while:
-            mov     eax, [ebx]
+            mov     ax, [ebx]
             cmp     eax, 0
             jne     .exit
             inc     [counterLen]

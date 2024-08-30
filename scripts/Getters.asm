@@ -220,3 +220,19 @@ proc Scripts.Getters.GetIMULNumber\
     mov     eax, [res]
     ret
 endp
+; ====== Work With Numbers ====== ;
+proc Scripts.Getters.ConvertOffset uses eax ebx,\
+     repInfo
+    mov     ebx, [repInfo]
+    ; x
+    mov     eax, [ebx + 4]
+    add     eax, 960
+    stdcall GetXGLfloatCoord, eax
+    mov     [ebx + 4], eax
+    ; y
+    mov     eax, [ebx + 8]
+    add     eax, 540
+    stdcall GetYGLfloatCoord, eax
+    mov     [ebx + 8], eax
+    ret
+endp

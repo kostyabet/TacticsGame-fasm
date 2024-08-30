@@ -14,6 +14,11 @@ proc Graphics.Draw.CoordsRectPrepears
     ret
 endp
 
+proc Graphics.Coords.PrepearNumber
+    stdcall Scripts.Getters.ConvertOffset, book_strk_repinfo
+    ret
+endp
+
 proc Graphics.Colors.Prepear
     stdcall Scripts.Getters.Color, [cl_background],  font_color
     stdcall Scripts.Getters.Color, [cl_root],        book_root_color
@@ -33,7 +38,7 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_headline_bc, str_headline_bc, fs_headline,  tg_headline, str_headline_bc_pos 
     stdcall Graphics.Draw.Text.Prepear, txt_play,        str_play,        fs_play,      tg_play,     str_play_pos
     ;stdcall Graphics.Draw.Text.Prepear, txt_about,     str_about,     fs_about,     tg_about
-    stdcall Graphics.Draw.Text.Prepear, txt_settings,    str_settings,  fs_settings,  tg_settings, str_settings_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_settings,    str_settings,    fs_settings,  tg_settings, str_settings_pos
     ;stdcall Graphics.Draw.Text.Prepear, txt_title,     str_title,     fs_title,     tg_title
     ;stdcall Graphics.Draw.Text.Prepear, txt_cost,      str_cost,      fs_cost,      tg_cost
     ;stdcall Graphics.Draw.Text.Prepear, txt_info,      str_info,      fs_info,      tg_info

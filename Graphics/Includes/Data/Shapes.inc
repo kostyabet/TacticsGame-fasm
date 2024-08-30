@@ -13,6 +13,16 @@
 ;      x, y - circle center coordinates.              ;
 ;      r - circle radius                              ;
 ;                                                     ;
+;   _repinfo:                                         ;
+;      Info for shapes repear blocks.                 ;
+;      First number is number of repeats.             ;
+;      Next two numbers is offset after each          ;
+;       drawing. First - X, second - Y. Exemple:      ;
+;                                                     ;
+;            7px 0px     7px 0px     7px 0px          ;
+;            <----->     <----->     <----->          ;
+;       -----       -----       -----       -----     ;
+;                                                     ;
 ; =================================================== ;
 
 ; ====== Interfaces ====== ;
@@ -137,3 +147,7 @@ button_stngs_coords dd  2,\
                         1080, 921, 30,\ ;242 y
                         1540, 830, 30,\
                         1540, 921, 30
+
+; repeat info
+book_strk_repinfo   dd  80,\
+                        0, 6

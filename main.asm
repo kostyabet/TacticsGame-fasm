@@ -115,7 +115,9 @@ proc WindowProc hwnd,wmsg,wparam,lparam
 		stdcall Graphics.Draw.Shapes, button_about_design, button_color
 		stdcall Graphics.Draw.Shapes, button_stngs_design, button_color
 		; headline
+		stdcall Graphics.Draw.Text.Write, txt_headline_bc, headline_bc_color
 		stdcall Graphics.Draw.Text.Write, txt_headline, headline_color
+		; button text
 		stdcall Graphics.Draw.Text.Write, txt_play, btn_text_color
 		stdcall Graphics.Draw.Text.Write, txt_settings, btn_text_color
 	.exit:

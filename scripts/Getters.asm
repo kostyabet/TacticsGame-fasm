@@ -196,3 +196,43 @@ proc GetYGLfloatCoord\ ; -(y/540.0-1.0)
         mov     eax, [res]
     ret
 endp
+
+; ======= Text Font Size ====== ;
+proc Scripts.Getters.GetFSMultiplier,\
+     base, curent
+    locals
+        res    dd   ?
+    endl
+    fild    dword [curent]
+    fidiv   dword [base]
+    fstp    [res]
+    mov     eax, [res]
+    ret
+endp
+proc Scripts.Getters.GetIMULNumber\
+     num, multipier
+    locals
+        res dd  ?
+    endl
+    fild    dword [num]
+    fmul    dword [multipier]
+    fistp   [res]
+    mov     eax, [res]
+    ret
+endp
+; ====== Work With Numbers ====== ;
+proc Scripts.Getters.ConvertOffset uses eax ebx,\
+     repInfo
+    mov     ebx, [repInfo]
+    ; x
+    mov     eax, [ebx + 4]
+    add     eax, 960
+    stdcall GetXGLfloatCoord, eax
+    mov     [ebx + 4], eax
+    ; y
+    mov     eax, [ebx + 8]
+    add     eax, 540
+    stdcall GetYGLfloatCoord, eax
+    mov     [ebx + 8], eax
+    ret
+endp

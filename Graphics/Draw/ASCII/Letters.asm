@@ -1,4 +1,4 @@
-proc Graphics.Draw.ASCII.Letters.LetterPrepear uses ebx,\
+proc Graphics.Draw.ASCII.Letters.LetterPrepear uses eax ebx,\
      letter
     locals
         multipier   dd  4
@@ -10,7 +10,7 @@ proc Graphics.Draw.ASCII.Letters.LetterPrepear uses ebx,\
         xchg    ecx, eax
         cmp     ecx, 0
         je      .exit
-        add     ebx, 8
+        add     ebx, 4
     .convertPoint:
         ; x
         mov     eax, [ebx]
@@ -28,9 +28,9 @@ proc Graphics.Draw.ASCII.Letters.LetterPrepear uses ebx,\
 endp
 
 proc Graphics.Draw.ASCII.Letters.CreateGLChar uses eax ecx ebx edi,\
-     result, letter, x, y
+     result, letter, x, y, fs_multiplier
     locals
-        multiplier  dd  4
+        itrtn_multiplier  dd  4
     endl
     .start:
         ; QUAD count copy
@@ -43,29 +43,31 @@ proc Graphics.Draw.ASCII.Letters.CreateGLChar uses eax ecx ebx edi,\
         mov     edi, [letter]
         add     edi, 8
 
-        mul     dword [multiplier]
+        mul     dword [itrtn_multiplier]
         xchg    ecx, eax
         .copy:
             ; x1
-            mov     eax, [ebx]
+            stdcall Scripts.Getters.GetIMULNumber, [edi], [fs_multiplier]
+            add     eax, [edi]
             add     eax, [x]
-            mov     [edi], eax
+            mov     [ebx], eax
             ; y1
-            mov     eax, [ebx + 4]
+            stdcall Scripts.Getters.GetIMULNumber, [edi + 4], [fs_multiplier]
+            add     eax, [edi + 4]
             add     eax, [y]
-            mov     [edi + 4], eax\
+            mov     [ebx + 4], eax
 
             add     ebx, 8
             add     edi, 8
             loop    .copy                 
     .exit:
-        stdcall Graphics.Draw.ASCII.Letters.LetterPrepear, [letter]
+        stdcall Graphics.Draw.ASCII.Letters.LetterPrepear, [result]
         ret
-endp 
+endp
 
 proc Graphics.Draw.ASCII.Letters.GetLetterLen uses ebx,\
-     letter
+     letter, multiplier
     mov     ebx, [letter]
-    mov     eax, [ebx + 4]
+    stdcall Scripts.Getters.GetIMULNumber, [ebx + 4], [multiplier]
     ret
 endp

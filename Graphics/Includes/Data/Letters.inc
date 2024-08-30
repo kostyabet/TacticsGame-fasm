@@ -39,14 +39,15 @@
 ; ======================================================= ;
 
 ; Font Size
-fs_headline     =       79
-fs_play         =       50
-fs_about        =       50
-fs_settings     =       50
+fs_headline     =       60
+fs_play         =       25
+fs_about        =       25
+fs_settings     =       25
 fs_title        =       40
 fs_info         =       20
 fs_cost         =       18
 fs_watermark    =       10
+
 fs_default      =       20
 
 ; RU Letters
@@ -115,7 +116,7 @@ ltr_RU_9        dd       7, 12,\
 ltr_RU_10       dd       3, 12,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)
                          4, 14,  4, 28,  8, 14,  8,  0,\ ; / (center)
-                         8,  0,  8, 28, 14, 28, 14,  0   ; | (right)
+                         8,  0,  8, 28, 12, 28, 12,  0   ; | (right)
 ; Й
 ltr_RU_11       dd       4, 12,\
                          0,  0,  4,  0,  4, 28,  0, 28,\ ; | (left)

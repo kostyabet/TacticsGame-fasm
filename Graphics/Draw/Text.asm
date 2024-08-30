@@ -1,24 +1,20 @@
 proc Graphics.Draw.Text.Write uses ebx ecx,\
      string, color
-    locals
-
-    endl
     .start:
         mov     ebx, [string]
         mov     ecx, [ebx]
         add     ebx, 4
         .writeLetter:
-            push    ebx
-
+            push    ebx ecx
             mov     ecx, [ebx]
+            add     ebx, 4
             .drawQUAD:
                 stdcall Graphics.Draw.Shapes.Quadrilateral, ebx, [color]
-                add     ebx, 36
+                add     ebx, 32
                 dec     ecx
                 cmp     ecx, 0
                 jnz     .drawQUAD
-
-            pop     ebx
+            pop     ecx ebx
             add     ebx,  228 ; skip char
             loop    .writeLetter
     .exit:
@@ -28,12 +24,17 @@ endp
 proc Graphics.Draw.Text.Prepear uses eax ebx edi,\
      result, string, fontSize, fontGap, position
     locals
-        x           dd      ?
-        y           dd      ?  
-        multiplier  dd      4
-        counterLen  dd      0      
+        x               dd      ?
+        y               dd      ?  
+        multiplier      dd      4
+        counterLen      dd      0      
+        fs_multiplier   dd      ?
     endl
     .start:
+        ; multiplier
+        stdcall Scripts.Getters.GetFSMultiplier, fs_default, [fontSize]
+        mov     [fs_multiplier], eax
+
         mov     ebx, [position]
         ; x
         mov     eax, [ebx]
@@ -45,20 +46,21 @@ proc Graphics.Draw.Text.Prepear uses eax ebx edi,\
         mov     ebx, [string]
         mov     edi, [result]
         add     edi, 4
-        xor     eax, eax
         .while:
-            mov     ax, [ebx]
+            xor     eax, eax
+            mov     al, [ebx]
             cmp     eax, 0
-            jne     .exit
+            je      .exit
             inc     [counterLen]
         .do:    
-            sub     eax, 'А'
+            dec     eax
             mul     dword [multiplier]
             push    ebx
             xchg    ebx, eax
-            stdcall Graphics.Draw.ASCII.Letters.CreateGLChar, edi, [arr_of_letters + ebx], [x], [y]
-            stdcall Graphics.Draw.ASCII.Letters.GetLetterLen, [arr_of_letters + ebx]
-            lea     eax, [eax + fontGap + 10]
+            stdcall Graphics.Draw.ASCII.Letters.CreateGLChar, edi, [arr_of_letters + ebx], [x], [y], [fs_multiplier]
+            stdcall Graphics.Draw.ASCII.Letters.GetLetterLen, [arr_of_letters + ebx], [fs_multiplier]
+            add     eax, [fontGap]
+            add     eax, 10
             add     [x], eax
             pop     ebx
             inc     ebx

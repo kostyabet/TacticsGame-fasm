@@ -15,21 +15,22 @@ proc Graphics.Draw.CoordsRectPrepears
 endp
 
 proc Graphics.Colors.Prepear
-    stdcall Scripts.Getters.Color, [cl_background], font_color
-    stdcall Scripts.Getters.Color, [cl_root],       book_root_color
-    stdcall Scripts.Getters.Color, [cl_stroke],     book_strk_color
-    stdcall Scripts.Getters.Color, [cl_ending],     book_endg_color
-    stdcall Scripts.Getters.Color, [cl_border],     book_ebrd_color
-    stdcall Scripts.Getters.Color, [cl_button],     button_color
-    stdcall Scripts.Getters.Color, [cl_headline],   headline_color
-    stdcall Scripts.Getters.Color, [cl_headline],   headline_color
-    stdcall Scripts.Getters.Color, [cl_flgpl],      book_flgpl_color
+    stdcall Scripts.Getters.Color, [cl_background],  font_color
+    stdcall Scripts.Getters.Color, [cl_root],        book_root_color
+    stdcall Scripts.Getters.Color, [cl_stroke],      book_strk_color
+    stdcall Scripts.Getters.Color, [cl_ending],      book_endg_color
+    stdcall Scripts.Getters.Color, [cl_border],      book_ebrd_color
+    stdcall Scripts.Getters.Color, [cl_button],      button_color
+    stdcall Scripts.Getters.Color, [cl_headline],    headline_color
+    stdcall Scripts.Getters.Color, [cl_headline],    headline_color
+    stdcall Scripts.Getters.Color, [cl_flgpl],       book_flgpl_color
+    stdcall Scripts.Getters.Color, [cl_text_buttom], btn_text_color
     ret
 endp
 
 proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_headline,  str_headline,  fs_headline,  tg_headline, str_headline_pos
-    ;stdcall Graphics.Draw.Text.Prepear, txt_play,      str_play,      fs_play,      tg_play
+    stdcall Graphics.Draw.Text.Prepear, txt_play,      str_play,      fs_play,      tg_play,     str_play_pos
     ;stdcall Graphics.Draw.Text.Prepear, txt_about,     str_about,     fs_about,     tg_about
     ;stdcall Graphics.Draw.Text.Prepear, txt_settings,  str_settings,  fs_settings,  tg_settings
     ;stdcall Graphics.Draw.Text.Prepear, txt_title,     str_title,     fs_title,     tg_title

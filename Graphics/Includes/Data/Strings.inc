@@ -93,10 +93,12 @@ struct String
 ends
 
 ; ====== Business models ====== ;
-str_headline        ds      'ТАКТИКА', 0 ; 'ТАКТИКА'
+str_headline        db      20, 1, 12, 20, 10, 12, 1, 0 ; 'ТАКТИКА'
 str_headline_pos    dd      683, 112
 
-str_play            db      'ИГРАТЬ', 0
+str_play            db      10, 4, 18, 1, 20, 30, 0 ; 'ИГРАТЬ'
+str_play_pos        dd      1166, 358
+
 str_about           db      'ОБ ИГРЕ', 0
 str_settings        db      'НАСТРОЙКИ', 0
 str_title           db      'ЛЕНИНГРАД', 0

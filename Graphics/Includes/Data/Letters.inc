@@ -39,14 +39,15 @@
 ; ======================================================= ;
 
 ; Font Size
-fs_headline     =       79
-fs_play         =       50
-fs_about        =       50
-fs_settings     =       50
+fs_headline     =       60
+fs_play         =       25
+fs_about        =       25
+fs_settings     =       25
 fs_title        =       40
 fs_info         =       20
 fs_cost         =       18
 fs_watermark    =       10
+
 fs_default      =       20
 
 ; RU Letters

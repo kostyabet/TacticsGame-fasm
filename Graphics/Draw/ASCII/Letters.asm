@@ -28,9 +28,9 @@ proc Graphics.Draw.ASCII.Letters.LetterPrepear uses eax ebx,\
 endp
 
 proc Graphics.Draw.ASCII.Letters.CreateGLChar uses eax ecx ebx edi,\
-     result, letter, x, y
+     result, letter, x, y, fs_multiplier
     locals
-        multiplier  dd  4
+        itrtn_multiplier  dd  4
     endl
     .start:
         ; QUAD count copy
@@ -43,15 +43,17 @@ proc Graphics.Draw.ASCII.Letters.CreateGLChar uses eax ecx ebx edi,\
         mov     edi, [letter]
         add     edi, 8
 
-        mul     dword [multiplier]
+        mul     dword [itrtn_multiplier]
         xchg    ecx, eax
         .copy:
             ; x1
-            mov     eax, [edi]
+            stdcall Scripts.Getters.GetIMULNumber, [edi], [fs_multiplier]
+            add     eax, [edi]
             add     eax, [x]
             mov     [ebx], eax
             ; y1
-            mov     eax, [edi + 4]
+            stdcall Scripts.Getters.GetIMULNumber, [edi + 4], [fs_multiplier]
+            add     eax, [edi + 4]
             add     eax, [y]
             mov     [ebx + 4], eax
 
@@ -61,11 +63,11 @@ proc Graphics.Draw.ASCII.Letters.CreateGLChar uses eax ecx ebx edi,\
     .exit:
         stdcall Graphics.Draw.ASCII.Letters.LetterPrepear, [result]
         ret
-endp 
+endp
 
 proc Graphics.Draw.ASCII.Letters.GetLetterLen uses ebx,\
-     letter
+     letter, multiplier
     mov     ebx, [letter]
-    mov     eax, [ebx + 4]
+    stdcall Scripts.Getters.GetIMULNumber, [ebx + 4], [multiplier]
     ret
 endp

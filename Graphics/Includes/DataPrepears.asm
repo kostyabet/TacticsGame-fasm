@@ -32,7 +32,7 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_headline,  str_headline,  fs_headline,  tg_headline, str_headline_pos
     stdcall Graphics.Draw.Text.Prepear, txt_play,      str_play,      fs_play,      tg_play,     str_play_pos
     ;stdcall Graphics.Draw.Text.Prepear, txt_about,     str_about,     fs_about,     tg_about
-    ;stdcall Graphics.Draw.Text.Prepear, txt_settings,  str_settings,  fs_settings,  tg_settings
+    stdcall Graphics.Draw.Text.Prepear, txt_settings,  str_settings,  fs_settings,  tg_settings, str_settings_pos
     ;stdcall Graphics.Draw.Text.Prepear, txt_title,     str_title,     fs_title,     tg_title
     ;stdcall Graphics.Draw.Text.Prepear, txt_cost,      str_cost,      fs_cost,      tg_cost
     ;stdcall Graphics.Draw.Text.Prepear, txt_info,      str_info,      fs_info,      tg_info

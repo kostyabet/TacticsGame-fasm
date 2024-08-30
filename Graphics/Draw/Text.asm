@@ -24,12 +24,17 @@ endp
 proc Graphics.Draw.Text.Prepear uses eax ebx edi,\
      result, string, fontSize, fontGap, position
     locals
-        x           dd      ?
-        y           dd      ?  
-        multiplier  dd      4
-        counterLen  dd      0      
+        x               dd      ?
+        y               dd      ?  
+        multiplier      dd      4
+        counterLen      dd      0      
+        fs_multiplier   dd      ?
     endl
     .start:
+        ; multiplier
+        stdcall Scripts.Getters.GetFSMultiplier, fs_default, [fontSize]
+        mov     [fs_multiplier], eax
+
         mov     ebx, [position]
         ; x
         mov     eax, [ebx]
@@ -52,8 +57,8 @@ proc Graphics.Draw.Text.Prepear uses eax ebx edi,\
             mul     dword [multiplier]
             push    ebx
             xchg    ebx, eax
-            stdcall Graphics.Draw.ASCII.Letters.CreateGLChar, edi, [arr_of_letters + ebx], [x], [y]
-            stdcall Graphics.Draw.ASCII.Letters.GetLetterLen, [arr_of_letters + ebx]
+            stdcall Graphics.Draw.ASCII.Letters.CreateGLChar, edi, [arr_of_letters + ebx], [x], [y], [fs_multiplier]
+            stdcall Graphics.Draw.ASCII.Letters.GetLetterLen, [arr_of_letters + ebx], [fs_multiplier]
             add     eax, [fontGap]
             add     eax, 10
             add     [x], eax

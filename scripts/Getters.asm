@@ -196,3 +196,27 @@ proc GetYGLfloatCoord\ ; -(y/540.0-1.0)
         mov     eax, [res]
     ret
 endp
+
+; ======= Text Font Size ====== ;
+proc Scripts.Getters.GetFSMultiplier,\
+     base, curent
+    locals
+        res    dd   ?
+    endl
+    fild    dword [curent]
+    fidiv   dword [base]
+    fstp    [res]
+    mov     eax, [res]
+    ret
+endp
+proc Scripts.Getters.GetIMULNumber\
+     num, multipier
+    locals
+        res dd  ?
+    endl
+    fild    dword [num]
+    fmul    dword [multipier]
+    fistp   [res]
+    mov     eax, [res]
+    ret
+endp

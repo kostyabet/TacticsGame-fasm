@@ -237,7 +237,7 @@ proc Scripts.Getters.ConvertOffset uses eax ebx,\
     ret
 endp
 ; ====== Repeat Shapes ====== ;
-proc Scripts.Getters.ConvertRepeatCoords\
+proc Scripts.Getters.ConvertRepeatCoords uses eax ebx ecx,\
      coords
     locals
         multiplierRect    dd  4
@@ -247,9 +247,7 @@ proc Scripts.Getters.ConvertRepeatCoords\
     .start:
         mov     ebx, [coords]
     .rect:
-        mov     eax, [ebx]
-        mul     dword [multiplierRect]
-        xchg    ecx, eax
+        mov     ecx, [ebx]
         cmp     ecx, 0
         je      .exit
         add     ebx, 4

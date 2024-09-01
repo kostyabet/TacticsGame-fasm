@@ -2,7 +2,6 @@ format PE GUI 4.0
 entry start
 
 include 'include/win32a.inc'
-include 'OEM866R.inc'
 include 'opengl.inc'
 include 'main.inc'
 
@@ -35,7 +34,6 @@ section '.text' code readable executable
 	
 	; prepear data
 	stdcall Graphics.Draw.CoordsRectPrepears
-	stdcall Graphics.Coords.PrepearNumber
 	stdcall Graphics.Colors.Prepear
 	stdcall Graphics.Draw.ASCIIPrepear
 	mov 	[IS_INFO_PREPEAR], GL_TRUE
@@ -101,26 +99,26 @@ proc WindowProc hwnd,wmsg,wparam,lparam
 	cmp 	[IS_INFO_PREPEAR], GL_TRUE
 	jne 	.exit
 	.draw:
-		;stdcall Graphics.Draw.Shapes, font_design, font_color
+		stdcall Graphics.Draw.Shapes, font_design, font_color
 		; book
 		stdcall Graphics.Draw.Shapes, book_root_design, book_root_color
-		stdcall Graphics.Draw.ShapesWithRepeat, book_strk_design, book_strk_color, book_strk_repinfo
-		;stdcall Graphics.Draw.Shapes, book_corner_design, book_endg_color
-		;stdcall Graphics.Draw.Shapes, book_brdcrn_design, book_ebrd_color
-		;stdcall Graphics.Draw.Shapes, book_brdfnt_design, book_endg_color
-		;stdcall Graphics.Draw.Shapes, book_endg_design, book_endg_color
-		;stdcall Graphics.Draw.Shapes, book_brd_design, book_ebrd_color
-		;stdcall Graphics.Draw.Shapes, book_flgpl_design, book_flgpl_color
+		stdcall Graphics.Draw.Shapes.Rect, book_strk_design, book_strk_color
+		stdcall Graphics.Draw.Shapes, book_corner_design, book_endg_color
+		stdcall Graphics.Draw.Shapes, book_brdcrn_design, book_ebrd_color
+		stdcall Graphics.Draw.Shapes, book_brdfnt_design, book_endg_color
+		stdcall Graphics.Draw.Shapes, book_endg_design, book_endg_color
+		stdcall Graphics.Draw.Shapes, book_brd_design, book_ebrd_color
+		stdcall Graphics.Draw.Shapes, book_flgpl_design, book_flgpl_color
 		; buttons
-		;stdcall Graphics.Draw.Shapes, button_play_design, button_color
-		;stdcall Graphics.Draw.Shapes, button_about_design, button_color
-		;stdcall Graphics.Draw.Shapes, button_stngs_design, button_color
+		stdcall Graphics.Draw.Shapes, button_play_design, button_color
+		stdcall Graphics.Draw.Shapes, button_about_design, button_color
+		stdcall Graphics.Draw.Shapes, button_stngs_design, button_color
 		; headline
-		;stdcall Graphics.Draw.Text.Write, txt_headline_bc, headline_bc_color
-		;stdcall Graphics.Draw.Text.Write, txt_headline, headline_color
+		stdcall Graphics.Draw.Text.Write, txt_headline_bc, headline_bc_color
+		stdcall Graphics.Draw.Text.Write, txt_headline, headline_color
 		; button text
-		;stdcall Graphics.Draw.Text.Write, txt_play, btn_text_color
-		;stdcall Graphics.Draw.Text.Write, txt_settings, btn_text_color
+		stdcall Graphics.Draw.Text.Write, txt_play, btn_text_color
+		stdcall Graphics.Draw.Text.Write, txt_settings, btn_text_color
 	.exit:
 		invoke	SwapBuffers,[hdc]
 		xor	eax,eax

@@ -143,7 +143,7 @@ proc GetXGLfloatCoordFromFloat\ ; x/960.0-1.0
         floatNum            GLfloat     1.0
         DeviceHalfWidth     GLfloat     960.0
     endl
-        fld    dword [x]
+        fld     dword [x]
         fdiv    [DeviceHalfWidth]
         fsub    [floatNum]
         fstp    [res]
@@ -158,7 +158,7 @@ proc GetYGLfloatCoordFromFloat\ ; -(y/540.0-1.0)
         DeviceHalfWidth     GLfloat     540.0
         minus               dd          -1
     endl
-        fld    dword [y]
+        fld     dword [y]
         fdiv    [DeviceHalfWidth]
         fsub    [floatNum]
         fimul   [minus]
@@ -235,4 +235,49 @@ proc Scripts.Getters.ConvertOffset uses eax ebx,\
     stdcall GetYGLfloatCoord, eax
     mov     [ebx + 8], eax
     ret
+endp
+; ====== Repeat Shapes ====== ;
+proc Scripts.Getters.ConvertRepeatCoords uses eax ebx ecx,\
+     coords
+    locals
+        multiplierRect    dd  4
+        x                 dd  ?
+        y                 dd  ?
+    endl
+    .start:
+        mov     ebx, [coords]
+    .rect:
+        mov     ecx, [ebx]
+        cmp     ecx, 0
+        je      .exit
+        add     ebx, 4
+        .rectLoop:
+            ; x2
+            mov     eax, [ebx + 8]
+            stdcall GetXGLfloatCoord, eax
+            mov     [ebx + 8], eax
+            mov     [ebx + 16], eax
+            mov     [ebx + 24], eax
+            ; y2
+            mov     eax, [ebx + 12]
+            stdcall GetYGLfloatCoord, eax
+            mov     [ebx + 12], eax
+            mov     [ebx + 20], eax
+            ; x1
+            mov     eax, [ebx]
+            stdcall GetXGLfloatCoord, eax
+            mov     [ebx], eax
+            mov     [ebx + 8], eax
+            ; y1
+            mov     eax, [ebx + 4]
+            stdcall GetYGLfloatCoord, eax
+            mov     [ebx + 4], eax
+            mov     [ebx + 28], eax
+            ; exit
+            add     ebx, 32
+            dec     ecx
+            cmp     ecx, 0
+            jne     .rectLoop
+    .exit:
+        ret
 endp

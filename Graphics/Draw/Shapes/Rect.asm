@@ -16,7 +16,7 @@ proc Graphics.Draw.Shapes.Rect uses ebx ecx ,\
             invoke  glVertex3f,      [ebx],  [ebx + 4], [NULL]
             invoke  glVertex3f,  [ebx + 8], [ebx + 12], [NULL]
             invoke  glVertex3f, [ebx + 16], [ebx + 20], [NULL]
-            invoke  glVertex3f, [ebx + 24], [ebx + 28], [NULL]    
+            invoke  glVertex3f, [ebx + 24], [ebx + 28], [NULL]
             invoke  glEnd
             pop     ecx
             add     ebx, 32

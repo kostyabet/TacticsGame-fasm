@@ -1,7 +1,7 @@
 proc Graphics.Draw.CoordsRectPrepears
+    ; default
     stdcall Scripts.Getters.ConvertCoords, font_coords, font_design
     stdcall Scripts.Getters.ConvertCoords, book_root_coords, book_root_design
-    stdcall Scripts.Getters.ConvertCoords, book_strk_coords, book_strk_design
     stdcall Scripts.Getters.ConvertCoords, book_endg_coords, book_endg_design
     stdcall Scripts.Getters.ConvertCoords, book_brdcrn_coords, book_brdcrn_design
     stdcall Scripts.Getters.ConvertCoords, book_corner_coords, book_corner_design
@@ -11,11 +11,9 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, button_about_coords, button_about_design
     stdcall Scripts.Getters.ConvertCoords, button_stngs_coords, button_stngs_design
     stdcall Scripts.Getters.ConvertCoords, book_flgpl_coords, book_flgpl_design
-    ret
-endp
 
-proc Graphics.Coords.PrepearNumber
-    stdcall Scripts.Getters.ConvertOffset, book_strk_repinfo
+    ; repeat
+    stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
     ret
 endp
 

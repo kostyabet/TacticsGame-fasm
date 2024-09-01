@@ -32,7 +32,7 @@ tg_headline     =       30
 tg_play         =       30
 tg_about        =       30
 tg_settings     =       30
-tg_title        =       30
+tg_title        =       18
 tg_cost         =       0
 tg_info         =       0
 tg_watermark    =       5
@@ -107,7 +107,9 @@ str_about           db      'ОБ ИГРЕ', 0
 str_settings        db      15, 1, 19, 20, 18, 16, 11, 12, 10, 0 ; 'НАСТРОЙКИ'
 str_settings_pos    dd      1077, 846
 
-str_title           db      'ЛЕНИНГРАД', 0
+str_title           db      13, 6, 15, 10, 15, 4, 18, 1, 5, 0 ; 'ЛЕНИНГРАД'
+str_title_pos       dd      411, 871
+
 str_cost            db      'ЦЕНА 2р.50к.', 0
 str_info            db      'СУВЕНИР-ГОЛОВОЛОМКА', 0
 str_watermark       db      'АРТ.   С-АГ-1648-А', 0

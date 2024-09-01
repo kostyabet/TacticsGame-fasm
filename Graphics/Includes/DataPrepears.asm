@@ -28,6 +28,7 @@ proc Graphics.Colors.Prepear
     stdcall Scripts.Getters.Color, [cl_headline_bc], headline_bc_color
     stdcall Scripts.Getters.Color, [cl_flgpl],       book_flgpl_color
     stdcall Scripts.Getters.Color, [cl_text_buttom], btn_text_color
+    stdcall Scripts.Getters.Color, [cl_title],       book_title_color
     ret
 endp
 
@@ -37,7 +38,7 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_play,        str_play,        fs_play,      tg_play,     str_play_pos
     ;stdcall Graphics.Draw.Text.Prepear, txt_about,     str_about,     fs_about,     tg_about
     stdcall Graphics.Draw.Text.Prepear, txt_settings,    str_settings,    fs_settings,  tg_settings, str_settings_pos
-    ;stdcall Graphics.Draw.Text.Prepear, txt_title,     str_title,     fs_title,     tg_title
+    stdcall Graphics.Draw.Text.Prepear, txt_title,       str_title,       fs_title,     tg_title,    str_title_pos
     ;stdcall Graphics.Draw.Text.Prepear, txt_cost,      str_cost,      fs_cost,      tg_cost
     ;stdcall Graphics.Draw.Text.Prepear, txt_info,      str_info,      fs_info,      tg_info
     ;stdcall Graphics.Draw.Text.Prepear, txt_watermark, str_watermark, fs_watermark, tg_watermark

@@ -119,6 +119,7 @@ proc WindowProc hwnd,wmsg,wparam,lparam
 		; button text
 		stdcall Graphics.Draw.Text.Write, txt_play, btn_text_color
 		stdcall Graphics.Draw.Text.Write, txt_settings, btn_text_color
+		stdcall Graphics.Draw.Text.Write, txt_title, book_title_color
 	.exit:
 		invoke	SwapBuffers,[hdc]
 		xor	eax,eax

@@ -11,5 +11,6 @@
 28.08 -  3h  51min</br>
 29.08 -  0h  51min</br>
 30.08 -  3h  38min</br>
-31.08 -  0h   0min</br>
+31.08 -  2h  17min</br>
+01.09 -  0h   0min</br>
 Total -   h    min 

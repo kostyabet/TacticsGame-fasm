@@ -247,9 +247,9 @@ proc Scripts.Getters.AddOffsetShapeCoords uses ebx ecx,\
     endl
     .prepear:
         mov     ebx, [repeat]
-        mov     eax, [ebx]
-        mov     [xOffset], eax
         mov     eax, [ebx + 4]
+        mov     [xOffset], eax
+        mov     eax, [ebx + 8]
         mov     [yOffset], eax
     .start:
         mov     ebx, [design]
@@ -278,7 +278,7 @@ proc Scripts.Getters.AddOffsetShapeCoords uses ebx ecx,\
         add     ebx, 164
         mov     eax, [ebx]
         mul     dword [multipier]
-        xchg    ecx, ebx
+        xchg    ecx, eax
         cmp     ecx, 0
         je      .exit
         add     ebx, 4

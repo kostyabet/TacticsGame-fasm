@@ -33,7 +33,7 @@ proc Graphics.Draw.ShapesWithRepeat uses eax ebx edx,\
         stdcall Graphics.Draw.Shapes.Rect, ebx, [color]
         add     ebx, 164 ; skip rect
         stdcall Graphics.Draw.Shapes.Circle, ebx, [color]
-        
+
         stdcall Scripts.Getters.AddOffsetShapeCoords, [design], [repeat], [xSum], [ySum]
         mov     [xSum], eax
         mov     [ySum], edx

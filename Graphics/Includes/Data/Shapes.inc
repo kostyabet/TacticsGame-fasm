@@ -149,5 +149,5 @@ button_stngs_coords dd  2,\
                         1540, 921, 30
 
 ; repeat info
-book_strk_repinfo   dd  80,\
+book_strk_repinfo   dd  100,\
                         0, 6

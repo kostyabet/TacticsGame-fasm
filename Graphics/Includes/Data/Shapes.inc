@@ -73,7 +73,10 @@ curentRudDeg        dd  ?
 font_design         DrawModel   ?
 
 book_root_design    DrawModel   ?
-book_strk_design    DrawModel   ?
+book_strk_design    dd          2,\
+                                353, 311, 367, 313, ?, ?, ?, ?,\
+                                353, 311, 367, 313, ?, ?, ?, ?,\
+                                0
 book_endg_design    DrawModel   ?
 book_brdcrn_design  DrawModel   ?
 book_corner_design  DrawModel   ?
@@ -91,9 +94,6 @@ font_coords         dd  1,\
                         0
 book_root_coords    dd  1,\
                         350, 300, 370, 968,\
-                        0
-book_strk_coords    dd  1,\
-                        353, 311, 367, 313,\
                         0
 book_endg_coords    dd  2,\
                         370, 300, 780, 968,\
@@ -144,10 +144,6 @@ button_stngs_coords dd  2,\
                         1050, 830, 1570, 921,\
                         4,\
                         1080, 830, 30,\
-                        1080, 921, 30,\ ;242 y
+                        1080, 921, 30,\
                         1540, 830, 30,\
                         1540, 921, 30
-
-; repeat info
-book_strk_repinfo   dd  100,\
-                        0, 6

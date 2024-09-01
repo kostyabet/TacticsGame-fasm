@@ -34,7 +34,6 @@ section '.text' code readable executable
 	
 	; prepear data
 	stdcall Graphics.Draw.CoordsRectPrepears
-	stdcall Graphics.Coords.PrepearNumber
 	stdcall Graphics.Colors.Prepear
 	stdcall Graphics.Draw.ASCIIPrepear
 	mov 	[IS_INFO_PREPEAR], GL_TRUE
@@ -103,7 +102,7 @@ proc WindowProc hwnd,wmsg,wparam,lparam
 		;stdcall Graphics.Draw.Shapes, font_design, font_color
 		; book
 		stdcall Graphics.Draw.Shapes, book_root_design, book_root_color
-		stdcall Graphics.Draw.ShapesWithRepeat, book_strk_design, book_strk_color, book_strk_repinfo
+		stdcall Graphics.Draw.Shapes, book_strk_design, book_strk_color
 		;stdcall Graphics.Draw.Shapes, book_corner_design, book_endg_color
 		;stdcall Graphics.Draw.Shapes, book_brdcrn_design, book_ebrd_color
 		;stdcall Graphics.Draw.Shapes, book_brdfnt_design, book_endg_color

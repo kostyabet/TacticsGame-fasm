@@ -143,7 +143,7 @@ proc GetXGLfloatCoordFromFloat\ ; x/960.0-1.0
         floatNum            GLfloat     1.0
         DeviceHalfWidth     GLfloat     960.0
     endl
-        fld    dword [x]
+        fld     dword [x]
         fdiv    [DeviceHalfWidth]
         fsub    [floatNum]
         fstp    [res]
@@ -158,7 +158,7 @@ proc GetYGLfloatCoordFromFloat\ ; -(y/540.0-1.0)
         DeviceHalfWidth     GLfloat     540.0
         minus               dd          -1
     endl
-        fld    dword [y]
+        fld     dword [y]
         fdiv    [DeviceHalfWidth]
         fsub    [floatNum]
         fimul   [minus]
@@ -236,106 +236,50 @@ proc Scripts.Getters.ConvertOffset uses eax ebx,\
     mov     [ebx + 8], eax
     ret
 endp
-; ====== Shapes ====== ; eax edx
-proc Scripts.Getters.AddOffsetShapeCoords uses ebx ecx,\
-     design, repeat, xSum, ySum
+; ====== Repeat Shapes ====== ;
+proc Scripts.Getters.ConvertRepeatCoords\
+     coords
     locals
-        xOffset     GLfloat     ?
-        yOffset     GLfloat     ?
-        multipier   dd          4
-        res         GLfloat     ?
+        multiplierRect    dd  4
+        x                 dd  ?
+        y                 dd  ?
     endl
-    .prepear:
-        mov     ebx, [repeat]
-        mov     eax, [ebx + 4]
-        mov     [xOffset], eax
-        mov     eax, [ebx + 8]
-        mov     [yOffset], eax
     .start:
-        mov     ebx, [design]
+        mov     ebx, [coords]
     .rect:
         mov     eax, [ebx]
-        mul     dword [multipier]
+        mul     dword [multiplierRect]
         xchg    ecx, eax
         cmp     ecx, 0
-        je      .circle
+        je      .exit
         add     ebx, 4
         .rectLoop:
-            fld     dword [ebx]
-            fadd    dword [xOffset]
-            fstp    dword [ebx]
-            
-            fld     dword [ebx + 4]
-            fadd    dword [yOffset]
-            fstp    dword [ebx + 4]
-            
-            add     ebx, 8
+            ; x2
+            mov     eax, [ebx + 8]
+            stdcall GetXGLfloatCoord, eax
+            mov     [ebx + 8], eax
+            mov     [ebx + 16], eax
+            mov     [ebx + 24], eax
+            ; y2
+            mov     eax, [ebx + 12]
+            stdcall GetYGLfloatCoord, eax
+            mov     [ebx + 12], eax
+            mov     [ebx + 20], eax
+            ; x1
+            mov     eax, [ebx]
+            stdcall GetXGLfloatCoord, eax
+            mov     [ebx], eax
+            mov     [ebx + 8], eax
+            ; y1
+            mov     eax, [ebx + 4]
+            stdcall GetYGLfloatCoord, eax
+            mov     [ebx + 4], eax
+            mov     [ebx + 28], eax
+            ; exit
+            add     ebx, 32
             dec     ecx
             cmp     ecx, 0
-            jne    .rectLoop
-    .circle:
-        mov     ebx, [design]
-        add     ebx, 164
-        mov     eax, [ebx]
-        mul     dword [multipier]
-        xchg    ecx, eax
-        cmp     ecx, 0
-        je      .exit
-        add     ebx, 4
-        .circleLoop:
-            ; circle coords add ...
-            dec     ecx
-            cmp     ecx, 0
-            jne     .circleLoop
-    .exit:
-        fld     dword [xSum]
-        fadd    dword [xOffset]
-        fstp    [res]
-        mov     eax, [res]
-
-        fld     dword [ySum]
-        fadd    dword [yOffset]
-        fstp    [res]
-        mov     edx, [res]
-
-        ret
-endp
-proc Scripts.Getters.SubOffsetShapeCoords uses eax ebx ecx,\
-     design, xSum, ySum
-    locals
-        multipier   dd  4
-    endl
-    .rectPrepaer:
-        mov     ebx, [design]
-        mov     eax, [ebx]
-        mul     dword [multipier]
-        xchg    ecx, eax
-        cmp     ecx, 0
-        je      .circlePrepear
-        add     ebx, 4
-    .rectReturn:
-        fld     dword [ebx]
-        fsub    [xSum]
-        fstp    dword [ebx]
-
-        fld     dword [ebx + 4]
-        fsub    [ySum]
-        fstp    dword [ebx + 4]
-        
-        add     ebx, 8
-        loop    .rectReturn
-    .circlePrepear:
-        mov     ebx, [design]
-        add     ebx, 164
-        mov     eax, [ebx]
-        mul     dword [multipier]
-        xchg    ecx, eax
-        cmp     ecx, 0
-        je      .exit
-        add     ebx, 4
-    .circleReturn:
-        ; return circle
-        loop    .circleReturn
+            jne     .rectLoop
     .exit:
         ret
 endp

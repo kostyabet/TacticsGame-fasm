@@ -236,3 +236,106 @@ proc Scripts.Getters.ConvertOffset uses eax ebx,\
     mov     [ebx + 8], eax
     ret
 endp
+; ====== Shapes ====== ; eax edx
+proc Scripts.Getters.AddOffsetShapeCoords uses ebx ecx,\
+     design, repeat, xSum, ySum
+    locals
+        xOffset     GLfloat     ?
+        yOffset     GLfloat     ?
+        multipier   dd          4
+        res         GLfloat     ?
+    endl
+    .prepear:
+        mov     ebx, [repeat]
+        mov     eax, [ebx]
+        mov     [xOffset], eax
+        mov     eax, [ebx + 4]
+        mov     [yOffset], eax
+    .start:
+        mov     ebx, [design]
+    .rect:
+        mov     eax, [ebx]
+        mul     dword [multipier]
+        xchg    ecx, eax
+        cmp     ecx, 0
+        je      .circle
+        add     ebx, 4
+        .rectLoop:
+            fld     dword [ebx]
+            fadd    dword [xOffset]
+            fstp    dword [ebx]
+            
+            fld     dword [ebx + 4]
+            fadd    dword [yOffset]
+            fstp    dword [ebx + 4]
+            
+            add     ebx, 8
+            dec     ecx
+            cmp     ecx, 0
+            jne    .rectLoop
+    .circle:
+        mov     ebx, [design]
+        add     ebx, 164
+        mov     eax, [ebx]
+        mul     dword [multipier]
+        xchg    ecx, ebx
+        cmp     ecx, 0
+        je      .exit
+        add     ebx, 4
+        .circleLoop:
+            ; circle coords add ...
+            dec     ecx
+            cmp     ecx, 0
+            jne     .circleLoop
+    .exit:
+        fld     dword [xSum]
+        fadd    dword [xOffset]
+        fstp    [res]
+        mov     eax, [res]
+
+        fld     dword [ySum]
+        fadd    dword [yOffset]
+        fstp    [res]
+        mov     edx, [res]
+
+        ret
+endp
+proc Scripts.Getters.SubOffsetShapeCoords uses eax ebx ecx,\
+     design, xSum, ySum
+    locals
+        multipier   dd  4
+    endl
+    .rectPrepaer:
+        mov     ebx, [design]
+        mov     eax, [ebx]
+        mul     dword [multipier]
+        xchg    ecx, eax
+        cmp     ecx, 0
+        je      .circlePrepear
+        add     ebx, 4
+    .rectReturn:
+        fld     dword [ebx]
+        fsub    [xSum]
+        fstp    dword [ebx]
+
+        fld     dword [ebx + 4]
+        fsub    [ySum]
+        fstp    dword [ebx + 4]
+        
+        add     ebx, 8
+        loop    .rectReturn
+    .circlePrepear:
+        mov     ebx, [design]
+        add     ebx, 164
+        mov     eax, [ebx]
+        mul     dword [multipier]
+        xchg    ecx, eax
+        cmp     ecx, 0
+        je      .exit
+        add     ebx, 4
+    .circleReturn:
+        ; return circle
+        loop    .circleReturn
+    .exit:
+        ret
+endp

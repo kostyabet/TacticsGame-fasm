@@ -43,7 +43,7 @@ fs_headline     =       60
 fs_play         =       25
 fs_about        =       25
 fs_settings     =       25
-fs_title        =       40
+fs_title        =       20
 fs_info         =       20
 fs_cost         =       18
 fs_watermark    =       10
@@ -258,3 +258,5 @@ ltr_RU_33       dd       5, 14,\
                          6,  8,  6, 12, 10, 12, 10,  8,\ ; - (center)
                         10,  4, 14,  4, 14, 28, 10, 28,\ ; | (right)
                          0, 28,  4, 28, 10, 14, 10,  8   ; / (left)   
+
+include 'SpecialSymb.inc'

@@ -1,4 +1,3 @@
-include 'ASCII/Digits.asm'
 include 'ASCII/Letters.asm'
 
 proc Graphics.Draw.ASCII.Letters\

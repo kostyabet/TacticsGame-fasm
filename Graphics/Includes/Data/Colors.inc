@@ -16,6 +16,7 @@ cl_headline       dd      0x00C88762
 cl_flgpl          dd      0x005B2E15
 cl_text_buttom    dd      0x00773A18
 cl_headline_bc    dd      0x00773A18
+cl_title          dd      0x005B2E15
 
 ; ====== Program models ====== ;
 font_color        BackgroundColor ?
@@ -28,3 +29,4 @@ headline_color    BackgroundColor ?
 headline_bc_color BackgroundColor ?
 book_flgpl_color  BackgroundColor ?
 btn_text_color    BackgroundColor ?
+book_title_color  BackgroundColor ?

@@ -43,6 +43,9 @@ proc Graphics.Draw.ASCII.Letters.CreateGLChar uses eax ecx ebx edi,\
         mov     edi, [letter]
         add     edi, 8
 
+        cmp     eax, -1
+        je      .exit 
+
         mul     dword [itrtn_multiplier]
         xchg    ecx, eax
         .copy:
@@ -60,8 +63,8 @@ proc Graphics.Draw.ASCII.Letters.CreateGLChar uses eax ecx ebx edi,\
             add     ebx, 8
             add     edi, 8
             loop    .copy                 
-    .exit:
         stdcall Graphics.Draw.ASCII.Letters.LetterPrepear, [result]
+    .exit:
         ret
 endp
 

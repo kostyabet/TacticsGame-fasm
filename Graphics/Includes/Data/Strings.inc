@@ -32,7 +32,7 @@ tg_headline     =       30
 tg_play         =       30
 tg_about        =       30
 tg_settings     =       30
-tg_title        =       30
+tg_title        =       18
 tg_cost         =       0
 tg_info         =       0
 tg_watermark    =       5
@@ -97,17 +97,15 @@ str_headline        db      20, 1, 12, 20, 10, 12, 1, 0 ; 'ТАКТИКА'
 str_headline_pos    dd      673, 112
 str_headline_bc     db      20, 1, 12, 20, 10, 12, 1, 0 ; 'ТАКТИКА'
 str_headline_bc_pos dd      676, 116
-
 str_play            db      10, 4, 18, 1, 20, 30, 0 ; 'ИГРАТЬ'
 str_play_pos        dd      1156, 358
-
-str_about           db      'ОБ ИГРЕ', 0
-
-
+str_about           db      16, 2, 34, 10, 4, 18, 6, 0 ; 'ОБ ИГРЕ'
+str_about_pos       dd      1150, 603
 str_settings        db      15, 1, 19, 20, 18, 16, 11, 12, 10, 0 ; 'НАСТРОЙКИ'
 str_settings_pos    dd      1077, 846
+str_title           db      13, 6, 15, 10, 15, 4, 18, 1, 5, 0 ; 'ЛЕНИНГРАД'
+str_title_pos       dd      411, 871
 
-str_title           db      'ЛЕНИНГРАД', 0
 str_cost            db      'ЦЕНА 2р.50к.', 0
 str_info            db      'СУВЕНИР-ГОЛОВОЛОМКА', 0
 str_watermark       db      'АРТ.   С-АГ-1648-А', 0
@@ -127,4 +125,5 @@ arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5
                             ltr_RU_8,  ltr_RU_9,  ltr_RU_10, ltr_RU_11, ltr_RU_12, ltr_RU_13, ltr_RU_14,\
                             ltr_RU_15, ltr_RU_16, ltr_RU_17, ltr_RU_18, ltr_RU_19, ltr_RU_20, ltr_RU_21,\
                             ltr_RU_22, ltr_RU_23, ltr_RU_24, ltr_RU_25, ltr_RU_26, ltr_RU_27, ltr_RU_28,\
-                            ltr_RU_29, ltr_RU_30, ltr_RU_31, ltr_RU_32, ltr_RU_33
+                            ltr_RU_29, ltr_RU_30, ltr_RU_31, ltr_RU_32, ltr_RU_33,\
+                            spl_34,    spl_35

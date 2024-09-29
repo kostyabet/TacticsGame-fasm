@@ -7,6 +7,8 @@ proc Graphics.Draw.Text.Write uses ebx ecx,\
         .writeLetter:
             push    ebx ecx
             mov     ecx, [ebx]
+            cmp     ecx, -1
+            je      @F
             add     ebx, 4
             .drawQUAD:
                 stdcall Graphics.Draw.Shapes.Quadrilateral, ebx, [color]
@@ -14,9 +16,10 @@ proc Graphics.Draw.Text.Write uses ebx ecx,\
                 dec     ecx
                 cmp     ecx, 0
                 jnz     .drawQUAD
-            pop     ecx ebx
-            add     ebx,  228 ; skip char
-            loop    .writeLetter
+            @@:
+                pop     ecx ebx
+                add     ebx,  228 ; skip char
+                loop    .writeLetter
     .exit:
         ret
 endp

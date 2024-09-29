@@ -1,3 +1,5 @@
+include '../Includes/DrawFuncsInclude.asm'
+
 proc Draw.Pages.MainPage
         stdcall Graphics.Draw.Shapes, font_design, font_color
 	.book:

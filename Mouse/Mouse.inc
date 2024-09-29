@@ -1,0 +1,2 @@
+XPosition   dd      ?
+YPosition   dd      ?

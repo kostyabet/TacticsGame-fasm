@@ -29,7 +29,7 @@ section '.text' code readable executable
     invoke  GetSystemMetrics, SM_CYSCREEN
     mov     ecx, eax
 
-	invoke	CreateWindowEx, 0, _class, _title, WS_VISIBLE+WS_OVERLAPPEDWINDOW+WS_POPUP+WS_CLIPCHILDREN+WS_CLIPSIBLINGS, 0, 0, ebx, ecx, NULL, NULL, [wc.hInstance], NULL
+	invoke	CreateWindowEx, 0, _class, _title, WS_VISIBLE+WS_POPUP+WS_CLIPCHILDREN+WS_CLIPSIBLINGS, 0, 0, ebx, ecx, NULL, NULL, [wc.hInstance], NULL
 	mov		[hwnd],eax
 
 	invoke  ShowWindow,[hwnd],SW_MAXIMIZE

@@ -1,5 +1,4 @@
 include 'Shapes/Circle.asm'
-include 'Shapes/Quadrilateral.asm'
 include 'Shapes/Rect.asm'
 
 proc Graphics.Draw.Shapes uses eax ebx edx,\
@@ -10,7 +9,7 @@ proc Graphics.Draw.Shapes uses eax ebx edx,\
     endl
     mov     ebx, [design]
     stdcall Graphics.Draw.Shapes.Rect, ebx, [color]
-    add     ebx, 164 ; skip rect
+    add     ebx, 164
     stdcall Graphics.Draw.Shapes.Circle, ebx, [color]
     ret
 endp

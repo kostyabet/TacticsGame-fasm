@@ -1,3 +1,5 @@
+include 'Shapes/Quadrilateral.asm'
+
 proc Graphics.Draw.Text.Write uses ebx ecx,\
      string, color
     .start:

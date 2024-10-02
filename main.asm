@@ -8,6 +8,7 @@ include 'main.inc'
 include 'Graphics/Includes/DataPrepears.asm'
 include 'Graphics/Includes/DataIncludes.asm'
 include 'Graphics/Pages/PagesInclude.asm'
+include 'Graphics/Animations/Includes.asm'
 
 include 'Scripts/Getters.asm'
 
@@ -29,7 +30,7 @@ section '.text' code readable executable
     invoke  GetSystemMetrics, SM_CYSCREEN
     mov     ecx, eax
 
-	invoke	CreateWindowEx, 0, _class, _title, WS_VISIBLE+WS_OVERLAPPEDWINDOW+WS_POPUP+WS_CLIPCHILDREN+WS_CLIPSIBLINGS, 0, 0, ebx, ecx, NULL, NULL, [wc.hInstance], NULL
+	invoke	CreateWindowEx, 0, _class, _title, WS_VISIBLE+WS_POPUP+WS_CLIPCHILDREN+WS_CLIPSIBLINGS, 0, 0, ebx, ecx, NULL, NULL, [wc.hInstance], NULL
 	mov		[hwnd],eax
 
 	invoke  ShowWindow,[hwnd],SW_MAXIMIZE
@@ -39,6 +40,7 @@ section '.text' code readable executable
 	stdcall Graphics.Draw.CoordsRectPrepears
 	stdcall Graphics.Colors.Prepear
 	stdcall Graphics.Draw.ASCIIPrepear
+	stdcall Mouse.EventsCoordsPrepear
 	mov 	[IS_INFO_PREPEAR], GL_TRUE
 
   msg_loop:
@@ -66,6 +68,8 @@ proc WindowProc hwnd,wmsg,wparam,lparam
 	je	.wmdestroy
 	cmp [wmsg],WM_MOUSEMOVE
 	je  .wmmousemove
+	cmp [wmsg],WM_LBUTTONDOWN
+	je  .wmlbuttondown
   .defwndproc:
 	invoke	DefWindowProc,[hwnd],[wmsg],[wparam],[lparam]
 	jmp	.finish
@@ -104,7 +108,7 @@ proc WindowProc hwnd,wmsg,wparam,lparam
 	cmp 	[IS_INFO_PREPEAR], GL_TRUE
 	jne 	.exit
 	.draw:
-		stdcall Draw.Pages.MainPage
+		stdcall Draw.Page
 	.exit:
 		invoke	SwapBuffers,[hdc]
 		xor	eax,eax
@@ -122,6 +126,10 @@ proc WindowProc hwnd,wmsg,wparam,lparam
   .wmmousemove:
 	stdcall Mouse.OnMove, [lparam], XPosition, YPosition
 	; stdcall Mouse.CheckCoords
+	xor 	eax, eax
+	jmp 	.finish
+  .wmlbuttondown:
+	stdcall Mouse.OnClick, [lparam]
 	xor 	eax, eax
 	jmp 	.finish
   .finish:

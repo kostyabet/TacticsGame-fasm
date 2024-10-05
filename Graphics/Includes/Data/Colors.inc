@@ -27,6 +27,10 @@ cl_tick_c3        dd      0x00803333
 cl_tick_c4        dd      0x00532323
 cl_tick_c5        dd      0x001D1414
 cl_mgf            dd      0x00CDA791
+cl_mggb           dd      0x00E5C4B2
+cl_mgdu           dd      0x00E5C4B2
+cl_mgdd           dd      0x00454141
+cl_mgtickfu       dd      0x00C88762
 
 ; ====== Program models ====== ;
 font_color        BackgroundColor ?
@@ -41,12 +45,16 @@ book_flgpl_color  BackgroundColor ?
 btn_text_color    BackgroundColor ?
 book_title_color  BackgroundColor ?
 
-game_border_color         BackgroundColor ?
-game_garbage_font_color   BackgroundColor ?
-game_garbabe_border_color BackgroundColor ?
-game_tick_c1_color        BackgroundColor ?
-game_tick_c2_color        BackgroundColor ?
-game_tick_c3_color        BackgroundColor ?
-game_tick_c4_color        BackgroundColor ?
-game_tick_c5_color        BackgroundColor ?
-maingame_font_color       BackgroundColor ?
+game_border_color          BackgroundColor ?
+game_garbage_font_color    BackgroundColor ?
+game_garbabe_border_color  BackgroundColor ?
+game_tick_c1_color         BackgroundColor ?
+game_tick_c2_color         BackgroundColor ?
+game_tick_c3_color         BackgroundColor ?
+game_tick_c4_color         BackgroundColor ?
+game_tick_c5_color         BackgroundColor ?
+maingame_font_color        BackgroundColor ?
+maingame_gameborder_color  BackgroundColor ?
+maingame_tick_decup_color  BackgroundColor ?
+maingame_tick_decdn_color  BackgroundColor ?
+maingame_tickfont_up_color BackgroundColor ?

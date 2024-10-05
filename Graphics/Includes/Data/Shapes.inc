@@ -44,11 +44,13 @@ struct Rects
     rct3    Rect    ?
     rct4    Rect    ?
     rct5    Rect    ?
+    rct6    Rect    ?
+    rct7    Rect    ?
 ends
 
 struct Circle 
     center   Point   ?
-    dots     dd      722 dup(?)
+    dots     dd      5762 dup(?)
 ends
 
 struct Circles
@@ -65,20 +67,20 @@ struct DrawModel
     circles         Circles ?
 ends
 
-degreeCount         dd  360
+degreeCount         dd  2880
 curentDeg           dd  0
 curentRudDeg        dd  ?
 
 ; ====== Program models ====== ;
-font_design         DrawModel   ?
+font_design                   DrawModel   ?
 
-book_root_design    DrawModel   ?
-book_endg_design    DrawModel   ?
-book_brdcrn_design  DrawModel   ?
-book_corner_design  DrawModel   ?
-book_brdfnt_design  DrawModel   ?
-book_brd_design     DrawModel   ?
-book_flgpl_design   DrawModel   ?
+book_root_design              DrawModel   ?
+book_endg_design              DrawModel   ?
+book_brdcrn_design            DrawModel   ?
+book_corner_design            DrawModel   ?
+book_brdfnt_design            DrawModel   ?
+book_brd_design               DrawModel   ?
+book_flgpl_design             DrawModel   ?
 
 button_play_design            DrawModel   ?
 button_about_design           DrawModel   ?
@@ -93,6 +95,13 @@ game_tick_c3_design           DrawModel   ?
 game_tick_c4_design           DrawModel   ?
 game_tick_c5_design           DrawModel   ?
 maingame_font_design          DrawModel   ?
+maingame_font_circle_design   DrawModel   ?
+maingame_gameborder_design1   DrawModel   ?
+maingame_gameborder_design2   DrawModel   ?
+maingame_tick_decup_design    DrawModel   ?
+maingame_tick_decdn_design    DrawModel   ?
+game_tickfont_c1_design       DrawModel   ?
+game_tickfont_c2_design       DrawModel   ?
 
 ; ====== Business models ====== ;
 font_coords         dd  1,\
@@ -270,6 +279,47 @@ game_garbabe_border_coords  dd  2,\
                                 1221, 740, 5,\
                                  700, 871, 5,\
                                 1221, 871, 5
+maingame_font_coords        dd  1,\
+                                700, 194, 1220, 714,\
+                                0
+maingame_font_circle_coords dd  0,\
+                                4,\
+                                 709, 194, 111,\
+                                 709, 714, 111,\
+                                1210, 194, 111,\
+                                1210, 714, 111
+maingame_gameborder_coords1 dd  7,\
+                                700, 223, 1220, 217,\
+                                805, 301, 1117, 295,\
+                                700, 379, 1220, 373,\ 
+                                700, 457, 1220, 451,\
+                                700, 535, 1220, 529,\
+                                805, 613, 1117, 606,\
+                                700, 691, 1220, 685,\
+                                0
+maingame_gameborder_coords2 dd  7,\
+                                 730, 714,  724, 193,\
+                                 807, 610,  801, 298,\
+                                 886, 714,  880, 193,\
+                                 964, 714,  958, 193,\
+                                1042, 714, 1036, 193,\
+                                1120, 610, 1112, 298,\
+                                1197, 714, 1191, 193,\
+                                0
+maingame_tick_decup_coords  dd  0,\
+                                4,\
+                                 805, 298, 15,\
+                                1117, 298, 15,\
+                                 805, 610, 15,\
+                                1117, 610, 15
+maingame_tick_decdn_coords  dd  0,\
+                                4,\
+                                 805, 298, 5,\
+                                1117, 298, 5,\
+                                 805, 610, 5,\
+                                1117, 610, 5
+
+
 game_tick_c1_coords         dd  0,\
                                 1,\
                                 17, 17, 17
@@ -285,6 +335,16 @@ game_tick_c4_coords         dd  0,\
 game_tick_c5_coords         dd  0,\
                                 1,\
                                 17, 17, 2
-maingame_font_coords        dd  1,\
-                                700, 194, 1220, 714,\
-                                0
+game_tick_coords            dd  game_tick_c1_coords,\
+                                game_tick_c2_coords,\ 
+                                game_tick_c3_coords,\
+                                game_tick_c4_coords,\
+                                game_tick_c5_coords
+game_tickfont_c1_coords     dd  0,\
+                                1,\
+                                17, 17, 17
+game_tickfont_c2_coords     dd  0,\
+                                1,\
+                                17, 17, 13
+game_tickfont_coords        dd  game_tickfont_c1_coords,\
+                                game_tickfont_c2_coords

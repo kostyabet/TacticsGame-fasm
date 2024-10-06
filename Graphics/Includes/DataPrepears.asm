@@ -44,3 +44,8 @@ proc Graphics.Draw.ASCIIPrepear
     ;stdcall Graphics.Draw.Text.Prepear, txt_watermark, str_watermark, fs_watermark, tg_watermark
     ret
 endp
+
+proc Game.EventsCoordsPrepear
+    stdcall Mouse.EventsCoords.Prepear, mp_play_btn
+    ret
+endp

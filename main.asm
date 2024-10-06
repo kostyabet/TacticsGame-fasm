@@ -39,6 +39,7 @@ section '.text' code readable executable
 	stdcall Graphics.Draw.CoordsRectPrepears
 	stdcall Graphics.Colors.Prepear
 	stdcall Graphics.Draw.ASCIIPrepear
+	stdcall Game.EventsCoordsPrepear
 	mov 	[IS_INFO_PREPEAR], GL_TRUE
 
   msg_loop:
@@ -66,6 +67,8 @@ proc WindowProc hwnd,wmsg,wparam,lparam
 	je	.wmdestroy
 	cmp [wmsg],WM_MOUSEMOVE
 	je  .wmmousemove
+	cmp [wmsg],WM_LBUTTONDOWN
+	je  .vmmauseclick
   .defwndproc:
 	invoke	DefWindowProc,[hwnd],[wmsg],[wparam],[lparam]
 	jmp	.finish
@@ -104,7 +107,7 @@ proc WindowProc hwnd,wmsg,wparam,lparam
 	cmp 	[IS_INFO_PREPEAR], GL_TRUE
 	jne 	.exit
 	.draw:
-		stdcall Draw.Pages.MainPage
+		stdcall Draw.Page
 	.exit:
 		invoke	SwapBuffers,[hdc]
 		xor	eax,eax
@@ -122,6 +125,10 @@ proc WindowProc hwnd,wmsg,wparam,lparam
   .wmmousemove:
 	stdcall Mouse.OnMove, [lparam], XPosition, YPosition
 	; stdcall Mouse.CheckCoords
+	xor 	eax, eax
+	jmp 	.finish
+  .vmmauseclick:
+	stdcall Mouse.OnClick, [lparam]
 	xor 	eax, eax
 	jmp 	.finish
   .finish:

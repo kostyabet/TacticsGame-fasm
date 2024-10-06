@@ -5,4 +5,4 @@ SettingsPage    =       12
 
 CurentPage      dd      MainPage
 
-PagesArray      dd      Draw.Pages.MainPage, Draw.Pages.GamePage
+PagesList       dd      Draw.Pages.MainPage, Draw.Pages.GamePage

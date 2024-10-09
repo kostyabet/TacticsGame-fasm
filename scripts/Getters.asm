@@ -72,7 +72,7 @@ proc Scripts.Getters.ConvertCoords uses eax ebx ecx edi,\
             loop    .convertRect
     .circle:
         mov     edi, [resAdress]
-        add     edi, 164
+        add     edi, 228
         mov     ecx, [ebx]
         mov     [edi], ecx
         cmp     ecx, 0

@@ -4,10 +4,14 @@ proc Mouse.OnMove uses eax ebx,\
         maxX    dd      ?
         maxY    dd      ?
         curX    dd      ?
+        maxX    dd      ?
         curY    dd      ?
+        maxY    dd      ?
     endl
+    ; max X
     invoke  GetSystemMetrics, SM_CXSCREEN
     mov     [maxX], eax
+    ; max Y
     invoke  GetSystemMetrics, SM_CYSCREEN
     mov     [maxY], eax
     ; X
@@ -25,5 +29,3 @@ proc Mouse.OnMove uses eax ebx,\
     mov     [ebx], eax        
     ret
 endp
-
-;002D0852

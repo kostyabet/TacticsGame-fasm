@@ -14,6 +14,8 @@ include 'Scripts/Getters.asm'
 
 include 'Mouse/Includes.asm'
 
+include 'Game/Includes.asm'
+
 section '.text' code readable executable
 
   start:

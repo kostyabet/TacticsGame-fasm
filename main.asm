@@ -8,7 +8,7 @@ include 'main.inc'
 include 'Graphics/Includes/DataPrepears.asm'
 include 'Graphics/Includes/DataIncludes.asm'
 include 'Graphics/Pages/PagesInclude.asm'
-include 'Graphics/Animations/Includes.asm'
+include 'Game/Includes.asm'
 
 include 'Scripts/Getters.asm'
 
@@ -42,7 +42,8 @@ section '.text' code readable executable
 	stdcall Graphics.Draw.CoordsRectPrepears
 	stdcall Graphics.Colors.Prepear
 	stdcall Graphics.Draw.ASCIIPrepear
-	stdcall Mouse.EventsCoordsPrepear
+	stdcall Game.EventsCoordsPrepear
+	stdcall Game.ModelsPrepear
 	mov 	[IS_INFO_PREPEAR], GL_TRUE
 
   msg_loop:
@@ -71,7 +72,7 @@ proc WindowProc hwnd,wmsg,wparam,lparam
 	cmp [wmsg],WM_MOUSEMOVE
 	je  .wmmousemove
 	cmp [wmsg],WM_LBUTTONDOWN
-	je  .wmlbuttondown
+	je  .vmmauseclick
   .defwndproc:
 	invoke	DefWindowProc,[hwnd],[wmsg],[wparam],[lparam]
 	jmp	.finish
@@ -130,7 +131,7 @@ proc WindowProc hwnd,wmsg,wparam,lparam
 	; stdcall Mouse.CheckCoords
 	xor 	eax, eax
 	jmp 	.finish
-  .wmlbuttondown:
+  .vmmauseclick:
 	stdcall Mouse.OnClick, [lparam]
 	xor 	eax, eax
 	jmp 	.finish

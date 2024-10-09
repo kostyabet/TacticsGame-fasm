@@ -10,7 +10,7 @@ proc Mouse.EventsCoords.Prepear,\
     stdcall Mouse.GetProportion, SCREEN_WIDTH, [ebx]
     mov     [ebx], eax
     add     ebx, 4
-    stdcall Mouse.GetProportion, SCREEN_WIDTH, [ebx]
+    stdcall Mouse.GetProportion, SCREEN_HEIGHT, [ebx]
     mov     [ebx], eax
     ret
 endp

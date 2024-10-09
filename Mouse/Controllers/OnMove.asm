@@ -1,6 +1,8 @@
 proc Mouse.OnMove uses eax ebx,\
      coords, X, Y
     locals
+        maxX    dd      ?
+        maxY    dd      ?
         curX    dd      ?
         maxX    dd      ?
         curY    dd      ?
@@ -21,7 +23,8 @@ proc Mouse.OnMove uses eax ebx,\
     ; Y
     mov     eax, [coords]   
     shr     eax, 16
-    stdcall Mouse.GetProportion, [maxX], eax
+    and     eax, 0xFFFF
+    stdcall Mouse.GetProportion, [maxY], eax
     mov     ebx, [Y]
     mov     [ebx], eax        
     ret

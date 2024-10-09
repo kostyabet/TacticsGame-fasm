@@ -13,8 +13,8 @@ proc Mouse.OnClick uses ebx eax,\
     .mainAnimLoop:
         .prepear:
             push    ebx
-        .main:
             mov     ebx, [ebx]
+        .main:
             fld     dword [ebx]
             fcom    dword [XPosition]
             fstp    st0
@@ -22,14 +22,12 @@ proc Mouse.OnClick uses ebx eax,\
             sahf
             ja      .exit
 
-            fld     dword [YPosition]
             fld     dword [ebx + 4]
             fcom    dword [YPosition]
             fstp    st0
-            fstp    st0
             fstsw   ax
             sahf
-            jb      .exit
+            ja      .exit
             
             fld     dword [ebx + 8]
             fcom    dword [XPosition]

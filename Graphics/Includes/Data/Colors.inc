@@ -30,3 +30,5 @@ headline_bc_color BackgroundColor ?
 book_flgpl_color  BackgroundColor ?
 btn_text_color    BackgroundColor ?
 book_title_color  BackgroundColor ?
+
+TicksFontList_Colors    dd  book_root_color, book_strk_color

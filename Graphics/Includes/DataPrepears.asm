@@ -49,3 +49,8 @@ proc Game.EventsCoordsPrepear
     stdcall Mouse.EventsCoords.Prepear, mp_play_btn
     ret
 endp
+
+proc Game.ModelsPrepear
+    stdcall Scripts.ModelsPrepear, TicksFontList_Centers, TicksFontList_Radiuses, TicksFontList_Float
+    ret
+endp

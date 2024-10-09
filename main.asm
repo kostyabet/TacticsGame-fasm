@@ -8,6 +8,7 @@ include 'main.inc'
 include 'Graphics/Includes/DataPrepears.asm'
 include 'Graphics/Includes/DataIncludes.asm'
 include 'Graphics/Pages/PagesInclude.asm'
+include 'Game/Includes.asm'
 
 include 'Scripts/Getters.asm'
 
@@ -40,6 +41,7 @@ section '.text' code readable executable
 	stdcall Graphics.Colors.Prepear
 	stdcall Graphics.Draw.ASCIIPrepear
 	stdcall Game.EventsCoordsPrepear
+	stdcall Game.ModelsPrepear
 	mov 	[IS_INFO_PREPEAR], GL_TRUE
 
   msg_loop:

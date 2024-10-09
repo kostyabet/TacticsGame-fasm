@@ -4,3 +4,5 @@ include '../Draw/Shapes.asm'
 include '../Draw/ASCII.asm'
 ; Text
 include '../Draw/Text.asm'
+; Ticks
+include '../Draw/Ticks.asm'

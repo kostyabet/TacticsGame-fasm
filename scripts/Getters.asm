@@ -281,3 +281,97 @@ proc Scripts.Getters.ConvertRepeatCoords uses eax ebx ecx,\
     .exit:
         ret
 endp
+; ==== Tiks work ==== ;
+proc Scripts.ModelsPrepear uses eax ecx ebx edx edi,\
+     decimal, radiuses, float
+    locals
+        curRadius   dd      ?
+        multipier   dd      4
+    endl
+    mov     edi, [float]
+    mov     ecx, [edi]
+    add     edi, 4
+    .cConvert:
+        ; set curent Radius
+        push    ebx ecx edi 
+        mov     edi, [float]
+        mov     eax, [edi]
+        sub     eax, ecx
+        mul     dword [multipier]
+        mov     edi, [radiuses]
+        mov     ebx, eax
+        mov     eax, [edi + ebx]
+        mov     [curRadius], eax
+        pop     edi ecx ebx
+        ; main block
+        push    ecx edi
+        mov     edi, [edi]
+        mov     ebx, [decimal]
+        mov     ecx, [ebx]
+        mov     [edi], ecx
+        cmp     ecx, 0
+        je      .exitFromLoop
+        add     ebx, 4
+        add     edi, 4
+        .circleConvert:
+            push    ecx
+            ; center
+            mov     eax, [ebx]
+            stdcall GetXGLfloatCoord, eax
+            mov     [edi], eax
+            mov     eax, [ebx + 4]
+            stdcall GetYGLfloatCoord, eax
+            mov     [edi + 4], eax
+            add     edi, 8
+            ; circle coords
+            fldpi
+            fadd    st0, st0
+            fidiv   dword [degreeCount]
+            mov     ecx, [degreeCount]
+            inc     ecx
+            .drawDot:
+                fld     st0
+                fimul   [curentDeg]
+                fstp    [curentRudDeg]
+
+                ; x
+                fld     [curentRudDeg]
+                fcos
+                fimul   dword [curRadius] ; radius
+                fiadd   dword [ebx]
+                fstp    dword [edi]
+
+                ; y
+                fld     [curentRudDeg]
+                fsin
+                fimul   dword [curRadius] ; radius
+                fiadd   dword [ebx + 4]
+                fstp    dword [edi + 4]
+
+                ; convert
+                mov     eax, [edi]
+                stdcall GetXGLfloatCoordFromFloat, eax
+                mov     [edi], eax
+
+                mov     eax, [edi + 4]
+                stdcall GetYGLfloatCoordFromFloat, eax
+                mov     [edi + 4], eax
+
+                add     [curentDeg], 1
+                dec     ecx
+                add     edi, 8
+                cmp     ecx, 0
+                jne     .drawDot
+            mov     [curentDeg], 0
+            pop     ecx
+            add     ebx, 8
+            dec     ecx
+            jne     .circleConvert
+        .exitFromLoop:
+        pop     edi ecx
+        add     edi, 4
+        dec     ecx
+        cmp     ecx, 0
+        ja     .cConvert
+    ret
+endp

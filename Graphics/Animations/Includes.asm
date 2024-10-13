@@ -1,3 +1,3 @@
-include 'Animation.inc'
+include 'Animations.inc'
 
 include 'FromMainToGame.asm'

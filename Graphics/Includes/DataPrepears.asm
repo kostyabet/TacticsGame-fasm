@@ -18,7 +18,7 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, mp_grbgfont_coords, mp_grbgfont_design
     stdcall Scripts.Getters.ConvertCoords, mp_fntvertln_coords, mp_fntvertln_design
     stdcall Scripts.Getters.ConvertCoords, mp_fnthortln_coords, mp_fnthortln_design
-
+    
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
     ret

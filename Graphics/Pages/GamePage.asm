@@ -12,6 +12,5 @@ proc Draw.Pages.GamePage
     stdcall Graphics.Draw.Ticks, TicksFontList_Float,     TicksFontList_Colors
     stdcall Graphics.Draw.Ticks, TicksFontDecorate_Float, TicksFontDecorate_Colors
     stdcall Graphics.Draw.Ticks, TicksList_Float, TicksList_Colors
-
     ret
 endp

@@ -109,7 +109,7 @@ proc WindowProc hwnd,wmsg,wparam,lparam
         cmp     [IS_INFO_PREPEAR], GL_TRUE
         jne     .exit
         .draw:
-                stdcall Draw.Page
+                stdcall Draw.Page ; stdcall Draw.Page
         .exit:
                 invoke  SwapBuffers,[hdc]
                 xor     eax,eax
@@ -126,7 +126,6 @@ proc WindowProc hwnd,wmsg,wparam,lparam
         jmp             .finish
   .wmmousemove:
         stdcall Mouse.OnMove, [lparam], XPosition, YPosition
-        ; stdcall Mouse.CheckCoords
         xor     eax, eax
         jmp     .finish
   .vmmauseclick:

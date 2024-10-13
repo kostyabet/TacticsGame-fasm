@@ -73,7 +73,59 @@ struct TicksFont
     t34         Circle      ?
 ends
 
-TicksList           Ticks       ? ; 32
+TicksList_Radiuses  dd      17, 15, 12, 7, 2         
+TicksList_Float_c1  Ticks       ?
+TicksList_Float_c2  Ticks       ?
+TicksList_Float_c3  Ticks       ?
+TicksList_Float_c4  Ticks       ?
+TicksList_Float_c5  Ticks       ?
+TicksList_Float     dd      5,\
+                                TicksList_Float_c1, TicksList_Float_c2, TicksList_Float_c3, TicksList_Float_c4, TicksList_Float_c5  
+TicksList_Centers   dd      32,\ ; 32 - center
+                                 882, 219,\ ; center 1
+                                 960, 219,\ ; center 2
+                                1038, 219,\ ; center 3
+                                 882, 297,\ ; center 4
+                                 960, 297,\ ; center 5
+                                1038, 297,\ ; center 6
+                                 726, 375,\ ; center 7
+                                 804, 375,\ ; center 8
+                                 882, 375,\ ; center 9
+                                 960, 375,\ ; center 10
+                                1038, 375,\ ; center 11
+                                1116, 375,\ ; center 12
+                                1194, 375,\ ; center 13
+                                 726, 453,\ ; center 14
+                                 804, 453,\ ; center 15
+                                 882, 453,\ ; center 16 ==========
+                                1038, 453,\ ; center 18 ==========
+                                1116, 453,\ ; center 19
+                                1194, 453,\ ; center 20
+                                 726, 531,\ ; center 21
+                                 804, 531,\ ; center 22
+                                 882, 531,\ ; center 23
+                                 960, 531,\ ; center 24
+                                1038, 531,\ ; center 25
+                                1116, 531,\ ; center 26
+                                1194, 531,\ ; center 27
+                                 882, 609,\ ; center 28
+                                 960, 609,\ ; center 29
+                                1038, 609,\ ; center 30
+                                 882, 687,\ ; center 31
+                                 960, 687,\ ; center 32
+                                1038, 687   ; center 33
+
+
+TicksFontDecorate_Radiuses  dd          15, 5
+TicksFontDecorate_Float_c1  TicksFont   ?
+TicksFontDecorate_Float_c2  TicksFont   ?
+TicksFontDecorate_Float     dd          2,\
+                                        TicksFontDecorate_Float_c1, TicksFontDecorate_Float_c2
+TicksFontDecorate_Centers   dd          4,\ ; 33
+                                         805, 298,\ ; center 1
+                                         805, 610,\ ; center 2
+                                        1117, 298,\ ; center 3
+                                        1117, 610   ; center 4
 
 TicksFontList_Radiuses  dd      17, 13         
 TicksFontList_Float_c1  TicksFont   ?

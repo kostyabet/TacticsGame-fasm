@@ -73,45 +73,44 @@ struct TicksFont
     t34         Circle      ?
 ends
 
-TicksList           Ticks       ? ; 33
+TicksList           Ticks       ? ; 32
 
 TicksFontList_Radiuses  dd      17, 13         
 TicksFontList_Float_c1  TicksFont   ?
 TicksFontList_Float_c2  TicksFont   ?
 TicksFontList_Float     dd      2,\
                                 TicksFontList_Float_c1, TicksFontList_Float_c2
-TicksFontList_Centers   dd      34,\ ; 34
-                                957, 450,\ ; center 1
-                                123, 450,\ ; center 2
-                                957, 450,\ ; center 3
-                                957, 450,\ ; center 4
-                                957, 450,\ ; center 5
-                                957, 450,\ ; center 6
-                                957, 450,\ ; center 7
-                                957, 450,\ ; center 8
-                                957, 450,\ ; center 9
-                                957, 450,\ ; center 10
-                                957, 450,\ ; center 11
-                                957, 450,\ ; center 12
-                                957, 450,\ ; center 13
-                                957, 450,\ ; center 14
-                                957, 450,\ ; center 15
-                                957, 450,\ ; center 16
-                                957, 450,\ ; center 17
-                                957, 450,\ ; center 18
-                                957, 450,\ ; center 19
-                                957, 450,\ ; center 20
-                                957, 450,\ ; center 21
-                                957, 450,\ ; center 22
-                                957, 450,\ ; center 23
-                                957, 450,\ ; center 24
-                                957, 450,\ ; center 25
-                                957, 450,\ ; center 26
-                                957, 450,\ ; center 27
-                                957, 450,\ ; center 28
-                                957, 450,\ ; center 29
-                                957, 450,\ ; center 30
-                                957, 450,\ ; center 31
-                                957, 450,\ ; center 32
-                                957, 450,\ ; center 33
-                                957, 450   ; center 34
+TicksFontList_Centers   dd      33,\ ; 33
+                                 882, 219,\ ; center 1
+                                 960, 219,\ ; center 2
+                                1038, 219,\ ; center 3
+                                 882, 297,\ ; center 4
+                                 960, 297,\ ; center 5
+                                1038, 297,\ ; center 6
+                                 726, 375,\ ; center 7
+                                 804, 375,\ ; center 8
+                                 882, 375,\ ; center 9
+                                 960, 375,\ ; center 10
+                                1038, 375,\ ; center 11
+                                1116, 375,\ ; center 12
+                                1194, 375,\ ; center 13
+                                 726, 453,\ ; center 14
+                                 804, 453,\ ; center 15
+                                 882, 453,\ ; center 16
+                                 960, 453,\ ; center 17
+                                1038, 453,\ ; center 18
+                                1116, 453,\ ; center 19
+                                1194, 453,\ ; center 20
+                                 726, 531,\ ; center 21
+                                 804, 531,\ ; center 22
+                                 882, 531,\ ; center 23
+                                 960, 531,\ ; center 24
+                                1038, 531,\ ; center 25
+                                1116, 531,\ ; center 26
+                                1194, 531,\ ; center 27
+                                 882, 609,\ ; center 28
+                                 960, 609,\ ; center 29
+                                1038, 609,\ ; center 30
+                                 882, 687,\ ; center 31
+                                 960, 687,\ ; center 32
+                                1038, 687   ; center 33

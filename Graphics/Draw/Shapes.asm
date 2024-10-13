@@ -9,7 +9,7 @@ proc Graphics.Draw.Shapes uses eax ebx edx,\
     endl
     mov     ebx, [design]
     stdcall Graphics.Draw.Shapes.Rect, ebx, [color]
-    add     ebx, 228
+    add     ebx, 228 
     stdcall Graphics.Draw.Shapes.Circle, ebx, [color]
     ret
 endp

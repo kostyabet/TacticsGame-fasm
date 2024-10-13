@@ -1,33 +1,23 @@
 proc Graphics.Draw.CoordsRectPrepears
-    ; main page
-    stdcall Scripts.Getters.ConvertCoords, font_coords,                font_design
-    stdcall Scripts.Getters.ConvertCoords, book_root_coords,           book_root_design
-    stdcall Scripts.Getters.ConvertCoords, book_endg_coords,           book_endg_design
-    stdcall Scripts.Getters.ConvertCoords, book_brdcrn_coords,         book_brdcrn_design
-    stdcall Scripts.Getters.ConvertCoords, book_corner_coords,         book_corner_design
-    stdcall Scripts.Getters.ConvertCoords, book_brdfnt_coords,         book_brdfnt_design
-    stdcall Scripts.Getters.ConvertCoords, book_brd_coords,            book_brd_design
-    stdcall Scripts.Getters.ConvertCoords, button_play_coords,         button_play_design
-    stdcall Scripts.Getters.ConvertCoords, button_about_coords,        button_about_design
-    stdcall Scripts.Getters.ConvertCoords, button_stngs_coords,        button_stngs_design
-    stdcall Scripts.Getters.ConvertCoords, book_flgpl_coords,          book_flgpl_design
-    ; game page
-    stdcall Scripts.Getters.ConvertCoords, game_border_coords,          game_border_design
-    stdcall Scripts.Getters.ConvertCoords, game_garbage_font_coords,    game_garbage_font_design
-    stdcall Scripts.Getters.ConvertCoords, game_garbabe_border_coords,  game_garbabe_border_design
-    stdcall Scripts.Getters.ConvertCoords, game_tick_c1_coords,         game_tick_c1_design 
-    stdcall Scripts.Getters.ConvertCoords, game_tick_c2_coords,         game_tick_c2_design 
-    stdcall Scripts.Getters.ConvertCoords, game_tick_c3_coords,         game_tick_c3_design 
-    stdcall Scripts.Getters.ConvertCoords, game_tick_c4_coords,         game_tick_c4_design 
-    stdcall Scripts.Getters.ConvertCoords, game_tick_c5_coords,         game_tick_c5_design 
-    stdcall Scripts.Getters.ConvertCoords, game_tickfont_c1_coords,     game_tickfont_c1_design
-    stdcall Scripts.Getters.ConvertCoords, game_tickfont_c2_coords,     game_tickfont_c2_design
-    stdcall Scripts.Getters.ConvertCoords, maingame_font_coords,        maingame_font_design
-    stdcall Scripts.Getters.ConvertCoords, maingame_gameborder_coords1, maingame_gameborder_design1
-    stdcall Scripts.Getters.ConvertCoords, maingame_gameborder_coords2, maingame_gameborder_design2
-    stdcall Scripts.Getters.ConvertCoords, maingame_tick_decup_coords,  maingame_tick_decup_design
-    stdcall Scripts.Getters.ConvertCoords, maingame_tick_decdn_coords,  maingame_tick_decdn_design
-    stdcall Scripts.Getters.ConvertCoords, maingame_font_circle_coords, maingame_font_circle_design
+    ; default
+    stdcall Scripts.Getters.ConvertCoords, font_coords, font_design
+    stdcall Scripts.Getters.ConvertCoords, book_root_coords, book_root_design
+    stdcall Scripts.Getters.ConvertCoords, book_endg_coords, book_endg_design
+    stdcall Scripts.Getters.ConvertCoords, book_brdcrn_coords, book_brdcrn_design
+    stdcall Scripts.Getters.ConvertCoords, book_corner_coords, book_corner_design
+    stdcall Scripts.Getters.ConvertCoords, book_brdfnt_coords, book_brdfnt_design
+    stdcall Scripts.Getters.ConvertCoords, book_brd_coords, book_brd_design
+    stdcall Scripts.Getters.ConvertCoords, button_play_coords, button_play_design
+    stdcall Scripts.Getters.ConvertCoords, button_about_coords, button_about_design
+    stdcall Scripts.Getters.ConvertCoords, button_stngs_coords, button_stngs_design
+    stdcall Scripts.Getters.ConvertCoords, book_flgpl_coords, book_flgpl_design
+
+    stdcall Scripts.Getters.ConvertCoords, mp_gamefont_coords, mp_gamefont_design
+    stdcall Scripts.Getters.ConvertCoords, mg_gamebrdr_coords, mp_gamebrdr_design
+    stdcall Scripts.Getters.ConvertCoords, mp_grbgbrdr_coords, mp_grbgbrdr_design
+    stdcall Scripts.Getters.ConvertCoords, mp_grbgfont_coords, mp_grbgfont_design
+    stdcall Scripts.Getters.ConvertCoords, mp_fntvertln_coords, mp_fntvertln_design
+    stdcall Scripts.Getters.ConvertCoords, mp_fnthortln_coords, mp_fnthortln_design
     
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
@@ -46,19 +36,19 @@ proc Graphics.Colors.Prepear
     stdcall Scripts.Getters.Color, [cl_flgpl],       book_flgpl_color
     stdcall Scripts.Getters.Color, [cl_text_buttom], btn_text_color
     stdcall Scripts.Getters.Color, [cl_title],       book_title_color
-    stdcall Scripts.Getters.Color, [cl_gp_border],   game_border_color
-    stdcall Scripts.Getters.Color, [cl_ggf],         game_garbage_font_color
-    stdcall Scripts.Getters.Color, [cl_gbc],         game_garbabe_border_color
-    stdcall Scripts.Getters.Color, [cl_tick_c1],     game_tick_c1_color
-    stdcall Scripts.Getters.Color, [cl_tick_c2],     game_tick_c2_color
-    stdcall Scripts.Getters.Color, [cl_tick_c3],     game_tick_c3_color
-    stdcall Scripts.Getters.Color, [cl_tick_c4],     game_tick_c4_color
-    stdcall Scripts.Getters.Color, [cl_tick_c5],     game_tick_c5_color
-    stdcall Scripts.Getters.Color, [cl_mgf],         maingame_font_color
-    stdcall Scripts.Getters.Color, [cl_mggb],        maingame_gameborder_color
-    stdcall Scripts.Getters.Color, [cl_mgdu],        maingame_tick_decup_color
-    stdcall Scripts.Getters.Color, [cl_mgdd],        maingame_tick_decdn_color
-    stdcall Scripts.Getters.Color, [cl_mgtickfu],    maingame_tickfont_up_color
+    
+    stdcall Scripts.Getters.Color, [cl_milk],         milk_color
+    stdcall Scripts.Getters.Color, [cl_brown],        brown_color
+    stdcall Scripts.Getters.Color, [cl_brown_light],  brown_light_color
+    stdcall Scripts.Getters.Color, [cl_brown_medium], brown_medium_color
+    stdcall Scripts.Getters.Color, [cl_brown_dark],   brown_dark_color
+    stdcall Scripts.Getters.Color, [cl_gray],         gray_color
+    stdcall Scripts.Getters.Color, [cl_red_light],    red_light_color
+    stdcall Scripts.Getters.Color, [cl_red],          red_color
+    stdcall Scripts.Getters.Color, [cl_red_black],    red_black_color
+    stdcall Scripts.Getters.Color, [cl_vinous],       vinous_color
+    stdcall Scripts.Getters.Color, [cl_vinous_black], vinous_black_color
+    
     ret
 endp
 
@@ -81,6 +71,8 @@ proc Game.EventsCoordsPrepear
 endp
 
 proc Game.ModelsPrepear
-    stdcall Scripts.ModelsPrepear, TicksFontList_Centers, TicksFontList_Radiuses, TicksFontList_Float
+    stdcall Scripts.ModelsPrepear, TicksFontList_Centers,     TicksFontList_Radiuses,     TicksFontList_Float
+    stdcall Scripts.ModelsPrepear, TicksFontDecorate_Centers, TicksFontDecorate_Radiuses, TicksFontDecorate_Float
+    stdcall Scripts.ModelsPrepear, TicksList_Centers,         TicksList_Radiuses,         TicksList_Float
     ret
 endp

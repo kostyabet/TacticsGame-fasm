@@ -50,7 +50,7 @@ ends
 
 struct Circle 
     center   Point   ?
-    dots     dd      5762 dup(?)
+    dots     dd      2882 dup(?)
 ends
 
 struct Circles
@@ -67,7 +67,7 @@ struct DrawModel
     circles         Circles ?
 ends
 
-degreeCount         dd  2880
+degreeCount         dd  1440
 curentDeg           dd  0
 curentRudDeg        dd  ?
 
@@ -320,31 +320,110 @@ maingame_tick_decdn_coords  dd  0,\
                                 1117, 610, 5
 
 
-game_tick_c1_coords         dd  0,\
-                                1,\
-                                17, 17, 17
-game_tick_c2_coords         dd  0,\
-                                1,\
-                                17, 17, 15
-game_tick_c3_coords         dd  0,\
-                                1,\
-                                17, 17, 12
-game_tick_c4_coords         dd  0,\
-                                1,\
-                                17, 17, 7
-game_tick_c5_coords         dd  0,\
-                                1,\
-                                17, 17, 2
-game_tick_coords            dd  game_tick_c1_coords,\
-                                game_tick_c2_coords,\ 
-                                game_tick_c3_coords,\
-                                game_tick_c4_coords,\
-                                game_tick_c5_coords
-game_tickfont_c1_coords     dd  0,\
-                                1,\
-                                17, 17, 17
-game_tickfont_c2_coords     dd  0,\
-                                1,\
-                                17, 17, 13
-game_tickfont_coords        dd  game_tickfont_c1_coords,\
-                                game_tickfont_c2_coords
+; ====== Business models ====== ;
+font_coords         dd  1,\
+                        0, 0, 1920, 1080,\
+                        0
+book_root_coords    dd  1,\
+                        350, 300, 370, 968,\
+                        0
+book_endg_coords    dd  2,\
+                        370, 300, 780, 968,\
+                        780, 340, 820, 928,\
+                        0
+book_corner_coords  dd  0,\
+                        2,\
+                        780, 340, 40,\
+                        780, 928, 40
+book_brdcrn_coords  dd  0,\
+                        2,\
+                        780, 340, 32,\
+                        780, 928, 32
+book_brdfnt_coords  dd  0,\
+                        2,\
+                        780, 340, 29,\
+                        780, 928, 29
+book_brd_coords     dd  3,\
+                        373, 308, 781, 311,\
+                        809, 340, 811, 927,\
+                        373, 957, 781, 960,\
+                        0
+book_flgpl_coords   dd  3,\
+                        589, 504, 593, 594,\
+                        588, 594, 594, 739,\
+                        586, 739, 596, 826,\
+                        2,\
+                        591, 739, 16,\
+                        591, 594, 12
+button_play_coords  dd  2,\
+                        1080, 316, 1540, 467,\
+                        1050, 346, 1570, 437,\
+                        4,\
+                        1080, 346, 30,\
+                        1080, 437, 30,\
+                        1540, 346, 30,\
+                        1540, 437, 30
+button_about_coords dd  2,\
+                        1080, 558, 1540, 709,\
+                        1050, 588, 1570, 683,\
+                        4,\
+                        1080, 588, 30,\
+                        1080, 679, 30,\
+                        1540, 588, 30,\
+                        1540, 679, 30
+button_stngs_coords dd  2,\
+                        1080, 800, 1540, 951,\
+                        1050, 830, 1570, 925,\
+                        4,\
+                        1080, 830, 30,\
+                        1080, 921, 30,\
+                        1540, 830, 30,\
+                        1540, 921, 30
+
+mp_gamefont_design  DrawModel   ?
+mp_gamefont_coords  dd  1,\
+                        700, 194, 1220, 714,\
+                        0
+mp_gamebrdr_design  DrawModel   ?
+mg_gamebrdr_coords  dd  2,\
+                         692, 176, 1228, 889,\
+                         682, 186, 1238, 879,\
+                        4,\
+                         692, 186, 10,\
+                         692, 879, 10,\
+                        1228, 186, 10,\
+                        1228, 879, 10
+mp_grbgbrdr_design  DrawModel   ?
+mp_grbgbrdr_coords  dd  1,\
+                        691, 731, 1229, 880,\
+                        0
+mp_grbgfont_design  DrawModel   ?
+mp_grbgfont_coords  dd  2,\
+                         700, 734, 1220, 876,\
+                         695, 739, 1225, 871,\
+                        4,\
+                         700, 739, 5,\
+                         700, 871, 5,\
+                        1220, 739, 5,\
+                        1220, 871, 5
+mp_fntvertln_design DrawModel   ?
+mp_fntvertln_coords dd  7,\
+                        700, 222, 1220, 218,\
+                        805, 301, 1117, 295,\
+                        700, 379, 1220, 373,\
+                        700, 457, 1220, 451,\
+                        700, 535, 1220, 529,\
+                        805, 613, 1117, 606,\
+                        700, 691, 1220, 685,\
+                        0
+mp_fnthortln_design  DrawModel   ?
+mp_fnthortln_coords dd  7,\
+                         730, 715,  724, 191,\
+                         807, 610,  801, 298,\
+                         886, 715,  880, 191,\
+                         964, 715,  958, 191,\
+                        1042, 715, 1036, 191,\
+                        1120, 610, 1114, 298,\
+                        1197, 715, 1191, 191,\
+                        0                     
+                        

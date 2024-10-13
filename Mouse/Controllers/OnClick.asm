@@ -9,6 +9,8 @@ proc Mouse.OnClick uses ebx eax,\
     mov     ebx, [CurentPage]
     mov     ebx, [EventsList + ebx]
     mov     ecx, [ebx]
+    cmp     ecx, 0
+    je      .exitProc
     add     ebx, 4
     .mainAnimLoop:
         .prepear:
@@ -53,5 +55,6 @@ proc Mouse.OnClick uses ebx eax,\
             pop     ebx
             add     ebx, 8
             loop    .mainAnimLoop
-    ret
+    .exitProc:
+        ret
 endp

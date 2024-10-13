@@ -1,11 +1,13 @@
 # vscode temp files
 .vscode
+.idea
 
 # build files
 *.exe
 *.bin
 /Debug
 /Release
+bin/
 
 # temp close
 .github/

@@ -44,6 +44,8 @@ struct Rects
     rct3    Rect    ?
     rct4    Rect    ?
     rct5    Rect    ?
+    rct6    Rect    ?
+    rct7    Rect    ?
 ends
 
 struct Circle 
@@ -240,3 +242,51 @@ button_stngs_coords dd  2,\
                         1080, 921, 30,\
                         1540, 830, 30,\
                         1540, 921, 30
+
+mp_gamefont_design  DrawModel   ?
+mp_gamefont_coords  dd  1,\
+                        700, 194, 1220, 714,\
+                        0
+mp_gamebrdr_design  DrawModel   ?
+mg_gamebrdr_coords  dd  2,\
+                         692, 176, 1228, 889,\
+                         682, 186, 1238, 879,\
+                        4,\
+                         692, 186, 10,\
+                         692, 879, 10,\
+                        1228, 186, 10,\
+                        1228, 879, 10
+mp_grbgbrdr_design  DrawModel   ?
+mp_grbgbrdr_coords  dd  1,\
+                        691, 731, 1229, 880,\
+                        0
+mp_grbgfont_design  DrawModel   ?
+mp_grbgfont_coords  dd  2,\
+                         700, 734, 1220, 876,\
+                         695, 739, 1225, 871,\
+                        4,\
+                         700, 739, 5,\
+                         700, 871, 5,\
+                        1220, 739, 5,\
+                        1220, 871, 5
+mp_fntvertln_design DrawModel   ?
+mp_fntvertln_coords dd  7,\
+                        700, 222, 1220, 218,\
+                        805, 301, 1117, 295,\
+                        700, 379, 1220, 373,\
+                        700, 457, 1220, 451,\
+                        700, 535, 1220, 529,\
+                        805, 613, 1117, 606,\
+                        700, 691, 1220, 685,\
+                        0
+mp_fnthortln_design  DrawModel   ?
+mp_fnthortln_coords dd  7,\
+                         730, 715,  724, 191,\
+                         807, 610,  801, 298,\
+                         886, 715,  880, 191,\
+                         964, 715,  958, 191,\
+                        1042, 715, 1036, 191,\
+                        1120, 610, 1114, 298,\
+                        1197, 715, 1191, 191,\
+                        0                     
+                        

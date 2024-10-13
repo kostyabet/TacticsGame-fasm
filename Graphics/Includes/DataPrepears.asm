@@ -12,6 +12,13 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, button_stngs_coords, button_stngs_design
     stdcall Scripts.Getters.ConvertCoords, book_flgpl_coords, book_flgpl_design
 
+    stdcall Scripts.Getters.ConvertCoords, mp_gamefont_coords, mp_gamefont_design
+    stdcall Scripts.Getters.ConvertCoords, mg_gamebrdr_coords, mp_gamebrdr_design
+    stdcall Scripts.Getters.ConvertCoords, mp_grbgbrdr_coords, mp_grbgbrdr_design
+    stdcall Scripts.Getters.ConvertCoords, mp_grbgfont_coords, mp_grbgfont_design
+    stdcall Scripts.Getters.ConvertCoords, mp_fntvertln_coords, mp_fntvertln_design
+    stdcall Scripts.Getters.ConvertCoords, mp_fnthortln_coords, mp_fnthortln_design
+
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
     ret
@@ -29,6 +36,19 @@ proc Graphics.Colors.Prepear
     stdcall Scripts.Getters.Color, [cl_flgpl],       book_flgpl_color
     stdcall Scripts.Getters.Color, [cl_text_buttom], btn_text_color
     stdcall Scripts.Getters.Color, [cl_title],       book_title_color
+    
+    stdcall Scripts.Getters.Color, [cl_milk],         milk_color
+    stdcall Scripts.Getters.Color, [cl_brown],        brown_color
+    stdcall Scripts.Getters.Color, [cl_brown_light],  brown_light_color
+    stdcall Scripts.Getters.Color, [cl_brown_medium], brown_medium_color
+    stdcall Scripts.Getters.Color, [cl_brown_dark],   brown_dark_color
+    stdcall Scripts.Getters.Color, [cl_gray],         gray_color
+    stdcall Scripts.Getters.Color, [cl_red_light],    red_light_color
+    stdcall Scripts.Getters.Color, [cl_red],          red_color
+    stdcall Scripts.Getters.Color, [cl_red_black],    red_black_color
+    stdcall Scripts.Getters.Color, [cl_vinous],       vinous_color
+    stdcall Scripts.Getters.Color, [cl_vinous_black], vinous_black_color
+    
     ret
 endp
 
@@ -51,6 +71,8 @@ proc Game.EventsCoordsPrepear
 endp
 
 proc Game.ModelsPrepear
-    stdcall Scripts.ModelsPrepear, TicksFontList_Centers, TicksFontList_Radiuses, TicksFontList_Float
+    stdcall Scripts.ModelsPrepear, TicksFontList_Centers,     TicksFontList_Radiuses,     TicksFontList_Float
+    stdcall Scripts.ModelsPrepear, TicksFontDecorate_Centers, TicksFontDecorate_Radiuses, TicksFontDecorate_Float
+    stdcall Scripts.ModelsPrepear, TicksList_Centers,         TicksList_Radiuses,         TicksList_Float
     ret
 endp

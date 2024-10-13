@@ -18,6 +18,18 @@ cl_text_buttom    dd      0x00773A18
 cl_headline_bc    dd      0x00773A18
 cl_title          dd      0x005B2E15
 
+cl_milk           dd      0x00E5C4B2
+cl_brown          dd      0x00C88762
+cl_brown_light    dd      0x00CDA791
+cl_brown_medium   dd      0x00BC957F
+cl_brown_dark     dd      0x009B8071
+cl_gray           dd      0x00454141
+cl_red_light      dd      0x00AD3B3B
+cl_red            dd      0x00983838
+cl_red_black      dd      0x00803333
+cl_vinous         dd      0x00532323
+cl_vinous_black   dd      0x001D1414
+
 ; ====== Program models ====== ;
 font_color        BackgroundColor ?
 book_root_color   BackgroundColor ?
@@ -31,4 +43,18 @@ book_flgpl_color  BackgroundColor ?
 btn_text_color    BackgroundColor ?
 book_title_color  BackgroundColor ?
 
-TicksFontList_Colors    dd  book_root_color, book_strk_color
+milk_color         BackgroundColor ?
+brown_color        BackgroundColor ?
+brown_light_color  BackgroundColor ?
+brown_medium_color BackgroundColor ?
+brown_dark_color   BackgroundColor ?
+gray_color         BackgroundColor ?
+red_light_color    BackgroundColor ? 
+red_color          BackgroundColor ?
+red_black_color    BackgroundColor ?
+vinous_color       BackgroundColor ?
+vinous_black_color BackgroundColor ?
+
+TicksFontList_Colors     dd  milk_color, brown_color
+TicksFontDecorate_Colors dd  milk_color, gray_color
+TicksList_Colors         dd  red_light_color, red_color, red_black_color, vinous_color, vinous_black_color

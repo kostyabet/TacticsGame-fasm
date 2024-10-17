@@ -29,6 +29,7 @@ cl_red            dd      0x00983838
 cl_red_black      dd      0x00803333
 cl_vinous         dd      0x00532323
 cl_vinous_black   dd      0x001D1414
+cl_brown_text     dd      0x00773A18
 
 ; ====== Program models ====== ;
 font_color        BackgroundColor ?
@@ -54,6 +55,7 @@ red_color          BackgroundColor ?
 red_black_color    BackgroundColor ?
 vinous_color       BackgroundColor ?
 vinous_black_color BackgroundColor ?
+brown_text_color   BackgroundColor ?
 
 TicksFontList_Colors     dd  milk_color, brown_color
 TicksFontDecorate_Colors dd  milk_color, gray_color

@@ -18,6 +18,7 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, mp_grbgfont_coords, mp_grbgfont_design
     stdcall Scripts.Getters.ConvertCoords, mp_fntvertln_coords, mp_fntvertln_design
     stdcall Scripts.Getters.ConvertCoords, mp_fnthortln_coords, mp_fnthortln_design
+    stdcall Scripts.Getters.ConvertCoords, exitbtn_font_coords, exitbtn_font_design
     
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
@@ -48,6 +49,7 @@ proc Graphics.Colors.Prepear
     stdcall Scripts.Getters.Color, [cl_red_black],    red_black_color
     stdcall Scripts.Getters.Color, [cl_vinous],       vinous_color
     stdcall Scripts.Getters.Color, [cl_vinous_black], vinous_black_color
+    stdcall Scripts.Getters.Color, [cl_brown_text],   brown_text_color
     
     ret
 endp
@@ -59,6 +61,7 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_about,       str_about,       fs_about,     tg_about,    str_about_pos
     stdcall Graphics.Draw.Text.Prepear, txt_settings,    str_settings,    fs_settings,  tg_settings, str_settings_pos
     stdcall Graphics.Draw.Text.Prepear, txt_title,       str_title,       fs_title,     tg_title,    str_title_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_return,      str_return,      fs_return,    tg_return,   str_return_pos
     ;stdcall Graphics.Draw.Text.Prepear, txt_cost,      str_cost,      fs_cost,      tg_cost
     ;stdcall Graphics.Draw.Text.Prepear, txt_info,      str_info,      fs_info,      tg_info
     ;stdcall Graphics.Draw.Text.Prepear, txt_watermark, str_watermark, fs_watermark, tg_watermark
@@ -67,12 +70,22 @@ endp
 
 proc Game.EventsCoordsPrepear
     stdcall Mouse.EventsCoords.Prepear, mp_play_btn
+    stdcall Mouse.EventsCoords.Prepear, mp_about_btn
+    stdcall Mouse.EventsCoords.Prepear, mp_settings_btn
+
+    stdcall Mouse.EventsCoords.Prepear, allp_return_btn
+
     ret
 endp
 
 proc Game.ModelsPrepear
     stdcall Scripts.ModelsPrepear, TicksFontList_Centers,     TicksFontList_Radiuses,     TicksFontList_Float
     stdcall Scripts.ModelsPrepear, TicksFontDecorate_Centers, TicksFontDecorate_Radiuses, TicksFontDecorate_Float
-    stdcall Scripts.ModelsPrepear, TicksList_Centers,         TicksList_Radiuses,         TicksList_Float
+    ret
+endp
+
+proc Game.PrepearTicks
+    stdcall Game.CentersPrepear, TicksGameMap, TicksList_Centers, TicksMatrix
+    stdcall Scripts.ModelsPrepear, TicksList_Centers, TicksList_Radiuses, TicksList_Float
     ret
 endp

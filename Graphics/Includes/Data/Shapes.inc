@@ -316,3 +316,28 @@ exitbtn_font_coords dd  2,\
                          235, 1050, 5,\  
                           30, 1050, 5,\
                           30,  994, 5
+
+lp_bar_brdr1_design DrawModel   ? 
+lp_bar_brdr1_coords dd  1,\
+                        631, 847, 1287, 894,\
+                        2,\
+                         631, 870, 23,\
+                        1287, 870, 23
+lp_bar_brdr2_design DrawModel   ? 
+lp_bar_brdr2_coords dd  1,\
+                        631, 850, 1286, 891,\
+                        2,\
+                         631, 870, 20,\
+                        1287, 870, 20
+lp_bar_brdr3_design DrawModel   ? 
+lp_bar_brdr3_coords dd  1,\
+                        632, 852, 1286, 888,\
+                        2,\
+                         632, 870, 17,\
+                        1286, 870, 17
+lp_bar_main_design DrawModel   ? 
+lp_bar_main_coords dd   1,\
+                        632, 852, 632, 888,\ ; from 632 to 1286
+                        2,\
+                         632, 870, 17,\
+                         632, 870, 17

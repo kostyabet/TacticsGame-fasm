@@ -32,9 +32,6 @@ section '.text' code readable executable
 
       invoke  CreateWindowEx, 0, _class, _title, WS_VISIBLE+WS_POPUP+WS_CLIPCHILDREN+WS_CLIPSIBLINGS, 0, 0, ebx, ecx, NULL, NULL, [wc.hInstance], NULL
       mov     [hwnd],eax
-
-      invoke  ShowWindow,[hwnd],SW_MAXIMIZE
-      invoke  UpdateWindow,[hwnd]
         
       ; prepear data
       stdcall Graphics.Draw.CoordsRectPrepears
@@ -42,7 +39,7 @@ section '.text' code readable executable
       stdcall Graphics.Draw.ASCIIPrepear
       stdcall Game.EventsCoordsPrepear
       stdcall Game.ModelsPrepear
-      stdcall Game.PrepearTicks ; main game Ticks prepear
+      stdcall Game.PrepearTicks
       mov     [IS_INFO_PREPEAR], GL_TRUE
 
   msg_loop:

@@ -20,4 +20,4 @@ ap_events       dd  1,\
 sp_events       dd  1,\
                     et_pagebutton, allp_return_btn, MainPage
 
-EventsList      dd  mp_events, gp_events, ap_events, sp_events
+EventsList      dd  0, mp_events, gp_events, ap_events, sp_events

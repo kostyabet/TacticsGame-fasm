@@ -1,8 +1,9 @@
-MainPage        =       0
-GamePage        =       4
-AboutPage       =       8
-SettingsPage    =       12
+LoadingPage     =       0
+MainPage        =       4
+GamePage        =       8
+AboutPage       =       12
+SettingsPage    =       16
 
-CurentPage      dd      GamePage
+CurentPage      dd      LoadingPage
 
-PagesList       dd      Draw.Pages.MainPage, Draw.Pages.GamePage, Draw.Pages.AboutPage, Draw.Pages.SettingsPage
+PagesList       dd      Draw.Pages.LoadingPage, Draw.Pages.MainPage, Draw.Pages.GamePage, Draw.Pages.AboutPage, Draw.Pages.SettingsPage

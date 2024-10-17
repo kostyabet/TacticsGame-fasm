@@ -20,6 +20,11 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, mp_fnthortln_coords, mp_fnthortln_design
     stdcall Scripts.Getters.ConvertCoords, exitbtn_font_coords, exitbtn_font_design
     
+    stdcall Scripts.Getters.ConvertCoords, lp_bar_brdr1_coords, lp_bar_brdr1_design
+    stdcall Scripts.Getters.ConvertCoords, lp_bar_brdr2_coords, lp_bar_brdr2_design
+    stdcall Scripts.Getters.ConvertCoords, lp_bar_brdr3_coords, lp_bar_brdr3_design
+    stdcall Scripts.Getters.ConvertCoords, lp_bar_main_coords,  lp_bar_main_design
+
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
     ret

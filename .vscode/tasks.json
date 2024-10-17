@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "fasm",
+            "args": [
+                "${workspaceFolder}/main.asm",
+                "${workspaceFolder}/bin/game.exe"
+            ],
+            "problemMatcher": [],
+        },
+        {
+            "label": "Run",
+            "type": "process",
+            "command": ".vscode/run.bat",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "dependsOn": "Build"
+        }
+    ]
+}

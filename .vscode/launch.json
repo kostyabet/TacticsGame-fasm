@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/../bin/game.exe",
+            "cwd": "${fileDirname}",  
+            "preLaunchTask": "Build", 
+            "stopAtEntry": false,
+            "externalConsole": true        
+        }       
+    ]
+}

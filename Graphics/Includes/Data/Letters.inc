@@ -47,6 +47,7 @@ fs_title        =       20
 fs_info         =       20
 fs_cost         =       18
 fs_watermark    =       10
+fs_return       =       10
 
 fs_default      =       20
 

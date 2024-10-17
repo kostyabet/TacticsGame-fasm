@@ -1,7 +1,7 @@
 format PE GUI 4.0
 entry start
 
-include 'include/win32a.inc'
+include 'C:/KostyaBetenya/FASM/INCLUDE/win32a.inc'
 include 'opengl.inc'
 include 'main.inc'
 
@@ -13,8 +13,6 @@ include 'Game/Includes.asm'
 include 'Scripts/Getters.asm'
 
 include 'Mouse/Includes.asm'
-
-include 'Game/Includes.asm'
 
 section '.text' code readable executable
 
@@ -36,7 +34,7 @@ section '.text' code readable executable
         mov             [hwnd],eax
 
         invoke  ShowWindow,[hwnd],SW_MAXIMIZE
-    invoke  UpdateWindow,[hwnd]
+        invoke  UpdateWindow,[hwnd]
         
         ; prepear data
         stdcall Graphics.Draw.CoordsRectPrepears
@@ -44,6 +42,7 @@ section '.text' code readable executable
         stdcall Graphics.Draw.ASCIIPrepear
         stdcall Game.EventsCoordsPrepear
         stdcall Game.ModelsPrepear
+        stdcall Game.PrepearTicks ; main game Ticks prepear
         mov     [IS_INFO_PREPEAR], GL_TRUE
 
   msg_loop:
@@ -111,7 +110,7 @@ proc WindowProc hwnd,wmsg,wparam,lparam
         cmp     [IS_INFO_PREPEAR], GL_TRUE
         jne     .exit
         .draw:
-                stdcall Draw.Page ; stdcall Draw.Page
+                stdcall Draw.Page
         .exit:
                 invoke  SwapBuffers,[hdc]
                 xor     eax,eax

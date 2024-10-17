@@ -1,7 +1,10 @@
 include 'Pages.inc'
 include '../Includes/DrawFuncsInclude.asm'
 
-include 'FontStyle.asm'
-include 'MainPage.asm'
-include 'GamePage.asm'
+include '_components/FontStyle.asm'
+include '_components/MainPage.asm'
+include '_components/GamePage.asm'
+include '_components/AboutPage.asm'
+include '_components/SettingsPage.asm'
+include '_components/DefaultLayout.asm'
 include 'Page.asm'

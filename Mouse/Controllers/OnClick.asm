@@ -4,6 +4,7 @@ proc Mouse.OnClick uses ebx eax,\
      lparam
     locals
         buffer  dd  ?
+        curType dd  ?
     endl
     stdcall Mouse.OnMove, [lparam], XPosition, YPosition
     mov     ebx, [CurentPage]
@@ -15,6 +16,9 @@ proc Mouse.OnClick uses ebx eax,\
     .mainAnimLoop:
         .prepear:
             push    ebx
+            mov     eax, [ebx]
+            mov     [curType], eax
+            add     ebx, 4
             mov     ebx, [ebx]
         .main:
             fld     dword [ebx]
@@ -46,14 +50,14 @@ proc Mouse.OnClick uses ebx eax,\
             jb      .exit
             
             pop     ebx
-            add     ebx, 4
+            add     ebx, 8
             mov     eax, [ebx]
             mov     [CurentPage], eax
-            sub     ebx, 4
+            sub     ebx, 8
             push    ebx
         .exit:
             pop     ebx
-            add     ebx, 8
+            add     ebx, 12
             loop    .mainAnimLoop
     .exitProc:
         ret

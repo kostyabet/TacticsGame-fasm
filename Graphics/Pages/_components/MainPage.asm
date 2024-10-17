@@ -1,5 +1,4 @@
 proc Draw.Pages.MainPage
-        stdcall Graphics.Draw.Shapes, font_design, font_color
 	.book:
 		stdcall Graphics.Draw.Shapes, book_root_design, book_root_color
 		stdcall Graphics.Draw.Shapes.Rect, book_strk_design, book_strk_color

@@ -44,6 +44,7 @@ proc Graphics.Colors.Prepear
     stdcall Scripts.Getters.Color, [cl_title],       book_title_color
     
     stdcall Scripts.Getters.Color, [cl_milk],         milk_color
+    stdcall Scripts.Getters.Color, [cl_milk_light],   milk_light_color
     stdcall Scripts.Getters.Color, [cl_brown],        brown_color
     stdcall Scripts.Getters.Color, [cl_brown_light],  brown_light_color
     stdcall Scripts.Getters.Color, [cl_brown_medium], brown_medium_color
@@ -79,6 +80,8 @@ proc Game.EventsCoordsPrepear
     stdcall Mouse.EventsCoords.Prepear, mp_settings_btn
 
     stdcall Mouse.EventsCoords.Prepear, allp_return_btn
+
+    stdcall Mouse.EventsCoords.Prepear, Anim_MainPage_GameButton
 
     ret
 endp

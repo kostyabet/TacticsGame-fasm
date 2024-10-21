@@ -29,9 +29,6 @@ proc Mouse.OnClick uses ebx eax,\
     .exitProc:
         ret
 endp
-; return 
-;   eax = 0 - false 
-;   eax = 1 - true
 proc Game.OnClick.PageButton uses eax ebx,\
      coords, nextPage
         mov     ebx, [coords]

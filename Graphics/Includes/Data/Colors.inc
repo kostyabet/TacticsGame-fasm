@@ -19,6 +19,7 @@ cl_headline_bc    dd      0x00773A18
 cl_title          dd      0x005B2E15
 
 cl_milk           dd      0x00E5C4B2
+cl_milk_light     dd      0x00DFB69F
 cl_brown          dd      0x00C88762
 cl_brown_light    dd      0x00CDA791
 cl_brown_medium   dd      0x00BC957F
@@ -44,7 +45,10 @@ book_flgpl_color  BackgroundColor ?
 btn_text_color    BackgroundColor ?
 book_title_color  BackgroundColor ?
 
+play_button_color  BackgroundColor ?
+
 milk_color         BackgroundColor ?
+milk_light_color   BackgroundColor ?
 brown_color        BackgroundColor ?
 brown_light_color  BackgroundColor ?
 brown_medium_color BackgroundColor ?

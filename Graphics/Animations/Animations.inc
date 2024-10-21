@@ -2,11 +2,8 @@
 Anim_btn           =   $0001
 Anim_static        =   $0002
 
-; ==== Animation Changes Type ==== ;
-Anim_ch_cl         =   1
-
-Anim_MainPage_GameButton    dd  0, 0, 0, 0,\ ; position
-                                Anim_ch_cl
+Anim_MainPage_GameButton    dd  1050, 316, 1570, 467,\ ; position
+                                play_button_color, brown_color, milk_light_color; milk_color
 Anim_MainPage               dd  1,\
                                 Anim_btn, Anim_MainPage_GameButton 
 

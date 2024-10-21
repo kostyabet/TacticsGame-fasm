@@ -109,8 +109,8 @@ proc WindowProc hwnd,wmsg,wparam,lparam
       cmp     [IS_INFO_PREPEAR], GL_TRUE
       jne     .exit
       .draw:
-            stdcall Draw.Page
             stdcall Graphics.Animation
+            stdcall Draw.Page
       .exit:
             invoke  SwapBuffers,[hdc]
             xor     eax,eax

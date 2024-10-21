@@ -12,7 +12,8 @@ mp_events       dd  3,\
 
 allp_return_btn dd  25, 989, 240, 1055
 gp_events       dd  1,\
-                    et_pagebutton, allp_return_btn, MainPage
+                    et_pagebutton, allp_return_btn, MainPage,\
+                    et_tick,       33, 17,          TicksGameMap
 
 ap_events       dd  1,\
                     et_pagebutton, allp_return_btn, MainPage

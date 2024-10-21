@@ -8,6 +8,8 @@ include 'main.inc'
 include 'Graphics/Includes/DataPrepears.asm'
 include 'Graphics/Includes/DataIncludes.asm'
 include 'Graphics/Pages/PagesInclude.asm'
+include 'Graphics/Animations/Includes.asm'
+
 include 'Game/Includes.asm'
 
 include 'Scripts/Getters.asm'
@@ -108,6 +110,7 @@ proc WindowProc hwnd,wmsg,wparam,lparam
       jne     .exit
       .draw:
             stdcall Draw.Page
+            stdcall Graphics.Animation
       .exit:
             invoke  SwapBuffers,[hdc]
             xor     eax,eax

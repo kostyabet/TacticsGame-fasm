@@ -13,4 +13,8 @@ Anim_MainPage               dd  1,\
 Anim_LoadingPage            dd  1,\
                                 Anim_static, Animation.Static.LoadingPage.Bar
 
-AnimsList                   dd  Anim_LoadingPage, Anim_MainPage
+Anim_GamePage               dd  0
+Anim_AboutPage              dd  0
+Anim_SettingsPage           dd  0
+
+AnimsList                   dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage

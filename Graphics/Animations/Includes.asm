@@ -1,3 +1,5 @@
-include 'Animations.inc'
+include 'Static/LoadingPage.asm'
+include 'Transitions/FromMainToGame.asm'
+include 'Animation.asm'
 
-include 'FromMainToGame.asm'
+include 'Animations.inc'

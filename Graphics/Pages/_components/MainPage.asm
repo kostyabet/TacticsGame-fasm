@@ -9,9 +9,9 @@ proc Draw.Pages.MainPage
 		stdcall Graphics.Draw.Shapes, book_brd_design, book_ebrd_color
 		stdcall Graphics.Draw.Shapes, book_flgpl_design, book_flgpl_color
 	.buttons:
-		stdcall Graphics.Draw.Shapes, button_play_design, button_color
-		stdcall Graphics.Draw.Shapes, button_about_design, button_color
-		stdcall Graphics.Draw.Shapes, button_stngs_design, button_color
+		stdcall Graphics.Draw.Shapes, button_play_design, play_button_color
+		stdcall Graphics.Draw.Shapes, button_about_design, about_button_color
+		stdcall Graphics.Draw.Shapes, button_stngs_design, settings_button_color
 	.headline:
 		stdcall Graphics.Draw.Text.Write, txt_headline_bc, headline_bc_color
 		stdcall Graphics.Draw.Text.Write, txt_headline, headline_color

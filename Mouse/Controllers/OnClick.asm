@@ -2,10 +2,6 @@
 ; YPosition   dd      ?
 proc Mouse.OnClick uses ebx eax,\
      lparam
-    locals
-        buffer  dd  ?
-        curType dd  ?
-    endl
     stdcall Mouse.OnMove, [lparam], XPosition, YPosition
     mov     ebx, [CurentPage]
     mov     ebx, [EventsList + ebx]
@@ -17,48 +13,65 @@ proc Mouse.OnClick uses ebx eax,\
         .prepear:
             push    ebx
             mov     eax, [ebx]
-            mov     [curType], eax
             add     ebx, 4
-            mov     ebx, [ebx]
-        .main:
-            fld     dword [ebx]
-            fcom    dword [XPosition]
-            fstp    st0
-            fstsw   ax
-            sahf
-            ja      .exit
-
-            fld     dword [ebx + 4]
-            fcom    dword [YPosition]
-            fstp    st0
-            fstsw   ax
-            sahf
-            ja      .exit
             
-            fld     dword [ebx + 8]
-            fcom    dword [XPosition]
-            fstp    st0
-            fstsw   ax
-            sahf
-            jb      .exit
-            
-            fld     dword [ebx + 12]
-            fcom    dword [YPosition]
-            fstp    st0
-            fstsw   ax
-            sahf
-            jb      .exit
-            
-            pop     ebx
-            add     ebx, 8
-            mov     eax, [ebx]
-            mov     [CurentPage], eax
-            sub     ebx, 8
-            push    ebx
-        .exit:
+            cmp     eax, et_pagebutton
+            jne     @F
+            stdcall Game.OnClick.PageButton, [ebx], [ebx + 4]
+        @@:
+            cmp     eax, et_tick
+            jne     @F
+            stdcall Game.OnClick.TickButton, [ebx], [ebx + 4], [ebx + 8]
+        @@:
             pop     ebx
             add     ebx, 12
             loop    .mainAnimLoop
     .exitProc:
         ret
+endp
+proc Game.OnClick.PageButton uses eax ebx,\
+     coords, nextPage
+        mov     ebx, [coords]
+    .main:
+        fld     dword [ebx]
+        fcom    dword [XPosition]
+        fstp    st0
+        fstsw   ax
+        sahf
+        ja      .exit
+
+        fld     dword [ebx + 4]
+        fcom    dword [YPosition]
+        fstp    st0
+        fstsw   ax
+        sahf
+        ja      .exit
+            
+        fld     dword [ebx + 8]
+        fcom    dword [XPosition]
+        fstp    st0
+        fstsw   ax
+        sahf
+        jb      .exit
+            
+        fld     dword [ebx + 12]
+        fcom    dword [YPosition]
+        fstp    st0
+        fstsw   ax
+        sahf
+        jb      .exit
+            
+        mov     eax, [nextPage]
+        mov     [CurentPage], eax
+    .exit:
+        ret
+endp
+proc Game.OnClick.TickButton ,\
+     count, radius, centers
+    locals
+
+    endl
+    mov     ecx, [count]
+    
+    ret
 endp

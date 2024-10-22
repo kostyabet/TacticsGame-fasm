@@ -7,10 +7,9 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, book_corner_coords, book_corner_design
     stdcall Scripts.Getters.ConvertCoords, book_brdfnt_coords, book_brdfnt_design
     stdcall Scripts.Getters.ConvertCoords, book_brd_coords, book_brd_design
-    stdcall Scripts.Getters.ConvertCoords, button_play_coords, button_play_design
-    stdcall Scripts.Getters.ConvertCoords, button_about_coords, button_about_design
-    stdcall Scripts.Getters.ConvertCoords, button_stngs_coords, button_stngs_design
     stdcall Scripts.Getters.ConvertCoords, book_flgpl_coords, book_flgpl_design
+
+    stdcall Graphics.Draw.CoordsRectPrepears.ForAnimations
 
     stdcall Scripts.Getters.ConvertCoords, mp_gamefont_coords, mp_gamefont_design
     stdcall Scripts.Getters.ConvertCoords, mg_gamebrdr_coords, mp_gamebrdr_design
@@ -20,10 +19,21 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, mp_fnthortln_coords, mp_fnthortln_design
     stdcall Scripts.Getters.ConvertCoords, exitbtn_font_coords, exitbtn_font_design
     
+    stdcall Scripts.Getters.ConvertCoords, lp_bar_brdr1_coords, lp_bar_brdr1_design
+    stdcall Scripts.Getters.ConvertCoords, lp_bar_brdr2_coords, lp_bar_brdr2_design
+    stdcall Scripts.Getters.ConvertCoords, lp_bar_brdr3_coords, lp_bar_brdr3_design
+    stdcall Scripts.Getters.ConvertCoords, lp_bar_main_coords,  lp_bar_main_design
+
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
     ret
 endp
+
+proc Graphics.Draw.CoordsRectPrepears.ForAnimations
+    stdcall Scripts.Getters.ConvertCoords, button_play_coords, button_play_design
+    stdcall Scripts.Getters.ConvertCoords, button_about_coords, button_about_design
+    stdcall Scripts.Getters.ConvertCoords, button_stngs_coords, button_stngs_design
+endp    
 
 proc Graphics.Colors.Prepear
     stdcall Scripts.Getters.Color, [cl_background],  font_color
@@ -39,6 +49,7 @@ proc Graphics.Colors.Prepear
     stdcall Scripts.Getters.Color, [cl_title],       book_title_color
     
     stdcall Scripts.Getters.Color, [cl_milk],         milk_color
+    stdcall Scripts.Getters.Color, [cl_milk_light],   milk_light_color
     stdcall Scripts.Getters.Color, [cl_brown],        brown_color
     stdcall Scripts.Getters.Color, [cl_brown_light],  brown_light_color
     stdcall Scripts.Getters.Color, [cl_brown_medium], brown_medium_color
@@ -74,6 +85,11 @@ proc Game.EventsCoordsPrepear
     stdcall Mouse.EventsCoords.Prepear, mp_settings_btn
 
     stdcall Mouse.EventsCoords.Prepear, allp_return_btn
+
+    stdcall Mouse.EventsCoords.Prepear, Anim_MainPage_GameButton_cl
+    stdcall Mouse.EventsCoords.Prepear, Anim_MainPage_AboutButton_cl
+    stdcall Mouse.EventsCoords.Prepear, Anim_MainPage_SettingButton_cl
+    stdcall Mouse.EventsCoords.Prepear, Anim_SubPages_cl
 
     ret
 endp

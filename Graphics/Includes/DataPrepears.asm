@@ -7,10 +7,9 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, book_corner_coords, book_corner_design
     stdcall Scripts.Getters.ConvertCoords, book_brdfnt_coords, book_brdfnt_design
     stdcall Scripts.Getters.ConvertCoords, book_brd_coords, book_brd_design
-    stdcall Scripts.Getters.ConvertCoords, button_play_coords, button_play_design
-    stdcall Scripts.Getters.ConvertCoords, button_about_coords, button_about_design
-    stdcall Scripts.Getters.ConvertCoords, button_stngs_coords, button_stngs_design
     stdcall Scripts.Getters.ConvertCoords, book_flgpl_coords, book_flgpl_design
+
+    stdcall Graphics.Draw.CoordsRectPrepears.ForAnimations
 
     stdcall Scripts.Getters.ConvertCoords, mp_gamefont_coords, mp_gamefont_design
     stdcall Scripts.Getters.ConvertCoords, mg_gamebrdr_coords, mp_gamebrdr_design
@@ -29,6 +28,12 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
     ret
 endp
+
+proc Graphics.Draw.CoordsRectPrepears.ForAnimations
+    stdcall Scripts.Getters.ConvertCoords, button_play_coords, button_play_design
+    stdcall Scripts.Getters.ConvertCoords, button_about_coords, button_about_design
+    stdcall Scripts.Getters.ConvertCoords, button_stngs_coords, button_stngs_design
+endp    
 
 proc Graphics.Colors.Prepear
     stdcall Scripts.Getters.Color, [cl_background],  font_color
@@ -81,10 +86,10 @@ proc Game.EventsCoordsPrepear
 
     stdcall Mouse.EventsCoords.Prepear, allp_return_btn
 
-    stdcall Mouse.EventsCoords.Prepear, Anim_MainPage_GameButton
-    stdcall Mouse.EventsCoords.Prepear, Anim_MainPage_AboutButton
-    stdcall Mouse.EventsCoords.Prepear, Anim_MainPage_SettingButton
-    stdcall Mouse.EventsCoords.Prepear, Anim_SubPages
+    stdcall Mouse.EventsCoords.Prepear, Anim_MainPage_GameButton_cl
+    stdcall Mouse.EventsCoords.Prepear, Anim_MainPage_AboutButton_cl
+    stdcall Mouse.EventsCoords.Prepear, Anim_MainPage_SettingButton_cl
+    stdcall Mouse.EventsCoords.Prepear, Anim_SubPages_cl
 
     ret
 endp

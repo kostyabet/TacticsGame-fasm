@@ -84,6 +84,7 @@ proc Game.EventsCoordsPrepear
     stdcall Mouse.EventsCoords.Prepear, Anim_MainPage_GameButton
     stdcall Mouse.EventsCoords.Prepear, Anim_MainPage_AboutButton
     stdcall Mouse.EventsCoords.Prepear, Anim_MainPage_SettingButton
+    stdcall Mouse.EventsCoords.Prepear, Anim_SubPages
 
     ret
 endp

@@ -48,6 +48,7 @@ book_title_color  BackgroundColor ?
 play_button_color     BackgroundColor ?
 about_button_color    BackgroundColor ?
 settings_button_color BackgroundColor ?
+exit_button_color     BackgroundColor ?
 
 milk_color         BackgroundColor ?
 milk_light_color   BackgroundColor ?

@@ -9,18 +9,19 @@ proc Graphics.Animation uses eax ebx ecx edx
         mov     ecx, [ebx]
         cmp     ecx, 0
         je      .exit
+        add     ebx, 4
     .main:
-            add     ebx, 4
+        push    ecx ebx
             mov     eax, [ebx]
             cmp     eax, Anim_static
             je      .animationStatic
             cmp     eax, Anim_btn
             je      .animationButton
-            jmp     .exit
+            jmp     .exitFromLoop
         .animationStatic:
             mov     ebx, [ebx + 4]
             stdcall ebx
-            jmp     .exit
+            jmp     .exitFromLoop
         .animationButton:
             mov     ebx, [ebx + 4]
             stdcall Game.OnMove.CheckIsInRect, [ebx], [ebx + 4], [ebx + 8], [ebx + 12]
@@ -44,7 +45,11 @@ proc Graphics.Animation uses eax ebx ecx edx
             mov     [ebx + 4], edx
             mov     edx, [edi + 8]
             mov     [ebx + 8], edx
-            jmp     .exit
+            jmp     .exitFromLoop
+        .exitFromLoop:
+            pop     ebx ecx
+            add     ebx, 8
+            loop    .main
     .exit:
         ret
 endp

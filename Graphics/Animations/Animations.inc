@@ -3,9 +3,15 @@ Anim_btn           =   $0001
 Anim_static        =   $0002
 
 Anim_MainPage_GameButton    dd  1050, 316, 1570, 467,\ ; position
-                                play_button_color, brown_color, milk_light_color; milk_color
-Anim_MainPage               dd  1,\
-                                Anim_btn, Anim_MainPage_GameButton 
+                                play_button_color, milk_light_color, milk_color
+Anim_MainPage_AboutButton   dd  1050, 558, 1570, 709,\ ; position
+                                about_button_color, milk_light_color, milk_color
+Anim_MainPage_SettingButton dd  1050, 800, 1570, 951,\ ; position
+                                settings_button_color, milk_light_color, milk_color
+Anim_MainPage               dd  3,\
+                                Anim_btn, Anim_MainPage_GameButton,\
+                                Anim_btn, Anim_MainPage_AboutButton,\
+                                Anim_btn, Anim_MainPage_SettingButton 
 
 Anim_LoadingPage            dd  1,\
                                 Anim_static, Animation.Static.LoadingPage.Bar

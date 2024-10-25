@@ -31,38 +31,12 @@ proc Mouse.OnClick uses ebx eax,\
 endp
 proc Game.OnClick.PageButton uses eax ebx,\
      coords, nextPage
-        mov     ebx, [coords]
-    .main:
-        fld     dword [ebx]
-        fcom    dword [XPosition]
-        fstp    st0
-        fstsw   ax
-        sahf
-        ja      .exit
-
-        fld     dword [ebx + 4]
-        fcom    dword [YPosition]
-        fstp    st0
-        fstsw   ax
-        sahf
-        ja      .exit
+    stdcall Mouse.CheckIsInShape, [coords]
+    cmp     eax, GL_FALSE
+    je      .exit
             
-        fld     dword [ebx + 8]
-        fcom    dword [XPosition]
-        fstp    st0
-        fstsw   ax
-        sahf
-        jb      .exit
-            
-        fld     dword [ebx + 12]
-        fcom    dword [YPosition]
-        fstp    st0
-        fstsw   ax
-        sahf
-        jb      .exit
-            
-        mov     eax, [nextPage]
-        mov     [CurentPage], eax
+    mov     eax, [nextPage]
+    mov     [CurentPage], eax
     .exit:
         ret
 endp

@@ -13,7 +13,7 @@ proc Graphics.Draw.Shapes.Circle uses eax ebx ecx,\
         invoke  glBegin, GL_TRIANGLE_FAN
         mov     eax, [ebx]
         invoke  glVertex3f, [ebx], [ebx + 4], 0.0
-        add     ebx, 8
+        add     ebx, 12
         mov     ecx, [degreeCount]
         inc     ecx
         .drawDot:

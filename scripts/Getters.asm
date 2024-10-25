@@ -88,7 +88,9 @@ proc Scripts.Getters.ConvertCoords uses eax ebx ecx edi,\
             mov     eax, [ebx + 4]
             stdcall GetYGLfloatCoord, eax
             mov     [edi + 4], eax
-            add     edi, 8
+            mov     eax, [ebx + 8]
+            mov     [edi + 8], eax
+            add     edi, 12
             ; circle coords
             fldpi
             fadd    st0, st0
@@ -322,7 +324,9 @@ proc Scripts.ModelsPrepear uses eax ecx ebx edx edi,\
             mov     eax, [ebx + 4]
             stdcall GetYGLfloatCoord, eax
             mov     [edi + 4], eax
-            add     edi, 8
+            mov     eax, [ebx + 8]
+            mov     [edi + 8], eax
+            add     edi, 12
             ; circle coords
             fldpi
             fadd    st0, st0
@@ -373,5 +377,63 @@ proc Scripts.ModelsPrepear uses eax ecx ebx edx edi,\
         dec     ecx
         cmp     ecx, 0
         ja     .cConvert
+    ret
+endp
+
+proc GetXGLfloatCoordByWidth\ ; x/960.0-1.0
+     x, halfWidth
+    locals
+        res                 dd          0x00000000
+        floatNum            GLfloat     1.0
+    endl
+        fild    dword [x]
+        fidiv   [halfWidth]
+        fsub    [floatNum]
+        fstp    [res]
+        mov     eax, [res]
+    ret
+endp
+proc GetYGLfloatCoordByWidth\ ; -(y/540.0-1.0)
+     y, halfWidth
+    locals
+        res                 dd          0x00000000
+        floatNum            GLfloat     1.0
+        minus               dd          -1
+    endl
+        fild    dword [y]
+        fidiv   [halfWidth]
+        fsub    [floatNum]
+        fimul   [minus]
+        fstp    [res]
+        mov     eax, [res]
+    ret
+endp
+
+proc GetXDecimalCoord\ ;  x = (GLfloat + 1) * 960.0
+     x
+    locals
+        res                 dd          0x00000000
+        floatNum            GLfloat     1.0
+        DeviceHalfWidth     GLfloat     960.0
+    endl
+        fld     dword [x]
+        fadd    [floatNum]
+        fmul    [DeviceHalfWidth]
+        fistp   [res]
+        mov     eax, [res]
+    ret
+endp
+proc GetYDecimalCoord\ ; y = (1 - GLFloat) * 540.0
+     y
+    locals
+        res                 dd          0x00000000
+        floatNum            GLfloat     1.0
+        DeviceHalfWidth     GLfloat     540.0
+    endl
+        fld     [floatNum]
+        fsub    dword [y]
+        fmul    [DeviceHalfWidth]
+        fistp   [res]
+        mov     eax, [res]
     ret
 endp

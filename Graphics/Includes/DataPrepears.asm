@@ -79,21 +79,6 @@ proc Graphics.Draw.ASCIIPrepear
     ret
 endp
 
-proc Game.EventsCoordsPrepear
-    stdcall Mouse.EventsCoords.Prepear, mp_play_btn
-    stdcall Mouse.EventsCoords.Prepear, mp_about_btn
-    stdcall Mouse.EventsCoords.Prepear, mp_settings_btn
-
-    stdcall Mouse.EventsCoords.Prepear, allp_return_btn
-
-    stdcall Mouse.EventsCoords.Prepear, Anim_MainPage_GameButton_cl
-    stdcall Mouse.EventsCoords.Prepear, Anim_MainPage_AboutButton_cl
-    stdcall Mouse.EventsCoords.Prepear, Anim_MainPage_SettingButton_cl
-    stdcall Mouse.EventsCoords.Prepear, Anim_SubPages_cl
-
-    ret
-endp
-
 proc Game.ModelsPrepear
     stdcall Scripts.ModelsPrepear, TicksFontList_Centers,     TicksFontList_Radiuses,     TicksFontList_Float
     stdcall Scripts.ModelsPrepear, TicksFontDecorate_Centers, TicksFontDecorate_Radiuses, TicksFontDecorate_Float

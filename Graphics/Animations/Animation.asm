@@ -26,8 +26,8 @@ proc Graphics.Animation uses eax ebx ecx edx
             jmp     .exitFromLoop
         .animationButtonCl:
             mov     ebx, [ebx + 4]
-            stdcall Game.OnMove.CheckIsInRect, [ebx], [ebx + 4], [ebx + 8], [ebx + 12]
-            add     ebx, 16 
+            stdcall Mouse.CheckIsInShape, [ebx]
+            add     ebx, 4
             mov     edx, [ebx]
             mov     [bacColor], edx
             cmp     eax, GL_FALSE
@@ -50,6 +50,10 @@ proc Graphics.Animation uses eax ebx ecx edx
             jmp     .exitFromLoop
         .animationButtonMv:
             ; move block
+            mov     ebx, [ebx + 4]
+            mov     edi, [ebx] ; coords
+            mov     eax, [ebx + 4]
+            stdcall Graphics.Draw.CoordsRectPrepears.ForAnimations
             jmp     .exitFromLoop
         .exitFromLoop:
             pop     ebx ecx

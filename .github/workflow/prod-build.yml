@@ -1,14 +1,13 @@
 name: dev-build
 on:
   push:
-    branches:
-      - master
+    branches: ['master']
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
       - name: Install FASM
         uses: stevenwdv/setup-fasm@v1
@@ -17,4 +16,4 @@ jobs:
           fasmg-download-packages: true
           fasmg-include-packages: utility,x86
       - name: Try to build project
-        run: fasmg
+        run: fasmg main.asm main.exe

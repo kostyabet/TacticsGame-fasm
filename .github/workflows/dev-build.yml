@@ -9,11 +9,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Try Install FASM
+      - name: Install FASM
         uses: stevenwdv/setup-fasm@v1
-        with:
-          edition: fasmg
-          fasmg-download-packages: true
-          fasmg-include-packages: utility,x86
-      - name: Try to build project
-        run: fasmg main.asm main.exe
+      - name: Test fasm
+        run: fasm main.asm main.exe

@@ -1,8 +1,8 @@
 format PE GUI 4.0
 entry start
 
-include 'Includes/win32a.inc'
-include 'Includes/opengl.inc'
+include 'INCLUDE/win32a.inc'
+include 'opengl.inc'
 include 'main.inc'
 
 include 'Math/Includes.asm'

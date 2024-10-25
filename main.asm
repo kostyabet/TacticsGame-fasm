@@ -1,7 +1,7 @@
 format PE GUI 4.0
 entry start
 
-include 'INCLUDE/win32a.inc'
+include 'win32a.inc'
 include 'opengl.inc'
 include 'main.inc'
 

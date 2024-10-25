@@ -11,10 +11,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Install FASMg
         uses: stevenwdv/setup-fasm@v1
-        with:
-          edition: fasmg
-          fasmg-download-packages: true
-          fasmg-include-packages: utility,x86
 
-      - name: Test fasm g
-        run: fasmg main.asm main.exe
+      - name: Test fasm
+        run: fasm

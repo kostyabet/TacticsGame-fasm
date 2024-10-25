@@ -5,6 +5,8 @@ include 'C:/KostyaBetenya/FASM/INCLUDE/win32a.inc'
 include 'opengl.inc'
 include 'main.inc'
 
+include 'Math/Includes.asm'
+
 include 'Graphics/Includes/DataPrepears.asm'
 include 'Graphics/Includes/DataIncludes.asm'
 include 'Graphics/Pages/PagesInclude.asm'
@@ -39,7 +41,6 @@ section '.text' code readable executable
       stdcall Graphics.Draw.CoordsRectPrepears
       stdcall Graphics.Colors.Prepear
       stdcall Graphics.Draw.ASCIIPrepear
-      stdcall Game.EventsCoordsPrepear
       stdcall Game.ModelsPrepear
       stdcall Game.PrepearTicks
       mov     [IS_INFO_PREPEAR], GL_TRUE

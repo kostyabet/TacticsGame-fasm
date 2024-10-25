@@ -50,6 +50,7 @@ ends
 
 struct Circle 
     center   Point   ?
+    radius   dd      ?
     dots     dd      2882 dup(?)
 ends
 

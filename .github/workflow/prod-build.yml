@@ -1,0 +1,20 @@
+name: dev-build
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install FASM
+        uses: stevenwdv/setup-fasm@v1
+        with:
+          edition: fasmg
+          fasmg-download-packages: true
+          fasmg-include-packages: utility,x86
+      - name: Try to build project
+        run: fasmg

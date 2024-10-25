@@ -51,8 +51,14 @@ proc Graphics.Animation uses eax ebx ecx edx
         .animationButtonMv:
             ; move block
             mov     ebx, [ebx + 4]
-            mov     edi, [ebx] ; coords
-            mov     eax, [ebx + 4]
+            ;stdcall Mouse.CheckIsInShape, [ebx]
+
+            ;mov     edi, [ebx] ; coords
+            ;mov     eax, [edi + 4]
+            ;add     eax, 100
+            ;mov     [edi + 4], eax
+            
+            .mvExit:
             stdcall Graphics.Draw.CoordsRectPrepears.ForAnimations
             jmp     .exitFromLoop
         .exitFromLoop:

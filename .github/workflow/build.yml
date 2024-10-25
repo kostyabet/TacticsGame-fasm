@@ -16,5 +16,5 @@ jobs:
           edition: fasmg
           fasmg-download-packages: true
           fasmg-include-packages: utility,x86
-      - name: Test fasm g
+      - name: Try to build project
         run: fasmg

@@ -1,14 +1,13 @@
 name: dev-build
 on:
   push:
-    branches:
-      - master
+    branches: ['master']
 
 jobs:
   build:
     runs-on: windows-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
       - name: Install FASM
         uses: stevenwdv/setup-fasm@v1

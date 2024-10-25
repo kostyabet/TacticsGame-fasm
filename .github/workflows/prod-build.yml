@@ -17,4 +17,4 @@ jobs:
           fasmg-include-packages: utility,x86
 
       - name: Test fasm g
-        run: fasmg
+        run: fasmg main.asm main.exe

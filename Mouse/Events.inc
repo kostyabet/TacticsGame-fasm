@@ -11,7 +11,7 @@ mp_events       dd  3,\
 
 gp_events       dd  1,\
                     et_pagebutton, exitbtn_font_design, MainPage,\
-                    et_tick,       33, 17,              TicksGameMap
+                    et_tick,       TicksList_Float,     TicksMatrix, TicksGameMap
 
 ap_events       dd  1,\
                     et_pagebutton, exitbtn_font_design, MainPage

@@ -1,8 +1,8 @@
 name: release-prod
 on:
   push:
-    tags:
-      - "v*.*.*"
+    #tags:
+    #  - "v*.*.*"
     branches: ['master']
 
 jobs:

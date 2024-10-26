@@ -35,6 +35,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: main.asm
+          files: |
+            main.asm
+            README.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

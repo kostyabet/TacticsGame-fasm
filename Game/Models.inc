@@ -133,7 +133,7 @@ TicksGameMap    dd   882, 219,\ ; main - center 1
                      959, 853,\ ; center 28
                     1008, 853,\ ; center 29
                     1056, 853,\ ; center 30
-                    1105, 853   ; center 31
+                    1105, 853  ; center 31
 
 TicksList_Radiuses          dd          17, 15, 12, 7, 2         
 TicksList_Float_c1          Ticks       ?
@@ -142,9 +142,9 @@ TicksList_Float_c3          Ticks       ?
 TicksList_Float_c4          Ticks       ?
 TicksList_Float_c5          Ticks       ?
 TicksList_Float             dd          5,\
-                                    TicksList_Float_c1, TicksList_Float_c2, TicksList_Float_c3, TicksList_Float_c4, TicksList_Float_c5  
+                                        TicksList_Float_c1, TicksList_Float_c2, TicksList_Float_c3, TicksList_Float_c4, TicksList_Float_c5  
 TicksList_Centers           dd          32,\
-                                    64 dup(?)
+                                        64 dup(?)
 TicksFontDecorate_Radiuses  dd          15, 5
 TicksFontDecorate_Float_c1  TicksFont   ?
 TicksFontDecorate_Float_c2  TicksFont   ?

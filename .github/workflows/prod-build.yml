@@ -2,8 +2,6 @@ name: dev-build
 on:
   pull_request:
     branches: ['master']
-  push:
-    branches: ['master']
 
 jobs:
   build:
@@ -11,7 +9,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Install FASM
         uses: stevenwdv/setup-fasm@v1
+      
       - name: Build Project
         run: fasm main.asm main.exe

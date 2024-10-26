@@ -2,6 +2,8 @@ et_pagebutton   =  $0101
 et_windowbutton =  $0102
 et_tick         =  $0201
 
+lp_events       dd  0
+
 mp_events       dd  3,\
                     et_pagebutton,  button_play_design,     GamePage,\
                     et_pagebutton, button_about_design,    AboutPage,\
@@ -9,7 +11,7 @@ mp_events       dd  3,\
 
 gp_events       dd  1,\
                     et_pagebutton, exitbtn_font_design, MainPage,\
-                    et_tick,       33, 17,          TicksGameMap
+                    et_tick,       TicksList_Float,     TicksMatrix, TicksGameMap
 
 ap_events       dd  1,\
                     et_pagebutton, exitbtn_font_design, MainPage
@@ -17,4 +19,4 @@ ap_events       dd  1,\
 sp_events       dd  1,\
                     et_pagebutton, exitbtn_font_design, MainPage
 
-EventsList      dd  0, mp_events, gp_events, ap_events, sp_events
+EventsList      dd  lp_events, mp_events, gp_events, ap_events, sp_events

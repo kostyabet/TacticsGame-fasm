@@ -41,11 +41,7 @@ proc Game.OnClick.PageButton uses eax ebx,\
         ret
 endp
 proc Game.OnClick.TickButton ,\
-     count, radius, centers
-    locals
-
-    endl
-    mov     ecx, [count]
-    
+     floatList, matrixTick, coordsMap
+        
     ret
 endp

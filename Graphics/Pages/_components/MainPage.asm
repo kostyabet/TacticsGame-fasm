@@ -1,15 +1,18 @@
 proc Draw.Pages.MainPage
 	.book:
-		stdcall Graphics.Draw.Shapes, book_root_design, book_root_color
+		stdcall Graphics.Draw.Shapes, book_root_design,      book_root_color
 		stdcall Graphics.Draw.Shapes.Rect, book_strk_design, book_strk_color
-		stdcall Graphics.Draw.Shapes, book_corner_design, book_endg_color
-		stdcall Graphics.Draw.Shapes, book_brdcrn_design, book_ebrd_color
-		stdcall Graphics.Draw.Shapes, book_brdfnt_design, book_endg_color
-		stdcall Graphics.Draw.Shapes, book_endg_design, book_endg_color
-		stdcall Graphics.Draw.Shapes, book_brd_design, book_ebrd_color
-		stdcall Graphics.Draw.Shapes, book_flgpl_design, book_flgpl_color
+		stdcall Graphics.Draw.Shapes, book_corner_design,    book_endg_color
+		stdcall Graphics.Draw.Shapes, book_brdcrn_design,    book_ebrd_color
+		stdcall Graphics.Draw.Shapes, book_brdfnt_design,    book_endg_color
+		stdcall Graphics.Draw.Shapes, book_endg_design,    	 book_endg_color
+		stdcall Graphics.Draw.Shapes, book_brd_design,   	 book_ebrd_color
+		stdcall Graphics.Draw.Shapes, book_flgpl_design,  	 book_flgpl_color
 	.buttons:
-		stdcall Graphics.Draw.Shapes, button_play_design, play_button_color
+		stdcall Graphics.Draw.Shapes, button_play_design,  brown_text_color
+		stdcall Graphics.Draw.Shapes, button_about_design, brown_text_color
+		stdcall Graphics.Draw.Shapes, button_stngs_design, brown_text_color
+		stdcall Graphics.Draw.Shapes, button_play_design,  play_button_color
 		stdcall Graphics.Draw.Shapes, button_about_design, about_button_color
 		stdcall Graphics.Draw.Shapes, button_stngs_design, settings_button_color
 	.headline:

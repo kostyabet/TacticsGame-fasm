@@ -1,0 +1,36 @@
+name: dev-build
+on:
+  push:
+    tags:
+      - 'v*'
+    branches: ['master']
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install FASM
+        uses: stevenwdv/setup-fasm@v1
+      
+      - name: Test fasm
+        run: fasm main.asm main.exe
+  
+  release:
+    needs: build
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

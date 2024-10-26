@@ -2,7 +2,7 @@ name: release-prod
 on:
   push:
     tags:
-      - 'v*'
+      - "v*.*.*"
     branches: ['master']
 
 jobs:
@@ -25,12 +25,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
+      - name: Release Project
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
+          files: main.asm
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

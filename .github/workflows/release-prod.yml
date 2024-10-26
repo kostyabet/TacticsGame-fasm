@@ -30,5 +30,3 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: main.asm
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,4 +1,4 @@
-name: dev-build
+name: prod-build
 on:
   pull_request:
     branches: ['master']

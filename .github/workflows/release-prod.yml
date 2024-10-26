@@ -1,4 +1,4 @@
-name: dev-build
+name: release-prod
 on:
   push:
     tags:

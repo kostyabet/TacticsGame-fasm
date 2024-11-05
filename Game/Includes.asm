@@ -1,3 +1,6 @@
 include 'Models.inc'
 include 'BusinesModel.inc'
+include '_methods/ConvertModelNumber.asm'
+include '_methods/TickWork.asm'
 include '_methods/CentersPrepear.asm'
+include '_methods/OnTickClick.asm'

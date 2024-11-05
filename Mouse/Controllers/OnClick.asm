@@ -40,12 +40,8 @@ proc Game.OnClick.PageButton uses eax ebx,\
     .exit:
         ret
 endp
-proc Game.OnClick.TickButton uses ecx ebx,\
+proc Game.OnClick.TickButton uses eax ebx ecx edi,\
      floatList, matrixTick, coordsMap
-    locals
-        result  dd  -1
-        radius  dd   17
-    endl
     mov     ebx, [floatList]
     mov     ecx, [ebx]
     add     ebx, 4
@@ -55,13 +51,14 @@ proc Game.OnClick.TickButton uses ecx ebx,\
     .mainLoop: 
         stdcall Mouse.CheckIsInCircle, [ebx], [ebx + 4], [ebx + 8] ; x y radius
         cmp     eax, GL_TRUE
-        jne     @f
-         ; test
-         
+        jne     .exitFromLoop
+         stdcall Game.OnTickClick, [floatList], [matrixTick], [coordsMap]
          jmp     .exit
-        @@:
+        .exitFromLoop:
          add     ebx, 11540
-        loop    .mainLoop
+        dec    ecx
+        cmp   ecx, 0
+        jne   .mainLoop
     .exit:
     ret
 endp

@@ -1,5 +1,5 @@
 proc Game.OnTickClick,\
-    floatList, matrixTick, coordsMap
+    floatList, matrixTick, coordsMap, currentNumber
     locals
         number  dd   ?
 
@@ -8,11 +8,8 @@ proc Game.OnTickClick,\
         right   dd   ?
         bottom  dd   ?
     endl
-    mov     edi, [floatList]
-    mov     ebx, [edi]
-    sub     ebx, ecx
     ; convert to matrix
-    stdcall Game.Convert.ToMatrix, ebx
+    stdcall Game.Convert.ToMatrix, [currentNumber]
     mov     [number], eax
     ; search top, left, right, bottom
     stdcall Game.TickWork.SearchTopCoord, [number]
@@ -36,5 +33,28 @@ proc Game.OnTickClick,\
     mov     [left], eax
     stdcall Game.TickWork.SearchIsEmptyTick, [matrixTick], [right]
     mov     [right], eax
+    ; check jump or not
+    stdcall Game.TickWork.IsCanJumpTop, [matrixTick], [top]
+    mov     [top], eax
+    stdcall Game.TickWork.IsCanJumpBottom, [matrixTick], [bottom]
+    mov     [bottom], eax
+    stdcall Game.TickWork.IsCanJumpLeft, [matrixTick], [left]
+    mov     [left], eax
+    stdcall Game.TickWork.IsCanJumpRight, [matrixTick], [right]
+    mov     [right], eax
+    ; check posible directions count
+    stdcall Game.TickWork.PosibleDirectionsCount, [top], [left], [right], [bottom]
+    cmp     eax, 1
+    jne     @F
+     ; stdcall from to
+     ;
+     mov    dword [font_color], 0x10
+     ;
+     jmp    .exit
+    @@:
+    cmp     eax, 0
+    je      .exit
+     ; stdcall set posible directions
+    .exit:
     ret
 endp

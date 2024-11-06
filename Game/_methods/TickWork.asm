@@ -19,6 +19,7 @@ proc Game.TickWork.SearchLeftCoord uses ecx edx,\
     idiv    ecx
     cmp     edx, 2
     jb      .exit
+     mov     eax, [matrixNumber]
      sub     eax, 2
      mov     [result], eax
     .exit:
@@ -36,6 +37,7 @@ proc Game.TickWork.SearchRightCoord,\
     idiv    ecx
     cmp     edx, 4
     ja      .exit
+     mov     eax, [matrixNumber]
      add     eax, 2
      mov     [result], eax
     .exit:
@@ -118,4 +120,121 @@ proc Game.TickWork.CheckCoordMatrixRange,\
     .exit:
         mov     eax, [result]
         ret
+endp
+
+proc Game.TickWork.IsCanJumpTop,\
+     matrix, top
+    locals
+        result     dd -1
+        multiplier dd  4
+    endl
+    mov     eax, [top]
+    cmp     eax, -1
+    je      .exit
+        add     eax, 7
+        imul    dword [multiplier]
+        mov     ebx, [matrix]
+        add     ebx, eax
+        mov     eax, [ebx]
+        cmp     eax, TickExist
+        jne     .exit
+        mov     eax, [top]
+        mov     [result], eax
+    .exit:
+    mov     eax, [result]
+    ret
+endp
+
+proc Game.TickWork.IsCanJumpLeft,\
+     matrix, left
+    locals
+        result      dd -1
+        multiplier  dd  4
+    endl
+    mov     eax, [left]
+    cmp     eax, -1
+    je      .exit
+        add     eax, 1
+        imul    dword [multiplier]
+        mov     ebx, [matrix]
+        add     ebx, eax
+        mov     eax, [ebx]
+        cmp     eax, TickExist
+        jne     .exit
+        mov     eax, [left]
+        mov     [result], eax
+    .exit:
+    mov     eax, [result]
+    ret
+endp
+
+proc Game.TickWork.IsCanJumpRight,\
+     matrix, right
+    locals
+        result      dd -1
+        multiplier  dd  4
+    endl
+    mov     eax, [right]
+    cmp     eax, -1
+    je      .exit
+        sub     eax, 1
+        imul    dword [multiplier]
+        mov     ebx, [matrix]
+        add     ebx, eax
+        mov     eax, [ebx]
+        cmp     eax, TickExist
+        jne     .exit
+        mov     eax, [right]
+        mov     [result], eax
+    .exit:
+    mov     eax, [result]
+    ret
+endp
+
+proc Game.TickWork.IsCanJumpBottom,\
+     matrix, bottom
+    locals
+        result      dd -1
+        multiplier  dd  4
+    endl
+    mov     eax, [bottom]
+    cmp     eax, -1
+    je      .exit
+        sub     eax, 7
+        imul    dword [multiplier]
+        mov     ebx, [matrix]
+        add     ebx, eax
+        mov     eax, [ebx]
+        cmp     eax, TickExist
+        jne     .exit
+        mov     eax, [bottom]
+        mov     [result], eax
+    .exit:
+    mov     eax, [result]
+    ret
+endp
+
+proc Game.TickWork.PosibleDirectionsCount,\
+     top, left, right, bottom
+    locals
+        result  dd  0
+    endl
+    cmp     [top], -1
+    je      @F
+     inc     [result]
+    @@:
+    cmp     [left], -1
+    je      @F
+     inc    [result]
+    @@:
+    cmp     [right], -1
+    je      @F
+     inc    [result]
+    @@:
+    cmp     [bottom], -1
+    je      @F
+     inc    [result]
+    @@:
+    mov     eax, [result]
+    ret 
 endp

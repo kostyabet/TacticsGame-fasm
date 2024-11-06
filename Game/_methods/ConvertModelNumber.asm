@@ -1,27 +1,30 @@
-proc Game.Convert.ToMatrix uses edi ebx,\
+proc Game.Convert.ToMatrix,\
      number
-      mov    ebx, [number]
-      cmp    ebx, 2
+      mov    eax, [number]
+      cmp    eax, 2
      ja     @f
-      add   ebx, 2
+      add   eax, 2
+      jmp   .exit
      @@:
-      cmp    ebx, 5
+      cmp    eax, 5
      ja     @f
-      add    ebx, 6
+      add    eax, 6
+      jmp   .exit
      @@:
-      cmp    ebx, 26
+      cmp    eax, 26
      ja     @f
-      add   ebx, 8
+      add   eax, 8
+      jmp   .exit
      @@:
-      cmp    ebx, 29
+      cmp    eax, 29
      ja     @f
-      add   ebx, 10
+      add   eax, 10
+      jmp   .exit
      @@:
-      cmp    ebx, 32
-     ja     @f
-      add   ebx, 14
-     @@:
-      mov    eax, ebx
+      cmp    eax, 32
+     ja     .exit
+      add   eax, 14
+    .exit:
     ret
 endp
 
@@ -32,24 +35,24 @@ proc Game.Convert.ToBusiness,\
     je      .exit
         cmp     eax, 4
         ja      @f
-            sub    eax, 2
-            je     .exit
-        @@:
+    sub    eax, 2
+    jmp    .exit
+    @@:
         cmp     eax, 11
         ja      @f
-            sub    eax, 6
-            je     .exit
-        @@:
+    sub    eax, 6
+    jmp    .exit
+    @@:
         cmp     eax, 34
         ja      @f
-            sub    eax, 8
-            je     .exit
-        @@:
+    sub    eax, 8
+    jmp     .exit
+    @@:
         cmp     eax, 39
         ja      @f
-            sub    eax, 10
-            je     .exit
-        @@:
+    sub    eax, 10
+    jmp    .exit
+    @@:
         sub    eax, 14
     .exit:
     ret

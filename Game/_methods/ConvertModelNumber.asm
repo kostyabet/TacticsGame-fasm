@@ -1,6 +1,8 @@
 proc Game.Convert.ToMatrix,\
      number
-      mov    eax, [number]
+    mov     eax, [number]
+    cmp     eax, -1
+    je      .exit
       cmp    eax, 2
      ja     @f
       add   eax, 2

@@ -21,7 +21,7 @@ proc Mouse.OnClick uses ebx eax,\
         @@:
             cmp     eax, et_tick
             jne     @F
-            stdcall Game.OnClick.TickButton, [ebx], [ebx + 4], [ebx + 8]
+            stdcall Game.OnClick.TickButton, [ebx], [ebx + 4]
         @@:
             pop     ebx
             add     ebx, 12
@@ -41,7 +41,7 @@ proc Game.OnClick.PageButton uses eax ebx,\
         ret
 endp
 proc Game.OnClick.TickButton uses eax ebx ecx edi,\
-     floatList, matrixTick, coordsMap
+     floatList, matrixTick
     mov     ebx, [floatList]
     mov     ecx, [ebx]
     add     ebx, 4
@@ -55,7 +55,7 @@ proc Game.OnClick.TickButton uses eax ebx ecx edi,\
          mov     edi, [floatList]
          mov     ebx, [edi]
          sub     ebx, ecx
-         stdcall Game.OnTickClick, [floatList], [matrixTick], [coordsMap], ebx
+         stdcall Game.OnTickClick, [matrixTick], ebx
          jmp     .exit
         .exitFromLoop:
          add     ebx, 11540

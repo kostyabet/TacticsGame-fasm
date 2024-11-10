@@ -24,6 +24,7 @@ proc Game.TickWork.SearchLeftCoord uses ecx edx,\
      mov     [result], eax
     .exit:
      mov     eax, [result]
+     stdcall Game.TickWork.CheckCoordMatrixRange, eax
      ret
 endp
 
@@ -42,6 +43,7 @@ proc Game.TickWork.SearchRightCoord,\
      mov     [result], eax
     .exit:
      mov     eax, [result]
+     stdcall Game.TickWork.CheckCoordMatrixRange, eax
      ret
 endp
 
@@ -132,14 +134,18 @@ proc Game.TickWork.IsCanJumpTop,\
     cmp     eax, -1
     je      .exit
         add     eax, 7
-        imul    dword [multiplier]
-        mov     ebx, [matrix]
-        add     ebx, eax
-        mov     eax, [ebx]
-        cmp     eax, TickExist
-        jne     .exit
-        mov     eax, [top]
-        mov     [result], eax
+        stdcall Game.TickWork.CheckCoordMatrixRange, eax
+        stdcall Game.Convert.ToBusiness, eax
+        cmp     eax, -1
+        je      .exit
+            mov     [result], eax
+            imul    dword [multiplier]
+            mov     ebx, [matrix]
+            add     ebx, eax
+            mov     eax, [ebx]
+            cmp     eax, TickExist
+            je      .exit
+            mov     [result], -1
     .exit:
     mov     eax, [result]
     ret
@@ -155,14 +161,18 @@ proc Game.TickWork.IsCanJumpLeft,\
     cmp     eax, -1
     je      .exit
         add     eax, 1
-        imul    dword [multiplier]
-        mov     ebx, [matrix]
-        add     ebx, eax
-        mov     eax, [ebx]
-        cmp     eax, TickExist
-        jne     .exit
-        mov     eax, [left]
-        mov     [result], eax
+        stdcall Game.TickWork.CheckCoordMatrixRange, eax
+        stdcall Game.Convert.ToBusiness, eax
+        cmp     eax, -1
+        je      .exit
+            mov     [result], eax
+            imul    dword [multiplier]
+            mov     ebx, [matrix]
+            add     ebx, eax
+            mov     eax, [ebx]
+            cmp     eax, TickExist
+            je      .exit
+            mov     [result], -1
     .exit:
     mov     eax, [result]
     ret
@@ -178,14 +188,18 @@ proc Game.TickWork.IsCanJumpRight,\
     cmp     eax, -1
     je      .exit
         sub     eax, 1
-        imul    dword [multiplier]
-        mov     ebx, [matrix]
-        add     ebx, eax
-        mov     eax, [ebx]
-        cmp     eax, TickExist
-        jne     .exit
-        mov     eax, [right]
-        mov     [result], eax
+        stdcall Game.TickWork.CheckCoordMatrixRange, eax
+        stdcall Game.Convert.ToBusiness, eax
+        cmp     eax, -1
+        je      .exit
+            mov     [result], eax
+            imul    dword [multiplier]
+            mov     ebx, [matrix]
+            add     ebx, eax
+            mov     eax, [ebx]
+            cmp     eax, TickExist
+            je      .exit
+            mov     [result], -1
     .exit:
     mov     eax, [result]
     ret
@@ -201,14 +215,18 @@ proc Game.TickWork.IsCanJumpBottom,\
     cmp     eax, -1
     je      .exit
         sub     eax, 7
-        imul    dword [multiplier]
-        mov     ebx, [matrix]
-        add     ebx, eax
-        mov     eax, [ebx]
-        cmp     eax, TickExist
-        jne     .exit
-        mov     eax, [bottom]
-        mov     [result], eax
+        stdcall Game.TickWork.CheckCoordMatrixRange, eax
+        stdcall Game.Convert.ToBusiness, eax
+        cmp     eax, -1
+        je      .exit
+            mov     [result], eax
+            imul    dword [multiplier]
+            mov     ebx, [matrix]
+            add     ebx, eax
+            mov     eax, [ebx]
+            cmp     eax, TickExist
+            je      .exit
+            mov     [result], -1
     .exit:
     mov     eax, [result]
     ret

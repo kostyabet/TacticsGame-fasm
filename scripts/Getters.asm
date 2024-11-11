@@ -324,7 +324,7 @@ proc Scripts.ModelsPrepear uses eax ecx ebx edx edi,\
             mov     eax, [ebx + 4]
             stdcall GetYGLfloatCoord, eax
             mov     [edi + 4], eax
-            mov     eax, [ebx + 8]
+            mov     eax, [curRadius] ;[ebx + 8]
             mov     [edi + 8], eax
             add     edi, 12
             ; circle coords

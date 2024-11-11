@@ -88,5 +88,8 @@ endp
 proc Game.PrepearTicks
     stdcall Game.CentersPrepear, TicksGameMap, TicksList_Centers, TicksMatrix
     stdcall Scripts.ModelsPrepear, TicksList_Centers, TicksList_Radiuses, TicksList_Float
+    
+    stdcall Scripts.ModelsPrepear, TicksFontMltDrList_Centers, TicksFontList_Radiuses, TicksFontMltDrList_Float
+
     ret
 endp

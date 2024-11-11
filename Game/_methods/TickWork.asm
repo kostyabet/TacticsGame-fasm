@@ -82,7 +82,7 @@ proc Game.TickWork.SearchIsEmptyTick uses ebx edx,\
 endp
 
 proc Game.TickWork.SearchIsExistTick uses ebx edx,\
-     matrix, number
+     matrix, number 
     locals
         result  dd  -1
         multiplier dd  4
@@ -278,4 +278,37 @@ proc Game.TickWork.PosibleDirectionsCount,\
     @@:
     mov     eax, [result]
     ret 
+endp
+
+proc Game.CheckIsFromEqualTo,\ 
+    number
+    locals
+        result dd GL_FALSE
+    endl
+
+    mov     eax, [TicksMoveDirections.TOP.TO]
+    cmp     eax, [number]
+    jne     @F
+        mov     [result], GL_TRUE
+        jmp     .exit
+    @@:
+    mov     eax, [TicksMoveDirections.LEFT.TO]
+    cmp     eax, [number]
+    jne     @F
+        mov     [result], GL_TRUE
+        jmp     .exit
+    @@:
+    mov     eax, [TicksMoveDirections.RIGHT.TO]
+    cmp     eax, [number]
+    jne     @F
+        mov     [result], GL_TRUE
+        jmp     .exit
+    @@:
+    mov     eax, [TicksMoveDirections.BOTTOM.TO]
+    cmp     eax, [number]
+    jne     .exit
+        mov     [result], GL_TRUE
+    .exit:
+    mov     eax, [result]
+    ret
 endp

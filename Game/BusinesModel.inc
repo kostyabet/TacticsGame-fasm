@@ -29,28 +29,16 @@ TickToBottom    =    6
 ;                         ;
 ; ======================= ;
 
-; TicksMatrix     dd                        TickExist, TickExist, TickExist,\ ; game
-;                                           TickExist, TickExist, TickExist,\
-;                     TickExist, TickExist, TickExist, TickExist, TickExist, TickExist, TickExist,\
-;                     TickExist, TickExist, TickExist, TickEmpty, TickExist, TickExist, TickExist,\
-;                     TickExist, TickExist, TickExist, TickExist, TickExist, TickExist, TickExist,\
-;                                           TickExist, TickExist, TickExist,\
-;                                           TickExist, TickExist, TickExist,\
-;                     11 dup(TickEmpty),\ ; garbage
-;                     11 dup(TickEmpty),\
-;                     9  dup(TickEmpty)
-
 TicksMatrix     dd                        TickExist, TickExist, TickExist,\ ; game
                                           TickExist, TickExist, TickExist,\
-                    TickExist, TickExist, TickEmpty, TickExist, TickExist, TickExist, TickExist,\
-                    TickExist, TickExist, TickEmpty, TickExist, TickExist, TickExist, TickExist,\
                     TickExist, TickExist, TickExist, TickExist, TickExist, TickExist, TickExist,\
-                                          TickEmpty, TickExist, TickExist,\
+                    TickExist, TickExist, TickExist, TickEmpty, TickExist, TickExist, TickExist,\
+                    TickExist, TickExist, TickExist, TickExist, TickExist, TickExist, TickExist,\
+                                          TickExist, TickExist, TickExist,\
                                           TickExist, TickExist, TickExist,\
                     11 dup(TickEmpty),\ ; garbage
                     11 dup(TickEmpty),\
                     9  dup(TickEmpty)
-
 
 garbgeCounter   dd  0
 

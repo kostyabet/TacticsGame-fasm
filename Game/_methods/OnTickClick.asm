@@ -1,10 +1,20 @@
 proc Game.OnTickClick,\
     matrixTick, currentNumber
 
+    ; check is current multi active
+    cmp     [TicksMoveDirections.MULTI_DIRECTION], 1
+    jne     .mainBlock
+        stdcall Game.CheckIsFromEqualTo, [currentNumber]
+        cmp     eax, GL_TRUE
+        jne     .reset
+        stdcall Game.Move.CheckDirectionByTo, [currentNumber]
+        jmp     .single
+
+    .mainBlock:
     ; convert to matrix
     stdcall Game.TickWork.SearchIsExistTick, [matrixTick], [currentNumber]
     cmp     eax, -1
-    je      .exit
+    je      .reset
 
     stdcall Game.Convert.ToMatrix, [currentNumber]
     mov     [TicksMoveDirections.FROM], eax
@@ -86,6 +96,7 @@ proc Game.OnTickClick,\
     mov     [TicksMoveDirections.FROM], eax
     cmp     [TicksMoveDirections.POSSIBLE], 1
     jne     .notASingle
+    .single:
      cmp     [TicksMoveDirections.TOP.TO], -1
      je      @F
       stdcall Game.MoveTick, [TicksMoveDirections.FROM], [TicksMoveDirections.TOP.BETWEEN], [TicksMoveDirections.TOP.TO]
@@ -102,14 +113,16 @@ proc Game.OnTickClick,\
      je      @F
       stdcall Game.MoveTick, [TicksMoveDirections.FROM], [TicksMoveDirections.BOTTOM.BETWEEN], [TicksMoveDirections.BOTTOM.TO]
      @@:
-     stdcall Game.ResetDirectionsTick           ; reset direcitons struct
-     stdcall Game.ResetDirectionsMltTicksCoords ; reset multi directions coords
-     jmp     .exit
+     jmp     .reset
     .notASingle:
     cmp     [TicksMoveDirections.POSSIBLE], 0
-    je      .exit
+    je      .reset
      mov     [TicksMoveDirections.MULTI_DIRECTION], 1
      stdcall Game.Move.SetMultiTicksCoords
+     jmp    .exit
+    .reset:
+        stdcall Game.ResetDirectionsTick           ; reset direcitons struct
+        stdcall Game.ResetDirectionsMltTicksCoords ; reset multi directions coords
     .exit:
         stdcall Game.PrepearTicks
     ret

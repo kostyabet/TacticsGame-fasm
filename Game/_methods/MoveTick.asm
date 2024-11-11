@@ -146,3 +146,39 @@ proc Game.ResetDirectionsTick uses eax
     mov     [TicksMoveDirections.BOTTOM.TO], eax
     ret
 endp
+
+proc Game.Move.CheckDirectionByTo uses eax,\
+    number
+    mov     eax, [TicksMoveDirections.TOP.TO]
+    cmp     eax, [number]
+    jne    @F
+        mov     [TicksMoveDirections.LEFT.TO], -1
+        mov     [TicksMoveDirections.RIGHT.TO], -1
+        mov     [TicksMoveDirections.BOTTOM.TO], -1
+        jmp     .exit
+    @@:
+    mov     eax, [TicksMoveDirections.LEFT.TO]
+    cmp     eax, [number]
+    jne    @F
+        mov     [TicksMoveDirections.TOP.TO], -1
+        mov     [TicksMoveDirections.RIGHT.TO], -1
+        mov     [TicksMoveDirections.BOTTOM.TO], -1
+        jmp     .exit
+    @@:
+    mov     eax, [TicksMoveDirections.RIGHT.TO]
+    cmp     eax, [number]
+    jne    @F
+        mov     [TicksMoveDirections.LEFT.TO], -1
+        mov     [TicksMoveDirections.TOP.TO], -1
+        mov     [TicksMoveDirections.BOTTOM.TO], -1
+        jmp     .exit
+    @@:
+    mov     eax, [TicksMoveDirections.BOTTOM.TO]
+    cmp     eax, [number]
+    jne     .exit
+        mov     [TicksMoveDirections.LEFT.TO], -1
+        mov     [TicksMoveDirections.RIGHT.TO], -1
+        mov     [TicksMoveDirections.TOP.TO], -1
+    .exit:
+    ret
+endp

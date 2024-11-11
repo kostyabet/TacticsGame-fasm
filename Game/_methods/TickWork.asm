@@ -81,6 +81,29 @@ proc Game.TickWork.SearchIsEmptyTick uses ebx edx,\
     ret
 endp
 
+proc Game.TickWork.SearchIsExistTick uses ebx edx,\
+     matrix, number
+    locals
+        result  dd  -1
+        multiplier dd  4
+    endl
+    mov     eax, [number]
+    cmp     eax, [result]
+    je     .exit
+        ; check if empty
+        imul    eax, [multiplier]
+        mov     ebx, [matrix]
+        add     ebx, eax
+        mov     edx, [ebx]
+        cmp     edx, TickExist
+        jne     .exit
+        mov     eax, [number]
+        mov     [result], eax
+    .exit:
+    mov     eax, [result]
+    ret
+endp
+
 proc Game.TickWork.CheckCoordMatrixRange,\
      number
     locals

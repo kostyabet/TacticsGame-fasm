@@ -2,6 +2,10 @@ proc Game.OnTickClick,\
     matrixTick, currentNumber
 
     ; convert to matrix
+    stdcall Game.TickWork.SearchIsExistTick, [matrixTick], [currentNumber]
+    cmp     eax, -1
+    je      .exit
+
     stdcall Game.Convert.ToMatrix, [currentNumber]
     mov     [TicksMoveDirections.FROM], eax
 
@@ -98,12 +102,14 @@ proc Game.OnTickClick,\
      je      @F
       stdcall Game.MoveTick, [TicksMoveDirections.FROM], [TicksMoveDirections.BOTTOM.BETWEEN], [TicksMoveDirections.BOTTOM.TO]
      @@:
-     stdcall Game.ResetDirectionsTick
+     stdcall Game.ResetDirectionsTick           ; reset direcitons struct
+     stdcall Game.ResetDirectionsMltTicksCoords ; reset multi directions coords
      jmp     .exit
     .notASingle:
     cmp     [TicksMoveDirections.POSSIBLE], 0
     je      .exit
-     ;stdcall Game.Move.SetMultiDirections
+     mov     [TicksMoveDirections.MULTI_DIRECTION], 1
+     stdcall Game.Move.SetMultiTicksCoords
     .exit:
         stdcall Game.PrepearTicks
     ret

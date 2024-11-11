@@ -64,6 +64,7 @@ vinous_color       BackgroundColor ?
 vinous_black_color BackgroundColor ?
 brown_text_color   BackgroundColor ?
 
-TicksFontList_Colors     dd  milk_color, brown_color
+TicksFontList_Colors     dd  milk_color,   brown_color      ; base
+TicksFontList_MltColors  dd  vinous_color, brown_text_color ; for "TO" Ticks
 TicksFontDecorate_Colors dd  milk_color, gray_color
 TicksList_Colors         dd  red_light_color, red_color, red_black_color, vinous_color, vinous_black_color

@@ -29,12 +29,23 @@ TickToBottom    =    6
 ;                         ;
 ; ======================= ;
 
+; TicksMatrix     dd                        TickExist, TickExist, TickExist,\ ; game
+;                                           TickExist, TickExist, TickExist,\
+;                     TickExist, TickExist, TickExist, TickExist, TickExist, TickExist, TickExist,\
+;                     TickExist, TickExist, TickExist, TickEmpty, TickExist, TickExist, TickExist,\
+;                     TickExist, TickExist, TickExist, TickExist, TickExist, TickExist, TickExist,\
+;                                           TickExist, TickExist, TickExist,\
+;                                           TickExist, TickExist, TickExist,\
+;                     11 dup(TickEmpty),\ ; garbage
+;                     11 dup(TickEmpty),\
+;                     9  dup(TickEmpty)
+
 TicksMatrix     dd                        TickExist, TickExist, TickExist,\ ; game
                                           TickExist, TickExist, TickExist,\
+                    TickExist, TickExist, TickEmpty, TickExist, TickExist, TickExist, TickExist,\
+                    TickExist, TickExist, TickEmpty, TickExist, TickExist, TickExist, TickExist,\
                     TickExist, TickExist, TickExist, TickExist, TickExist, TickExist, TickExist,\
-                    TickExist, TickExist, TickExist, TickEmpty, TickExist, TickExist, TickExist,\
-                    TickExist, TickExist, TickExist, TickExist, TickExist, TickExist, TickExist,\
-                                          TickExist, TickExist, TickExist,\
+                                          TickEmpty, TickExist, TickExist,\
                                           TickExist, TickExist, TickExist,\
                     11 dup(TickEmpty),\ ; garbage
                     11 dup(TickEmpty),\
@@ -44,17 +55,18 @@ TicksMatrix     dd                        TickExist, TickExist, TickExist,\ ; ga
 garbgeCounter   dd  0
 
 struct TickMoveDirection
-    BETWEEN dd  ?
-    TO      dd  ?
+    BETWEEN dd  0
+    TO      dd  0
 ends
 
 struct TicksMoveDirectionsStruct
-    POSSIBLE    dd                 ?
-    FROM        dd                 ?
-    TOP         TickMoveDirection  ?
-    LEFT        TickMoveDirection  ?
-    RIGHT       TickMoveDirection  ?
-    BOTTOM      TickMoveDirection  ?
+    MULTI_DIRECTION dd                 0
+    POSSIBLE        dd                 0
+    FROM            dd                 0
+    TOP             TickMoveDirection  ?
+    LEFT            TickMoveDirection  ?
+    RIGHT           TickMoveDirection  ?
+    BOTTOM          TickMoveDirection  ?
 ends
 
 TicksMoveDirections TicksMoveDirectionsStruct ?

@@ -30,14 +30,110 @@ proc Game.MoveTick uses eax ebx,\
     ret
 endp
 
-proc Game.Move.SetMultiDirections
-    ; TicksMoveDirections
-    
+proc Game.Move.SetMultiTicksCoords uses eax
+    locals
+        currentOffset dd 0
+        multiplier    dd 8
+    endl
+
+    mov     eax, [TicksMoveDirections.POSSIBLE]
+    mov     [TicksFontMltDrList_Centers], eax
+
+    cmp     [TicksMoveDirections.TOP.TO], -1
+    je      @F
+        mov     eax, [TicksMoveDirections.TOP.TO]
+        imul    dword [multiplier]
+        mov     ebx, TicksFontList_Centers
+        add     ebx, eax
+        add     ebx, 4
+        
+        mov     eax, [currentOffset]
+        imul    dword [multiplier]
+        mov     edi, TicksFontMltDrList_Centers
+        add     edi, eax
+        add     edi, 4
+
+        mov     eax, [ebx]
+        mov     [edi], eax
+        mov     eax, [ebx + 4]
+        mov     [edi + 4], eax
+
+        inc     [currentOffset]
+    @@:
+    cmp     [TicksMoveDirections.LEFT.TO], -1
+    je      @F
+        mov     eax, [TicksMoveDirections.LEFT.TO]
+        imul    dword [multiplier]
+        mov     ebx, TicksFontList_Centers
+        add     ebx, eax
+        add     ebx, 4
+        
+        mov     eax, [currentOffset]
+        imul    dword [multiplier]
+        mov     edi, TicksFontMltDrList_Centers
+        add     edi, eax
+        add     edi, 4
+        
+        mov     eax, [ebx]
+        mov     [edi], eax
+        mov     eax, [ebx + 4]
+        mov     [edi + 4], eax
+
+        inc     [currentOffset]
+    @@:
+    cmp     [TicksMoveDirections.RIGHT.TO], -1
+    je      @F
+        mov     eax, [TicksMoveDirections.RIGHT.TO]
+        imul    dword [multiplier]
+        mov     ebx, TicksFontList_Centers
+        add     ebx, eax
+        add     ebx, 4
+        
+        mov     eax, [currentOffset]
+        imul    dword [multiplier]
+        mov     edi, TicksFontMltDrList_Centers
+        add     edi, eax
+        add     edi, 4
+        
+        mov     eax, [ebx]
+        mov     [edi], eax
+        mov     eax, [ebx + 4]
+        mov     [edi + 4], eax
+
+        inc     [currentOffset]
+    @@:
+    cmp     [TicksMoveDirections.BOTTOM.TO], -1
+    je      .exit
+        mov     eax, [TicksMoveDirections.BOTTOM.TO]
+        imul    dword [multiplier]
+        mov     ebx, TicksFontList_Centers
+        add     ebx, eax
+        add     ebx, 4
+        
+        mov     eax, [currentOffset]
+        imul    dword [multiplier]
+        mov     edi, TicksFontMltDrList_Centers
+        add     edi, eax
+        add     edi, 4
+        
+        mov     eax, [ebx]
+        mov     [edi], eax
+        mov     eax, [ebx + 4]
+        mov     [edi + 4], eax
+
+        inc     [currentOffset]
+    .exit:
     ret
 endp
 
-proc Game.ResetDirectionsTick
+proc Game.ResetDirectionsMltTicksCoords uses eax
+    mov     [TicksFontMltDrList_Centers], 0
+    ret
+endp
+
+proc Game.ResetDirectionsTick uses eax
     xor     eax, eax
+    mov     [TicksMoveDirections.MULTI_DIRECTION], eax
     mov     [TicksMoveDirections.POSSIBLE], eax
     mov     [TicksMoveDirections.FROM], eax
     mov     [TicksMoveDirections.TOP.BETWEEN], eax

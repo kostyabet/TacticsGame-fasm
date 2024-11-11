@@ -1,5 +1,5 @@
 struct Ticks 
-    counter     dd          ?
+    counter     dd          0
     t1          Circle      ?
     t2          Circle      ?
     t3          Circle      ?
@@ -34,7 +34,7 @@ struct Ticks
     t32         Circle      ? 
 ends
 struct TicksFont
-    counter     dd          ?
+    counter     dd          0
     t1          Circle      ?
     t2          Circle      ?
     t3          Circle      ?
@@ -156,7 +156,7 @@ TicksFontDecorate_Centers   dd          4,\ ; 33
                                         1117, 298,\ ; center 3
                                         1117, 610   ; center 4
 
-TicksFontList_Radiuses      dd          17, 13         
+TicksFontList_Radiuses      dd          17, 13
 TicksFontList_Float_c1      TicksFont   ?
 TicksFontList_Float_c2      TicksFont   ?
 TicksFontList_Float         dd          2,\
@@ -195,3 +195,13 @@ TicksFontList_Centers       dd          33,\ ; 33
                                  882, 687,\ ; center 31
                                  960, 687,\ ; center 32
                                 1038, 687   ; center 33
+
+TicksFontMltDrList_Float_c1 TicksFont   ?
+TicksFontMltDrList_Float_c2 TicksFont   ?
+TicksFontMltDrList_Float    dd          2,\
+                                        TicksFontMltDrList_Float_c1, TicksFontMltDrList_Float_c2
+TicksFontMltDrList_Centers  dd          0,\ ; 33
+                                        ?, ?,\ ; center 1
+                                        ?, ?,\ ; center 2
+                                        ?, ?,\ ; center 3
+                                        ?, ?   ; center 4

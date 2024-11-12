@@ -61,6 +61,9 @@ proc Graphics.Colors.Prepear
     stdcall Scripts.Getters.Color, [cl_vinous],       vinous_color
     stdcall Scripts.Getters.Color, [cl_vinous_black], vinous_black_color
     stdcall Scripts.Getters.Color, [cl_brown_text],   brown_text_color
+    stdcall Scripts.Getters.Color, [cl_lime],         lime_color
+    stdcall Scripts.Getters.Color, [cl_body],         body_color
+    stdcall Scripts.Getters.Color, [cl_orange],       orange_color
     
     ret
 endp

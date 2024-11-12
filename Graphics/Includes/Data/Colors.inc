@@ -31,6 +31,9 @@ cl_red_black      dd      0x00803333
 cl_vinous         dd      0x00532323
 cl_vinous_black   dd      0x001D1414
 cl_brown_text     dd      0x00773A18
+cl_lime           dd      0x00B8E5B2
+cl_body           dd      0x00F5C084
+cl_orange         dd      0x00EF9837
 
 ; ====== Program models ====== ;
 font_color        BackgroundColor ?
@@ -63,8 +66,11 @@ red_black_color    BackgroundColor ?
 vinous_color       BackgroundColor ?
 vinous_black_color BackgroundColor ?
 brown_text_color   BackgroundColor ?
+lime_color         BackgroundColor ?
+body_color         BackgroundColor ?
+orange_color       BackgroundColor ?
 
 TicksFontList_Colors     dd  milk_color,   brown_color      ; base
-TicksFontList_MltColors  dd  vinous_color, brown_text_color ; for "TO" Ticks
-TicksFontDecorate_Colors dd  milk_color, gray_color
+TicksFontList_MltColors  dd  orange_color, body_color    ; for "TO" Ticks
+TicksFontDecorate_Colors dd  milk_color,   gray_color
 TicksList_Colors         dd  red_light_color, red_color, red_black_color, vinous_color, vinous_black_color

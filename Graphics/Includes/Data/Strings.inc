@@ -37,6 +37,7 @@ tg_cost         =       0
 tg_info         =       0
 tg_watermark    =       5
 tg_return       =       15
+tg_hk           =       0
 
 ; ====== Interfaces ====== ;
 struct Points
@@ -109,6 +110,13 @@ str_title_pos       dd      411, 871
 str_return          db      15, 1, 9, 1, 5, 0 ; '<-'
 str_return_pos      dd      55, 1001
 
+str_R_hk            db      37, 0 ; 'R'
+str_R_hk_pos        dd      1805, 29
+str_P_hk            db      39, 0 ; 'P'
+str_P_hk_pos        dd      1736, 29
+str_S_hk            db      38, 0 ; 'S'
+str_S_hk_pos        dd      1875, 29
+
 str_cost            db      'ЦЕНА 2р.50к.', 0
 str_info            db      'СУВЕНИР-ГОЛОВОЛОМКА', 0
 str_watermark       db      'АРТ.   С-АГ-1648-А', 0
@@ -125,9 +133,14 @@ txt_info            String  ?
 txt_watermark       String  ?
 txt_return          String  ?
 
+txt_R_hk            String  ?
+txt_P_hk            String  ?
+txt_S_hk            String  ?
+
 arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5,  ltr_RU_6,  ltr_RU_7,\
                             ltr_RU_8,  ltr_RU_9,  ltr_RU_10, ltr_RU_11, ltr_RU_12, ltr_RU_13, ltr_RU_14,\
                             ltr_RU_15, ltr_RU_16, ltr_RU_17, ltr_RU_18, ltr_RU_19, ltr_RU_20, ltr_RU_21,\
                             ltr_RU_22, ltr_RU_23, ltr_RU_24, ltr_RU_25, ltr_RU_26, ltr_RU_27, ltr_RU_28,\
                             ltr_RU_29, ltr_RU_30, ltr_RU_31, ltr_RU_32, ltr_RU_33,\
-                            spl_34,    spl_35,    slp_36
+                            spl_34,    spl_35,    slp_36,\
+                            ltr_EN_37, ltr_EN_38, ltr_EN_39

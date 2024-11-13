@@ -24,6 +24,22 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, lp_bar_brdr3_coords, lp_bar_brdr3_design
     stdcall Scripts.Getters.ConvertCoords, lp_bar_main_coords,  lp_bar_main_design
 
+    stdcall Scripts.Getters.ConvertCoords, recovery_btn_fnt_coords, recovery_btn_fnt_design
+    stdcall Scripts.Getters.ConvertCoords, recovery_btn_out_circle_coords, recovery_btn_out_circle_design
+    stdcall Scripts.Getters.ConvertCoords, recovery_btn_in_circle_coords, recovery_btn_in_circle_design
+    stdcall Scripts.Getters.ConvertCoords, recovery_btn_fntblock_coords, recovery_btn_fntblock_design
+    stdcall Scripts.Getters.ConvertCoords, recovery_btn_lftriangle_coords, recovery_btn_lftriangle_design
+    stdcall Scripts.Getters.ConvertCoords, recovery_btn_rgtriangle_coords, recovery_btn_rgtriangle_design
+
+    stdcall Scripts.Getters.ConvertCoords, settings_btn_fnt_coords, settings_btn_fnt_design
+
+    stdcall Scripts.Getters.ConvertCoords, pause_btn_fnt_coords, pause_btn_fnt_design
+    stdcall Scripts.Getters.ConvertCoords, pause_btn_lines_coords, pause_btn_lines_design
+    stdcall Scripts.Getters.ConvertCoords, settings_btn_out_circle_coords, settings_btn_out_circle_design
+    stdcall Scripts.Getters.ConvertCoords, settings_btn_in_circle_coords, settings_btn_in_circle_design
+    stdcall Scripts.Getters.ConvertCoords, settings_btn_mainline_coords, settings_btn_mainline_design
+    stdcall Scripts.Getters.ConvertCoords, settings_btn_subline_coords, settings_btn_subline_design
+
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
     ret
@@ -79,6 +95,10 @@ proc Graphics.Draw.ASCIIPrepear
     ;stdcall Graphics.Draw.Text.Prepear, txt_cost,      str_cost,      fs_cost,      tg_cost
     ;stdcall Graphics.Draw.Text.Prepear, txt_info,      str_info,      fs_info,      tg_info
     ;stdcall Graphics.Draw.Text.Prepear, txt_watermark, str_watermark, fs_watermark, tg_watermark
+
+    stdcall Graphics.Draw.Text.Prepear, txt_R_hk, str_R_hk, fs_hk, tg_hk, str_R_hk_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_P_hk, str_P_hk, fs_hk, tg_hk, str_P_hk_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_S_hk, str_S_hk, fs_hk, tg_hk, str_S_hk_pos
     ret
 endp
 

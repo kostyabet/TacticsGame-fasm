@@ -342,3 +342,92 @@ lp_bar_main_coords dd   1,\
                         2,\
                          632, 870, 17,\
                          632, 870, 17
+
+
+; recovery button
+recovery_btn_fnt_design DrawModel   ? 
+recovery_btn_fnt_coords dd  2,\
+                            1790, 10, 1830, 70,\
+                            1780, 20, 1840, 60,\
+                            4,\
+                            1790, 20, 10,\
+                            1790, 60, 10,\
+                            1830, 20, 10,\
+                            1830, 60, 10
+recovery_btn_out_circle_design DrawModel ?
+recovery_btn_out_circle_coords dd  0,\
+                                   1,\
+                                   1810, 40, 21
+recovery_btn_in_circle_design  DrawModel ?
+recovery_btn_in_circle_coords  dd  0,\
+                                   1,\
+                                   1810, 40, 16
+recovery_btn_fntblock_design   DrawModel ?
+recovery_btn_fntblock_coords   dd  1,\
+                                   1785, 33, 1833, 46,\
+                                   0
+recovery_btn_lftriangle_design   DrawModel ?
+recovery_btn_lftriangle_coords   dd  4,\
+                                     1791, 38, 1793, 40,\
+                                     1790, 40, 1794, 42,\
+                                     1789, 42, 1795, 44,\
+                                     1788, 44, 1796, 46,\
+                                     0
+recovery_btn_rgtriangle_design   DrawModel ?
+recovery_btn_rgtriangle_coords   dd  4,\
+                                     1823, 33, 1831, 35,\
+                                     1824, 35, 1830, 37,\
+                                     1825, 37, 1829, 39,\
+                                     1826, 39, 1828, 41,\
+                                     0
+; settings button
+settings_btn_fnt_design DrawModel ?
+settings_btn_fnt_coords dd 2,\
+                           1860, 10, 1900, 70,\
+                           1850, 20, 1910, 60,\
+                           4,\
+                           1860, 20, 10,\
+                           1860, 60, 10,\
+                           1900, 20, 10,\
+                           1900, 60, 10
+settings_btn_out_circle_design  DrawModel   ?
+settings_btn_out_circle_coords  dd  0,\
+                                    1,\
+                                    1880, 40, 19
+settings_btn_in_circle_design   DrawModel   ?
+settings_btn_in_circle_coords   dd  0,\
+                                    1,\
+                                    1880, 40, 15
+settings_btn_mainline_design    DrawModel   ?
+settings_btn_mainline_coords    dd  4,\
+                                    1856, 38, 1862, 44,\
+                                    1877, 16, 1883, 22,\
+                                    1898, 38, 1904, 44,\
+                                    1877, 58, 1883, 64,\
+                                    0
+settings_btn_subline_design     DrawModel   ?
+settings_btn_subline_coords     dd  4,\
+                                    1856, 38, 1862, 44,\
+                                    1877, 16, 1883, 22,\
+                                    1898, 38, 1904, 44,\
+                                    1877, 58, 1883, 64,\
+                                    0
+; pause button
+pause_btn_fnt_design    DrawModel ?
+pause_btn_fnt_coords    dd  2,\
+                            1720, 10, 1760, 70,\
+                            1710, 20, 1770, 60,\
+                            4,\
+                            1720, 20, 10,\
+                            1720, 60, 10,\
+                            1760, 20, 10,\
+                            1760, 60, 10
+pause_btn_lines_design  DrawModel ?
+pause_btn_lines_coords  dd  2,\
+                            1724, 25, 1730, 54,\
+                            1750, 25, 1756, 54,\
+                            4,\
+                            1727, 25, 3,\
+                            1727, 54, 3,\
+                            1753, 25, 3,\
+                            1753, 54, 3

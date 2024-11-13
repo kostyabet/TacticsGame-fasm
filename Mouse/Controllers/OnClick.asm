@@ -23,6 +23,10 @@ proc Mouse.OnClick uses ebx eax,\
             jne     @F
             stdcall Game.OnClick.TickButton, [ebx], [ebx + 4]
         @@:
+            cmp     eax, et_wndbutton
+            jne     @F
+            stdcall Game.OnClick.WindowButton, [ebx], [ebx + 4] 
+        @@:
             pop     ebx
             add     ebx, 12
             loop    .mainAnimLoop
@@ -65,3 +69,15 @@ proc Game.OnClick.TickButton uses eax ebx ecx edi,\
     .exit:
     ret
 endp
+proc Game.OnClick.WindowButton uses ebx,\
+    coords, callFucntionAddress
+    
+    stdcall Mouse.CheckIsInShape, [coords]
+    cmp     eax, GL_FALSE
+    je      .exit
+            
+    mov     ebx, [callFucntionAddress]
+    stdcall ebx
+    .exit:
+        ret
+endp 

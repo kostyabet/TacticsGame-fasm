@@ -70,7 +70,10 @@ lime_color         BackgroundColor ?
 body_color         BackgroundColor ?
 orange_color       BackgroundColor ?
 
+recovery_button_color BackgroundColor ?
+pause_button_color    BackgroundColor ?
+
 TicksFontList_Colors     dd  milk_color,   brown_color      ; base
-TicksFontList_MltColors  dd  orange_color, body_color    ; for "TO" Ticks
+TicksFontList_MltColors  dd  orange_color, body_color       ; for "TO" Ticks
 TicksFontDecorate_Colors dd  milk_color,   gray_color
 TicksList_Colors         dd  red_light_color, red_color, red_black_color, vinous_color, vinous_black_color

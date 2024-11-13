@@ -6,3 +6,8 @@ include '../Draw/ASCII.asm'
 include '../Draw/Text.asm'
 ; Ticks
 include '../Draw/Ticks.asm'
+
+; Components
+include '../Draw/Components/RecoveryButton.asm'
+include '../Draw/Components/SettingsButton.asm'
+include '../Draw/Components/PauseButton.asm'

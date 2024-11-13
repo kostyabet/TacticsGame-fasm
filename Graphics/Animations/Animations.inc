@@ -25,8 +25,17 @@ Anim_LoadingPage                dd  1,\
 
 Anim_SubPages_cl                dd  exitbtn_font_design,\ 
                                     exit_button_color, milk_light_color, milk_color
-Anim_GamePage                   dd  1,\
-                                    Anim_btn_cl, Anim_SubPages_cl
+Anim_Recoverybtn_cl             dd  recovery_btn_fnt_design,\ 
+                                    recovery_button_color, milk_light_color, milk_color
+Anim_Settingsbtn_cl             dd  settings_btn_fnt_design,\ 
+                                    settings_button_color, milk_light_color, milk_color
+Anim_Pausebtn_cl                dd  pause_btn_fnt_design,\ 
+                                    pause_button_color, milk_light_color, milk_color
+Anim_GamePage                   dd  4,\
+                                    Anim_btn_cl, Anim_SubPages_cl,\
+                                    Anim_btn_cl, Anim_Recoverybtn_cl,\
+                                    Anim_btn_cl, Anim_Settingsbtn_cl,\
+                                    Anim_btn_cl, Anim_Pausebtn_cl
 
 Anim_AboutPage                  dd  1,\
                                     Anim_btn_cl, Anim_SubPages_cl

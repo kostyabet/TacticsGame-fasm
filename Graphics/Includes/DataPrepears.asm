@@ -41,7 +41,8 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, settings_btn_subline_coords, settings_btn_subline_design
 
     stdcall Scripts.Getters.ConvertCoords, pp_border_coords, pp_border_desing
-; 375 44 485 32 86
+    stdcall Scripts.Getters.ConvertCoords, pp_font_coords, pp_font_desing
+; 375 44 485 32 86 Гена Григорьевич
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
     ret

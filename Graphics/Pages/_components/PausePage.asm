@@ -6,6 +6,7 @@ proc Draw.Pages.PausePage
     stdcall ebx
     ; main pause layout
     stdcall Graphics.Draw.Shapes, font_design, font_dark_color
-    stdcall Graphics.Draw.Shapes, pp_border_design, brown_text_color
+    stdcall Graphics.Draw.Shapes, pp_border_desing, brown_text_color
+    stdcall Graphics.Draw.Shapes, pp_font_desing, milk_light_color
     ret
 endp

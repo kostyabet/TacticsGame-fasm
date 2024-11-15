@@ -434,7 +434,7 @@ pause_btn_lines_coords  dd  2,\
 
 ; pause page
 pp_border_desing    DrawModel   ?
-pp_border_design    dd  2,\
+pp_border_coords    dd  2,\
                         725, 430, 1195, 640,\ 
                         705, 450, 1215, 620,\
                         4,\
@@ -442,3 +442,13 @@ pp_border_design    dd  2,\
                         725, 620, 20,\
                         1195, 450, 20,\
                         1195, 620, 20
+
+pp_font_desing    DrawModel   ?
+pp_font_coords    dd  2,\
+                        730, 435, 1190, 635,\ 
+                        710, 455, 1210, 615,\
+                        4,\
+                        730, 455, 20,\
+                        730, 615, 20,\
+                        1190, 455, 20,\
+                        1190, 615, 20

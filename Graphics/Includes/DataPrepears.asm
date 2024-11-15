@@ -42,7 +42,7 @@ proc Graphics.Draw.CoordsRectPrepears
 
     stdcall Scripts.Getters.ConvertCoords, pp_border_coords, pp_border_desing
     stdcall Scripts.Getters.ConvertCoords, pp_font_coords, pp_font_desing
-; 375 44 485 32 86 Гена Григорьевич
+; 375 44 485 32 86 Генадий Григорьевич
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
     ret

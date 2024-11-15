@@ -437,3 +437,16 @@ proc GetYDecimalCoord\ ; y = (1 - GLFloat) * 540.0
         mov     eax, [res]
     ret
 endp
+proc Script.Colors.CopyColor uses eax ecx edx edi,\
+    result, input
+    mov     ebx, [result]
+    mov     edi, [input]
+    mov     ecx, 3
+    .mainLoop:
+        mov     eax, [edi]
+        mov     [ebx], eax
+        add     ebx, 4
+        add     edi, 4
+        loop    .mainLoop
+    ret
+endp

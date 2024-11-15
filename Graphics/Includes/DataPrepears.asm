@@ -40,6 +40,8 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, settings_btn_mainline_coords, settings_btn_mainline_design
     stdcall Scripts.Getters.ConvertCoords, settings_btn_subline_coords, settings_btn_subline_design
 
+    stdcall Scripts.Getters.ConvertCoords, pp_border_coords, pp_border_desing
+; 375 44 485 32 86
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
     ret
@@ -114,5 +116,15 @@ proc Game.PrepearTicks
     
     stdcall Scripts.ModelsPrepear, TicksFontMltDrList_Centers, TicksFontList_Radiuses, TicksFontMltDrList_Float
 
+    ret
+endp
+
+proc Graphics.Colors.PrepearWithAlpha
+    ; stdcall Script.Colors.CopyColor, font_dark_color, font_color
+    mov     [font_dark_color.Red], 0.0
+    mov     [font_dark_color.Green], 0.0
+    mov     [font_dark_color.Blue], 0.0
+    
+    mov     [font_dark_color.Alpha], 0.5
     ret
 endp

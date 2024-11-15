@@ -3,6 +3,7 @@ struct BackgroundColor
     Red     GLfloat     ?
     Green   GLfloat     ?
     Blue    GLfloat     ?
+    Alpha   GLfloat     1.0
 ends
 
 ; ====== Business models ====== ;
@@ -72,6 +73,8 @@ orange_color       BackgroundColor ?
 
 recovery_button_color BackgroundColor ?
 pause_button_color    BackgroundColor ?
+
+font_dark_color       BackgroundColor ?
 
 TicksFontList_Colors     dd  milk_color,   brown_color      ; base
 TicksFontList_MltColors  dd  orange_color, body_color       ; for "TO" Ticks

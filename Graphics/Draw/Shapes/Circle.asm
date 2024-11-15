@@ -1,7 +1,11 @@
 proc Graphics.Draw.Shapes.Circle uses eax ebx ecx,\
      circle, color
     mov     ebx, [color]
-    invoke  glColor3f, [ebx + BackgroundColor.Red], [ebx + BackgroundColor.Green], [ebx + BackgroundColor.Blue]
+    invoke  glColor4f,\
+            [ebx + BackgroundColor.Red],\ 
+            [ebx + BackgroundColor.Green],\ 
+            [ebx + BackgroundColor.Blue],\ 
+            [ebx + BackgroundColor.Alpha]
 
     mov    ebx, [circle]
     mov    ecx, [ebx]

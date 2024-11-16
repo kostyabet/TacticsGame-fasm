@@ -35,6 +35,7 @@ cl_brown_text     dd      0x00773A18
 cl_lime           dd      0x00B8E5B2
 cl_body           dd      0x00F5C084
 cl_orange         dd      0x00EF9837
+cl_pale           dd      0x00D09F83
 
 ; ====== Program models ====== ;
 font_color        BackgroundColor ?
@@ -70,11 +71,16 @@ brown_text_color   BackgroundColor ?
 lime_color         BackgroundColor ?
 body_color         BackgroundColor ?
 orange_color       BackgroundColor ?
+pale_color         BackgroundColor ?
 
 recovery_button_color BackgroundColor ?
 pause_button_color    BackgroundColor ?
 
 font_dark_color       BackgroundColor ?
+ebtn_text_color       BackgroundColor ?
+ebtn_font_color       BackgroundColor ?
+esbtn_text_color      BackgroundColor ?
+esbtn_font_color      BackgroundColor ?
 
 TicksFontList_Colors     dd  milk_color,   brown_color      ; base
 TicksFontList_MltColors  dd  orange_color, body_color       ; for "TO" Ticks

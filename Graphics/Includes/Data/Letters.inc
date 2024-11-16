@@ -49,6 +49,10 @@ fs_cost         =       18
 fs_watermark    =       10
 fs_return       =       10
 
+fs_pause        =       10
+fs_exit         =       1
+fs_saveAexit    =       -1
+
 fs_hk           =       -5
 
 fs_default      =       20

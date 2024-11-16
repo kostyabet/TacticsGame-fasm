@@ -43,6 +43,18 @@ Anim_AboutPage                  dd  1,\
 Anim_SettingsPage               dd  1,\
                                     Anim_btn_cl, Anim_SubPages_cl
 
-Anim_PausePage                  dd  0
+Anim_SaveAExitText_cl           dd  pp_esbtn_brdr_design,\
+                                    esbtn_text_color, brown_color, brown_text_color
+Anim_SaveAExitFont_cl           dd  pp_esbtn_brdr_design,\
+                                    esbtn_font_color, brown_text_color, brown_color
+Anim_ExitText_cl                dd  pp_ebtn_brdr_design,\
+                                    ebtn_text_color, pale_color, brown_text_color
+Anim_ExitFont_cl                dd  pp_ebtn_brdr_design,\
+                                    ebtn_font_color, brown_text_color, pale_color 
+Anim_PausePage                  dd  4,\
+                                    Anim_btn_cl, Anim_SaveAExitText_cl,\
+                                    Anim_btn_cl, Anim_SaveAExitFont_cl,\
+                                    Anim_btn_cl, Anim_ExitText_cl,\
+                                    Anim_btn_cl, Anim_ExitFont_cl
 
 AnimsList                       dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage, Anim_PausePage

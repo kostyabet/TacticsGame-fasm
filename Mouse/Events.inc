@@ -1,5 +1,6 @@
 et_pagebutton   =  $0101
-et_wndbutton    =  $0102
+et_prevpage     =  $0102
+et_wndbutton    =  $0103
 et_tick         =  $0201
 
 lp_events       dd  0
@@ -17,10 +18,11 @@ gp_events       dd  5,\
                     et_pagebutton, settings_btn_fnt_design, SettingsPage
 
 ap_events       dd  1,\
-                    et_pagebutton, exitbtn_font_design, PrevousPage
+                    et_pagebutton, exitbtn_font_design, MainPage
 
 sp_events       dd  0
 
-pp_events       dd  0
+pp_events       dd  1,\
+                    et_prevpage, pp_return_circle_desing, PrevousPage
 
 EventsList      dd  lp_events, mp_events, gp_events, ap_events, sp_events, pp_events

@@ -38,6 +38,9 @@ tg_info         =       0
 tg_watermark    =       5
 tg_return       =       15
 tg_hk           =       0
+tg_pause        =       18
+tg_exit         =       10
+tg_saveAexit    =       10
 
 ; ====== Interfaces ====== ;
 struct Points
@@ -110,6 +113,13 @@ str_title_pos       dd      411, 871
 str_return          db      15, 1, 9, 1, 5, 0 ; '<-'
 str_return_pos      dd      55, 1001
 
+str_pause           db      17, 1, 21, 9, 1, 0 ; 'ПАУЗА'
+str_pause_pos       dd      882, 444
+str_exit            db      3, 29, 11, 20, 10, 0 ; 'ВЫЙТИ'
+str_exit_pos        dd      915, 584
+str_saveAexit       db      19, 16, 23, 18, 1, 15, 10, 20, 30, 34, 10, 34, 3, 29, 11, 20, 10, 0 ; 'СОХРАНИТЬ И ВЫЙТИ'
+str_saveAexit_pos   dd      802, 523
+
 str_R_hk            db      37, 0 ; 'R'
 str_R_hk_pos        dd      1805, 29
 str_P_hk            db      39, 0 ; 'P'
@@ -136,6 +146,10 @@ txt_return          String  ?
 txt_R_hk            String  ?
 txt_P_hk            String  ?
 txt_S_hk            String  ?
+
+txt_pause           String  ?
+txt_exit            String  ?
+txt_saveAexit       String  ?
 
 arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5,  ltr_RU_6,  ltr_RU_7,\
                             ltr_RU_8,  ltr_RU_9,  ltr_RU_10, ltr_RU_11, ltr_RU_12, ltr_RU_13, ltr_RU_14,\

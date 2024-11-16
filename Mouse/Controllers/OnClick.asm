@@ -19,6 +19,10 @@ proc Mouse.OnClick uses ebx eax,\
             jne     @F
             stdcall Game.OnClick.PageButton, [ebx], [ebx + 4]
         @@:
+            cmp     eax, et_prevpage
+            jne     @F
+            stdcall Game.OnClick.PageButton, [ebx], [PrevousPage]
+        @@:
             cmp     eax, et_tick
             jne     @F
             stdcall Game.OnClick.TickButton, [ebx], [ebx + 4]

@@ -525,3 +525,61 @@ wp_return_chrest_coords dd  2,\
                             1185, 388, 1189, 388, 1201, 400, 1197, 400,\
                             1185, 400, 1189, 400, 1201, 388, 1197, 388,\
                             0
+wp_line_design  DrawModel   ?
+wp_line_coords  dd          1,\
+                            710, 502, 1210, 504,\
+                            0
+wp_againbtn_brdr_design DrawModel   ?
+wp_againbtn_brdr_coords dd          2,\
+                                    851, 520, 1075, 564,\
+                                    841, 530, 1085, 554,\
+                                    4,\
+                                     851, 530, 10,\
+                                     851, 554, 10,\
+                                    1075, 530, 10,\
+                                    1075, 554, 10
+wp_againbtn_font_design DrawModel   ?
+wp_againbtn_font_coords dd          2,\
+                                    851, 522, 1075, 562,\
+                                    843, 530, 1083, 554,\
+                                    4,\
+                                     851, 530, 8,\
+                                     851, 554, 8,\
+                                    1075, 530, 8,\
+                                    1075, 554, 8
+wp_exitbtn_brdr_design  DrawModel   ?
+wp_exitbtn_brdr_coords  dd          2,\
+                                    851, 580, 1075, 624,\
+                                    841, 590, 1085, 614,\
+                                    4,\
+                                     851, 590, 10,\
+                                     851, 614, 10,\
+                                    1075, 590, 10,\
+                                    1075, 614, 10
+wp_exitbtn_font_design  DrawModel   ?
+wp_exitbtn_font_coords  dd          2,\
+                                    851, 582, 1075, 622,\
+                                    843, 590, 1083, 614,\
+                                    4,\
+                                     851, 590, 8,\
+                                     851, 614, 8,\
+                                    1075, 590, 8,\
+                                    1075, 614, 8
+wp_leadbtn_brdr_design  DrawModel   ?
+wp_leadbtn_brdr_coords  dd          2,\
+                                    851, 640, 1075, 684,\
+                                    841, 650, 1085, 674,\
+                                    4,\
+                                     851, 650, 10,\
+                                     851, 674, 10,\
+                                    1075, 650, 10,\
+                                    1075, 674, 10
+wp_leadbtn_font_design  DrawModel   ?
+wp_leadbtn_font_coords  dd          2,\
+                                    851, 642, 1075, 682,\
+                                    843, 650, 1083, 674,\
+                                    4,\
+                                     851, 650, 8,\
+                                     851, 674, 8,\
+                                    1075, 650, 8,\
+                                    1075, 674, 8

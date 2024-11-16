@@ -44,6 +44,7 @@ tg_saveAexit    =       10
 tg_winner       =       18
 tg_score        =       5
 tg_score_num    =       10
+tg_again        =       10
 
 ; ====== Interfaces ====== ;
 struct Points
@@ -126,9 +127,14 @@ str_saveAexit_pos   dd      802, 523
 str_winner          db      17, 16, 2, 6, 5, 1, 0; 'ПОБЕДА'
 str_winner_pos      dd      863, 393
 str_score           db      19, 25, 7, 20, 0 ; 'СЧЁТ'
-str_score_pos       dd      940, 490
-str_score_num       db      1, 2, 3, 0 ; '102'
-str_score_num_pos   dd      927, 450
+str_score_pos       dd      940, 485
+str_score_num       db      35, 34, 36, 0 ; '102'
+str_score_num_pos   dd      927, 445
+str_again           db      9, 1, 15, 16, 3, 16, 0 ; 'ЗАНОВО'
+str_again_pos       dd      907, 529
+str_wexit_pos       dd      917, 590
+str_stats           db      19, 20, 1, 20, 10, 19, 20, 10, 12, 1, 0 ; 'СТАТИСТИКА'
+str_stats_pos       dd      867, 650
 
 str_R_hk            db      71, 0 ; 'R'
 str_R_hk_pos        dd      1805, 29
@@ -164,6 +170,9 @@ txt_saveAexit       String  ?
 txt_winner          String  ?
 txt_score           String  ?
 txt_score_num       String  ?
+txt_again           String  ?
+txt_wexit           String  ?
+txt_stats           String  ?
 
 arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5,  ltr_RU_6,  ltr_RU_7,\ ; RU
                             ltr_RU_8,  ltr_RU_9,  ltr_RU_10, ltr_RU_11, ltr_RU_12, ltr_RU_13, ltr_RU_14,\

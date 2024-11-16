@@ -53,6 +53,13 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, wp_font_coords, wp_font_desing
     stdcall Scripts.Getters.ConvertCoords, wp_return_circle_coords, wp_return_circle_desing
     stdcall Scripts.Getters.ConvertWithQuardCoords, wp_return_chrest_coords, wp_return_chrest_design
+    stdcall Scripts.Getters.ConvertCoords, wp_line_coords, wp_line_design
+    stdcall Scripts.Getters.ConvertCoords, wp_againbtn_brdr_coords, wp_againbtn_brdr_design
+    stdcall Scripts.Getters.ConvertCoords, wp_againbtn_font_coords, wp_againbtn_font_design
+    stdcall Scripts.Getters.ConvertCoords, wp_exitbtn_brdr_coords, wp_exitbtn_brdr_design
+    stdcall Scripts.Getters.ConvertCoords, wp_exitbtn_font_coords, wp_exitbtn_font_design
+    stdcall Scripts.Getters.ConvertCoords, wp_leadbtn_brdr_coords, wp_leadbtn_brdr_design
+    stdcall Scripts.Getters.ConvertCoords, wp_leadbtn_font_coords, wp_leadbtn_font_design
 
 ; 375 44 485 32 86 Генадий Григорьевич
     ; repeat
@@ -123,6 +130,9 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_winner,    str_winner,    fs_winner,    tg_winner,    str_winner_pos
     stdcall Graphics.Draw.Text.Prepear, txt_score,     str_score,     fs_score,     tg_score,     str_score_pos
     stdcall Graphics.Draw.Text.Prepear, txt_score_num, str_score_num, fs_score_num, tg_score_num, str_score_num_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_again,     str_again,     fs_again,     tg_again,     str_again_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_wexit,     str_exit,      fs_again,     tg_again,     str_wexit_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_stats,     str_stats,     fs_again,     tg_again,     str_stats_pos
 
     ret
 endp

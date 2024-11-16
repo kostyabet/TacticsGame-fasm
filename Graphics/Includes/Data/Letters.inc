@@ -58,6 +58,7 @@ fs_hk           =       -5
 fs_winner       =       10
 fs_score        =       -10
 fs_score_num    =       5
+fs_again        =       0
 
 fs_default      =       20
 

@@ -85,6 +85,10 @@ esbtn_text_color      BackgroundColor ?
 esbtn_font_color      BackgroundColor ?
 retbtn_font_color     BackgroundColor ?
 retbtn_chrst_color    BackgroundColor ?
+againbtn_font_color   BackgroundColor ?
+againbtn_text_color   BackgroundColor ?
+lbbtn_font_color      BackgroundColor ?
+lbbtn_text_color      BackgroundColor ?
 
 TicksFontList_Colors     dd  milk_color,   brown_color      ; base
 TicksFontList_MltColors  dd  orange_color, body_color       ; for "TO" Ticks

@@ -24,6 +24,44 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, lp_bar_brdr3_coords, lp_bar_brdr3_design
     stdcall Scripts.Getters.ConvertCoords, lp_bar_main_coords,  lp_bar_main_design
 
+    stdcall Scripts.Getters.ConvertCoords, recovery_btn_fnt_coords, recovery_btn_fnt_design
+    stdcall Scripts.Getters.ConvertCoords, recovery_btn_out_circle_coords, recovery_btn_out_circle_design
+    stdcall Scripts.Getters.ConvertCoords, recovery_btn_in_circle_coords, recovery_btn_in_circle_design
+    stdcall Scripts.Getters.ConvertCoords, recovery_btn_fntblock_coords, recovery_btn_fntblock_design
+    stdcall Scripts.Getters.ConvertCoords, recovery_btn_lftriangle_coords, recovery_btn_lftriangle_design
+    stdcall Scripts.Getters.ConvertCoords, recovery_btn_rgtriangle_coords, recovery_btn_rgtriangle_design
+
+    stdcall Scripts.Getters.ConvertCoords, settings_btn_fnt_coords, settings_btn_fnt_design
+
+    stdcall Scripts.Getters.ConvertCoords, pause_btn_fnt_coords, pause_btn_fnt_design
+    stdcall Scripts.Getters.ConvertCoords, pause_btn_lines_coords, pause_btn_lines_design
+    stdcall Scripts.Getters.ConvertCoords, settings_btn_out_circle_coords, settings_btn_out_circle_design
+    stdcall Scripts.Getters.ConvertCoords, settings_btn_in_circle_coords, settings_btn_in_circle_design
+    stdcall Scripts.Getters.ConvertCoords, settings_btn_mainline_coords, settings_btn_mainline_design
+    stdcall Scripts.Getters.ConvertCoords, settings_btn_subline_coords, settings_btn_subline_design
+
+    stdcall Scripts.Getters.ConvertCoords, pp_border_coords, pp_border_desing
+    stdcall Scripts.Getters.ConvertCoords, pp_font_coords, pp_font_desing
+    stdcall Scripts.Getters.ConvertCoords, pp_return_circle_coords, pp_return_circle_desing
+    stdcall Scripts.Getters.ConvertCoords, pp_esbtn_brdr_coords, pp_esbtn_brdr_design
+    stdcall Scripts.Getters.ConvertCoords, pp_esbtn_font_coords, pp_esbtn_font_desing
+    stdcall Scripts.Getters.ConvertCoords, pp_ebtn_brdr_coords, pp_ebtn_brdr_design
+    stdcall Scripts.Getters.ConvertCoords, pp_ebtn_font_coords, pp_ebtn_font_desing
+    stdcall Scripts.Getters.ConvertWithQuardCoords, pp_return_chrest_coords, pp_return_chrest_design
+
+    stdcall Scripts.Getters.ConvertCoords, wp_border_coords, wp_border_design 
+    stdcall Scripts.Getters.ConvertCoords, wp_font_coords, wp_font_desing
+    stdcall Scripts.Getters.ConvertCoords, wp_return_circle_coords, wp_return_circle_desing
+    stdcall Scripts.Getters.ConvertWithQuardCoords, wp_return_chrest_coords, wp_return_chrest_design
+    stdcall Scripts.Getters.ConvertCoords, wp_line_coords, wp_line_design
+    stdcall Scripts.Getters.ConvertCoords, wp_againbtn_brdr_coords, wp_againbtn_brdr_design
+    stdcall Scripts.Getters.ConvertCoords, wp_againbtn_font_coords, wp_againbtn_font_design
+    stdcall Scripts.Getters.ConvertCoords, wp_exitbtn_brdr_coords, wp_exitbtn_brdr_design
+    stdcall Scripts.Getters.ConvertCoords, wp_exitbtn_font_coords, wp_exitbtn_font_design
+    stdcall Scripts.Getters.ConvertCoords, wp_leadbtn_brdr_coords, wp_leadbtn_brdr_design
+    stdcall Scripts.Getters.ConvertCoords, wp_leadbtn_font_coords, wp_leadbtn_font_design
+
+; 375 44 485 32 86 Генадий Григорьевич
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
     ret
@@ -61,6 +99,11 @@ proc Graphics.Colors.Prepear
     stdcall Scripts.Getters.Color, [cl_vinous],       vinous_color
     stdcall Scripts.Getters.Color, [cl_vinous_black], vinous_black_color
     stdcall Scripts.Getters.Color, [cl_brown_text],   brown_text_color
+    stdcall Scripts.Getters.Color, [cl_lime],         lime_color
+    stdcall Scripts.Getters.Color, [cl_body],         body_color
+    stdcall Scripts.Getters.Color, [cl_orange],       orange_color
+    stdcall Scripts.Getters.Color, [cl_pale],         pale_color
+    stdcall Scripts.Getters.Color, [cl_brow_black],   brown_black_color
     
     ret
 endp
@@ -76,6 +119,21 @@ proc Graphics.Draw.ASCIIPrepear
     ;stdcall Graphics.Draw.Text.Prepear, txt_cost,      str_cost,      fs_cost,      tg_cost
     ;stdcall Graphics.Draw.Text.Prepear, txt_info,      str_info,      fs_info,      tg_info
     ;stdcall Graphics.Draw.Text.Prepear, txt_watermark, str_watermark, fs_watermark, tg_watermark
+
+    stdcall Graphics.Draw.Text.Prepear, txt_R_hk, str_R_hk, fs_hk, tg_hk, str_R_hk_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_P_hk, str_P_hk, fs_hk, tg_hk, str_P_hk_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_S_hk, str_S_hk, fs_hk, tg_hk, str_S_hk_pos
+
+    stdcall Graphics.Draw.Text.Prepear, txt_pause,     str_pause,     fs_pause,     tg_pause,     str_pause_pos 
+    stdcall Graphics.Draw.Text.Prepear, txt_exit,      str_exit,      fs_exit,      tg_exit,      str_exit_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_saveAexit, str_saveAexit, fs_saveAexit, tg_saveAexit, str_saveAexit_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_winner,    str_winner,    fs_winner,    tg_winner,    str_winner_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_score,     str_score,     fs_score,     tg_score,     str_score_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_score_num, str_score_num, fs_score_num, tg_score_num, str_score_num_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_again,     str_again,     fs_again,     tg_again,     str_again_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_wexit,     str_exit,      fs_again,     tg_again,     str_wexit_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_stats,     str_stats,     fs_again,     tg_again,     str_stats_pos
+
     ret
 endp
 
@@ -91,5 +149,15 @@ proc Game.PrepearTicks
     
     stdcall Scripts.ModelsPrepear, TicksFontMltDrList_Centers, TicksFontList_Radiuses, TicksFontMltDrList_Float
 
+    ret
+endp
+
+proc Graphics.Colors.PrepearWithAlpha
+    ; stdcall Script.Colors.CopyColor, font_dark_color, font_color
+    mov     [font_dark_color.Red], 0.0
+    mov     [font_dark_color.Green], 0.0
+    mov     [font_dark_color.Blue], 0.0
+    
+    mov     [font_dark_color.Alpha], 0.5
     ret
 endp

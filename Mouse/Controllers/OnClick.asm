@@ -19,9 +19,17 @@ proc Mouse.OnClick uses ebx eax,\
             jne     @F
             stdcall Game.OnClick.PageButton, [ebx], [ebx + 4]
         @@:
+            cmp     eax, et_prevpage
+            jne     @F
+            stdcall Game.OnClick.PageButton, [ebx], [PrevousPage]
+        @@:
             cmp     eax, et_tick
             jne     @F
             stdcall Game.OnClick.TickButton, [ebx], [ebx + 4]
+        @@:
+            cmp     eax, et_wndbutton
+            jne     @F
+            stdcall Game.OnClick.WindowButton, [ebx], [ebx + 4] 
         @@:
             pop     ebx
             add     ebx, 12
@@ -35,8 +43,7 @@ proc Game.OnClick.PageButton uses eax ebx,\
     cmp     eax, GL_FALSE
     je      .exit
             
-    mov     eax, [nextPage]
-    mov     [CurentPage], eax
+    stdcall Page.ChangePage, [nextPage]
     .exit:
         ret
 endp
@@ -65,3 +72,15 @@ proc Game.OnClick.TickButton uses eax ebx ecx edi,\
     .exit:
     ret
 endp
+proc Game.OnClick.WindowButton uses ebx,\
+    coords, callFucntionAddress
+    
+    stdcall Mouse.CheckIsInShape, [coords]
+    cmp     eax, GL_FALSE
+    je      .exit
+            
+    mov     ebx, [callFucntionAddress]
+    stdcall ebx
+    .exit:
+        ret
+endp 

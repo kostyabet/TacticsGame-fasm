@@ -3,6 +3,7 @@ struct BackgroundColor
     Red     GLfloat     ?
     Green   GLfloat     ?
     Blue    GLfloat     ?
+    Alpha   GLfloat     1.0
 ends
 
 ; ====== Business models ====== ;
@@ -24,6 +25,7 @@ cl_brown          dd      0x00C88762
 cl_brown_light    dd      0x00CDA791
 cl_brown_medium   dd      0x00BC957F
 cl_brown_dark     dd      0x009B8071
+cl_brow_black     dd      0x003B1E0F
 cl_gray           dd      0x00454141
 cl_red_light      dd      0x00AD3B3B
 cl_red            dd      0x00983838
@@ -31,6 +33,10 @@ cl_red_black      dd      0x00803333
 cl_vinous         dd      0x00532323
 cl_vinous_black   dd      0x001D1414
 cl_brown_text     dd      0x00773A18
+cl_lime           dd      0x00B8E5B2
+cl_body           dd      0x00F5C084
+cl_orange         dd      0x00EF9837
+cl_pale           dd      0x00D09F83
 
 ; ====== Program models ====== ;
 font_color        BackgroundColor ?
@@ -56,6 +62,7 @@ brown_color        BackgroundColor ?
 brown_light_color  BackgroundColor ?
 brown_medium_color BackgroundColor ?
 brown_dark_color   BackgroundColor ?
+brown_black_color  BackgroundColor ?
 gray_color         BackgroundColor ?
 red_light_color    BackgroundColor ? 
 red_color          BackgroundColor ?
@@ -63,8 +70,27 @@ red_black_color    BackgroundColor ?
 vinous_color       BackgroundColor ?
 vinous_black_color BackgroundColor ?
 brown_text_color   BackgroundColor ?
+lime_color         BackgroundColor ?
+body_color         BackgroundColor ?
+orange_color       BackgroundColor ?
+pale_color         BackgroundColor ?
+
+recovery_button_color BackgroundColor ?
+pause_button_color    BackgroundColor ?
+
+font_dark_color       BackgroundColor ?
+ebtn_text_color       BackgroundColor ?
+ebtn_font_color       BackgroundColor ?
+esbtn_text_color      BackgroundColor ?
+esbtn_font_color      BackgroundColor ?
+retbtn_font_color     BackgroundColor ?
+retbtn_chrst_color    BackgroundColor ?
+againbtn_font_color   BackgroundColor ?
+againbtn_text_color   BackgroundColor ?
+lbbtn_font_color      BackgroundColor ?
+lbbtn_text_color      BackgroundColor ?
 
 TicksFontList_Colors     dd  milk_color,   brown_color      ; base
-TicksFontList_MltColors  dd  vinous_color, brown_text_color ; for "TO" Ticks
-TicksFontDecorate_Colors dd  milk_color, gray_color
+TicksFontList_MltColors  dd  orange_color, body_color       ; for "TO" Ticks
+TicksFontDecorate_Colors dd  milk_color,   gray_color
 TicksList_Colors         dd  red_light_color, red_color, red_black_color, vinous_color, vinous_black_color

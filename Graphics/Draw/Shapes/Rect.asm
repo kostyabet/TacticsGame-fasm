@@ -4,7 +4,11 @@ proc Graphics.Draw.Shapes.Rect uses ebx ecx ,\
         NULL        GLfloat     0.0
     endl
         mov     ebx, [color]
-        invoke  glColor3f, [ebx + BackgroundColor.Red], [ebx + BackgroundColor.Green], [ebx + BackgroundColor.Blue]    
+        invoke  glColor4f,\
+            [ebx + BackgroundColor.Red],\ 
+            [ebx + BackgroundColor.Green],\ 
+            [ebx + BackgroundColor.Blue],\ 
+            [ebx + BackgroundColor.Alpha]
         mov     ebx, [rect]
         mov     ecx, [ebx]
         cmp     ecx, 0

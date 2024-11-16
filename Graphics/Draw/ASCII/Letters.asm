@@ -71,6 +71,12 @@ endp
 proc Graphics.Draw.ASCII.Letters.GetLetterLen uses ebx,\
      letter, multiplier
     mov     ebx, [letter]
-    stdcall Scripts.Getters.GetIMULNumber, [ebx + 4], [multiplier]
+    stdcall Math.Absolute, [multiplier]
+    mov     eax, [multiplier]
+    cmp     eax, 0
+    jne     @F
+        inc     eax
+    @@:
+    stdcall Scripts.Getters.GetIMULNumber, [ebx + 4], eax
     ret
 endp

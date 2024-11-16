@@ -25,13 +25,67 @@ Anim_LoadingPage                dd  1,\
 
 Anim_SubPages_cl                dd  exitbtn_font_design,\ 
                                     exit_button_color, milk_light_color, milk_color
-Anim_GamePage                   dd  1,\
-                                    Anim_btn_cl, Anim_SubPages_cl
+Anim_Recoverybtn_cl             dd  recovery_btn_fnt_design,\ 
+                                    recovery_button_color, milk_light_color, milk_color
+Anim_Settingsbtn_cl             dd  settings_btn_fnt_design,\ 
+                                    settings_button_color, milk_light_color, milk_color
+Anim_Pausebtn_cl                dd  pause_btn_fnt_design,\ 
+                                    pause_button_color, milk_light_color, milk_color
+Anim_GamePage                   dd  4,\
+                                    Anim_btn_cl, Anim_SubPages_cl,\
+                                    Anim_btn_cl, Anim_Recoverybtn_cl,\
+                                    Anim_btn_cl, Anim_Settingsbtn_cl,\
+                                    Anim_btn_cl, Anim_Pausebtn_cl
 
 Anim_AboutPage                  dd  1,\
                                     Anim_btn_cl, Anim_SubPages_cl
 
-Anim_SettingsPage               dd  1,\
-                                    Anim_btn_cl, Anim_SubPages_cl
+Anim_SettingsPage               dd  0
 
-AnimsList                       dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage
+Anim_PSaveAExitText_cl          dd  pp_esbtn_brdr_design,\
+                                    esbtn_text_color, brown_color, brown_text_color
+Anim_PSaveAExitFont_cl          dd  pp_esbtn_brdr_design,\
+                                    esbtn_font_color, brown_text_color, brown_color
+Anim_PExitText_cl               dd  pp_ebtn_brdr_design,\
+                                    ebtn_text_color, pale_color, brown_text_color
+Anim_PExitFont_cl               dd  pp_ebtn_brdr_design,\
+                                    ebtn_font_color, brown_text_color, pale_color 
+Anim_PRetBtnFont_cl             dd  pp_return_circle_desing,\
+                                    retbtn_font_color, pale_color, brown_text_color
+Anim_PRetBtnHrst_cl             dd  pp_return_circle_desing,\
+                                    retbtn_chrst_color, brown_text_color, pale_color
+Anim_PausePage                  dd  6,\
+                                    Anim_btn_cl, Anim_PSaveAExitText_cl,\
+                                    Anim_btn_cl, Anim_PSaveAExitFont_cl,\
+                                    Anim_btn_cl, Anim_PExitText_cl,\
+                                    Anim_btn_cl, Anim_PExitFont_cl,\
+                                    Anim_btn_cl, Anim_PRetBtnFont_cl,\
+                                    Anim_btn_cl, Anim_PRetBtnHrst_cl
+
+Anim_WRetBtnFont_cl             dd  wp_return_circle_desing,\
+                                    retbtn_font_color, pale_color, brown_text_color
+Anim_WRetBtnHrst_cl             dd  wp_return_circle_desing,\
+                                    retbtn_chrst_color, brown_text_color, pale_color
+Anim_WAgainBtnFont_cl           dd  wp_againbtn_brdr_design,\
+                                    againbtn_font_color, brown_text_color, pale_color
+Anim_WAgainBtnText_cl           dd  wp_againbtn_brdr_design,\
+                                    againbtn_text_color, pale_color, brown_text_color
+Anim_WExitBtnFont_cl            dd  wp_exitbtn_brdr_design,\
+                                    ebtn_font_color, brown_text_color, pale_color
+Anim_WExitBtnText_cl            dd  wp_exitbtn_brdr_design,\
+                                    ebtn_text_color, pale_color, brown_text_color
+Anim_WLeadBoardFont_cl          dd  wp_leadbtn_brdr_design,\
+                                    lbbtn_font_color, brown_text_color, pale_color
+Anim_WLeadBoardText_cl          dd  wp_leadbtn_brdr_design,\
+                                    lbbtn_text_color, pale_color, brown_text_color
+Anim_WinnerPage                 dd  8,\
+                                    Anim_btn_cl, Anim_WRetBtnFont_cl,\
+                                    Anim_btn_cl, Anim_WRetBtnHrst_cl,\
+                                    Anim_btn_cl, Anim_WAgainBtnFont_cl,\
+                                    Anim_btn_cl, Anim_WAgainBtnText_cl,\
+                                    Anim_btn_cl, Anim_WExitBtnFont_cl,\
+                                    Anim_btn_cl, Anim_WExitBtnText_cl,\
+                                    Anim_btn_cl, Anim_WLeadBoardFont_cl,\
+                                    Anim_btn_cl, Anim_WLeadBoardText_cl
+
+AnimsList                       dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage, Anim_PausePage, Anim_WinnerPage

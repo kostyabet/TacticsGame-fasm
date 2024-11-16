@@ -37,12 +37,16 @@ section '.text' code readable executable
       invoke  CreateWindowEx, 0, _class, _title, WS_VISIBLE+WS_POPUP+WS_CLIPCHILDREN+WS_CLIPSIBLINGS, 0, 0, ebx, ecx, NULL, NULL, [wc.hInstance], NULL
       mov     [hwnd],eax
         
+      invoke glEnable, GL_BLEND
+      invoke glBlendFunc, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
+
       ; prepear data
       stdcall Graphics.Draw.CoordsRectPrepears
       stdcall Graphics.Colors.Prepear
       stdcall Graphics.Draw.ASCIIPrepear
       stdcall Game.ModelsPrepear
       stdcall Game.PrepearTicks
+      stdcall Graphics.Colors.PrepearWithAlpha
       mov     [IS_INFO_PREPEAR], GL_TRUE
 
   msg_loop:

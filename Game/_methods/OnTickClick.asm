@@ -113,6 +113,12 @@ proc Game.OnTickClick,\
      je      @F
       stdcall Game.MoveTick, [TicksMoveDirections.FROM], [TicksMoveDirections.BOTTOM.BETWEEN], [TicksMoveDirections.BOTTOM.TO]
      @@:
+     mov     [isGameStart], GL_TRUE
+     stdcall Game.CheckIsGameEnd
+     cmp     eax, GL_TRUE
+     jne     @F
+        stdcall     Game.Leave.Winner
+     @@:
      jmp     .reset
     .notASingle:
     cmp     [TicksMoveDirections.POSSIBLE], 0

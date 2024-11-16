@@ -342,3 +342,244 @@ lp_bar_main_coords dd   1,\
                         2,\
                          632, 870, 17,\
                          632, 870, 17
+
+
+; recovery button
+recovery_btn_fnt_design DrawModel   ? 
+recovery_btn_fnt_coords dd  2,\
+                            1790, 10, 1830, 70,\
+                            1780, 20, 1840, 60,\
+                            4,\
+                            1790, 20, 10,\
+                            1790, 60, 10,\
+                            1830, 20, 10,\
+                            1830, 60, 10
+recovery_btn_out_circle_design DrawModel ?
+recovery_btn_out_circle_coords dd  0,\
+                                   1,\
+                                   1810, 40, 21
+recovery_btn_in_circle_design  DrawModel ?
+recovery_btn_in_circle_coords  dd  0,\
+                                   1,\
+                                   1810, 40, 16
+recovery_btn_fntblock_design   DrawModel ?
+recovery_btn_fntblock_coords   dd  1,\
+                                   1785, 33, 1833, 46,\
+                                   0
+recovery_btn_lftriangle_design   DrawModel ?
+recovery_btn_lftriangle_coords   dd  4,\
+                                     1791, 38, 1793, 40,\
+                                     1790, 40, 1794, 42,\
+                                     1789, 42, 1795, 44,\
+                                     1788, 44, 1796, 46,\
+                                     0
+recovery_btn_rgtriangle_design   DrawModel ?
+recovery_btn_rgtriangle_coords   dd  4,\
+                                     1823, 33, 1831, 35,\
+                                     1824, 35, 1830, 37,\
+                                     1825, 37, 1829, 39,\
+                                     1826, 39, 1828, 41,\
+                                     0
+; settings button
+settings_btn_fnt_design DrawModel ?
+settings_btn_fnt_coords dd 2,\
+                           1860, 10, 1900, 70,\
+                           1850, 20, 1910, 60,\
+                           4,\
+                           1860, 20, 10,\
+                           1860, 60, 10,\
+                           1900, 20, 10,\
+                           1900, 60, 10
+settings_btn_out_circle_design  DrawModel   ?
+settings_btn_out_circle_coords  dd  0,\
+                                    1,\
+                                    1880, 40, 19
+settings_btn_in_circle_design   DrawModel   ?
+settings_btn_in_circle_coords   dd  0,\
+                                    1,\
+                                    1880, 40, 15
+settings_btn_mainline_design    DrawModel   ?
+settings_btn_mainline_coords    dd  4,\
+                                    1856, 38, 1862, 44,\
+                                    1877, 16, 1883, 22,\
+                                    1898, 38, 1904, 44,\
+                                    1877, 58, 1883, 64,\
+                                    0
+settings_btn_subline_design     DrawModel   ?
+settings_btn_subline_coords     dd  4,\
+                                    1856, 38, 1862, 44,\
+                                    1877, 16, 1883, 22,\
+                                    1898, 38, 1904, 44,\
+                                    1877, 58, 1883, 64,\
+                                    0
+; pause button
+pause_btn_fnt_design    DrawModel ?
+pause_btn_fnt_coords    dd  2,\
+                            1720, 10, 1760, 70,\
+                            1710, 20, 1770, 60,\
+                            4,\
+                            1720, 20, 10,\
+                            1720, 60, 10,\
+                            1760, 20, 10,\
+                            1760, 60, 10
+pause_btn_lines_design  DrawModel ?
+pause_btn_lines_coords  dd  2,\
+                            1724, 25, 1730, 54,\
+                            1750, 25, 1756, 54,\
+                            4,\
+                            1727, 25, 3,\
+                            1727, 54, 3,\
+                            1753, 25, 3,\
+                            1753, 54, 3
+
+; pause page
+pp_border_desing    DrawModel   ?
+pp_border_coords    dd  2,\
+                        725, 430, 1195, 640,\ 
+                        705, 450, 1215, 620,\
+                        4,\
+                        725, 450, 20,\
+                        725, 620, 20,\
+                        1195, 450, 20,\
+                        1195, 620, 20
+pp_font_desing    DrawModel   ?
+pp_font_coords    dd  2,\
+                        730, 435, 1190, 635,\ 
+                        710, 455, 1210, 615,\
+                        4,\
+                         727, 452, 17,\
+                         727, 618, 17,\
+                        1193, 452, 17,\
+                        1193, 618, 17
+pp_return_circle_desing  DrawModel ?
+pp_return_circle_coords  dd   0,\
+                              1,\
+                              1193, 452, 13
+pp_return_chrest_design DrawModel ?
+pp_return_chrest_coords dd  2,\
+                            1185, 457, 1189, 457, 1201, 445, 1197, 445,\
+                            1185, 445, 1189, 445, 1201, 457, 1197, 457,\
+                            0
+pp_esbtn_brdr_design DrawModel ?
+pp_esbtn_brdr_coords dd 2,\
+                          790, 510, 1130, 564,\
+                          780, 520, 1140, 554,\
+                          4,\
+                           790, 520, 10,\
+                           790, 554, 10,\
+                          1130, 520, 10,\
+                          1130, 554, 10
+pp_esbtn_font_desing DrawModel ?
+pp_esbtn_font_coords dd 2,\
+                          790, 512, 1130, 561,\
+                          782, 520, 1138, 551,\
+                          4,\
+                           790, 520, 8,\
+                           790, 553, 8,\
+                          1130, 520, 8,\
+                          1130, 553, 8
+pp_ebtn_brdr_design DrawModel ?
+pp_ebtn_brdr_coords dd 2,\
+                       863, 576, 1057, 621,\
+                       853, 586, 1067, 611,\
+                       4,\
+                        863, 586, 10,\
+                        863, 611, 10,\
+                       1057, 586, 10,\
+                       1057, 611, 10
+pp_ebtn_font_desing DrawModel ?
+pp_ebtn_font_coords dd 2,\
+                       863, 578, 1057, 619,\
+                       855, 586, 1065, 611,\
+                       4,\
+                        863, 586, 8,\
+                        863, 611, 8,\
+                       1057, 586, 8,\
+                       1057, 611, 8
+
+; winner page
+wp_border_design    DrawModel   ?
+wp_border_coords    dd          2,\
+                                725, 372, 1195, 707,\
+                                705, 392, 1215, 687,\
+                                4,\
+                                725, 392, 20,\
+                                725, 687, 20,\
+                                1195, 392, 20,\
+                                1195, 687, 20
+wp_font_desing      DrawModel   ?
+wp_font_coords      dd          2,\
+                                727, 377, 1193, 702,\
+                                710, 394, 1210, 685,\
+                                4,\
+                                 727, 394, 17,\
+                                 727, 685, 17,\
+                                1193, 394, 17,\
+                                1193, 685, 17
+wp_return_circle_desing  DrawModel ?
+wp_return_circle_coords  dd   0,\
+                              1,\
+                              1193, 394, 14
+wp_return_chrest_design DrawModel ?
+wp_return_chrest_coords dd  2,\
+                            1185, 388, 1189, 388, 1201, 400, 1197, 400,\
+                            1185, 400, 1189, 400, 1201, 388, 1197, 388,\
+                            0
+wp_line_design  DrawModel   ?
+wp_line_coords  dd          1,\
+                            710, 502, 1210, 504,\
+                            0
+wp_againbtn_brdr_design DrawModel   ?
+wp_againbtn_brdr_coords dd          2,\
+                                    851, 520, 1075, 564,\
+                                    841, 530, 1085, 554,\
+                                    4,\
+                                     851, 530, 10,\
+                                     851, 554, 10,\
+                                    1075, 530, 10,\
+                                    1075, 554, 10
+wp_againbtn_font_design DrawModel   ?
+wp_againbtn_font_coords dd          2,\
+                                    851, 522, 1075, 562,\
+                                    843, 530, 1083, 554,\
+                                    4,\
+                                     851, 530, 8,\
+                                     851, 554, 8,\
+                                    1075, 530, 8,\
+                                    1075, 554, 8
+wp_exitbtn_brdr_design  DrawModel   ?
+wp_exitbtn_brdr_coords  dd          2,\
+                                    851, 580, 1075, 624,\
+                                    841, 590, 1085, 614,\
+                                    4,\
+                                     851, 590, 10,\
+                                     851, 614, 10,\
+                                    1075, 590, 10,\
+                                    1075, 614, 10
+wp_exitbtn_font_design  DrawModel   ?
+wp_exitbtn_font_coords  dd          2,\
+                                    851, 582, 1075, 622,\
+                                    843, 590, 1083, 614,\
+                                    4,\
+                                     851, 590, 8,\
+                                     851, 614, 8,\
+                                    1075, 590, 8,\
+                                    1075, 614, 8
+wp_leadbtn_brdr_design  DrawModel   ?
+wp_leadbtn_brdr_coords  dd          2,\
+                                    851, 640, 1075, 684,\
+                                    841, 650, 1085, 674,\
+                                    4,\
+                                     851, 650, 10,\
+                                     851, 674, 10,\
+                                    1075, 650, 10,\
+                                    1075, 674, 10
+wp_leadbtn_font_design  DrawModel   ?
+wp_leadbtn_font_coords  dd          2,\
+                                    851, 642, 1075, 682,\
+                                    843, 650, 1083, 674,\
+                                    4,\
+                                     851, 650, 8,\
+                                     851, 674, 8,\
+                                    1075, 650, 8,\
+                                    1075, 674, 8

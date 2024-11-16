@@ -2,12 +2,6 @@ TickEmpty       =    0
 TickBlock       =   -1
 TickExist       =    1
 
-TickFrom        =    2
-TickToTop       =    3
-TickToLeft      =    4
-TickToRight     =    5
-TickToBottom    =    6
-
 ; ======================= ;
 ;                         ;
 ;   gameboard:            ;
@@ -29,7 +23,17 @@ TickToBottom    =    6
 ;                         ;
 ; ======================= ;
 
-TicksMatrix     dd                        TickExist, TickExist, TickExist,\ ; game
+WinnerMatrix    dd                        TickEmpty, TickEmpty, TickEmpty,\ ; game
+                                          TickEmpty, TickEmpty, TickEmpty,\
+                    TickEmpty, TickEmpty, TickEmpty, TickEmpty, TickEmpty, TickEmpty, TickEmpty,\
+                    TickEmpty, TickEmpty, TickEmpty, TickExist, TickEmpty, TickEmpty, TickEmpty,\
+                    TickEmpty, TickEmpty, TickEmpty, TickEmpty, TickEmpty, TickEmpty, TickEmpty,\
+                                          TickEmpty, TickEmpty, TickEmpty,\
+                                          TickEmpty, TickEmpty, TickEmpty,\
+                    11 dup(TickExist),\ ; garbage
+                    11 dup(TickExist),\
+                    9  dup(TickExist)
+EtalonMatrix    dd                        TickExist, TickExist, TickExist,\ ; game
                                           TickExist, TickExist, TickExist,\
                     TickExist, TickExist, TickExist, TickExist, TickExist, TickExist, TickExist,\
                     TickExist, TickExist, TickExist, TickEmpty, TickExist, TickExist, TickExist,\
@@ -39,8 +43,31 @@ TicksMatrix     dd                        TickExist, TickExist, TickExist,\ ; ga
                     11 dup(TickEmpty),\ ; garbage
                     11 dup(TickEmpty),\
                     9  dup(TickEmpty)
+; TicksMatrix     dd                        TickExist, TickExist, TickExist,\ ; game
+;                                           TickExist, TickExist, TickExist,\
+;                     TickExist, TickExist, TickExist, TickExist, TickExist, TickExist, TickExist,\
+;                     TickExist, TickExist, TickExist, TickEmpty, TickExist, TickExist, TickExist,\
+;                     TickExist, TickExist, TickExist, TickExist, TickExist, TickExist, TickExist,\
+;                                           TickExist, TickExist, TickExist,\
+;                                           TickExist, TickExist, TickExist,\
+;                     11 dup(TickEmpty),\ ; garbage
+;                     11 dup(TickEmpty),\
+;                     9  dup(TickEmpty)
+TicksMatrix     dd                        TickEmpty, TickEmpty, TickEmpty,\ ; game
+                                          TickEmpty, TickEmpty, TickEmpty,\
+                    TickEmpty, TickEmpty, TickEmpty, TickEmpty, TickEmpty, TickEmpty, TickEmpty,\
+                    TickEmpty, TickEmpty, TickEmpty, TickEmpty, TickEmpty, TickEmpty, TickEmpty,\
+                    TickEmpty, TickEmpty, TickEmpty, TickExist, TickEmpty, TickEmpty, TickEmpty,\
+                                          TickEmpty, TickExist, TickEmpty,\
+                                          TickEmpty, TickEmpty, TickEmpty,\
+                    11 dup(TickExist),\ ; garbage
+                    11 dup(TickExist),\
+                    9  dup(TickEmpty)
 
-garbgeCounter   dd  0
+freeGarbage     =   0
+garbgeCounter   dd  freeGarbage
+isGameStart     dd  GL_FALSE ; for recovery button
+currentScore    dd  0
 
 struct TickMoveDirection
     BETWEEN dd  0

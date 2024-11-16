@@ -14,3 +14,9 @@ proc Game.Leave.Winner
     stdcall Page.ChangePage, WinnerPage
     ret
 endp
+
+proc Game.Leave.Restart
+    stdcall Game.RecoveryTicks
+    stdcall Page.ChangePage, GamePage
+    ret
+endp

@@ -51,10 +51,16 @@ Anim_ExitText_cl                dd  pp_ebtn_brdr_design,\
                                     ebtn_text_color, pale_color, brown_text_color
 Anim_ExitFont_cl                dd  pp_ebtn_brdr_design,\
                                     ebtn_font_color, brown_text_color, pale_color 
-Anim_PausePage                  dd  4,\
+Anim_RetBtnFont_cl              dd  pp_return_circle_desing,\
+                                    retbtn_font_color, pale_color, brown_text_color
+Anim_RetBtnHrst_cl              dd  pp_return_circle_desing,\
+                                    retbtn_chrst_color, brown_text_color, pale_color
+Anim_PausePage                  dd  6,\
                                     Anim_btn_cl, Anim_SaveAExitText_cl,\
                                     Anim_btn_cl, Anim_SaveAExitFont_cl,\
                                     Anim_btn_cl, Anim_ExitText_cl,\
-                                    Anim_btn_cl, Anim_ExitFont_cl
+                                    Anim_btn_cl, Anim_ExitFont_cl,\
+                                    Anim_btn_cl, Anim_RetBtnFont_cl,\
+                                    Anim_btn_cl, Anim_RetBtnHrst_cl
 
 AnimsList                       dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage, Anim_PausePage

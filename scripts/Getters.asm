@@ -30,7 +30,122 @@ proc GetGLfloatColor\
         mov     eax, [res]
     ret
 endp
+; =================== Creat Quard coords ===== ;
+proc Scripts.Getters.ConvertWithQuardCoords uses eax ebx ecx edi,\
+     coords, resAdress
+    mov     ebx, [coords]
+    mov     edi, [resAdress]
+    .rect:
+        mov     ecx, [ebx]
+        mov     [edi], ecx
+        add     ebx, 4
+        cmp     ecx, 0
+        je      .circle
+        add     edi, 4
+        .convertRect:
+            mov     eax, [ebx]
+            stdcall GetXGLfloatCoord, eax
+            mov     [edi], eax
 
+            mov     eax, [ebx + 4]
+            stdcall GetYGLfloatCoord, eax
+            mov     [edi + 4], eax
+
+            mov     eax, [ebx + 8]
+            stdcall GetXGLfloatCoord, eax
+            mov     [edi + 8], eax
+
+            mov     eax, [ebx + 12]
+            stdcall GetYGLfloatCoord, eax
+            mov     [edi + 12], eax
+
+            mov     eax, [ebx + 16]
+            stdcall GetXGLfloatCoord, eax
+            mov     [edi + 16], eax
+
+            mov     eax, [ebx + 20]
+            stdcall GetYGLfloatCoord, eax
+            mov     [edi + 20], eax
+
+            mov     eax, [ebx + 24]
+            stdcall GetXGLfloatCoord, eax
+            mov     [edi + 24], eax
+
+            mov     eax, [ebx + 28]
+            stdcall GetYGLfloatCoord, eax
+            mov     [edi + 28], eax
+
+            add     ebx, 32
+            add     edi, 32
+            loop    .convertRect
+    .circle:
+        mov     edi, [resAdress]
+        add     edi, 228
+        mov     ecx, [ebx]
+        mov     [edi], ecx
+        cmp     ecx, 0
+        je      .exit
+        add     ebx, 4
+        add     edi, 4
+        .convertCircle:
+            push    ecx
+            ; center
+            mov     eax, [ebx]
+            stdcall GetXGLfloatCoord, eax
+            mov     [edi], eax
+            mov     eax, [ebx + 4]
+            stdcall GetYGLfloatCoord, eax
+            mov     [edi + 4], eax
+            mov     eax, [ebx + 8]
+            mov     [edi + 8], eax
+            add     edi, 12
+            ; circle coords
+            fldpi
+            fadd    st0, st0
+            fidiv   dword [degreeCount]
+            mov     ecx, [degreeCount]
+            inc     ecx
+            .drawDot:
+                fld     st0
+                fimul   [curentDeg]
+                fstp    [curentRudDeg]
+
+                ; x
+                fld     [curentRudDeg]
+                fcos
+                fimul   dword [ebx + 8]
+                fiadd   dword [ebx]
+                fstp    dword [edi]
+
+                ; y
+                fld     [curentRudDeg]
+                fsin
+                fimul   dword [ebx + 8]
+                fiadd   dword [ebx + 4]
+                fstp    dword [edi + 4]
+
+                ; convert
+                mov     eax, [edi]
+                stdcall GetXGLfloatCoordFromFloat, eax
+                mov     [edi], eax
+
+                mov     eax, [edi + 4]
+                stdcall GetYGLfloatCoordFromFloat, eax
+                mov     [edi + 4], eax
+
+                add     [curentDeg], 1
+                dec     ecx
+                add     edi, 8
+                cmp     ecx, 0
+                jne     .drawDot
+            mov     [curentDeg], 0
+            pop     ecx
+            add     ebx, 12
+            dec     ecx
+            jne     .convertCircle
+    .exit:
+        ret
+endp
 ; =================== Rect =================== ;
 proc Scripts.Getters.ConvertCoords uses eax ebx ecx edi,\
      coords, resAdress

@@ -491,3 +491,8 @@ pp_ebtn_font_coords dd 2,\
                         863, 611, 8,\
                        1057, 586, 8,\
                        1057, 611, 8
+pp_return_chrest_design DrawModel ?
+pp_return_chrest_coords dd  2,\
+                            1185, 457, 1189, 457, 1201, 445, 1197, 445,\
+                            1185, 445, 1189, 445, 1201, 457, 1197, 457,\
+                            0

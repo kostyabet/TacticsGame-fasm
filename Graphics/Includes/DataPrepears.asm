@@ -47,6 +47,8 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, pp_esbtn_font_coords, pp_esbtn_font_desing
     stdcall Scripts.Getters.ConvertCoords, pp_ebtn_brdr_coords, pp_ebtn_brdr_design
     stdcall Scripts.Getters.ConvertCoords, pp_ebtn_font_coords, pp_ebtn_font_desing
+
+    stdcall Scripts.Getters.ConvertWithQuardCoords, pp_return_chrest_coords, pp_return_chrest_design
 ; 375 44 485 32 86 Генадий Григорьевич
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design

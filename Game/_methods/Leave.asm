@@ -9,3 +9,8 @@ proc Game.Leave.WithSaving
     stdcall Page.ChangePage, MainPage
     ret
 endp
+
+proc Game.Leave.Winner
+    stdcall Page.ChangePage, WinnerPage
+    ret
+endp

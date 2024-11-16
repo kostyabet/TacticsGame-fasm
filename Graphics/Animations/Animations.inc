@@ -40,8 +40,7 @@ Anim_GamePage                   dd  4,\
 Anim_AboutPage                  dd  1,\
                                     Anim_btn_cl, Anim_SubPages_cl
 
-Anim_SettingsPage               dd  1,\
-                                    Anim_btn_cl, Anim_SubPages_cl
+Anim_SettingsPage               dd  0
 
 Anim_SaveAExitText_cl           dd  pp_esbtn_brdr_design,\
                                     esbtn_text_color, brown_color, brown_text_color
@@ -63,4 +62,6 @@ Anim_PausePage                  dd  6,\
                                     Anim_btn_cl, Anim_RetBtnFont_cl,\
                                     Anim_btn_cl, Anim_RetBtnHrst_cl
 
-AnimsList                       dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage, Anim_PausePage
+Anim_WinnerPage                 dd  0
+
+AnimsList                       dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage, Anim_PausePage, Anim_WinnerPage

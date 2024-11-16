@@ -117,7 +117,7 @@ proc Game.OnTickClick,\
      stdcall Game.CheckIsGameEnd
      cmp     eax, GL_TRUE
      jne     @F
-        ; end of the game alghoritm
+        stdcall     Game.Leave.Winner
      @@:
      jmp     .reset
     .notASingle:

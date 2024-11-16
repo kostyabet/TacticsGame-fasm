@@ -27,4 +27,6 @@ pp_events       dd  3,\
                     et_wndbutton, pp_ebtn_brdr_design,     Game.Leave.WithoutSaving,\
                     et_wndbutton, pp_esbtn_brdr_design,    Game.Leave.WithSaving
 
-EventsList      dd  lp_events, mp_events, gp_events, ap_events, sp_events, pp_events
+wp_events       dd  0
+
+EventsList      dd  lp_events, mp_events, gp_events, ap_events, sp_events, pp_events, wp_events

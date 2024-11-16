@@ -43,10 +43,7 @@ proc Game.OnClick.PageButton uses eax ebx,\
     cmp     eax, GL_FALSE
     je      .exit
             
-    mov     eax, [CurentPage]
-    mov     [PrevousPage], eax
-    mov     eax, [nextPage]
-    mov     [CurentPage], eax
+    stdcall Page.ChangePage, [nextPage]
     .exit:
         ret
 endp

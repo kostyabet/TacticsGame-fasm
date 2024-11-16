@@ -22,7 +22,9 @@ ap_events       dd  1,\
 
 sp_events       dd  0
 
-pp_events       dd  1,\
-                    et_prevpage, pp_return_circle_desing, PrevousPage
+pp_events       dd  3,\
+                    et_prevpage,  pp_return_circle_desing, PrevousPage,\
+                    et_wndbutton, pp_ebtn_brdr_design,     Game.Leave.WithoutSaving,\
+                    et_wndbutton, pp_esbtn_brdr_design,    Game.Leave.WithSaving
 
 EventsList      dd  lp_events, mp_events, gp_events, ap_events, sp_events, pp_events

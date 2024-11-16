@@ -67,6 +67,7 @@ TicksMatrix     dd                        TickEmpty, TickEmpty, TickEmpty,\ ; ga
 freeGarbage     =   0
 garbgeCounter   dd  freeGarbage
 isGameStart     dd  GL_FALSE ; for recovery button
+currentScore    dd  0
 
 struct TickMoveDirection
     BETWEEN dd  0

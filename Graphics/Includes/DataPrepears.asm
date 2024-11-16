@@ -47,8 +47,13 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, pp_esbtn_font_coords, pp_esbtn_font_desing
     stdcall Scripts.Getters.ConvertCoords, pp_ebtn_brdr_coords, pp_ebtn_brdr_design
     stdcall Scripts.Getters.ConvertCoords, pp_ebtn_font_coords, pp_ebtn_font_desing
-
     stdcall Scripts.Getters.ConvertWithQuardCoords, pp_return_chrest_coords, pp_return_chrest_design
+
+    stdcall Scripts.Getters.ConvertCoords, wp_border_coords, wp_border_design 
+    stdcall Scripts.Getters.ConvertCoords, wp_font_coords, wp_font_desing
+    stdcall Scripts.Getters.ConvertCoords, wp_return_circle_coords, wp_return_circle_desing
+    stdcall Scripts.Getters.ConvertWithQuardCoords, wp_return_chrest_coords, wp_return_chrest_design
+
 ; 375 44 485 32 86 Генадий Григорьевич
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
@@ -91,6 +96,7 @@ proc Graphics.Colors.Prepear
     stdcall Scripts.Getters.Color, [cl_body],         body_color
     stdcall Scripts.Getters.Color, [cl_orange],       orange_color
     stdcall Scripts.Getters.Color, [cl_pale],         pale_color
+    stdcall Scripts.Getters.Color, [cl_brow_black],   brown_black_color
     
     ret
 endp
@@ -111,9 +117,12 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_P_hk, str_P_hk, fs_hk, tg_hk, str_P_hk_pos
     stdcall Graphics.Draw.Text.Prepear, txt_S_hk, str_S_hk, fs_hk, tg_hk, str_S_hk_pos
 
-    stdcall Graphics.Draw.Text.Prepear, txt_pause, str_pause, fs_pause, tg_pause, str_pause_pos 
-    stdcall Graphics.Draw.Text.Prepear, txt_exit,  str_exit,  fs_exit,  tg_exit,  str_exit_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_saveAexit, str_saveAexit, fs_saveAexit , tg_saveAexit, str_saveAexit_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_pause,     str_pause,     fs_pause,     tg_pause,     str_pause_pos 
+    stdcall Graphics.Draw.Text.Prepear, txt_exit,      str_exit,      fs_exit,      tg_exit,      str_exit_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_saveAexit, str_saveAexit, fs_saveAexit, tg_saveAexit, str_saveAexit_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_winner,    str_winner,    fs_winner,    tg_winner,    str_winner_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_score,     str_score,     fs_score,     tg_score,     str_score_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_score_num, str_score_num, fs_score_num, tg_score_num, str_score_num_pos
 
     ret
 endp

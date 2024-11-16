@@ -42,26 +42,32 @@ Anim_AboutPage                  dd  1,\
 
 Anim_SettingsPage               dd  0
 
-Anim_SaveAExitText_cl           dd  pp_esbtn_brdr_design,\
+Anim_PSaveAExitText_cl          dd  pp_esbtn_brdr_design,\
                                     esbtn_text_color, brown_color, brown_text_color
-Anim_SaveAExitFont_cl           dd  pp_esbtn_brdr_design,\
+Anim_PSaveAExitFont_cl          dd  pp_esbtn_brdr_design,\
                                     esbtn_font_color, brown_text_color, brown_color
-Anim_ExitText_cl                dd  pp_ebtn_brdr_design,\
+Anim_PExitText_cl               dd  pp_ebtn_brdr_design,\
                                     ebtn_text_color, pale_color, brown_text_color
-Anim_ExitFont_cl                dd  pp_ebtn_brdr_design,\
+Anim_PExitFont_cl               dd  pp_ebtn_brdr_design,\
                                     ebtn_font_color, brown_text_color, pale_color 
-Anim_RetBtnFont_cl              dd  pp_return_circle_desing,\
+Anim_PRetBtnFont_cl             dd  pp_return_circle_desing,\
                                     retbtn_font_color, pale_color, brown_text_color
-Anim_RetBtnHrst_cl              dd  pp_return_circle_desing,\
+Anim_PRetBtnHrst_cl             dd  pp_return_circle_desing,\
                                     retbtn_chrst_color, brown_text_color, pale_color
 Anim_PausePage                  dd  6,\
-                                    Anim_btn_cl, Anim_SaveAExitText_cl,\
-                                    Anim_btn_cl, Anim_SaveAExitFont_cl,\
-                                    Anim_btn_cl, Anim_ExitText_cl,\
-                                    Anim_btn_cl, Anim_ExitFont_cl,\
-                                    Anim_btn_cl, Anim_RetBtnFont_cl,\
-                                    Anim_btn_cl, Anim_RetBtnHrst_cl
+                                    Anim_btn_cl, Anim_PSaveAExitText_cl,\
+                                    Anim_btn_cl, Anim_PSaveAExitFont_cl,\
+                                    Anim_btn_cl, Anim_PExitText_cl,\
+                                    Anim_btn_cl, Anim_PExitFont_cl,\
+                                    Anim_btn_cl, Anim_PRetBtnFont_cl,\
+                                    Anim_btn_cl, Anim_PRetBtnHrst_cl
 
-Anim_WinnerPage                 dd  0
+Anim_WRetBtnFont_cl             dd  wp_return_circle_desing,\
+                                    retbtn_font_color, pale_color, brown_text_color
+Anim_WRetBtnHrst_cl             dd  wp_return_circle_desing,\
+                                    retbtn_chrst_color, brown_text_color, pale_color
+Anim_WinnerPage                 dd  2,\
+                                    Anim_btn_cl, Anim_WRetBtnFont_cl,\
+                                    Anim_btn_cl, Anim_WRetBtnHrst_cl
 
 AnimsList                       dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage, Anim_PausePage, Anim_WinnerPage

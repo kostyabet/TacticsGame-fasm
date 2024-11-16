@@ -25,6 +25,7 @@ cl_brown          dd      0x00C88762
 cl_brown_light    dd      0x00CDA791
 cl_brown_medium   dd      0x00BC957F
 cl_brown_dark     dd      0x009B8071
+cl_brow_black     dd      0x003B1E0F
 cl_gray           dd      0x00454141
 cl_red_light      dd      0x00AD3B3B
 cl_red            dd      0x00983838
@@ -61,6 +62,7 @@ brown_color        BackgroundColor ?
 brown_light_color  BackgroundColor ?
 brown_medium_color BackgroundColor ?
 brown_dark_color   BackgroundColor ?
+brown_black_color  BackgroundColor ?
 gray_color         BackgroundColor ?
 red_light_color    BackgroundColor ? 
 red_color          BackgroundColor ?

@@ -1,0 +1,10 @@
+dgt_34  dd  ?
+dgt_35  dd  ?
+dgt_36  dd  ?
+dgt_37  dd  ?
+dgt_38  dd  ?
+dgt_39  dd  ?
+dgt_40  dd  ?
+dgt_41  dd  ?
+dgt_42  dd  ?
+dgt_43  dd  ?

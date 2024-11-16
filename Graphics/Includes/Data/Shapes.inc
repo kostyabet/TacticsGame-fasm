@@ -455,6 +455,11 @@ pp_return_circle_desing  DrawModel ?
 pp_return_circle_coords  dd   0,\
                               1,\
                               1193, 452, 13
+pp_return_chrest_design DrawModel ?
+pp_return_chrest_coords dd  2,\
+                            1185, 457, 1189, 457, 1201, 445, 1197, 445,\
+                            1185, 445, 1189, 445, 1201, 457, 1197, 457,\
+                            0
 pp_esbtn_brdr_design DrawModel ?
 pp_esbtn_brdr_coords dd 2,\
                           790, 510, 1130, 564,\
@@ -491,8 +496,32 @@ pp_ebtn_font_coords dd 2,\
                         863, 611, 8,\
                        1057, 586, 8,\
                        1057, 611, 8
-pp_return_chrest_design DrawModel ?
-pp_return_chrest_coords dd  2,\
-                            1185, 457, 1189, 457, 1201, 445, 1197, 445,\
-                            1185, 445, 1189, 445, 1201, 457, 1197, 457,\
+
+; winner page
+wp_border_design    DrawModel   ?
+wp_border_coords    dd          2,\
+                                725, 372, 1195, 707,\
+                                705, 392, 1215, 687,\
+                                4,\
+                                725, 392, 20,\
+                                725, 687, 20,\
+                                1195, 392, 20,\
+                                1195, 687, 20
+wp_font_desing      DrawModel   ?
+wp_font_coords      dd          2,\
+                                727, 377, 1193, 702,\
+                                710, 394, 1210, 685,\
+                                4,\
+                                 727, 394, 17,\
+                                 727, 685, 17,\
+                                1193, 394, 17,\
+                                1193, 685, 17
+wp_return_circle_desing  DrawModel ?
+wp_return_circle_coords  dd   0,\
+                              1,\
+                              1193, 394, 14
+wp_return_chrest_design DrawModel ?
+wp_return_chrest_coords dd  2,\
+                            1185, 388, 1189, 388, 1201, 400, 1197, 400,\
+                            1185, 400, 1189, 400, 1201, 388, 1197, 388,\
                             0

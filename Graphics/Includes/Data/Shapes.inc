@@ -634,3 +634,133 @@ sp_chhkfont_coords      dd  2,\
                              813, 660, 3,\
                             1107, 636, 3,\
                             1107, 660, 3
+sp_switch_mbrdr_design DrawModel ?
+sp_switch_mbrdr_coords dd  2,\
+                            900, 542, 953, 562,\
+                            898, 544, 955, 560,\
+                            4,\
+                            900, 544, 2,\
+                            900, 560, 2,\
+                            953, 544, 2,\
+                            953, 560, 2
+sp_switch_mfont_design DrawModel ?
+sp_switch_mfont_coords dd  2,\
+                             900, 544, 953, 561,\
+                             899, 545, 954, 560,\
+                             4,\
+                             900, 545, 1,\
+                             900, 560, 1,\
+                             953, 545, 1,\
+                             953, 560, 1
+sp_switch_moff_design  DrawModel ?
+sp_switch_moff_coords  dd   2,\
+                            903, 545, 913, 559,\
+                            901, 547, 915, 557,\
+                            4,\
+                            903, 547, 2,\
+                            903, 557, 2,\
+                            913, 547, 2,\
+                            913, 557, 2
+sp_switch_mon_design   DrawModel ?
+sp_switch_mon_coords   dd   2,\
+                            940, 545, 950, 559,\
+                            938, 547, 952, 557,\
+                            4,\
+                            940, 547, 2,\
+                            940, 557, 2,\
+                            950, 547, 2,\
+                            950, 557, 2
+sp_switch_vbrdr_design DrawModel ?
+sp_switch_vbrdr_coords dd  2,\
+                            1081, 542, 1134, 562,\
+                            1079, 544, 1136, 560,\
+                            4,\
+                            1134, 544, 2,\
+                            1134, 560, 2,\
+                            1081, 544, 2,\
+                            1081, 560, 2
+sp_switch_vfont_design DrawModel ?
+sp_switch_vfont_coords dd  2,\
+                            1081, 544, 1134, 561,\
+                            1080, 546, 1135, 560,\
+                            4,\
+                            1081, 545, 1,\
+                            1081, 560, 1,\
+                            1134, 545, 1,\
+                            1134, 560, 1
+sp_switch_voff_design   DrawModel ?
+sp_switch_voff_coords   dd  2,\
+                            1084, 545, 1094, 559,\
+                            1082, 547, 1096, 557,\
+                            4,\
+                            1084, 547, 2,\
+                            1084, 557, 2,\
+                            1094, 547, 2,\
+                            1094, 557, 2
+sp_switch_von_design    DrawModel ?
+sp_switch_von_coords    dd  2,\
+                            1121, 545, 1130, 559,\
+                            1119, 547, 1132, 557,\
+                            4,\
+                            1121, 547, 2,\
+                            1121, 557, 2,\
+                            1130, 547, 2,\
+                            1130, 557, 2
+sp_switch_hbrdr_design DrawModel ?
+sp_switch_hbrdr_coords dd  2,\
+                            1062, 600, 1115, 620,\
+                            1060, 602, 1117, 618,\
+                            4,\
+                            1062, 602, 2,\
+                            1062, 618, 2,\
+                            1115, 602, 2,\
+                            1115, 618, 2
+sp_switch_hfont_design DrawModel ?
+sp_switch_hfont_coords dd  2,\
+                            1062, 601, 1115, 619,\
+                            1061, 602, 1116, 618,\
+                            4,\
+                            1062, 602, 1,\
+                            1062, 618, 1,\
+                            1115, 602, 1,\
+                            1115, 618, 1
+sp_switch_hoff_design   DrawModel ?
+sp_switch_hoff_coords   dd  2,\
+                            1065, 603, 1075, 617,\
+                            1063, 605, 1077, 615,\
+                            4,\
+                            1065, 605, 2,\
+                            1065, 615, 2,\
+                            1075, 605, 2,\
+                            1075, 615, 2
+sp_switch_hon_design    DrawModel ?
+sp_switch_hon_coords    dd  2,\
+                            1102, 603, 1112, 617,\
+                            1100, 605, 1114, 615,\
+                            4,\
+                            1102, 605, 2,\
+                            1102, 615, 2,\
+                            1112, 605, 2,\
+                            1112, 615, 2
+sp_volume_font_design   DrawModel ?
+sp_volume_font_coords   dd  2,\
+                            918, 514, 1164, 520,\
+                            916, 516, 1166, 518,\
+                            4,\
+                            918, 516, 2,\
+                            918, 518, 2,\
+                            1164, 516, 2,\
+                            1164, 518, 2
+sp_volume_cmpl_design   DrawModel ?
+sp_volume_cmpl_coords   dd  2,\
+                            918, 514, 976, 520,\
+                            916, 516, 978, 518,\
+                            4,\
+                            918, 516, 2,\
+                            918, 518, 2,\
+                            976, 516, 2,\
+                            976, 518, 2
+sp_volume_dot_design    DrawModel  ?
+sp_volume_dot_coords    dd  0,\
+                            1,\
+                            977, 517, 7

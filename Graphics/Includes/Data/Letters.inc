@@ -61,6 +61,8 @@ fs_score_num    =       5
 fs_again        =       0
 fs_msettings    =       10
 fs_chhotkeys    =       -5
+fs_music        =       -2
+fs_hotkeys      =       -2
 
 fs_default      =       20
 

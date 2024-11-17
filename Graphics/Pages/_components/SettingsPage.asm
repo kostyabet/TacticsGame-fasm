@@ -19,5 +19,39 @@ proc Draw.Pages.SettingsPage
     stdcall Graphics.Draw.Shapes, sp_chhkbrdr_design, brown_text_color
     stdcall Graphics.Draw.Shapes, sp_chhkfont_design, chhtkeys_font_color
     stdcall Graphics.Draw.Text.Write, txt_chhotkeys, chhtkeys_text_color
+
+    ; volume line
+    stdcall Graphics.Draw.Shapes, sp_volume_font_design, brown_color
+    stdcall Graphics.Draw.Shapes, sp_volume_cmpl_design, brown_text_color
+    stdcall Graphics.Draw.Shapes, sp_volume_dot_design, brown_text_color
+    stdcall Graphics.Draw.Text.Write, txt_volume, brown_text_color
+
+    stdcall Draw.DrawSwitch, sp_switch_mbrdr_design, sp_switch_mfont_design, txt_music,\
+        sp_switch_moff_design, sp_switch_mon_design, [IS_MUSIC_ON]
+
+    stdcall Draw.DrawSwitch, sp_switch_vbrdr_design, sp_switch_vfont_design, txt_voice,\
+        sp_switch_voff_design, sp_switch_von_design, [IS_VOICE_ON]
+
+    stdcall Draw.DrawSwitch, sp_switch_hbrdr_design, sp_switch_hfont_design, txt_hotkeys,\
+        sp_switch_hoff_design, sp_switch_hon_design, [IS_HOTKEY_ON]
+
+    ret
+endp
+
+proc Draw.DrawSwitch,\
+    border, font, txt, off, on, IS_ON
+
+    stdcall Graphics.Draw.Shapes, [border], brown_text_color
+    stdcall Graphics.Draw.Shapes, [font], body_color
+    stdcall Graphics.Draw.Text.Write, [txt], brown_text_color
+    cmp     [IS_ON], GL_TRUE
+    je      .ON
+    .OF:
+        stdcall Graphics.Draw.Shapes, [off], brown_text_color
+        jmp     @F
+    .ON:
+        stdcall Graphics.Draw.Shapes, [on], brown_text_color
+    @@:
+
     ret
 endp

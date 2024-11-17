@@ -1,0 +1,1 @@
+include '_components/OnSwitchClick.asm'

@@ -69,6 +69,22 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, sp_chhkbrdr_coords, sp_chhkbrdr_design
     stdcall Scripts.Getters.ConvertCoords, sp_chhkfont_coords, sp_chhkfont_design
 
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_mbrdr_coords, sp_switch_mbrdr_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_mfont_coords, sp_switch_mfont_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_vbrdr_coords, sp_switch_vbrdr_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_vfont_coords, sp_switch_vfont_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_hbrdr_coords, sp_switch_hbrdr_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_hfont_coords, sp_switch_hfont_design
+    stdcall Scripts.Getters.ConvertCoords, sp_volume_font_coords, sp_volume_font_design
+    stdcall Scripts.Getters.ConvertCoords, sp_volume_cmpl_coords, sp_volume_cmpl_design
+    stdcall Scripts.Getters.ConvertCoords, sp_volume_dot_coords, sp_volume_dot_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_moff_coords, sp_switch_moff_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_mon_coords, sp_switch_mon_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_voff_coords, sp_switch_voff_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_von_coords, sp_switch_von_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_hoff_coords, sp_switch_hoff_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_hon_coords, sp_switch_hon_design
+
 ; 375 44 485 32 86 Генадий Григорьевич
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
@@ -143,6 +159,10 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_stats,     str_stats,     fs_again,     tg_again,     str_stats_pos
     stdcall Graphics.Draw.Text.Prepear, txt_msettings, str_settings,  fs_msettings, tg_msettings, str_msettings_pos
     stdcall Graphics.Draw.Text.Prepear, txt_chhotkeys, str_chhotkeys, fs_chhotkeys, tg_chhotkeys, str_chhotkeys_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_music,     str_music,     fs_music,     tg_music,     str_music_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_voice,     str_voice,     fs_music,     tg_voice,     str_voice_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hotkeys,   str_hotkeys,   fs_hotkeys,   tg_hotkeys,   str_hotkeys_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_volume,    str_volume,    fs_music,     tg_volume,    str_volume_pos
 
     ret
 endp

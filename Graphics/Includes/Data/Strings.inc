@@ -47,6 +47,10 @@ tg_score_num    =       10
 tg_again        =       10
 tg_msettings    =       10
 tg_chhotkeys    =       7
+tg_music        =       10
+tg_voice        =       8
+tg_hotkeys      =       8
+tg_volume       =       8
 
 ; ====== Interfaces ====== ;
 struct Points
@@ -143,6 +147,15 @@ str_msettings_pos   dd      845, 420
 str_chhotkeys       db      19, 14, 6, 15, 1, 44, 4, 16, 18, 33, 25, 10, 23, 44, 12, 13, 1, 3, 10, 26, 0 ; 'СМЕНА ГОРЯЧИХ КЛАВИШ'
 str_chhotkeys_pos   dd      817, 637
 
+str_music           db      14, 21, 9, 29, 12, 1, 0 ; 'МУЗЫКА'
+str_music_pos       dd      783, 540
+str_voice           db      9, 3, 21, 12, 10, 0 ; 'ЗВУКИ'
+str_voice_pos       dd      989, 540
+str_hotkeys         db      4, 16, 18, 33, 25, 10, 6, 44, 12, 13, 1, 3, 10, 26, 10, 0 ; 'ГОРЯЧИЕ КЛАВИШИ'
+str_hotkeys_pos     dd      802, 598
+str_volume          db      4, 18, 16, 14, 12, 16, 19, 20, 30, 0 ; 'ГРОМКОСТЬ'
+str_volume_pos      dd      754, 506
+
 str_R_hk            db      71, 0 ; 'R'
 str_R_hk_pos        dd      1805, 29
 str_S_hk            db      72, 0 ; 'S'
@@ -182,6 +195,10 @@ txt_wexit           String  ?
 txt_stats           String  ?
 txt_msettings       String  ?
 txt_chhotkeys       String  ?
+txt_music           String  ?
+txt_voice           String  ?
+txt_hotkeys         String  ?
+txt_volume          String  ?
 
 arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5,  ltr_RU_6,  ltr_RU_7,\ ; RU
                             ltr_RU_8,  ltr_RU_9,  ltr_RU_10, ltr_RU_11, ltr_RU_12, ltr_RU_13, ltr_RU_14,\

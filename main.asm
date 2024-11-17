@@ -19,6 +19,8 @@ include 'Scripts/Getters.asm'
 
 include 'Mouse/Includes.asm'
 
+include 'Audio/Includes.asm'
+
 section '.text' code readable executable
 
   start:

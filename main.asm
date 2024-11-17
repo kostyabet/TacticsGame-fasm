@@ -1,6 +1,33 @@
 format PE GUI 4.0
 entry start
 
+macro malloc [arg]
+{
+  argc = 0
+forward
+  if ~arg eq
+    argc = argc+1
+  end if
+common
+  if argc = 1
+    invoke  HeapAlloc, [hHeap], ebx, arg
+  else if argc = 2
+    match count, size, arg
+    \{
+        invoke HeapAlloc, [hHeap], 8, count * size
+      \}
+  end if
+}
+
+macro memcpy dest, src, count
+{
+        mov     esi, src
+        mov     edi, dest
+        mov     ecx, count
+        rep     movsb
+}
+
+
 include 'win32a.inc'
 include 'opengl.inc'
 include 'main.inc'
@@ -53,7 +80,7 @@ section '.text' code readable executable
       stdcall Game.ModelsPrepear
       stdcall Game.PrepearTicks
       stdcall Graphics.Colors.PrepearWithAlpha
-      stdcall Graphics.File.LoadBoat, boat
+      stdcall Graphics.File.LoadBoat, boatPath
       mov     [IS_INFO_PREPEAR], GL_TRUE
 
   msg_loop:
@@ -161,7 +188,7 @@ section '.data' data readable writeable
   hdc    dd ?
   hrc    dd ?
 
-  boat   db  'test.bmp', 0
+  boatPath db  'test.bmp', 0
   hHeap  dd ?
 
   msg    MSG

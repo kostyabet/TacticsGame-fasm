@@ -1,44 +1,45 @@
-proc Graphics.File.LoadBoat,\
+proc Graphics.File.LoadBoat uses eax ebx ecx edx esi edi,\
     filePath
     locals 
-        buffer dd 0 
-        BMPBuffer dd 0
-        BMPBufferSize dd 0
-        h dd ?
-        w dd ?
+        buffer          dd  0 
+        BMPBuffer       dd  0
+        BMPBufferSize   dd  0
+        h               dd  ?
+        w               dd  ?
     endl
     stdcall Graphics.File.GetData, [filePath]
-    ; mov ebx, eax
+    mov     ebx, eax
 
-    ; mov eax, [ebx + BMP.biHeight]
-    ; mov ecx, [ebx + BMP.biWidth]
-    ; mov [h], eax
-    ; mov [w], ecx
-    ; xor edx, edx
-    ; mul ecx
+    mov     eax, [ebx + BMP.biHeight]
+    mov     ecx, [ebx + BMP.biWidth]
+    mov     [h], eax
+    mov     [w], ecx
+    xor     edx, edx
+    mul     ecx ; площадь
 
-    ; xor edx, edx
-    ; mov ecx, 3
-    ; mul ecx
+    xor     edx, edx
+    mov     ecx, 3
+    mul     ecx ; to rgb
 
-    ; mov [BMPBufferSize], eax
-    ; malloc eax
+    mov     [BMPBufferSize], eax
+    malloc  eax
 
-    ; mov [BMPBuffer], eax
+    mov     [BMPBuffer], eax
 
-    ; mov eax, [ebx + BMP.bfOffBits]
-    ; add ebx, eax
+    mov     eax, [ebx + BMP.bfOffBits]
+    add     ebx, eax
 
-    ; memcpy [BMPBuffer], ebx, [BMPBufferSize]
+    memcpy  [BMPBuffer], ebx, [BMPBufferSize]
     
-    ; stdcall Log, BMP_LOADED_SUCCESSFULLY, BMP_LOADED_SUCCESSFULLY.size
-    ; mov eax, [BMPBuffer]
-    ; mov ecx, [h]
-    ; mov edx, [w]
+    mov     [boat_bmp.biAddress], eax
+    mov     eax, [h]
+    xchg    [boat_bmp.biHeight], eax
+    mov     eax, [w]
+    xchg    [boat_bmp.biWidth], eax
     ret
 endp
 
-proc Graphics.File.GetData,\
+proc Graphics.File.GetData uses ebx edi,\
     filePath
     locals
         hFile       dd  ?

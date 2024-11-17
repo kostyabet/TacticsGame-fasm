@@ -85,6 +85,9 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, sp_switch_hoff_coords, sp_switch_hoff_design
     stdcall Scripts.Getters.ConvertCoords, sp_switch_hon_coords, sp_switch_hon_design
 
+    stdcall Scripts.Getters.ConvertCoords, lp_boatsprite_coords, lp_boatsprite_design
+    stdcall Scripts.Getters.ConvertCoords, mp_boatsprite_coords, mp_boatsprite_design
+
 ; 375 44 485 32 86 Генадий Григорьевич
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
@@ -196,5 +199,12 @@ proc Graphics.Colors.PrepearWithAlpha
     mov     [font_dark_color.Blue], 0.0
     
     mov     [font_dark_color.Alpha], 0.5
+    ret
+endp
+
+proc Graphics.Texture
+    
+    stdcall Texture.Create, boatloading_texture, boatLoaderPath
+    stdcall Texture.Create, boatbook_texture, boatBookPath
     ret
 endp

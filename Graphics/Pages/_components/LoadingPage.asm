@@ -1,6 +1,6 @@
 proc Draw.Pages.LoadingPage
     .boat: 
-        stdcall Graphics.Draw.Sprite, boat_bmp
+        stdcall Graphics.Draw.Sprite, [boatloading_texture], lp_boatsprite_design
     .bar:
         stdcall Graphics.Draw.Shapes, lp_bar_brdr1_design, book_title_color
         stdcall Graphics.Draw.Shapes, lp_bar_brdr2_design, brown_color

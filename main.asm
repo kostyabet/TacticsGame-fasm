@@ -10,7 +10,7 @@ forward
   end if
 common
   if argc = 1
-    invoke  HeapAlloc, [hHeap], ebx, arg
+    invoke  HeapAlloc, [hHeap], 0, arg
   else if argc = 2
     match count, size, arg
     \{
@@ -57,6 +57,9 @@ section '.text' code readable executable
       mov     [wc.hIcon], eax
       invoke  LoadCursor, 0, IDC_ARROW
       mov     [wc.hCursor], eax
+
+      invoke GetProcessHeap
+      mov    [hHeap], eax
       invoke  RegisterClass, wc
 
       invoke  GetSystemMetrics, SM_CXSCREEN
@@ -70,8 +73,7 @@ section '.text' code readable executable
       invoke glEnable, GL_BLEND
       invoke glBlendFunc, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
 
-      invoke GetProcessHeap
-      mov    [hHeap], eax
+   
 
       ; prepear data
       stdcall Graphics.Draw.CoordsRectPrepears
@@ -80,7 +82,7 @@ section '.text' code readable executable
       stdcall Game.ModelsPrepear
       stdcall Game.PrepearTicks
       stdcall Graphics.Colors.PrepearWithAlpha
-      stdcall Graphics.File.LoadBoat, boatPath
+      stdcall Graphics.Texture
       mov     [IS_INFO_PREPEAR], GL_TRUE
 
   msg_loop:
@@ -188,8 +190,13 @@ section '.data' data readable writeable
   hdc    dd ?
   hrc    dd ?
 
-  boatPath db  'test.bmp', 0
+  boatLoaderPath db  "ship_loader.bmp", 0
+  boatBookPath   db  "ship_book.bmp", 0
+
   hHeap  dd ?
+  logFile  dd ?
+  logFileName  db 'sdfsdf', 0
+  hConsole dd ?
 
   msg    MSG
   rc     RECT
@@ -213,8 +220,12 @@ section '.idata' import data readable writeable
       GetTickCount,'GetTickCount',\
       GetFileSize,'GetFileSize',\
       HeapAlloc,'HeapAlloc',\
+      HeapFree,'HeapFree',\
       GetProcessHeap,'GetProcessHeap',\ 
-      ExitProcess,'ExitProcess'
+      ExitProcess,'ExitProcess',\
+      AllocConsole,'AllocConsole',\
+      GetStdHandle,'GetStdHandle',\
+      WriteConsole,'WriteConsole'
 
   import user,\
       ShowWindow,'ShowWindow',\

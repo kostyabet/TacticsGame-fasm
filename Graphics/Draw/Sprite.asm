@@ -1,5 +1,8 @@
+include 'Shapes/Sprite.asm'
+
 proc Graphics.Draw.Sprite,\
-    boat_bmp
+    texture, design
+    stdcall Graphics.Draw.Shapes.Sprite, [texture], [design]
 
     ret
 endp

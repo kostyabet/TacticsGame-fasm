@@ -38,7 +38,7 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, settings_btn_out_circle_coords, settings_btn_out_circle_design
     stdcall Scripts.Getters.ConvertCoords, settings_btn_in_circle_coords, settings_btn_in_circle_design
     stdcall Scripts.Getters.ConvertCoords, settings_btn_mainline_coords, settings_btn_mainline_design
-    stdcall Scripts.Getters.ConvertCoords, settings_btn_subline_coords, settings_btn_subline_design
+    stdcall Scripts.Getters.ConvertWithQuardCoords, settings_btn_subline_coords, settings_btn_subline_design
 
     stdcall Scripts.Getters.ConvertCoords, pp_border_coords, pp_border_desing
     stdcall Scripts.Getters.ConvertCoords, pp_font_coords, pp_font_desing
@@ -60,6 +60,14 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, wp_exitbtn_font_coords, wp_exitbtn_font_design
     stdcall Scripts.Getters.ConvertCoords, wp_leadbtn_brdr_coords, wp_leadbtn_brdr_design
     stdcall Scripts.Getters.ConvertCoords, wp_leadbtn_font_coords, wp_leadbtn_font_design
+
+    stdcall Scripts.Getters.ConvertCoords, sp_border_coords, sp_border_design
+    stdcall Scripts.Getters.ConvertCoords, sp_font_coords, sp_font_design
+    stdcall Scripts.Getters.ConvertCoords, sp_return_circle_coords, sp_return_circle_design
+    stdcall Scripts.Getters.ConvertWithQuardCoords, sp_return_chrest_coords, sp_return_chrest_design
+    stdcall Scripts.Getters.ConvertCoords, sp_lines_coords, sp_lines_design
+    stdcall Scripts.Getters.ConvertCoords, sp_chhkbrdr_coords, sp_chhkbrdr_design
+    stdcall Scripts.Getters.ConvertCoords, sp_chhkfont_coords, sp_chhkfont_design
 
 ; 375 44 485 32 86 Генадий Григорьевич
     ; repeat
@@ -133,6 +141,8 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_again,     str_again,     fs_again,     tg_again,     str_again_pos
     stdcall Graphics.Draw.Text.Prepear, txt_wexit,     str_exit,      fs_again,     tg_again,     str_wexit_pos
     stdcall Graphics.Draw.Text.Prepear, txt_stats,     str_stats,     fs_again,     tg_again,     str_stats_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_msettings, str_settings,  fs_msettings, tg_msettings, str_msettings_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_chhotkeys, str_chhotkeys, fs_chhotkeys, tg_chhotkeys, str_chhotkeys_pos
 
     ret
 endp

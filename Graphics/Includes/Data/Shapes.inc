@@ -407,10 +407,10 @@ settings_btn_mainline_coords    dd  4,\
                                     0
 settings_btn_subline_design     DrawModel   ?
 settings_btn_subline_coords     dd  4,\
-                                    1856, 38, 1862, 44,\
-                                    1877, 16, 1883, 22,\
-                                    1898, 38, 1904, 44,\
-                                    1877, 58, 1883, 64,\
+                                    1861, 55, 1865, 59, 1869, 54, 1865, 50,\
+                                    1895, 59, 1899, 55, 1894, 50, 1890, 54,\
+                                    1899, 25, 1895, 21, 1890, 25, 1895, 29,\
+                                    1865, 29, 1869, 25, 1864, 20, 1860, 24,\
                                     0
 ; pause button
 pause_btn_fnt_design    DrawModel ?
@@ -583,3 +583,54 @@ wp_leadbtn_font_coords  dd          2,\
                                      851, 674, 8,\
                                     1075, 650, 8,\
                                     1075, 674, 8
+; settings page
+sp_border_design    DrawModel   ?
+sp_border_coords    dd  2,\
+                        725, 393, 1195, 687,\ 
+                        705, 413, 1215, 667,\
+                        4,\
+                        725, 413, 20,\
+                        725, 667, 20,\
+                        1195, 413, 20,\
+                        1195, 667, 20
+sp_font_design    DrawModel   ?
+sp_font_coords    dd  2,\
+                        727, 398, 1193, 682,\ 
+                        710, 415, 1210, 665,\
+                        4,\
+                         727, 415, 17,\
+                         727, 665, 17,\
+                        1193, 415, 17,\
+                        1193, 665, 17
+sp_return_circle_design  DrawModel ?
+sp_return_circle_coords  dd   0,\
+                              1,\
+                              1193, 415, 13
+sp_return_chrest_design DrawModel ?
+sp_return_chrest_coords dd  2,\
+                            1185, 409, 1189, 409, 1201, 421, 1197, 421,\
+                            1185, 421, 1189, 421, 1201, 409, 1197, 409,\
+                            0
+sp_lines_design         DrawModel ?
+sp_lines_coords         dd  2,\
+                            710, 482, 1210, 484,\
+                            710, 582, 1210, 584,\
+                            0
+sp_chhkbrdr_design      DrawModel ?
+sp_chhkbrdr_coords      dd  2,\
+                            813, 631, 1107, 665,\
+                            808, 636, 1112, 660,\
+                            4,\
+                             813, 636, 5,\
+                             813, 660, 5,\
+                            1107, 636, 5,\
+                            1107, 660, 5
+sp_chhkfont_design      DrawModel ?
+sp_chhkfont_coords      dd  2,\
+                            813, 633, 1107, 663,\
+                            810, 636, 1110, 660,\
+                            4,\
+                             813, 636, 3,\
+                             813, 660, 3,\
+                            1107, 636, 3,\
+                            1107, 660, 3

@@ -40,7 +40,19 @@ Anim_GamePage                   dd  4,\
 Anim_AboutPage                  dd  1,\
                                     Anim_btn_cl, Anim_SubPages_cl
 
-Anim_SettingsPage               dd  0
+Anim_SReturnFont_cl             dd  sp_return_circle_design,\
+                                    retbtn_font_color, pale_color, brown_text_color
+Anim_SReturnHrst_cl             dd  sp_return_circle_design,\
+                                    retbtn_chrst_color, brown_text_color, pale_color
+Anim_SChHKeysFont_cl            dd  sp_chhkbrdr_design,\
+                                    chhtkeys_font_color, brown_text_color, pale_color
+Anim_SChHKeysText_cl            dd  sp_chhkbrdr_design,\
+                                    chhtkeys_text_color, pale_color, brown_text_color
+Anim_SettingsPage               dd  4,\
+                                    Anim_btn_cl, Anim_SReturnFont_cl,\
+                                    Anim_btn_cl, Anim_SReturnHrst_cl,\
+                                    Anim_btn_cl, Anim_SChHKeysFont_cl,\
+                                    Anim_btn_cl, Anim_SChHKeysText_cl
 
 Anim_PSaveAExitText_cl          dd  pp_esbtn_brdr_design,\
                                     esbtn_text_color, brown_color, brown_text_color

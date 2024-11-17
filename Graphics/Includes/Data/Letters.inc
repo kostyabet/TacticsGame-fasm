@@ -59,6 +59,8 @@ fs_winner       =       10
 fs_score        =       -10
 fs_score_num    =       5
 fs_again        =       0
+fs_msettings    =       10
+fs_chhotkeys    =       -5
 
 fs_default      =       20
 

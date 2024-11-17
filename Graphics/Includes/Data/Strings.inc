@@ -45,6 +45,8 @@ tg_winner       =       18
 tg_score        =       5
 tg_score_num    =       10
 tg_again        =       10
+tg_msettings    =       10
+tg_chhotkeys    =       7
 
 ; ====== Interfaces ====== ;
 struct Points
@@ -136,6 +138,11 @@ str_wexit_pos       dd      917, 590
 str_stats           db      19, 20, 1, 20, 10, 19, 20, 10, 12, 1, 0 ; 'СТАТИСТИКА'
 str_stats_pos       dd      867, 650
 
+str_msettings_pos   dd      845, 420
+
+str_chhotkeys       db      19, 14, 6, 15, 1, 44, 4, 16, 18, 33, 25, 10, 23, 44, 12, 13, 1, 3, 10, 26, 0 ; 'СМЕНА ГОРЯЧИХ КЛАВИШ'
+str_chhotkeys_pos   dd      817, 637
+
 str_R_hk            db      71, 0 ; 'R'
 str_R_hk_pos        dd      1805, 29
 str_S_hk            db      72, 0 ; 'S'
@@ -173,6 +180,8 @@ txt_score_num       String  ?
 txt_again           String  ?
 txt_wexit           String  ?
 txt_stats           String  ?
+txt_msettings       String  ?
+txt_chhotkeys       String  ?
 
 arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5,  ltr_RU_6,  ltr_RU_7,\ ; RU
                             ltr_RU_8,  ltr_RU_9,  ltr_RU_10, ltr_RU_11, ltr_RU_12, ltr_RU_13, ltr_RU_14,\

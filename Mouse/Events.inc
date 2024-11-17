@@ -20,7 +20,8 @@ gp_events       dd  5,\
 ap_events       dd  1,\
                     et_pagebutton, exitbtn_font_design, MainPage
 
-sp_events       dd  0
+sp_events       dd  1,\
+                    et_prevpage,  sp_return_circle_design, PrevousPage
 
 pp_events       dd  3,\
                     et_prevpage,  pp_return_circle_desing, PrevousPage,\

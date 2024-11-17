@@ -11,6 +11,7 @@ include 'Graphics/Includes/DataPrepears.asm'
 include 'Graphics/Includes/DataIncludes.asm'
 include 'Graphics/Pages/PagesInclude.asm'
 include 'Graphics/Animations/Includes.asm'
+include 'Graphics/File/Includes.asm'
 
 include 'Game/Includes.asm'
 
@@ -40,6 +41,9 @@ section '.text' code readable executable
       invoke glEnable, GL_BLEND
       invoke glBlendFunc, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
 
+      invoke GetProcessHeap
+      mov    [hHeap], eax
+
       ; prepear data
       stdcall Graphics.Draw.CoordsRectPrepears
       stdcall Graphics.Colors.Prepear
@@ -47,6 +51,7 @@ section '.text' code readable executable
       stdcall Game.ModelsPrepear
       stdcall Game.PrepearTicks
       stdcall Graphics.Colors.PrepearWithAlpha
+      stdcall Graphics.File.LoadBoat, boat
       mov     [IS_INFO_PREPEAR], GL_TRUE
 
   msg_loop:
@@ -154,6 +159,9 @@ section '.data' data readable writeable
   hdc    dd ?
   hrc    dd ?
 
+  boat   db  'test.bmp', 0
+  hHeap  dd ?
+
   msg    MSG
   rc     RECT
   pfd    PIXELFORMATDESCRIPTOR
@@ -167,8 +175,16 @@ section '.idata' import data readable writeable
       glu,'GLU32.DLL'
 
   import kernel,\
+      CreateFile,'CreateFileA',\
+      ReadFile,'ReadFile',\
+      CloseHandle,'CloseHandle',\
+      GlobalAlloc,'GlobalAlloc',\
+      GlobalFree,'GlobalFree',\
       GetModuleHandle,'GetModuleHandleA',\
       GetTickCount,'GetTickCount',\
+      GetFileSize,'GetFileSize',\
+      HeapAlloc,'HeapAlloc',\
+      GetProcessHeap,'GetProcessHeap',\ 
       ExitProcess,'ExitProcess'
 
   import user,\

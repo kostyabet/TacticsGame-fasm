@@ -20,11 +20,12 @@ gp_events       dd  5,\
 ap_events       dd  1,\
                     et_pagebutton, exitbtn_font_design, MainPage
 
-sp_events       dd  4,\
+sp_events       dd  5,\
                     et_prevpage,  sp_return_circle_design, PrevousPage,\
                     et_wndbutton, sp_switch_mbrdr_design,  Audio.Switch.Music,\
                     et_wndbutton, sp_switch_vbrdr_design,  Audio.Switch.Voice,\
-                    et_wndbutton, sp_switch_hbrdr_design,  Audio.Switch.Hotkey
+                    et_wndbutton, sp_switch_hbrdr_design,  Audio.Switch.Hotkey,\
+                    et_wndbutton, sp_volume_font_design,   Audio.Volume.Change
 
 pp_events       dd  3,\
                     et_prevpage,  pp_return_circle_desing, PrevousPage,\

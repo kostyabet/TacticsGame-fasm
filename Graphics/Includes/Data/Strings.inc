@@ -51,6 +51,7 @@ tg_music        =       10
 tg_voice        =       8
 tg_hotkeys      =       8
 tg_volume       =       8
+tg_switch       =       6
 
 ; ====== Interfaces ====== ;
 struct Points
@@ -156,6 +157,15 @@ str_hotkeys_pos     dd      802, 598
 str_volume          db      4, 18, 16, 14, 12, 16, 19, 20, 30, 0 ; 'ГРОМКОСТЬ'
 str_volume_pos      dd      754, 506
 
+str_off             db      68, 59, 59, 0 ; 'OFF'
+str_moff_pos        dd       922, 545
+str_voff_pos        dd      1104, 545
+str_hoff_pos        dd      1084, 603
+str_on              db      68, 67, 0 ; 'ON'
+str_mon_pos        dd       911, 545
+str_von_pos        dd      1091, 545
+str_hon_pos        dd      1074, 603
+
 str_R_hk            db      71, 0 ; 'R'
 str_R_hk_pos        dd      1805, 29
 str_S_hk            db      72, 0 ; 'S'
@@ -199,6 +209,12 @@ txt_music           String  ?
 txt_voice           String  ?
 txt_hotkeys         String  ?
 txt_volume          String  ?
+txt_moff            String  ?
+txt_voff            String  ?
+txt_hoff            String  ?
+txt_mon             String  ?
+txt_von             String  ?
+txt_hon             String  ?
 
 arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5,  ltr_RU_6,  ltr_RU_7,\ ; RU
                             ltr_RU_8,  ltr_RU_9,  ltr_RU_10, ltr_RU_11, ltr_RU_12, ltr_RU_13, ltr_RU_14,\

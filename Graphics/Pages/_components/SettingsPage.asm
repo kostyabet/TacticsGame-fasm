@@ -27,19 +27,19 @@ proc Draw.Pages.SettingsPage
     stdcall Graphics.Draw.Text.Write, txt_volume, brown_text_color
 
     stdcall Draw.DrawSwitch, sp_switch_mbrdr_design, sp_switch_mfont_design, txt_music,\
-        sp_switch_moff_design, sp_switch_mon_design, [IS_MUSIC_ON]
+        sp_switch_moff_design, txt_moff, sp_switch_mon_design, txt_mon, [IS_MUSIC_ON]
 
     stdcall Draw.DrawSwitch, sp_switch_vbrdr_design, sp_switch_vfont_design, txt_voice,\
-        sp_switch_voff_design, sp_switch_von_design, [IS_VOICE_ON]
+        sp_switch_voff_design, txt_voff, sp_switch_von_design, txt_von, [IS_VOICE_ON]
 
     stdcall Draw.DrawSwitch, sp_switch_hbrdr_design, sp_switch_hfont_design, txt_hotkeys,\
-        sp_switch_hoff_design, sp_switch_hon_design, [IS_HOTKEY_ON]
+        sp_switch_hoff_design, txt_hoff, sp_switch_hon_design, txt_hon, [IS_HOTKEY_ON]
 
     ret
 endp
 
 proc Draw.DrawSwitch,\
-    border, font, txt, off, on, IS_ON
+    border, font, txt, off, offtext, on, ontext, IS_ON
 
     stdcall Graphics.Draw.Shapes, [border], brown_text_color
     stdcall Graphics.Draw.Shapes, [font], body_color
@@ -48,9 +48,11 @@ proc Draw.DrawSwitch,\
     je      .ON
     .OF:
         stdcall Graphics.Draw.Shapes, [off], brown_text_color
+        stdcall Graphics.Draw.Text.Write, [offtext], brown_text_color
         jmp     @F
     .ON:
         stdcall Graphics.Draw.Shapes, [on], brown_text_color
+        stdcall Graphics.Draw.Text.Write, [ontext], brown_text_color
     @@:
 
     ret

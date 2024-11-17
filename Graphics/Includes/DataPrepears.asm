@@ -164,6 +164,13 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_hotkeys,   str_hotkeys,   fs_hotkeys,   tg_hotkeys,   str_hotkeys_pos
     stdcall Graphics.Draw.Text.Prepear, txt_volume,    str_volume,    fs_music,     tg_volume,    str_volume_pos
 
+    stdcall Graphics.Draw.Text.Prepear, txt_moff,      str_off,      fs_switch,    tg_switch,    str_moff_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_voff,      str_off,      fs_switch,    tg_switch,    str_voff_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hoff,      str_off,      fs_switch,    tg_switch,    str_hoff_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_mon,       str_on,       fs_switch,    tg_switch,    str_mon_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_von,       str_on,       fs_switch,    tg_switch,    str_von_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hon,       str_on,       fs_switch,    tg_switch,    str_hon_pos
+
     ret
 endp
 

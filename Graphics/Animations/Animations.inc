@@ -100,4 +100,6 @@ Anim_WinnerPage                 dd  8,\
                                     Anim_btn_cl, Anim_WLeadBoardFont_cl,\
                                     Anim_btn_cl, Anim_WLeadBoardText_cl
 
-AnimsList                       dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage, Anim_PausePage, Anim_WinnerPage
+Anim_HotkeysPage                dd  0
+
+AnimsList                       dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage, Anim_PausePage, Anim_WinnerPage, Anim_HotkeysPage

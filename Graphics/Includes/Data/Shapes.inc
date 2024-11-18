@@ -332,16 +332,16 @@ lp_bar_brdr2_coords dd  1,\
                         1287, 799, 20
 lp_bar_brdr3_design DrawModel   ? 
 lp_bar_brdr3_coords dd  1,\
-                        632, 781, 1286, 818,\
+                        632, 781, 1286, 816,\
                         2,\
-                         632, 798, 17,\
-                        1286, 798, 17
+                         632, 799, 17,\
+                        1286, 799, 17
 lp_bar_main_design DrawModel   ? 
 lp_bar_main_coords dd   1,\
-                        632, 781, 632, 818,\ ; from 632 to 1286
+                        632, 781, 632, 816,\ ; from 632 to 1286
                         2,\
-                         632, 798, 17,\
-                         632, 798, 17
+                         632, 799, 17,\
+                         632, 799, 17
 
 
 ; recovery button

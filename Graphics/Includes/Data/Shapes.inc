@@ -645,8 +645,8 @@ sp_switch_mbrdr_coords dd  2,\
                             953, 560, 2
 sp_switch_mfont_design DrawModel ?
 sp_switch_mfont_coords dd  2,\
-                             900, 544, 953, 561,\
-                             899, 545, 954, 560,\
+                             900, 543, 953, 561,\
+                             899, 544, 954, 560,\
                              4,\
                              900, 545, 1,\
                              900, 560, 1,\
@@ -681,8 +681,8 @@ sp_switch_vbrdr_coords dd  2,\
                             1081, 560, 2
 sp_switch_vfont_design DrawModel ?
 sp_switch_vfont_coords dd  2,\
-                            1081, 544, 1134, 561,\
-                            1080, 546, 1135, 560,\
+                            1081, 543, 1134, 561,\
+                            1080, 545, 1135, 560,\
                             4,\
                             1081, 545, 1,\
                             1081, 560, 1,\

@@ -138,10 +138,10 @@ str_score_pos       dd      940, 485
 str_score_num       db      35, 34, 36, 0 ; '102'
 str_score_num_pos   dd      927, 445
 str_again           db      9, 1, 15, 16, 3, 16, 0 ; 'ЗАНОВО'
-str_again_pos       dd      907, 529
+str_again_pos       dd      907, 527
 str_wexit_pos       dd      917, 590
 str_stats           db      19, 20, 1, 20, 10, 19, 20, 10, 12, 1, 0 ; 'СТАТИСТИКА'
-str_stats_pos       dd      867, 650
+str_stats_pos       dd      867, 648
 
 str_msettings_pos   dd      845, 420
 

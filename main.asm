@@ -21,10 +21,20 @@ common
 
 macro memcpy dest, src, count
 {
-        mov     esi, src
-        mov     edi, dest
-        mov     ecx, count
-        rep     movsb
+    mov     esi, src
+    mov     edi, dest
+    mov     ecx, count
+    rep     movsb
+}
+
+macro switch value
+{
+    mov     eax, value
+}
+macro case label, [value]
+{
+    cmp     eax, value
+    je      label
 }
 
 
@@ -73,8 +83,6 @@ section '.text' code readable executable
       invoke glEnable, GL_BLEND
       invoke glBlendFunc, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
 
-   
-
       ; prepear data
       stdcall Graphics.Draw.CoordsRectPrepears
       stdcall Graphics.Colors.Prepear
@@ -98,20 +106,16 @@ section '.text' code readable executable
 
 proc WindowProc hwnd,wmsg,wparam,lparam
       push    ebx esi edi
-      cmp     [wmsg],WM_CREATE
-      je      .wmcreate
-      cmp     [wmsg],WM_SIZE
-      je      .wmsize
-      cmp     [wmsg],WM_PAINT
-      je      .wmpaint
-      cmp     [wmsg],WM_KEYDOWN
-      je      .wmkeydown
-      cmp     [wmsg],WM_DESTROY
-      je      .wmdestroy
-      cmp     [wmsg],WM_MOUSEMOVE
-      je      .wmmousemove
-      cmp     [wmsg],WM_LBUTTONDOWN
-      je      .vmmauseclick
+
+      switch  [wmsg]
+      case    .wmcreate, WM_CREATE
+      case    .wmsize, WM_SIZE
+      case    .wmpaint, WM_PAINT
+      case    .wmkeydown, WM_KEYDOWN
+      case    .wmdestroy, WM_DESTROY
+      case    .wmmousemove, WM_MOUSEMOVE
+      case    .wmmauseclick, WM_LBUTTONDOWN
+
   .defwndproc:
       invoke  DefWindowProc,[hwnd],[wmsg],[wparam],[lparam]
       jmp     .finish
@@ -160,6 +164,7 @@ proc WindowProc hwnd,wmsg,wparam,lparam
       cmp     [wparam],VK_ESCAPE
       jne     .defwndproc
   .wmdestroy:
+      invoke  HeapDestroy, [hHeap]
       invoke  wglMakeCurrent,0,0
       invoke  wglDeleteContext,[hrc]
       invoke  ReleaseDC,[hwnd],[hdc]
@@ -170,13 +175,20 @@ proc WindowProc hwnd,wmsg,wparam,lparam
       stdcall Mouse.OnMove, [lparam], XPosition, YPosition
       xor     eax, eax
       jmp     .finish
-  .vmmauseclick:
+  .wmmauseclick:
       stdcall Mouse.OnClick, [lparam]
       xor     eax, eax
       jmp     .finish
   .finish:
       pop     edi esi ebx
       ret
+endp
+
+proc Application.Exit
+    invoke  HeapDestroy, [hHeap]
+    invoke  ExitProcess, [msg.wParam]
+    mov     dword [font_color], 0xFF
+    ret
 endp
 
 section '.data' data readable writeable
@@ -194,10 +206,7 @@ section '.data' data readable writeable
   boatBookPath   db  "ship_book.bmp", 0
 
   hHeap  dd ?
-  logFile  dd ?
-  logFileName  db 'sdfsdf', 0
-  hConsole dd ?
-
+  
   msg    MSG
   rc     RECT
   pfd    PIXELFORMATDESCRIPTOR
@@ -225,6 +234,7 @@ section '.idata' import data readable writeable
       ExitProcess,'ExitProcess',\
       AllocConsole,'AllocConsole',\
       GetStdHandle,'GetStdHandle',\
+      HeapDestroy,'HeapDestroy',\
       WriteConsole,'WriteConsole'
 
   import user,\

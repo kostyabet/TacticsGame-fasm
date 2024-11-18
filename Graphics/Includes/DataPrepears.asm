@@ -92,6 +92,7 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, hp_font_coords, hp_font_desing
     stdcall Scripts.Getters.ConvertCoords, hp_return_circle_coords, hp_return_circle_desing
     stdcall Scripts.Getters.ConvertWithQuardCoords, hp_return_chrest_coords, hp_return_chrest_design
+    stdcall Scripts.Getters.ConvertCoords, button_exit_coords, button_exit_design
 
 ; 375 44 485 32 86 Генадий Григорьевич
     ; repeat
@@ -146,6 +147,7 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_play,        str_play,        fs_play,      tg_play,     str_play_pos
     stdcall Graphics.Draw.Text.Prepear, txt_about,       str_about,       fs_about,     tg_about,    str_about_pos
     stdcall Graphics.Draw.Text.Prepear, txt_settings,    str_settings,    fs_settings,  tg_settings, str_settings_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_Mexit,       str_exit,        fs_Mexit,     tg_Mexit,    str_Mexit_pos
     stdcall Graphics.Draw.Text.Prepear, txt_title,       str_title,       fs_title,     tg_title,    str_title_pos
     stdcall Graphics.Draw.Text.Prepear, txt_return,      str_return,      fs_return,    tg_return,   str_return_pos
     ;stdcall Graphics.Draw.Text.Prepear, txt_cost,      str_cost,      fs_cost,      tg_cost
@@ -178,6 +180,8 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_mon,       str_on,       fs_switch,    tg_switch,    str_mon_pos
     stdcall Graphics.Draw.Text.Prepear, txt_von,       str_on,       fs_switch,    tg_switch,    str_von_pos
     stdcall Graphics.Draw.Text.Prepear, txt_hon,       str_on,       fs_switch,    tg_switch,    str_hon_pos
+
+    stdcall Graphics.Draw.Text.Prepear, txt_HPhotkeys, str_chhotkeys, fs_HPhotkeys,  tg_HPhotkeys, str_HPhotkeys_pos
 
     ret
 endp

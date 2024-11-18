@@ -88,6 +88,11 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, lp_boatsprite_coords, lp_boatsprite_design
     stdcall Scripts.Getters.ConvertCoords, mp_boatsprite_coords, mp_boatsprite_design
 
+    stdcall Scripts.Getters.ConvertCoords, hp_border_coords, hp_border_design
+    stdcall Scripts.Getters.ConvertCoords, hp_font_coords, hp_font_desing
+    stdcall Scripts.Getters.ConvertCoords, hp_return_circle_coords, hp_return_circle_desing
+    stdcall Scripts.Getters.ConvertWithQuardCoords, hp_return_chrest_coords, hp_return_chrest_design
+
 ; 375 44 485 32 86 Генадий Григорьевич
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design

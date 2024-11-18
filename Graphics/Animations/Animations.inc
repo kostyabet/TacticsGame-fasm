@@ -100,6 +100,12 @@ Anim_WinnerPage                 dd  8,\
                                     Anim_btn_cl, Anim_WLeadBoardFont_cl,\
                                     Anim_btn_cl, Anim_WLeadBoardText_cl
 
-Anim_HotkeysPage                dd  0
+Anim_HRetBtnFont_cl             dd  hp_return_circle_desing,\
+                                    retbtn_font_color, pale_color, brown_text_color
+Anim_HRetBtnHrst_cl             dd  hp_return_circle_desing,\
+                                    retbtn_chrst_color, brown_text_color, pale_color
+Anim_HotkeysPage                dd  2,\
+                                    Anim_btn_cl, Anim_HRetBtnFont_cl,\
+                                    Anim_btn_cl, Anim_HRetBtnHrst_cl
 
 AnimsList                       dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage, Anim_PausePage, Anim_WinnerPage, Anim_HotkeysPage

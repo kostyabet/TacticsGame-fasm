@@ -38,6 +38,7 @@ wp_events       dd  3,\
                     et_wndbutton,  wp_exitbtn_brdr_design,  Game.Leave.WithoutSaving,\
                     et_wndbutton,  wp_againbtn_brdr_design, Game.Leave.Restart
 
-hp_events       dd  0
+hp_events       dd  1,\
+                    et_prevpage, hp_return_circle_desing, PrevousPage
 
 EventsList      dd  lp_events, mp_events, gp_events, ap_events, sp_events, pp_events, wp_events, hp_events

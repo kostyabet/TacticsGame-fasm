@@ -764,3 +764,31 @@ sp_volume_dot_design    DrawModel  ?
 sp_volume_dot_coords    dd  0,\
                             1,\
                             977, 517, 7
+; hotkeys page
+hp_border_design    DrawModel   ?
+hp_border_coords    dd          2,\
+                                667, 393, 1253, 686,\
+                                647, 413, 1273, 666,\
+                                4,\
+                                 667, 413, 20,\
+                                 667, 666, 20,\
+                                1253, 413, 20,\
+                                1253, 666, 20
+hp_font_desing      DrawModel   ?
+hp_font_coords      dd          2,\
+                                669, 398, 1251, 681,\
+                                652, 415, 1268, 664,\
+                                4,\
+                                 669, 415, 17,\
+                                 669, 664, 17,\
+                                1251, 415, 17,\
+                                1251, 664, 17
+hp_return_circle_desing  DrawModel ?
+hp_return_circle_coords  dd   0,\
+                              1,\
+                              1251, 414, 13
+hp_return_chrest_design DrawModel ?
+hp_return_chrest_coords dd  2,\
+                            1244, 408, 1248, 408, 1260, 420, 1256, 420,\
+                            1244, 420, 1248, 420, 1260, 408, 1256, 408,\
+                            0

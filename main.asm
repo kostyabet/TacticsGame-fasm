@@ -61,8 +61,6 @@ include 'Audio/Includes.asm'
 section '.text' code readable executable
 
   start:
-    stdcall File.IniFile.Write
-
       invoke  GetModuleHandle, 0
       mov     [wc.hInstance], eax
       invoke  LoadIcon, 0, IDI_APPLICATION
@@ -86,6 +84,7 @@ section '.text' code readable executable
       invoke glBlendFunc, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
 
       ; prepear data
+      stdcall File.IniFile.Read
       stdcall Graphics.Draw.CoordsRectPrepears
       stdcall Graphics.Colors.Prepear
       stdcall Graphics.Draw.ASCIIPrepear
@@ -166,6 +165,7 @@ proc WindowProc hwnd,wmsg,wparam,lparam
       cmp     [wparam],VK_ESCAPE
       jne     .defwndproc
   .wmdestroy:
+      stdcall File.IniFile.Write
       invoke  HeapDestroy, [hHeap]
       invoke  wglMakeCurrent,0,0
       invoke  wglDeleteContext,[hrc]
@@ -187,6 +187,7 @@ proc WindowProc hwnd,wmsg,wparam,lparam
 endp
 
 proc Application.Exit
+    stdcall File.IniFile.Write
     invoke  HeapDestroy, [hHeap]
     invoke  ExitProcess, [msg.wParam]
     ret

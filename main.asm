@@ -48,7 +48,7 @@ include 'Graphics/Includes/DataPrepears.asm'
 include 'Graphics/Includes/DataIncludes.asm'
 include 'Graphics/Pages/PagesInclude.asm'
 include 'Graphics/Animations/Includes.asm'
-include 'Graphics/File/Includes.asm'
+include 'File/Includes.asm'
 
 include 'Game/Includes.asm'
 
@@ -61,6 +61,8 @@ include 'Audio/Includes.asm'
 section '.text' code readable executable
 
   start:
+    stdcall File.IniFile.Write
+
       invoke  GetModuleHandle, 0
       mov     [wc.hInstance], eax
       invoke  LoadIcon, 0, IDI_APPLICATION
@@ -187,7 +189,6 @@ endp
 proc Application.Exit
     invoke  HeapDestroy, [hHeap]
     invoke  ExitProcess, [msg.wParam]
-    mov     dword [font_color], 0xFF
     ret
 endp
 
@@ -202,8 +203,8 @@ section '.data' data readable writeable
   hdc    dd ?
   hrc    dd ?
 
-  boatLoaderPath db  "ship_loader.bmp", 0
-  boatBookPath   db  "ship_book.bmp", 0
+  boatLoaderPath db  "source/ship_loader.bmp", 0
+  boatBookPath   db  "source/ship_book.bmp", 0
 
   hHeap  dd ?
   
@@ -235,7 +236,8 @@ section '.idata' import data readable writeable
       AllocConsole,'AllocConsole',\
       GetStdHandle,'GetStdHandle',\
       HeapDestroy,'HeapDestroy',\
-      WriteConsole,'WriteConsole'
+      WriteConsole,'WriteConsole',\
+      WriteFile,'WriteFile'
 
   import user,\
       ShowWindow,'ShowWindow',\

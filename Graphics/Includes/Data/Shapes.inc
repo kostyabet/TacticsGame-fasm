@@ -320,28 +320,28 @@ exitbtn_font_coords dd  2,\
 
 lp_bar_brdr1_design DrawModel   ? 
 lp_bar_brdr1_coords dd  1,\
-                        631, 847, 1287, 894,\
+                        631, 776, 1287, 822,\
                         2,\
-                         631, 870, 23,\
-                        1287, 870, 23
+                         631, 799, 23,\
+                        1287, 799, 23
 lp_bar_brdr2_design DrawModel   ? 
 lp_bar_brdr2_coords dd  1,\
-                        631, 850, 1286, 891,\
+                        631, 779, 1286, 819,\
                         2,\
-                         631, 870, 20,\
-                        1287, 870, 20
+                         631, 799, 20,\
+                        1287, 799, 20
 lp_bar_brdr3_design DrawModel   ? 
 lp_bar_brdr3_coords dd  1,\
-                        632, 852, 1286, 888,\
+                        632, 781, 1286, 818,\
                         2,\
-                         632, 870, 17,\
-                        1286, 870, 17
+                         632, 798, 17,\
+                        1286, 798, 17
 lp_bar_main_design DrawModel   ? 
 lp_bar_main_coords dd   1,\
-                        632, 852, 632, 888,\ ; from 632 to 1286
+                        632, 781, 632, 818,\ ; from 632 to 1286
                         2,\
-                         632, 870, 17,\
-                         632, 870, 17
+                         632, 798, 17,\
+                         632, 798, 17
 
 
 ; recovery button

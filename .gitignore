@@ -18,3 +18,8 @@ build.yml/
 
 # Texture Packer resource files
 Graphics/Draw/ASCII/TextureAtlases/Resources
+
+
+# node js temp
+node_modules/
+package-lock.json

@@ -1,6 +1,8 @@
 const { execSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
+const { promisify } = require('util');
+const ncp = promisify(require('ncp').ncp);
 
 console.log("10% - Read setup.json;");
 const config = JSON.parse(fs.readFileSync('setup.json', 'utf8'));
@@ -30,8 +32,19 @@ try {
 
     console.log(`90% - Return in work directory: ${process.cwd()};`);
     process.chdir(config.projectDir);
-    console.log(`Complete with exit code 0.`);
-    process.exit(0);
+    
+    const sourceFolder = path.join(config.projectDir, config.copy.srcFolder);
+    const destFolder = path.join(buildConfig.folder, config.copy.destFolder);
+    console.log(`0% - Start copy source from ${sourceFolder} to ${destFolder}`);
+    ncp(sourceFolder, destFolder)
+    .then(() => {
+        console.log(`100% - Files copied successfully from ${sourceFolder} to ${destFolder}`);
+        process.exit(0);
+    })
+    .catch(err => {
+        console.error(`Error copying files: ${err}`);
+        process.exit(1);
+    });
 } catch (error) {
     console.error(`Error: ${error.message}`);
     process.exit(1);

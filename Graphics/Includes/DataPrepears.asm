@@ -8,7 +8,7 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, book_brdfnt_coords, book_brdfnt_design
     stdcall Scripts.Getters.ConvertCoords, book_brd_coords, book_brd_design
     stdcall Scripts.Getters.ConvertCoords, book_flgpl_coords, book_flgpl_design
-
+    stdcall Scripts.Getters.ConvertCoords, button_exit_coords, button_exit_design
     stdcall Graphics.Draw.CoordsRectPrepears.ForAnimations
 
     stdcall Scripts.Getters.ConvertCoords, mp_gamefont_coords, mp_gamefont_design
@@ -92,7 +92,18 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, hp_font_coords, hp_font_desing
     stdcall Scripts.Getters.ConvertCoords, hp_return_circle_coords, hp_return_circle_desing
     stdcall Scripts.Getters.ConvertWithQuardCoords, hp_return_chrest_coords, hp_return_chrest_design
-    stdcall Scripts.Getters.ConvertCoords, button_exit_coords, button_exit_design
+    stdcall Scripts.Getters.ConvertCoords, hp_playbrdr_coords, hp_playbrdr_design
+    stdcall Scripts.Getters.ConvertCoords, hp_playfont_coords, hp_playfont_design
+    stdcall Scripts.Getters.ConvertCoords, hp_pausebrdr_coords, hp_pausebrdr_design
+    stdcall Scripts.Getters.ConvertCoords, hp_pausefont_coords, hp_pausefont_design
+    stdcall Scripts.Getters.ConvertCoords, hp_aboutbrdr_coords, hp_aboutbrdr_design
+    stdcall Scripts.Getters.ConvertCoords, hp_aboutfont_coords, hp_aboutfont_design
+    stdcall Scripts.Getters.ConvertCoords, hp_exitbrdr_coords, hp_exitbrdr_design
+    stdcall Scripts.Getters.ConvertCoords, hp_exitfont_coords, hp_exitfont_design
+    stdcall Scripts.Getters.ConvertCoords, hp_stngbrdr_coords, hp_stngbrdr_design
+    stdcall Scripts.Getters.ConvertCoords, hp_stngfont_coords, hp_stngfont_design
+    stdcall Scripts.Getters.ConvertCoords, hp_rstrbrdr_coords, hp_rstrbrdr_design
+    stdcall Scripts.Getters.ConvertCoords, hp_rstrfont_coords, hp_rstrfont_design
 
     stdcall Scripts.Getters.ConvertCoords, ep_border_coords, ep_border_design
     stdcall Scripts.Getters.ConvertCoords, ep_font_coords, ep_font_desing

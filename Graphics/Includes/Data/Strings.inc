@@ -152,7 +152,7 @@ str_msettings_pos   dd      845, 420
 
 str_chhotkeys       db      19, 14, 6, 15, 1, 44, 4, 16, 18, 33, 25, 10, 23, 44, 12, 13, 1, 3, 10, 26, 0 ; 'СМЕНА ГОРЯЧИХ КЛАВИШ'
 str_chhotkeys_pos   dd      817, 637
-str_HPhotkeys_pos   dd      698, 404
+str_HPhotkeys_pos   dd      698, 414
 
 str_music           db      14, 21, 9, 29, 12, 1, 0 ; 'МУЗЫКА'
 str_music_pos       dd      783, 540

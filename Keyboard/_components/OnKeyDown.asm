@@ -13,22 +13,22 @@ proc Keyboard.OnKeyDown
         jmp     .exit
 
         .hkPlay:
-            mov     dword [font_color], 0xFF
+            stdcall Keyboard.OnHotkeyClick.PauseStop
             jmp     .exit
         .hkStop:
-            mov     dword [font_color], 0xFF
+            stdcall Keyboard.OnHotkeyClick.PauseStop
             jmp     .exit
         .hkAbout:
-            mov     dword [font_color], 0xFF
+            stdcall Keyboard.OnHotkeyClick.About
             jmp     .exit
         .hkExit:
-            mov     dword [font_color], 0xFF
+            stdcall Keyboard.OnHotkeyClick.Exit
             jmp     .exit
         .hkSettings:
-            mov     dword [font_color], 0xFF
+            stdcall Keyboard.OnHotkeyClick.Settings
             jmp     .exit
         .hkRestart:
-            mov     dword [font_color], 0xFF
+            stdcall Keyboard.OnHotkeyClick.Restart
             jmp     .exit
 
     .exit:
@@ -57,6 +57,7 @@ proc Keyboard.IsHotKeyClick uses ecx edx
             mov     [result], GL_TRUE
             jmp     .true
         @@:
+        add     ebx, 4
         loop    .mainLoop
     jmp     .false
     .true:

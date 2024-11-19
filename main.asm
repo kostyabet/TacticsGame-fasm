@@ -13,6 +13,7 @@ include 'Game/Includes.asm'
 include 'Mouse/Includes.asm'
 include 'Keyboard/Includes.asm'
 include 'Audio/Includes.asm'
+include 'Application/Includes.asm'
 
 section '.text' code readable executable
 
@@ -118,10 +119,6 @@ proc WindowProc hwnd,wmsg,wparam,lparam
             xor     eax,eax
             jmp     .finish
   .wmkeydown:
-      cmp     [wparam],VK_ESCAPE
-      jne     @F
-        stdcall Application.Exit
-      @@:
       stdcall Keyboard.OnKeyDown
       xor     eax,eax
       jmp     .finish
@@ -145,13 +142,6 @@ proc WindowProc hwnd,wmsg,wparam,lparam
   .finish:
       pop     edi esi ebx
       ret
-endp
-
-proc Application.Exit
-    stdcall File.IniFile.Write
-    invoke  HeapDestroy, [hHeap]
-    invoke  ExitProcess, [msg.wParam]
-    ret
 endp
 
 section '.data' data readable writeable

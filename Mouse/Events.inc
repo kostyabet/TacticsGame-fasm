@@ -9,7 +9,7 @@ mp_events       dd  4,\
                     et_pagebutton, button_play_design,  GamePage,\
                     et_pagebutton, button_about_design, AboutPage,\
                     et_pagebutton, button_stngs_design, SettingsPage,\
-                    et_wndbutton,  button_exit_design,  Application.Exit
+                    et_pagebutton, button_exit_design,  ExitPage
 
 gp_events       dd  5,\
                     et_pagebutton, exitbtn_font_design,     MainPage,\
@@ -42,4 +42,6 @@ wp_events       dd  3,\
 hp_events       dd  1,\
                     et_prevpage, hp_return_circle_desing, PrevousPage
 
-EventsList      dd  lp_events, mp_events, gp_events, ap_events, sp_events, pp_events, wp_events, hp_events
+ep_events       dd  0
+
+EventsList      dd  lp_events, mp_events, gp_events, ap_events, sp_events, pp_events, wp_events, hp_events, ep_events

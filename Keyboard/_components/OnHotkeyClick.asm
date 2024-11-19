@@ -33,8 +33,9 @@ endp
 
 proc Keyboard.OnHotkeyClick.Exit
     switch  [CurentPage]
+    case    .exitPage, ExitPage
     case    .exitCall, LoadingPage
-    case    .exitCall, MainPage
+    case    .mainPage, MainPage
     case    .gamePage, GamePage
     case    .aboutPage, AboutPage
     case    .prevousPage, SettingsPage
@@ -43,6 +44,12 @@ proc Keyboard.OnHotkeyClick.Exit
     case    .prevousPage, HotkeysPage
     jmp     .exit
 
+    .exitPage:
+        stdcall Page.ChangePage, MainPage
+        jmp     .exit
+    .mainPage:
+        stdcall Page.ChangePage, ExitPage
+        jmp     .exit
     .exitCall:
         stdcall Application.Exit
         jmp     .exit

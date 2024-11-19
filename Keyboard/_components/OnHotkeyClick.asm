@@ -89,7 +89,7 @@ proc Keyboard.OnHotkeyClick.Settings
 endp
 
 proc Keyboard.OnHotkeyClick.Restart
-switch  [CurentPage]
+    switch  [CurentPage]
     case    .gamePage, GamePage
     jmp     .exit
     

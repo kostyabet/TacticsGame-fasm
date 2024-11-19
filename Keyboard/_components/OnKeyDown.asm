@@ -2,14 +2,40 @@
 proc Keyboard.OnKeyDown
     stdcall Keyboard.IsHotKeyClick
     cmp     eax, GL_TRUE
-    jne     @F
-        ; mov     dword [font_color], 0xFF
-        ; hotkey
-    @@:
+    jne     .exit
+        switch  ebx
+        case    .hkPlay,     [HK_PLAY]
+        case    .hkStop,     [HK_STOP]
+        case    .hkAbout,    [HK_ABOUT]
+        case    .hkExit,     [HK_EXIT]
+        case    .hkSettings, [HK_SETTINGS]
+        case    .hkRestart,  [HK_RESTART]
+        jmp     .exit
+
+        .hkPlay:
+            mov     dword [font_color], 0xFF
+            jmp     .exit
+        .hkStop:
+            mov     dword [font_color], 0xFF
+            jmp     .exit
+        .hkAbout:
+            mov     dword [font_color], 0xFF
+            jmp     .exit
+        .hkExit:
+            mov     dword [font_color], 0xFF
+            jmp     .exit
+        .hkSettings:
+            mov     dword [font_color], 0xFF
+            jmp     .exit
+        .hkRestart:
+            mov     dword [font_color], 0xFF
+            jmp     .exit
+
+    .exit:
     ret
 endp
 
-proc Keyboard.IsHotKeyClick uses ebx ecx edx
+proc Keyboard.IsHotKeyClick uses ecx edx
     locals
         result  dd  GL_FALSE
     endl
@@ -29,10 +55,14 @@ proc Keyboard.IsHotKeyClick uses ebx ecx edx
         cmp     eax, 0
         je      @F
             mov     [result], GL_TRUE
-            jmp     .exit
+            jmp     .true
         @@:
         loop    .mainLoop
-    .exit:
+    jmp     .false
+    .true:
+        mov     ebx, [ebx]
+        mov     ebx, [ebx]
+    .false:
     mov     eax, [result]
     ret
 endp

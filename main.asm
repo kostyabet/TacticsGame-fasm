@@ -119,7 +119,11 @@ proc WindowProc hwnd,wmsg,wparam,lparam
             xor     eax,eax
             jmp     .finish
   .wmkeydown:
-      stdcall Keyboard.OnKeyDown
+      cmp     [wparam],VK_ESCAPE
+      jne     @F
+        stdcall Keyboard.OnHotkeyClick.Exit
+      @@:
+        stdcall Keyboard.OnKeyDown
       xor     eax,eax
       jmp     .finish
   .wmdestroy:

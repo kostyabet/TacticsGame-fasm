@@ -38,7 +38,7 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, settings_btn_out_circle_coords, settings_btn_out_circle_design
     stdcall Scripts.Getters.ConvertCoords, settings_btn_in_circle_coords, settings_btn_in_circle_design
     stdcall Scripts.Getters.ConvertCoords, settings_btn_mainline_coords, settings_btn_mainline_design
-    stdcall Scripts.Getters.ConvertCoords, settings_btn_subline_coords, settings_btn_subline_design
+    stdcall Scripts.Getters.ConvertWithQuardCoords, settings_btn_subline_coords, settings_btn_subline_design
 
     stdcall Scripts.Getters.ConvertCoords, pp_border_coords, pp_border_desing
     stdcall Scripts.Getters.ConvertCoords, pp_font_coords, pp_font_desing
@@ -60,6 +60,39 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, wp_exitbtn_font_coords, wp_exitbtn_font_design
     stdcall Scripts.Getters.ConvertCoords, wp_leadbtn_brdr_coords, wp_leadbtn_brdr_design
     stdcall Scripts.Getters.ConvertCoords, wp_leadbtn_font_coords, wp_leadbtn_font_design
+
+    stdcall Scripts.Getters.ConvertCoords, sp_border_coords, sp_border_design
+    stdcall Scripts.Getters.ConvertCoords, sp_font_coords, sp_font_design
+    stdcall Scripts.Getters.ConvertCoords, sp_return_circle_coords, sp_return_circle_design
+    stdcall Scripts.Getters.ConvertWithQuardCoords, sp_return_chrest_coords, sp_return_chrest_design
+    stdcall Scripts.Getters.ConvertCoords, sp_lines_coords, sp_lines_design
+    stdcall Scripts.Getters.ConvertCoords, sp_chhkbrdr_coords, sp_chhkbrdr_design
+    stdcall Scripts.Getters.ConvertCoords, sp_chhkfont_coords, sp_chhkfont_design
+
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_mbrdr_coords, sp_switch_mbrdr_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_mfont_coords, sp_switch_mfont_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_vbrdr_coords, sp_switch_vbrdr_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_vfont_coords, sp_switch_vfont_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_hbrdr_coords, sp_switch_hbrdr_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_hfont_coords, sp_switch_hfont_design
+    stdcall Scripts.Getters.ConvertCoords, sp_volume_font_coords, sp_volume_font_design
+    stdcall Scripts.Getters.ConvertCoords, sp_volume_cmpl_coords, sp_volume_cmpl_design
+    stdcall Scripts.Getters.ConvertCoords, sp_volume_dot_coords, sp_volume_dot_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_moff_coords, sp_switch_moff_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_mon_coords, sp_switch_mon_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_voff_coords, sp_switch_voff_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_von_coords, sp_switch_von_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_hoff_coords, sp_switch_hoff_design
+    stdcall Scripts.Getters.ConvertCoords, sp_switch_hon_coords, sp_switch_hon_design
+
+    stdcall Scripts.Getters.ConvertCoords, lp_boatsprite_coords, lp_boatsprite_design
+    stdcall Scripts.Getters.ConvertCoords, mp_boatsprite_coords, mp_boatsprite_design
+
+    stdcall Scripts.Getters.ConvertCoords, hp_border_coords, hp_border_design
+    stdcall Scripts.Getters.ConvertCoords, hp_font_coords, hp_font_desing
+    stdcall Scripts.Getters.ConvertCoords, hp_return_circle_coords, hp_return_circle_desing
+    stdcall Scripts.Getters.ConvertWithQuardCoords, hp_return_chrest_coords, hp_return_chrest_design
+    stdcall Scripts.Getters.ConvertCoords, button_exit_coords, button_exit_design
 
 ; 375 44 485 32 86 Генадий Григорьевич
     ; repeat
@@ -114,6 +147,7 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_play,        str_play,        fs_play,      tg_play,     str_play_pos
     stdcall Graphics.Draw.Text.Prepear, txt_about,       str_about,       fs_about,     tg_about,    str_about_pos
     stdcall Graphics.Draw.Text.Prepear, txt_settings,    str_settings,    fs_settings,  tg_settings, str_settings_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_Mexit,       str_exit,        fs_Mexit,     tg_Mexit,    str_Mexit_pos
     stdcall Graphics.Draw.Text.Prepear, txt_title,       str_title,       fs_title,     tg_title,    str_title_pos
     stdcall Graphics.Draw.Text.Prepear, txt_return,      str_return,      fs_return,    tg_return,   str_return_pos
     ;stdcall Graphics.Draw.Text.Prepear, txt_cost,      str_cost,      fs_cost,      tg_cost
@@ -133,6 +167,21 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_again,     str_again,     fs_again,     tg_again,     str_again_pos
     stdcall Graphics.Draw.Text.Prepear, txt_wexit,     str_exit,      fs_again,     tg_again,     str_wexit_pos
     stdcall Graphics.Draw.Text.Prepear, txt_stats,     str_stats,     fs_again,     tg_again,     str_stats_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_msettings, str_settings,  fs_msettings, tg_msettings, str_msettings_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_chhotkeys, str_chhotkeys, fs_chhotkeys, tg_chhotkeys, str_chhotkeys_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_music,     str_music,     fs_music,     tg_music,     str_music_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_voice,     str_voice,     fs_music,     tg_voice,     str_voice_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hotkeys,   str_hotkeys,   fs_hotkeys,   tg_hotkeys,   str_hotkeys_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_volume,    str_volume,    fs_music,     tg_volume,    str_volume_pos
+
+    stdcall Graphics.Draw.Text.Prepear, txt_moff,      str_off,      fs_switch,    tg_switch,    str_moff_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_voff,      str_off,      fs_switch,    tg_switch,    str_voff_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hoff,      str_off,      fs_switch,    tg_switch,    str_hoff_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_mon,       str_on,       fs_switch,    tg_switch,    str_mon_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_von,       str_on,       fs_switch,    tg_switch,    str_von_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hon,       str_on,       fs_switch,    tg_switch,    str_hon_pos
+
+    stdcall Graphics.Draw.Text.Prepear, txt_HPhotkeys, str_chhotkeys, fs_HPhotkeys,  tg_HPhotkeys, str_HPhotkeys_pos
 
     ret
 endp
@@ -159,5 +208,12 @@ proc Graphics.Colors.PrepearWithAlpha
     mov     [font_dark_color.Blue], 0.0
     
     mov     [font_dark_color.Alpha], 0.5
+    ret
+endp
+
+proc Graphics.Texture
+    
+    stdcall Texture.Create, boatloading_texture, boatLoaderPath
+    stdcall Texture.Create, boatbook_texture, boatBookPath
     ret
 endp

@@ -32,6 +32,7 @@ tg_headline     =       30
 tg_play         =       30
 tg_about        =       30
 tg_settings     =       30
+tg_Mexit        =       30 
 tg_title        =       18
 tg_cost         =       0
 tg_info         =       0
@@ -45,6 +46,14 @@ tg_winner       =       18
 tg_score        =       5
 tg_score_num    =       10
 tg_again        =       10
+tg_msettings    =       10
+tg_chhotkeys    =       7
+tg_music        =       10
+tg_voice        =       8
+tg_hotkeys      =       8
+tg_volume       =       8
+tg_switch       =       6
+tg_HPhotkeys    =       10
 
 ; ====== Interfaces ====== ;
 struct Points
@@ -109,9 +118,9 @@ str_headline_bc_pos dd      676, 116
 str_play            db      10, 4, 18, 1, 20, 30, 0 ; 'ИГРАТЬ'
 str_play_pos        dd      1156, 358
 str_about           db      16, 2, 44, 10, 4, 18, 6, 0 ; 'ОБ ИГРЕ'
-str_about_pos       dd      1150, 603
+str_about_pos       dd      1150, 528
 str_settings        db      15, 1, 19, 20, 18, 16, 11, 12, 10, 0 ; 'НАСТРОЙКИ'
-str_settings_pos    dd      1077, 846
+str_settings_pos    dd      1077, 694
 str_title           db      13, 6, 15, 10, 15, 4, 18, 1, 5, 0 ; 'ЛЕНИНГРАД'
 str_title_pos       dd      411, 871
 str_return          db      15, 1, 9, 1, 5, 0 ; '<-'
@@ -121,6 +130,7 @@ str_pause           db      17, 1, 21, 9, 1, 0 ; 'ПАУЗА'
 str_pause_pos       dd      882, 444
 str_exit            db      3, 29, 11, 20, 10, 0 ; 'ВЫЙТИ'
 str_exit_pos        dd      915, 584
+str_Mexit_pos       dd      1184, 862
 str_saveAexit       db      19, 16, 23, 18, 1, 15, 10, 20, 30, 44, 10, 44, 3, 29, 11, 20, 10, 0 ; 'СОХРАНИТЬ И ВЫЙТИ'
 str_saveAexit_pos   dd      802, 523
 
@@ -131,10 +141,34 @@ str_score_pos       dd      940, 485
 str_score_num       db      35, 34, 36, 0 ; '102'
 str_score_num_pos   dd      927, 445
 str_again           db      9, 1, 15, 16, 3, 16, 0 ; 'ЗАНОВО'
-str_again_pos       dd      907, 529
+str_again_pos       dd      907, 527
 str_wexit_pos       dd      917, 590
 str_stats           db      19, 20, 1, 20, 10, 19, 20, 10, 12, 1, 0 ; 'СТАТИСТИКА'
-str_stats_pos       dd      867, 650
+str_stats_pos       dd      867, 648
+
+str_msettings_pos   dd      845, 420
+
+str_chhotkeys       db      19, 14, 6, 15, 1, 44, 4, 16, 18, 33, 25, 10, 23, 44, 12, 13, 1, 3, 10, 26, 0 ; 'СМЕНА ГОРЯЧИХ КЛАВИШ'
+str_chhotkeys_pos   dd      817, 637
+str_HPhotkeys_pos   dd      698, 404
+
+str_music           db      14, 21, 9, 29, 12, 1, 0 ; 'МУЗЫКА'
+str_music_pos       dd      783, 540
+str_voice           db      9, 3, 21, 12, 10, 0 ; 'ЗВУКИ'
+str_voice_pos       dd      989, 540
+str_hotkeys         db      4, 16, 18, 33, 25, 10, 6, 44, 12, 13, 1, 3, 10, 26, 10, 0 ; 'ГОРЯЧИЕ КЛАВИШИ'
+str_hotkeys_pos     dd      802, 598
+str_volume          db      4, 18, 16, 14, 12, 16, 19, 20, 30, 0 ; 'ГРОМКОСТЬ'
+str_volume_pos      dd      754, 506
+
+str_off             db      68, 59, 59, 0 ; 'OFF'
+str_moff_pos        dd       922, 545
+str_voff_pos        dd      1104, 545
+str_hoff_pos        dd      1084, 603
+str_on              db      68, 67, 0 ; 'ON'
+str_mon_pos         dd       911, 545
+str_von_pos         dd      1091, 545
+str_hon_pos         dd      1074, 603
 
 str_R_hk            db      71, 0 ; 'R'
 str_R_hk_pos        dd      1805, 29
@@ -153,6 +187,7 @@ txt_headline_bc     String  ?
 txt_play            String  ?
 txt_about           String  ?
 txt_settings        String  ?
+txt_Mexit           String  ?
 txt_title           String  ?
 txt_cost            String  ?
 txt_info            String  ?
@@ -173,6 +208,19 @@ txt_score_num       String  ?
 txt_again           String  ?
 txt_wexit           String  ?
 txt_stats           String  ?
+txt_msettings       String  ?
+txt_chhotkeys       String  ?
+txt_music           String  ?
+txt_voice           String  ?
+txt_hotkeys         String  ?
+txt_HPhotkeys       String  ?
+txt_volume          String  ?
+txt_moff            String  ?
+txt_voff            String  ?
+txt_hoff            String  ?
+txt_mon             String  ?
+txt_von             String  ?
+txt_hon             String  ?
 
 arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5,  ltr_RU_6,  ltr_RU_7,\ ; RU
                             ltr_RU_8,  ltr_RU_9,  ltr_RU_10, ltr_RU_11, ltr_RU_12, ltr_RU_13, ltr_RU_14,\

@@ -6,6 +6,8 @@ include '../Draw/ASCII.asm'
 include '../Draw/Text.asm'
 ; Ticks
 include '../Draw/Ticks.asm'
+; Sprites
+include '../Draw/Sprite.asm'
 
 ; Components
 include '../Draw/Components/RecoveryButton.asm'

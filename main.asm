@@ -5,18 +5,15 @@ include 'win32a.inc'
 include 'opengl.inc'
 include 'main.inc'
 
+include 'Scripts/Includes.asm'
 include 'Math/Includes.asm'
-
-include 'Graphics/Includes/DataPrepears.asm'
-include 'Graphics/Includes/DataIncludes.asm'
-include 'Graphics/Pages/PagesInclude.asm'
-include 'Graphics/Animations/Includes.asm'
-
+include 'Graphics/Includes.asm'
+include 'File/Includes.asm'
 include 'Game/Includes.asm'
-
-include 'Scripts/Getters.asm'
-
 include 'Mouse/Includes.asm'
+include 'Keyboard/Includes.asm'
+include 'Audio/Includes.asm'
+include 'Application/Includes.asm'
 
 section '.text' code readable executable
 
@@ -27,6 +24,9 @@ section '.text' code readable executable
       mov     [wc.hIcon], eax
       invoke  LoadCursor, 0, IDC_ARROW
       mov     [wc.hCursor], eax
+
+      invoke GetProcessHeap
+      mov    [hHeap], eax
       invoke  RegisterClass, wc
 
       invoke  GetSystemMetrics, SM_CXSCREEN
@@ -41,12 +41,14 @@ section '.text' code readable executable
       invoke glBlendFunc, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
 
       ; prepear data
+      stdcall File.IniFile.Read
       stdcall Graphics.Draw.CoordsRectPrepears
       stdcall Graphics.Colors.Prepear
       stdcall Graphics.Draw.ASCIIPrepear
       stdcall Game.ModelsPrepear
       stdcall Game.PrepearTicks
       stdcall Graphics.Colors.PrepearWithAlpha
+      stdcall Graphics.Texture
       mov     [IS_INFO_PREPEAR], GL_TRUE
 
   msg_loop:
@@ -62,20 +64,16 @@ section '.text' code readable executable
 
 proc WindowProc hwnd,wmsg,wparam,lparam
       push    ebx esi edi
-      cmp     [wmsg],WM_CREATE
-      je      .wmcreate
-      cmp     [wmsg],WM_SIZE
-      je      .wmsize
-      cmp     [wmsg],WM_PAINT
-      je      .wmpaint
-      cmp     [wmsg],WM_KEYDOWN
-      je      .wmkeydown
-      cmp     [wmsg],WM_DESTROY
-      je      .wmdestroy
-      cmp     [wmsg],WM_MOUSEMOVE
-      je      .wmmousemove
-      cmp     [wmsg],WM_LBUTTONDOWN
-      je      .vmmauseclick
+
+      switch  [wmsg]
+      case    .wmcreate, WM_CREATE
+      case    .wmsize, WM_SIZE
+      case    .wmpaint, WM_PAINT
+      case    .wmkeydown, WM_KEYDOWN
+      case    .wmdestroy, WM_DESTROY
+      case    .wmmousemove, WM_MOUSEMOVE
+      case    .wmmauseclick, WM_LBUTTONDOWN
+
   .defwndproc:
       invoke  DefWindowProc,[hwnd],[wmsg],[wparam],[lparam]
       jmp     .finish
@@ -121,9 +119,12 @@ proc WindowProc hwnd,wmsg,wparam,lparam
             xor     eax,eax
             jmp     .finish
   .wmkeydown:
-      cmp     [wparam],VK_ESCAPE
-      jne     .defwndproc
+      stdcall Keyboard.OnKeyDown
+      xor     eax,eax
+      jmp     .finish
   .wmdestroy:
+      stdcall File.IniFile.Write
+      invoke  HeapDestroy, [hHeap]
       invoke  wglMakeCurrent,0,0
       invoke  wglDeleteContext,[hrc]
       invoke  ReleaseDC,[hwnd],[hdc]
@@ -134,7 +135,7 @@ proc WindowProc hwnd,wmsg,wparam,lparam
       stdcall Mouse.OnMove, [lparam], XPosition, YPosition
       xor     eax, eax
       jmp     .finish
-  .vmmauseclick:
+  .wmmauseclick:
       stdcall Mouse.OnClick, [lparam]
       xor     eax, eax
       jmp     .finish
@@ -154,6 +155,11 @@ section '.data' data readable writeable
   hdc    dd ?
   hrc    dd ?
 
+  boatLoaderPath db  "source/ship_loader.bmp", 0
+  boatBookPath   db  "source/ship_book.bmp", 0
+
+  hHeap  dd ?
+  
   msg    MSG
   rc     RECT
   pfd    PIXELFORMATDESCRIPTOR
@@ -167,9 +173,23 @@ section '.idata' import data readable writeable
       glu,'GLU32.DLL'
 
   import kernel,\
+      CreateFile,'CreateFileA',\
+      ReadFile,'ReadFile',\
+      CloseHandle,'CloseHandle',\
+      GlobalAlloc,'GlobalAlloc',\
+      GlobalFree,'GlobalFree',\
       GetModuleHandle,'GetModuleHandleA',\
       GetTickCount,'GetTickCount',\
-      ExitProcess,'ExitProcess'
+      GetFileSize,'GetFileSize',\
+      HeapAlloc,'HeapAlloc',\
+      HeapFree,'HeapFree',\
+      GetProcessHeap,'GetProcessHeap',\ 
+      ExitProcess,'ExitProcess',\
+      AllocConsole,'AllocConsole',\
+      GetStdHandle,'GetStdHandle',\
+      HeapDestroy,'HeapDestroy',\
+      WriteConsole,'WriteConsole',\
+      WriteFile,'WriteFile'
 
   import user,\
       ShowWindow,'ShowWindow',\
@@ -186,7 +206,8 @@ section '.idata' import data readable writeable
       GetClientRect,'GetClientRect',\
       GetDC,'GetDC',\
       ReleaseDC,'ReleaseDC',\
-      PostQuitMessage,'PostQuitMessage'
+      PostQuitMessage,'PostQuitMessage',\
+      GetAsyncKeyState, 'GetAsyncKeyState'
 
   import gdi,\
       ChoosePixelFormat,'ChoosePixelFormat',\

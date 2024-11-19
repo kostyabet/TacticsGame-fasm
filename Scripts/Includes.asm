@@ -1,0 +1,5 @@
+include 'Getters/Getters.asm'
+include 'Macross/case.asm'
+include 'Macross/malloc.asm'
+include 'Macross/memcpy.asm'
+include 'Macross/switch.asm'

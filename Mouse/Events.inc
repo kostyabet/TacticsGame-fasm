@@ -5,10 +5,11 @@ et_tick         =  $0201
 
 lp_events       dd  0
 
-mp_events       dd  3,\
+mp_events       dd  4,\
                     et_pagebutton, button_play_design,  GamePage,\
                     et_pagebutton, button_about_design, AboutPage,\
-                    et_pagebutton, button_stngs_design, SettingsPage
+                    et_pagebutton, button_stngs_design, SettingsPage,\
+                    et_wndbutton,  button_exit_design,  Application.Exit
 
 gp_events       dd  5,\
                     et_pagebutton, exitbtn_font_design,     MainPage,\
@@ -20,7 +21,13 @@ gp_events       dd  5,\
 ap_events       dd  1,\
                     et_pagebutton, exitbtn_font_design, MainPage
 
-sp_events       dd  0
+sp_events       dd  6,\
+                    et_prevpage,   sp_return_circle_design, PrevousPage,\
+                    et_wndbutton,  sp_switch_mbrdr_design,  Audio.Switch.Music,\
+                    et_wndbutton,  sp_switch_vbrdr_design,  Audio.Switch.Voice,\
+                    et_wndbutton,  sp_switch_hbrdr_design,  Audio.Switch.Hotkey,\
+                    et_wndbutton,  sp_volume_font_design,   Audio.Volume.Change,\
+                    et_pagebutton, sp_chhkbrdr_design,      HotkeysPage
 
 pp_events       dd  3,\
                     et_prevpage,  pp_return_circle_desing, PrevousPage,\
@@ -32,4 +39,7 @@ wp_events       dd  3,\
                     et_wndbutton,  wp_exitbtn_brdr_design,  Game.Leave.WithoutSaving,\
                     et_wndbutton,  wp_againbtn_brdr_design, Game.Leave.Restart
 
-EventsList      dd  lp_events, mp_events, gp_events, ap_events, sp_events, pp_events, wp_events
+hp_events       dd  1,\
+                    et_prevpage, hp_return_circle_desing, PrevousPage
+
+EventsList      dd  lp_events, mp_events, gp_events, ap_events, sp_events, pp_events, wp_events, hp_events

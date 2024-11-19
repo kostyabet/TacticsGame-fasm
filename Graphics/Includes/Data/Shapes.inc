@@ -147,22 +147,32 @@ button_play_coords  dd  2,\
                         1080, 437, 30,\
                         1540, 346, 30,\
                         1540, 437, 30
+                        ; 558 - 482 = 130
 button_about_coords dd  2,\
-                        1080, 558, 1540, 709,\
-                        1050, 588, 1570, 683,\
+                        1080, 482, 1540, 633,\
+                        1050, 512, 1570, 603,\
                         4,\
-                        1080, 588, 30,\
-                        1080, 679, 30,\
-                        1540, 588, 30,\
-                        1540, 679, 30
+                        1080, 512, 30,\
+                        1080, 603, 30,\
+                        1540, 512, 30,\
+                        1540, 603, 30
 button_stngs_coords dd  2,\
-                        1080, 800, 1540, 951,\
-                        1050, 830, 1570, 925,\
+                        1080, 648, 1540, 799,\
+                        1050, 678, 1570, 769,\
                         4,\
-                        1080, 830, 30,\
-                        1080, 921, 30,\
-                        1540, 830, 30,\
-                        1540, 921, 30
+                        1080, 678, 30,\
+                        1080, 769, 30,\
+                        1540, 678, 30,\
+                        1540, 769, 30
+button_exit_design DrawModel ?
+button_exit_coords dd  2,\
+                        1080, 814, 1540, 965,\
+                        1050, 844, 1570, 935,\
+                        4,\
+                        1080, 844, 30,\
+                        1080, 935, 30,\
+                        1540, 844, 30,\
+                        1540, 935, 30
 book_strk_design    dd          95,\
                                 353, 311, 367, 313, ?, ?, ?, ?,\ ; 1
                                 353, 317, 367, 320, ?, ?, ?, ?,\ ; 2
@@ -320,28 +330,28 @@ exitbtn_font_coords dd  2,\
 
 lp_bar_brdr1_design DrawModel   ? 
 lp_bar_brdr1_coords dd  1,\
-                        631, 847, 1287, 894,\
+                        631, 776, 1287, 822,\
                         2,\
-                         631, 870, 23,\
-                        1287, 870, 23
+                         631, 799, 23,\
+                        1287, 799, 23
 lp_bar_brdr2_design DrawModel   ? 
 lp_bar_brdr2_coords dd  1,\
-                        631, 850, 1286, 891,\
+                        631, 779, 1286, 819,\
                         2,\
-                         631, 870, 20,\
-                        1287, 870, 20
+                         631, 799, 20,\
+                        1287, 799, 20
 lp_bar_brdr3_design DrawModel   ? 
 lp_bar_brdr3_coords dd  1,\
-                        632, 852, 1286, 888,\
+                        632, 781, 1286, 816,\
                         2,\
-                         632, 870, 17,\
-                        1286, 870, 17
+                         632, 799, 17,\
+                        1286, 799, 17
 lp_bar_main_design DrawModel   ? 
 lp_bar_main_coords dd   1,\
-                        632, 852, 632, 888,\ ; from 632 to 1286
+                        632, 781, 632, 816,\ ; from 632 to 1286
                         2,\
-                         632, 870, 17,\
-                         632, 870, 17
+                         632, 799, 17,\
+                         632, 799, 17
 
 
 ; recovery button
@@ -407,10 +417,10 @@ settings_btn_mainline_coords    dd  4,\
                                     0
 settings_btn_subline_design     DrawModel   ?
 settings_btn_subline_coords     dd  4,\
-                                    1856, 38, 1862, 44,\
-                                    1877, 16, 1883, 22,\
-                                    1898, 38, 1904, 44,\
-                                    1877, 58, 1883, 64,\
+                                    1861, 55, 1865, 59, 1869, 54, 1865, 50,\
+                                    1895, 59, 1899, 55, 1894, 50, 1890, 54,\
+                                    1899, 25, 1895, 21, 1890, 25, 1895, 29,\
+                                    1865, 29, 1869, 25, 1864, 20, 1860, 24,\
                                     0
 ; pause button
 pause_btn_fnt_design    DrawModel ?
@@ -583,3 +593,212 @@ wp_leadbtn_font_coords  dd          2,\
                                      851, 674, 8,\
                                     1075, 650, 8,\
                                     1075, 674, 8
+; settings page
+sp_border_design    DrawModel   ?
+sp_border_coords    dd  2,\
+                        725, 393, 1195, 687,\ 
+                        705, 413, 1215, 667,\
+                        4,\
+                        725, 413, 20,\
+                        725, 667, 20,\
+                        1195, 413, 20,\
+                        1195, 667, 20
+sp_font_design    DrawModel   ?
+sp_font_coords    dd  2,\
+                        727, 398, 1193, 682,\ 
+                        710, 415, 1210, 665,\
+                        4,\
+                         727, 415, 17,\
+                         727, 665, 17,\
+                        1193, 415, 17,\
+                        1193, 665, 17
+sp_return_circle_design  DrawModel ?
+sp_return_circle_coords  dd   0,\
+                              1,\
+                              1193, 415, 13
+sp_return_chrest_design DrawModel ?
+sp_return_chrest_coords dd  2,\
+                            1185, 409, 1189, 409, 1201, 421, 1197, 421,\
+                            1185, 421, 1189, 421, 1201, 409, 1197, 409,\
+                            0
+sp_lines_design         DrawModel ?
+sp_lines_coords         dd  2,\
+                            710, 482, 1210, 484,\
+                            710, 582, 1210, 584,\
+                            0
+sp_chhkbrdr_design      DrawModel ?
+sp_chhkbrdr_coords      dd  2,\
+                            813, 631, 1107, 665,\
+                            808, 636, 1112, 660,\
+                            4,\
+                             813, 636, 5,\
+                             813, 660, 5,\
+                            1107, 636, 5,\
+                            1107, 660, 5
+sp_chhkfont_design      DrawModel ?
+sp_chhkfont_coords      dd  2,\
+                            813, 633, 1107, 663,\
+                            810, 636, 1110, 660,\
+                            4,\
+                             813, 636, 3,\
+                             813, 660, 3,\
+                            1107, 636, 3,\
+                            1107, 660, 3
+sp_switch_mbrdr_design DrawModel ?
+sp_switch_mbrdr_coords dd  2,\
+                            900, 542, 953, 562,\
+                            898, 544, 955, 560,\
+                            4,\
+                            900, 544, 2,\
+                            900, 560, 2,\
+                            953, 544, 2,\
+                            953, 560, 2
+sp_switch_mfont_design DrawModel ?
+sp_switch_mfont_coords dd  2,\
+                             900, 543, 953, 561,\
+                             899, 544, 954, 560,\
+                             4,\
+                             900, 545, 1,\
+                             900, 560, 1,\
+                             953, 545, 1,\
+                             953, 560, 1
+sp_switch_moff_design  DrawModel ?
+sp_switch_moff_coords  dd   2,\
+                            903, 545, 913, 559,\
+                            901, 547, 915, 557,\
+                            4,\
+                            903, 547, 2,\
+                            903, 557, 2,\
+                            913, 547, 2,\
+                            913, 557, 2
+sp_switch_mon_design   DrawModel ?
+sp_switch_mon_coords   dd   2,\
+                            940, 545, 950, 559,\
+                            938, 547, 952, 557,\
+                            4,\
+                            940, 547, 2,\
+                            940, 557, 2,\
+                            950, 547, 2,\
+                            950, 557, 2
+sp_switch_vbrdr_design DrawModel ?
+sp_switch_vbrdr_coords dd  2,\
+                            1081, 542, 1134, 562,\
+                            1079, 544, 1136, 560,\
+                            4,\
+                            1134, 544, 2,\
+                            1134, 560, 2,\
+                            1081, 544, 2,\
+                            1081, 560, 2
+sp_switch_vfont_design DrawModel ?
+sp_switch_vfont_coords dd  2,\
+                            1081, 543, 1134, 561,\
+                            1080, 545, 1135, 560,\
+                            4,\
+                            1081, 545, 1,\
+                            1081, 560, 1,\
+                            1134, 545, 1,\
+                            1134, 560, 1
+sp_switch_voff_design   DrawModel ?
+sp_switch_voff_coords   dd  2,\
+                            1084, 545, 1094, 559,\
+                            1082, 547, 1096, 557,\
+                            4,\
+                            1084, 547, 2,\
+                            1084, 557, 2,\
+                            1094, 547, 2,\
+                            1094, 557, 2
+sp_switch_von_design    DrawModel ?
+sp_switch_von_coords    dd  2,\
+                            1121, 545, 1130, 559,\
+                            1119, 547, 1132, 557,\
+                            4,\
+                            1121, 547, 2,\
+                            1121, 557, 2,\
+                            1130, 547, 2,\
+                            1130, 557, 2
+sp_switch_hbrdr_design DrawModel ?
+sp_switch_hbrdr_coords dd  2,\
+                            1062, 600, 1115, 620,\
+                            1060, 602, 1117, 618,\
+                            4,\
+                            1062, 602, 2,\
+                            1062, 618, 2,\
+                            1115, 602, 2,\
+                            1115, 618, 2
+sp_switch_hfont_design DrawModel ?
+sp_switch_hfont_coords dd  2,\
+                            1062, 601, 1115, 619,\
+                            1061, 602, 1116, 618,\
+                            4,\
+                            1062, 602, 1,\
+                            1062, 618, 1,\
+                            1115, 602, 1,\
+                            1115, 618, 1
+sp_switch_hoff_design   DrawModel ?
+sp_switch_hoff_coords   dd  2,\
+                            1065, 603, 1075, 617,\
+                            1063, 605, 1077, 615,\
+                            4,\
+                            1065, 605, 2,\
+                            1065, 615, 2,\
+                            1075, 605, 2,\
+                            1075, 615, 2
+sp_switch_hon_design    DrawModel ?
+sp_switch_hon_coords    dd  2,\
+                            1102, 603, 1112, 617,\
+                            1100, 605, 1114, 615,\
+                            4,\
+                            1102, 605, 2,\
+                            1102, 615, 2,\
+                            1112, 605, 2,\
+                            1112, 615, 2
+sp_volume_font_design   DrawModel ?
+sp_volume_font_coords   dd  2,\
+                            918, 514, 1164, 520,\
+                            916, 516, 1166, 518,\
+                            4,\
+                            918, 516, 2,\
+                            918, 518, 2,\
+                            1164, 516, 2,\
+                            1164, 518, 2
+sp_volume_cmpl_design   DrawModel ?
+sp_volume_cmpl_coords   dd  2,\
+                            918, 514, 976, 520,\
+                            916, 516, 978, 518,\
+                            4,\
+                            918, 516, 2,\
+                            918, 518, 2,\
+                            976, 516, 2,\
+                            976, 518, 2
+sp_volume_dot_design    DrawModel  ?
+sp_volume_dot_coords    dd  0,\
+                            1,\
+                            977, 517, 7
+; hotkeys page
+hp_border_design    DrawModel   ?
+hp_border_coords    dd          2,\
+                                667, 393, 1253, 686,\
+                                647, 413, 1273, 666,\
+                                4,\
+                                 667, 413, 20,\
+                                 667, 666, 20,\
+                                1253, 413, 20,\
+                                1253, 666, 20
+hp_font_desing      DrawModel   ?
+hp_font_coords      dd          2,\
+                                669, 398, 1251, 681,\
+                                652, 415, 1268, 664,\
+                                4,\
+                                 669, 415, 17,\
+                                 669, 664, 17,\
+                                1251, 415, 17,\
+                                1251, 664, 17
+hp_return_circle_desing  DrawModel ?
+hp_return_circle_coords  dd   0,\
+                              1,\
+                              1251, 414, 13
+hp_return_chrest_design DrawModel ?
+hp_return_chrest_coords dd  2,\
+                            1244, 408, 1248, 408, 1260, 420, 1256, 420,\
+                            1244, 420, 1248, 420, 1260, 408, 1256, 408,\
+                            0

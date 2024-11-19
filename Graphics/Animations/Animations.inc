@@ -9,16 +9,13 @@ Anim_MainPage_AboutButton_cl    dd  button_about_design,\
                                     about_button_color, milk_light_color, milk_color
 Anim_MainPage_SettingButton_cl  dd  button_stngs_design,\
                                     settings_button_color, milk_light_color, milk_color
-Anim_MainPage_AboutButton_mv    dd  button_about_coords, 0, 5
-Anim_MainPage_SettingButton_mv  dd  button_stngs_coords, 0, 5
-Anim_MainPage_GameButton_mv     dd  button_play_coords,  0, 5
-Anim_MainPage                   dd  6,\
+Anim_MainPage_ExitButton_cl  dd  button_exit_design,\
+                                    exit_button_color, milk_light_color, milk_color
+Anim_MainPage                   dd  4,\
                                     Anim_btn_cl,    Anim_MainPage_GameButton_cl,\
-                                    Anim_btn_mv,    Anim_MainPage_GameButton_mv,\
                                     Anim_btn_cl,   Anim_MainPage_AboutButton_cl,\
-                                    Anim_btn_mv,   Anim_MainPage_AboutButton_mv,\
                                     Anim_btn_cl, Anim_MainPage_SettingButton_cl,\
-                                    Anim_btn_mv, Anim_MainPage_SettingButton_mv
+                                    Anim_btn_cl, Anim_MainPage_ExitButton_cl
 
 Anim_LoadingPage                dd  1,\
                                     Anim_static, Animation.Static.LoadingPage.Bar
@@ -40,7 +37,19 @@ Anim_GamePage                   dd  4,\
 Anim_AboutPage                  dd  1,\
                                     Anim_btn_cl, Anim_SubPages_cl
 
-Anim_SettingsPage               dd  0
+Anim_SReturnFont_cl             dd  sp_return_circle_design,\
+                                    retbtn_font_color, pale_color, brown_text_color
+Anim_SReturnHrst_cl             dd  sp_return_circle_design,\
+                                    retbtn_chrst_color, brown_text_color, pale_color
+Anim_SChHKeysFont_cl            dd  sp_chhkbrdr_design,\
+                                    chhtkeys_font_color, brown_text_color, pale_color
+Anim_SChHKeysText_cl            dd  sp_chhkbrdr_design,\
+                                    chhtkeys_text_color, pale_color, brown_text_color
+Anim_SettingsPage               dd  4,\
+                                    Anim_btn_cl, Anim_SReturnFont_cl,\
+                                    Anim_btn_cl, Anim_SReturnHrst_cl,\
+                                    Anim_btn_cl, Anim_SChHKeysFont_cl,\
+                                    Anim_btn_cl, Anim_SChHKeysText_cl
 
 Anim_PSaveAExitText_cl          dd  pp_esbtn_brdr_design,\
                                     esbtn_text_color, brown_color, brown_text_color
@@ -88,4 +97,12 @@ Anim_WinnerPage                 dd  8,\
                                     Anim_btn_cl, Anim_WLeadBoardFont_cl,\
                                     Anim_btn_cl, Anim_WLeadBoardText_cl
 
-AnimsList                       dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage, Anim_PausePage, Anim_WinnerPage
+Anim_HRetBtnFont_cl             dd  hp_return_circle_desing,\
+                                    retbtn_font_color, pale_color, brown_text_color
+Anim_HRetBtnHrst_cl             dd  hp_return_circle_desing,\
+                                    retbtn_chrst_color, brown_text_color, pale_color
+Anim_HotkeysPage                dd  2,\
+                                    Anim_btn_cl, Anim_HRetBtnFont_cl,\
+                                    Anim_btn_cl, Anim_HRetBtnHrst_cl
+
+AnimsList                       dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage, Anim_PausePage, Anim_WinnerPage, Anim_HotkeysPage

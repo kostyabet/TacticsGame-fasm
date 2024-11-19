@@ -8,6 +8,7 @@
 /Debug
 /Release
 bin/
+settings.txt
 
 # temp close
 .github/

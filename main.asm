@@ -1,61 +1,17 @@
 format PE GUI 4.0
 entry start
 
-macro malloc [arg]
-{
-  argc = 0
-forward
-  if ~arg eq
-    argc = argc+1
-  end if
-common
-  if argc = 1
-    invoke  HeapAlloc, [hHeap], 0, arg
-  else if argc = 2
-    match count, size, arg
-    \{
-        invoke HeapAlloc, [hHeap], 8, count * size
-      \}
-  end if
-}
-
-macro memcpy dest, src, count
-{
-    mov     esi, src
-    mov     edi, dest
-    mov     ecx, count
-    rep     movsb
-}
-
-macro switch value
-{
-    mov     eax, value
-}
-macro case label, [value]
-{
-    cmp     eax, value
-    je      label
-}
-
-
 include 'win32a.inc'
 include 'opengl.inc'
 include 'main.inc'
 
+include 'Scripts/Includes.asm'
 include 'Math/Includes.asm'
-
-include 'Graphics/Includes/DataPrepears.asm'
-include 'Graphics/Includes/DataIncludes.asm'
-include 'Graphics/Pages/PagesInclude.asm'
-include 'Graphics/Animations/Includes.asm'
+include 'Graphics/Includes.asm'
 include 'File/Includes.asm'
-
 include 'Game/Includes.asm'
-
-include 'Scripts/Getters.asm'
-
 include 'Mouse/Includes.asm'
-
+include 'Keyboard/Includes.asm'
 include 'Audio/Includes.asm'
 
 section '.text' code readable executable
@@ -163,7 +119,12 @@ proc WindowProc hwnd,wmsg,wparam,lparam
             jmp     .finish
   .wmkeydown:
       cmp     [wparam],VK_ESCAPE
-      jne     .defwndproc
+      jne     @F
+        stdcall Application.Exit
+      @@:
+      stdcall Keyboard.OnKeyDown
+      xor     eax,eax
+      jmp     .finish
   .wmdestroy:
       stdcall File.IniFile.Write
       invoke  HeapDestroy, [hHeap]
@@ -255,7 +216,8 @@ section '.idata' import data readable writeable
       GetClientRect,'GetClientRect',\
       GetDC,'GetDC',\
       ReleaseDC,'ReleaseDC',\
-      PostQuitMessage,'PostQuitMessage'
+      PostQuitMessage,'PostQuitMessage',\
+      GetAsyncKeyState, 'GetAsyncKeyState'
 
   import gdi,\
       ChoosePixelFormat,'ChoosePixelFormat',\

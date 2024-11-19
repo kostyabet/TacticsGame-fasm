@@ -11,3 +11,6 @@ HK_ABOUT            dd      'A'
 HK_EXIT             dd      'Q'
 HK_SETTINGS         dd      'S'
 HK_RESTART          dd      'R'
+
+HotKeysSize         dd      6
+HotKeysList         dd      HK_PLAY, HK_STOP, HK_ABOUT, HK_EXIT, HK_SETTINGS, HK_RESTART

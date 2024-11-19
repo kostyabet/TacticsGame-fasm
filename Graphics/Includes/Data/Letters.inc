@@ -69,6 +69,10 @@ fs_switch       =       -10
 fs_default      =       20
 fs_HPhotkeys    =       10
 
+fs_wantExit     =       10
+fs_yesno        =       5
+
+
 include 'Letters/RussianLetters.inc'
 include 'Letters/Digits.inc'
 include 'Letters/SpecialSymb.inc'

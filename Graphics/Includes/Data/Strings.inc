@@ -54,6 +54,8 @@ tg_hotkeys      =       8
 tg_volume       =       8
 tg_switch       =       6
 tg_HPhotkeys    =       10
+tg_wantExit     =       10
+tg_yesno        =       7
 
 ; ====== Interfaces ====== ;
 struct Points
@@ -170,6 +172,13 @@ str_mon_pos         dd       911, 545
 str_von_pos         dd      1091, 545
 str_hon_pos         dd      1074, 603
 
+str_wantExit        db      3, 29, 44, 23, 16, 20, 10, 20, 6, 44, 3, 29, 11, 20, 10, 47, 0 ; 'ВЫ ХОТИТЕ ВЫЙТИ?'
+str_wantExit_pos    dd      762, 485
+str_yes             db      5, 1, 0 ; 'ДА'
+str_yes_pos         dd      835, 553
+str_no              db      15, 6, 20, 0 ; 'НЕТ'
+str_no_pos          dd      1034, 552
+
 str_R_hk            db      71, 0 ; 'R'
 str_R_hk_pos        dd      1805, 29
 str_S_hk            db      72, 0 ; 'S'
@@ -221,6 +230,9 @@ txt_hoff            String  ?
 txt_mon             String  ?
 txt_von             String  ?
 txt_hon             String  ?
+txt_wantExit        String  ?
+txt_yes             String  ?
+txt_no              String  ?
 
 arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5,  ltr_RU_6,  ltr_RU_7,\ ; RU
                             ltr_RU_8,  ltr_RU_9,  ltr_RU_10, ltr_RU_11, ltr_RU_12, ltr_RU_13, ltr_RU_14,\

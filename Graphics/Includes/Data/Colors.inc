@@ -91,6 +91,10 @@ lbbtn_font_color      BackgroundColor ?
 lbbtn_text_color      BackgroundColor ?
 chhtkeys_font_color   BackgroundColor ?
 chhtkeys_text_color   BackgroundColor ?
+yes_font_color        BackgroundColor ?
+yes_text_color        BackgroundColor ?
+no_font_color         BackgroundColor ?
+no_text_color         BackgroundColor ?
 
 TicksFontList_Colors     dd  milk_color,   brown_color      ; base
 TicksFontList_MltColors  dd  orange_color, body_color       ; for "TO" Ticks

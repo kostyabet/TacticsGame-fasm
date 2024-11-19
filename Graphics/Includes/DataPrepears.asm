@@ -94,6 +94,13 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertWithQuardCoords, hp_return_chrest_coords, hp_return_chrest_design
     stdcall Scripts.Getters.ConvertCoords, button_exit_coords, button_exit_design
 
+    stdcall Scripts.Getters.ConvertCoords, ep_border_coords, ep_border_design
+    stdcall Scripts.Getters.ConvertCoords, ep_font_coords, ep_font_desing
+    stdcall Scripts.Getters.ConvertCoords, ep_yes_brdr_coords, ep_yes_brdr_design
+    stdcall Scripts.Getters.ConvertCoords, ep_yes_font_coords, ep_yes_font_design
+    stdcall Scripts.Getters.ConvertCoords, ep_no_brdr_coords, ep_no_brdr_design
+    stdcall Scripts.Getters.ConvertCoords, ep_no_font_coords, ep_no_font_design
+
 ; 375 44 485 32 86 Генадий Григорьевич
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
@@ -182,6 +189,10 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_hon,       str_on,       fs_switch,    tg_switch,    str_hon_pos
 
     stdcall Graphics.Draw.Text.Prepear, txt_HPhotkeys, str_chhotkeys, fs_HPhotkeys,  tg_HPhotkeys, str_HPhotkeys_pos
+    
+    stdcall Graphics.Draw.Text.Prepear, txt_wantExit,  str_wantExit,  fs_wantExit,   tg_wantExit,  str_wantExit_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_yes,       str_yes,       fs_yesno,      tg_yesno,     str_yes_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_no,        str_no,        fs_yesno,      tg_yesno,     str_no_pos
 
     ret
 endp

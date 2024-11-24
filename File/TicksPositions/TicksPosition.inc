@@ -1,0 +1,7 @@
+hTicksFile     dd     ?
+ticksFilePath  db     'ticks.inc', 0
+
+TICKS_MATRIX_PROMPT     db  "TICKS_MATRIX=", 0
+GARBAGE_COUNTER_PROMPT  db  "GARBAGE_COUNTER=", 0
+IS_GAME_START_PROMPT    db  "IS_GAME_START=", 0
+CURRENT_SCORE_PROMPT    db  "CURRENT_SCORE=", 0

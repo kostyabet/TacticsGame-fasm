@@ -1,9 +1,10 @@
 hIniFile     dd     ?
-iniFilePath  db     'settings.txt', 0
+iniFilePath  db     'settings.inc', 0
 readBuffer   dd     ?
 bufferLength dd     1000
 bytesRead    dd     0
 strBuffer    db     256 dup (0)
+arrayBuffer  db     256 dup (0)
 
 ; ==== prompts ==== ;
 NEXT_LINE               db      13, 10, 0

@@ -9,6 +9,9 @@
 /Release
 bin/
 settings.txt
+settings.inc
+ticks.txt
+ticks.inc
 
 # temp close
 .github/

@@ -42,6 +42,7 @@ section '.text' code readable executable
 
       ; prepear data
       stdcall File.IniFile.Read
+      stdcall File.TicksPosition.Read
       stdcall Graphics.Draw.CoordsRectPrepears
       stdcall Graphics.Colors.Prepear
       stdcall Graphics.Draw.ASCIIPrepear

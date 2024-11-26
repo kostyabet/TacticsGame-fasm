@@ -1,5 +1,5 @@
 hIniFile     dd     ?
-iniFilePath  db     'settings.inc', 0
+iniFilePath  db     'settings.ini', 0
 readBuffer   dd     ?
 bufferLength dd     1000
 bytesRead    dd     0

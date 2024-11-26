@@ -1,5 +1,5 @@
 hTicksFile     dd     ?
-ticksFilePath  db     'ticks.inc', 0
+ticksFilePath  db     'ticks.ini', 0
 
 TICKS_MATRIX_PROMPT     db  "TICKS_MATRIX=", 0
 GARBAGE_COUNTER_PROMPT  db  "GARBAGE_COUNTER=", 0

@@ -8,10 +8,8 @@
 /Debug
 /Release
 bin/
-settings.txt
-settings.inc
-ticks.txt
-ticks.inc
+settings.ini
+ticks.ini
 
 # temp close
 .github/

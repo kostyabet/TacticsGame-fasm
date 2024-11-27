@@ -51,7 +51,7 @@ ends
 struct Circle 
     center   Point   ?
     radius   dd      ?
-    dots     dd      2882 dup(?)
+    dots     dd      722 dup(?)
 ends
 
 struct Circles
@@ -68,7 +68,7 @@ struct DrawModel
     circles         Circles ?
 ends
 
-degreeCount         dd  1440
+degreeCount         dd  360
 curentDeg           dd  0
 curentRudDeg        dd  ?
 

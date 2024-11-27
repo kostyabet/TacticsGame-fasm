@@ -32,7 +32,7 @@ proc Mouse.CheckIsInShape uses ecx ebx,\
         jne     @f
         mov     [result], eax
         @@:
-        add     ebx, 11540
+        add     ebx, 2900
         loop    .checkCircles
     .exit:
         mov     eax, [result]

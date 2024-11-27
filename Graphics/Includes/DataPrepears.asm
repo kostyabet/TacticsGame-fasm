@@ -112,6 +112,9 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, ep_no_brdr_coords, ep_no_brdr_design
     stdcall Scripts.Getters.ConvertCoords, ep_no_font_coords, ep_no_font_design
 
+    stdcall Scripts.Getters.ConvertCoords, ap_brdr_coords, ap_brdr_design
+    stdcall Scripts.Getters.ConvertCoords, ap_font_coords, ap_font_design
+
 ; 375 44 485 32 86 Генадий Григорьевич
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design

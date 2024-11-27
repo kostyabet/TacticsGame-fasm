@@ -18,8 +18,9 @@ gp_events       dd  5,\
                     et_pagebutton, pause_btn_fnt_design,    PausePage,\
                     et_pagebutton, settings_btn_fnt_design, SettingsPage
 
-ap_events       dd  1,\
-                    et_pagebutton, exitbtn_font_design, MainPage
+ap_events       dd  2,\
+                    et_pagebutton, settings_btn_fnt_design, SettingsPage,\
+                    et_pagebutton, exitbtn_font_design,     MainPage
 
 sp_events       dd  6,\
                     et_prevpage,   sp_return_circle_design, PrevousPage,\

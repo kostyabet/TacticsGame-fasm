@@ -49,13 +49,10 @@ fs_info         =       20
 fs_cost         =       18
 fs_watermark    =       10
 fs_return       =       10
-
 fs_pause        =       10
 fs_exit         =       1
 fs_saveAexit    =       -1
-
 fs_hk           =       -5
-
 fs_winner       =       10
 fs_score        =       -10
 fs_score_num    =       5
@@ -65,13 +62,12 @@ fs_chhotkeys    =       -5
 fs_music        =       -2
 fs_hotkeys      =       -2
 fs_switch       =       -10
-
 fs_default      =       20
 fs_HPhotkeys    =       10
-
 fs_wantExit     =       10
 fs_yesno        =       5
-
+fs_gamerool     =       27
+fs_grtext       =       0
 
 include 'Letters/RussianLetters.inc'
 include 'Letters/Digits.inc'

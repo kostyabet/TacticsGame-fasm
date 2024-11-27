@@ -34,7 +34,8 @@ Anim_GamePage                   dd  4,\
                                     Anim_btn_cl, Anim_Settingsbtn_cl,\
                                     Anim_btn_cl, Anim_Pausebtn_cl
 
-Anim_AboutPage                  dd  1,\
+Anim_AboutPage                  dd  2,\
+                                    Anim_btn_cl, Anim_Settingsbtn_cl,\
                                     Anim_btn_cl, Anim_SubPages_cl
 
 Anim_SReturnFont_cl             dd  sp_return_circle_design,\

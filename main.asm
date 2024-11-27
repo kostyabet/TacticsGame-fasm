@@ -164,7 +164,7 @@ section '.data' data readable writeable
   boatBookPath   db  "source/ship_book.bmp", 0
 
   hHeap  dd ?
-  
+
   msg    MSG
   rc     RECT
   pfd    PIXELFORMATDESCRIPTOR

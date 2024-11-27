@@ -82,7 +82,7 @@ proc Mouse.CheckIsInRect,\
         mov     eax, [result]
         ret
 endp
-proc Mouse.CheckIsInCircle,\
+proc Mouse.CheckIsInCircle uses ecx,\
     centerXfl, centerYfl, radius
     locals
         result  dd  GL_FALSE

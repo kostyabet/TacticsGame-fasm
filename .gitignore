@@ -11,6 +11,7 @@ bin/
 settings.ini
 ticks.ini
 builder/
+tactickgame.fas
 
 # temp close
 .github/

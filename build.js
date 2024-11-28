@@ -32,19 +32,19 @@ try {
 
     console.log(`90% - Return in work directory: ${process.cwd()};`);
     process.chdir(config.projectDir);
-    
-    const sourceFolder = path.join(config.projectDir, config.copy.srcFolder);
-    const destFolder = path.join(buildConfig.folder, config.copy.destFolder);
-    console.log(`0% - Start copy source from ${sourceFolder} to ${destFolder}`);
-    ncp(sourceFolder, destFolder)
-    .then(() => {
-        console.log(`100% - Files copied successfully from ${sourceFolder} to ${destFolder}`);
-        process.exit(0);
-    })
-    .catch(err => {
-        console.error(`Error copying files: ${err}`);
-        process.exit(1);
-    });
+    process.exit(0);
+    // const sourceFolder = path.join(config.projectDir, config.copy.srcFolder);
+    // const destFolder = path.join(buildConfig.folder, config.copy.destFolder);
+    // console.log(`0% - Start copy source from ${sourceFolder} to ${destFolder}`);
+    // ncp(sourceFolder, destFolder)
+    // .then(() => {
+    //     console.log(`100% - Files copied successfully from ${sourceFolder} to ${destFolder}`);
+    //     process.exit(0);
+    // })
+    // .catch(err => {
+    //     console.error(`Error copying files: ${err}`);
+    //     process.exit(1);
+    // });
 } catch (error) {
     console.error(`Error: ${error.message}`);
     process.exit(1);

@@ -52,6 +52,11 @@ proc Graphics.Draw.Text.Prepear uses eax ebx edi,\
         startX          dd      ?
         startY          dd      ?
     endl
+    ; set font size
+    mov     ebx, spl_50
+    mov     eax, 28 ; [fontSize]
+    mov     dword [ebx + 8], 28
+    ; memory creat
     stdcall Graphics.Draw.Text.GetLength, [string]
     mov     [counterLen], eax
     mov     ebx, sizeof.Char ; sizeof Char
@@ -61,10 +66,6 @@ proc Graphics.Draw.Text.Prepear uses eax ebx edi,\
     malloc  eax
     mov     [ebx], eax
     .start:
-        mov     ebx, spl_50
-        add     ebx, 8
-        mov     eax, [fontSize]
-        mov     [ebx], eax
         ; multiplier
         stdcall Scripts.Getters.GetFSMultiplier, fs_default, [fontSize]
         mov     [fs_multiplier], eax

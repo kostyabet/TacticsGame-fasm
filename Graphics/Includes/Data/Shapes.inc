@@ -74,7 +74,6 @@ curentRudDeg        dd  ?
 
 ; ====== Program models ====== ;
 font_design                   DrawModel   ?
-
 book_root_design              DrawModel   ?
 book_endg_design              DrawModel   ?
 book_brdcrn_design            DrawModel   ?
@@ -82,11 +81,9 @@ book_corner_design            DrawModel   ?
 book_brdfnt_design            DrawModel   ?
 book_brd_design               DrawModel   ?
 book_flgpl_design             DrawModel   ?
-
 button_play_design            DrawModel   ?
 button_about_design           DrawModel   ?
 button_stngs_design           DrawModel   ?
-
 game_border_design            DrawModel   ?
 game_garbage_font_design      DrawModel   ?
 game_garbabe_border_design    DrawModel   ?

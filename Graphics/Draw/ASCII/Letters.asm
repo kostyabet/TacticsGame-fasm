@@ -78,7 +78,9 @@ proc Graphics.Draw.ASCII.Letters.GetLetterLen,\
         jmp     .exit
     @@:
         stdcall Scripts.Getters.GetIMULNumber, [ebx + 8], [multiplier]
+        mov     eax, 33
         mov     ebx, -1
+        jmp     .exit
     .exit:
         ret
 endp

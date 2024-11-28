@@ -120,9 +120,9 @@ str_wexit_pos       dd      917, 590
 str_stats           db      19, 20, 1, 20, 10, 19, 20, 10, 12, 1, 0 ; 'СТАТИСТИКА'
 str_stats_pos       dd      867, 648
 str_msettings_pos   dd      845, 420
-str_chhotkeys       db      19, 14, 6, 15, 1, 44, 4, 16, 18, 33, 25, 10, 23, 44, 12, 13, 1, 3, 10, 26, 0 ; 'СМЕНА ГОРЯЧИХ КЛАВИШ'
-str_chhotkeys_pos   dd      817, 637
-str_HPhotkeys_pos   dd      698, 414
+str_chhotkeys       db      4, 16, 18, 33, 25, 10, 6, 44, 12, 13, 1, 3, 10, 26, 10, 0 ; 'ГОРЯЧИЕ КЛАВИШИ'
+str_chhotkeys_pos   dd      853, 637
+str_HPhotkeys_pos   dd      771, 414
 str_music           db      14, 21, 9, 29, 12, 1, 0 ; 'МУЗЫКА'
 str_music_pos       dd      783, 540
 str_voice           db      9, 3, 21, 12, 10, 0 ; 'ЗВУКИ'
@@ -151,10 +151,8 @@ str_S_hk            db      72, 0 ; 'S'
 str_S_hk_pos        dd      1875, 29
 str_P_hk            db      69, 0 ; 'P'
 str_P_hk_pos        dd      1736, 29
-
 str_gamerool        db      17, 18, 1, 3, 10, 13, 1, 44, 10, 4, 18, 29, 0; 'ПРАВИЛА ИГРЫ'
 str_gamerool_pos    dd      728, 273
-
 str_grtext          db      44, 44,\
                             18, 1, 9, 14, 6, 19, 20, 10, 3, 44,\
                             26, 1, 26, 12, 10, 45, 44,\

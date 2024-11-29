@@ -34,6 +34,8 @@ proc File.TicksPosition.Read uses eax ebx ecx edx edi
         invoke  HeapAlloc, [hHeap], 8, [bufferLength]
         mov     [readBuffer], eax
         invoke  ReadFile, [hTicksFile], [readBuffer], [bufferLength], bytesRead, 0
+        cmp     [bytesRead], 0
+        je      @F
 ; ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ;
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT TOUCH EDI !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ;
         mov     edi, [readBuffer]
@@ -42,7 +44,8 @@ proc File.TicksPosition.Read uses eax ebx ecx edx edi
         stdcall File.IniFIle.ReadString, currentScore, 1
         stdcall File.IniFile.StrToArrInt, TicksMatrix, 64
 ; !!!!!!!!!!!!!!!!!!!!! ALARM DIACTIVATE! GOOD LUCK :) !!!!!!!!!!!!!!!!!!!!!!!! ;
-        invoke HeapFree, [hHeap], 0, [readBuffer]
+        @@:
+            invoke HeapFree, [hHeap], 0, [readBuffer]
     .exit:
         invoke  CloseHandle, [hTicksFile]
         ret

@@ -42,6 +42,8 @@ proc File.IniFile.Read uses eax ebx ecx edx edi
         invoke  HeapAlloc, [hHeap], 8, [bufferLength]
         mov     [readBuffer], eax
         invoke  ReadFile, [hIniFile], [readBuffer], [bufferLength], bytesRead, 0
+        cmp     [bytesRead], 0
+        je      @F
 ; ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ;
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT TOUCH EDI !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ;
         mov     edi, [readBuffer]
@@ -56,7 +58,8 @@ proc File.IniFile.Read uses eax ebx ecx edx edi
         stdcall File.IniFIle.ReadString, HK_SETTINGS, 0
         stdcall File.IniFIle.ReadString, HK_RESTART, 0
 ; !!!!!!!!!!!!!!!!!!!!! ALARM DIACTIVATE! GOOD LUCK :) !!!!!!!!!!!!!!!!!!!!!!!! ;
-        invoke HeapFree, [hHeap], 0, [readBuffer]
+        @@:
+            invoke HeapFree, [hHeap], 0, [readBuffer]
     .exit:
         invoke  CloseHandle, [hIniFile]
         ret

@@ -565,3 +565,13 @@ proc Script.Colors.CopyColor uses eax ecx edx edi,\
         loop    .mainLoop
     ret
 endp
+proc Scripts.Convert.FromENtoASCII uses eax ebx,\
+    letter, address
+    xor     eax, eax
+    mov     al, byte [letter]
+    sub     eax, 'A'
+    add     eax, 54
+    mov     ebx, [address]
+    mov     byte [ebx], al
+    ret
+endp

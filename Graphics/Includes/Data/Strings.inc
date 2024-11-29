@@ -329,6 +329,14 @@ txt_hkpause         dd      ?
 txt_hkexit          dd      ?
 txt_hkrestart       dd      ?
 
+txts_array          dd      txt_headline, txt_headline_bc, txt_play,       txt_about,     txt_settings,  txt_return,   txt_grtext,\
+                            txt_Mexit,    txt_title,       txt_cost,       txt_info,      txt_watermark, txt_R_hk,     txt_P_hk,\
+                            txt_S_hk,     txt_pause,       txt_exit,       txt_saveAexit, txt_winner,    txt_score,    txt_score_num,\
+                            txt_again,    txt_wexit,       txt_stats,      txt_msettings, txt_chhotkeys, txt_music,    txt_voice,\
+                            txt_hotkeys,  txt_HPhotkeys,   txt_volume,     txt_moff,      txt_voff,      txt_hoff,     txt_mon,\
+                            txt_von,      txt_hon,         txt_wantExit,   txt_yes,       txt_no,        txt_gamerool, txt_hkplay,\
+                            txt_hkabout,  txt_hksettings,  txt_hkpause,    txt_hkexit,    txt_hkrestart, 0
+
 arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5,  ltr_RU_6,  ltr_RU_7,\ ; RU
                             ltr_RU_8,  ltr_RU_9,  ltr_RU_10, ltr_RU_11, ltr_RU_12, ltr_RU_13, ltr_RU_14,\
                             ltr_RU_15, ltr_RU_16, ltr_RU_17, ltr_RU_18, ltr_RU_19, ltr_RU_20, ltr_RU_21,\

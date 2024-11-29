@@ -4,37 +4,37 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Graphics.Draw.CoordsRectPrepears.ForAnimations
     ; quard obj
     stdcall Scripts.Getters.ConvertWithQuardCoords, settings_btn_subline_coords, settings_btn_subline_design
-    stdcall Scripts.Getters.ConvertWithQuardCoords, pp_return_chrest_coords, pp_return_chrest_design
-    stdcall Scripts.Getters.ConvertWithQuardCoords, wp_return_chrest_coords, wp_return_chrest_design
-    stdcall Scripts.Getters.ConvertWithQuardCoords, sp_return_chrest_coords, sp_return_chrest_design
-    stdcall Scripts.Getters.ConvertWithQuardCoords, hp_return_chrest_coords, hp_return_chrest_design
+    stdcall Scripts.Getters.ConvertWithQuardCoords, pp_return_chrest_coords,     pp_return_chrest_design
+    stdcall Scripts.Getters.ConvertWithQuardCoords, wp_return_chrest_coords,     wp_return_chrest_design
+    stdcall Scripts.Getters.ConvertWithQuardCoords, sp_return_chrest_coords,     sp_return_chrest_design
+    stdcall Scripts.Getters.ConvertWithQuardCoords, hp_return_chrest_coords,     hp_return_chrest_design
     ; default
-    stdcall Scripts.Getters.ConvertCoords, font_coords, font_design
-    stdcall Scripts.Getters.ConvertCoords, book_root_coords, book_root_design
-    stdcall Scripts.Getters.ConvertCoords, book_endg_coords, book_endg_design
-    stdcall Scripts.Getters.ConvertCoords, book_brdcrn_coords, book_brdcrn_design
-    stdcall Scripts.Getters.ConvertCoords, book_corner_coords, book_corner_design
-    stdcall Scripts.Getters.ConvertCoords, book_brdfnt_coords, book_brdfnt_design
-    stdcall Scripts.Getters.ConvertCoords, book_brd_coords, book_brd_design
-    stdcall Scripts.Getters.ConvertCoords, book_flgpl_coords, book_flgpl_design
-    stdcall Scripts.Getters.ConvertCoords, button_exit_coords, button_exit_design
-    stdcall Scripts.Getters.ConvertCoords, mp_gamefont_coords, mp_gamefont_design
-    stdcall Scripts.Getters.ConvertCoords, mg_gamebrdr_coords, mp_gamebrdr_design
-    stdcall Scripts.Getters.ConvertCoords, mp_grbgbrdr_coords, mp_grbgbrdr_design
-    stdcall Scripts.Getters.ConvertCoords, mp_grbgfont_coords, mp_grbgfont_design
-    stdcall Scripts.Getters.ConvertCoords, mp_fntvertln_coords, mp_fntvertln_design
-    stdcall Scripts.Getters.ConvertCoords, mp_fnthortln_coords, mp_fnthortln_design
-    stdcall Scripts.Getters.ConvertCoords, exitbtn_font_coords, exitbtn_font_design
-    stdcall Scripts.Getters.ConvertCoords, lp_bar_brdr1_coords, lp_bar_brdr1_design
-    stdcall Scripts.Getters.ConvertCoords, lp_bar_brdr2_coords, lp_bar_brdr2_design
-    stdcall Scripts.Getters.ConvertCoords, lp_bar_brdr3_coords, lp_bar_brdr3_design
-    stdcall Scripts.Getters.ConvertCoords, lp_bar_main_coords,  lp_bar_main_design
-    stdcall Scripts.Getters.ConvertCoords, recovery_btn_fnt_coords, recovery_btn_fnt_design
-    stdcall Scripts.Getters.ConvertCoords, recovery_btn_out_circle_coords, recovery_btn_out_circle_design
-    stdcall Scripts.Getters.ConvertCoords, recovery_btn_in_circle_coords, recovery_btn_in_circle_design
-    stdcall Scripts.Getters.ConvertCoords, recovery_btn_fntblock_coords, recovery_btn_fntblock_design
-    stdcall Scripts.Getters.ConvertCoords, recovery_btn_lftriangle_coords, recovery_btn_lftriangle_design
-    stdcall Scripts.Getters.ConvertCoords, recovery_btn_rgtriangle_coords, recovery_btn_rgtriangle_design
+    stdcall Scripts.Getters.ConvertCoords, font_coords,                     font_design
+    stdcall Scripts.Getters.ConvertCoords, book_root_coords,                book_root_design
+    stdcall Scripts.Getters.ConvertCoords, book_endg_coords,                book_endg_design
+    stdcall Scripts.Getters.ConvertCoords, book_brdcrn_coords,              book_brdcrn_design
+    stdcall Scripts.Getters.ConvertCoords, book_corner_coords,              book_corner_design
+    stdcall Scripts.Getters.ConvertCoords, book_brdfnt_coords,              book_brdfnt_design
+    stdcall Scripts.Getters.ConvertCoords, book_brd_coords,                 book_brd_design
+    stdcall Scripts.Getters.ConvertCoords, book_flgpl_coords,               book_flgpl_design
+    stdcall Scripts.Getters.ConvertCoords, button_exit_coords,              button_exit_design
+    stdcall Scripts.Getters.ConvertCoords, mp_gamefont_coords,              mp_gamefont_design
+    stdcall Scripts.Getters.ConvertCoords, mg_gamebrdr_coords,              mp_gamebrdr_design
+    stdcall Scripts.Getters.ConvertCoords, mp_grbgbrdr_coords,              mp_grbgbrdr_design
+    stdcall Scripts.Getters.ConvertCoords, mp_grbgfont_coords,              mp_grbgfont_design
+    stdcall Scripts.Getters.ConvertCoords, mp_fntvertln_coords,             mp_fntvertln_design
+    stdcall Scripts.Getters.ConvertCoords, mp_fnthortln_coords,             mp_fnthortln_design
+    stdcall Scripts.Getters.ConvertCoords, exitbtn_font_coords,             exitbtn_font_design
+    stdcall Scripts.Getters.ConvertCoords, lp_bar_brdr1_coords,             lp_bar_brdr1_design
+    stdcall Scripts.Getters.ConvertCoords, lp_bar_brdr2_coords,             lp_bar_brdr2_design
+    stdcall Scripts.Getters.ConvertCoords, lp_bar_brdr3_coords,             lp_bar_brdr3_design
+    stdcall Scripts.Getters.ConvertCoords, lp_bar_main_coords,              lp_bar_main_design
+    stdcall Scripts.Getters.ConvertCoords, recovery_btn_fnt_coords,         recovery_btn_fnt_design
+    stdcall Scripts.Getters.ConvertCoords, recovery_btn_out_circle_coords,  recovery_btn_out_circle_design
+    stdcall Scripts.Getters.ConvertCoords, recovery_btn_in_circle_coords,   recovery_btn_in_circle_design
+    stdcall Scripts.Getters.ConvertCoords, recovery_btn_fntblock_coords,    recovery_btn_fntblock_design
+    stdcall Scripts.Getters.ConvertCoords, recovery_btn_lftriangle_coords,  recovery_btn_lftriangle_design
+    stdcall Scripts.Getters.ConvertCoords, recovery_btn_rgtriangle_coords,  recovery_btn_rgtriangle_design
     stdcall Scripts.Getters.ConvertCoords, settings_btn_fnt_coords, settings_btn_fnt_design
     stdcall Scripts.Getters.ConvertCoords, pause_btn_fnt_coords, pause_btn_fnt_design
     stdcall Scripts.Getters.ConvertCoords, pause_btn_lines_coords, pause_btn_lines_design
@@ -187,6 +187,12 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_no,          str_no,          fs_yesno,     tg_yesno,     str_no_pos
     stdcall Graphics.Draw.Text.Prepear, txt_gamerool,    str_gamerool,    fs_gamerool,  tg_gamerool,  str_gamerool_pos
     stdcall Graphics.Draw.Text.Prepear, txt_grtext,      str_grtext,      fs_grtext,    tg_grtext,    str_grtext_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hkplay,      str_hkplay,      fs_hktext,    tg_hktext,    str_hkplay_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hkabout,     str_hkabout,     fs_hktext,    tg_hktext,    str_hkabout_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hksettings,  str_hksettings,  fs_hktext,    tg_hktext,    str_hksettings_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hkpause,     str_hkpause,     fs_hktext,    tg_hktext,    str_hkpause_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hkexit,      str_hkexit,      fs_hktext,    tg_hktext,    str_hkexit_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hkrestart,   str_hkrestart,   fs_hktext,    tg_hktext,    str_hkrestart_pos
     ret
 endp
 

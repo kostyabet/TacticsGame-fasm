@@ -58,6 +58,7 @@ tg_wantExit     =       10
 tg_yesno        =       7
 tg_gamerool     =       10
 tg_grtext       =       8
+tg_hktext       =       7
 
 ; ====== Interfaces ====== ;
 struct Points
@@ -121,7 +122,7 @@ str_stats           db      19, 20, 1, 20, 10, 19, 20, 10, 12, 1, 0 ; 'СТАТ�
 str_stats_pos       dd      867, 648
 str_msettings_pos   dd      845, 420
 str_chhotkeys       db      4, 16, 18, 33, 25, 10, 6, 44, 12, 13, 1, 3, 10, 26, 10, 0 ; 'ГОРЯЧИЕ КЛАВИШИ'
-str_chhotkeys_pos   dd      853, 637
+str_chhotkeys_pos   dd      855, 637
 str_HPhotkeys_pos   dd      771, 414
 str_music           db      14, 21, 9, 29, 12, 1, 0 ; 'МУЗЫКА'
 str_music_pos       dd      783, 540
@@ -267,6 +268,18 @@ str_grtext          db      44, 44,\
                             24, 6, 15, 20, 18, 6, 44,\
                             17, 16, 13, 33, 46, 0
 str_grtext_pos      dd      154, 392
+str_hkplay          db      10, 4, 18, 1, 20, 30, 0 ; 'ИГРАТЬ'
+str_hkplay_pos      dd      804, 504
+str_hkabout         db      16, 2, 44, 10, 4, 18, 6, 0 ; 'ОБ ИГРЕ'
+str_hkabout_pos     dd      804, 549
+str_hksettings      db      15, 1, 19, 20, 18, 16, 11, 12, 10, 0 ; 'НАСТРОЙКИ'
+str_hksettings_pos  dd      804, 594
+str_hkpause         db      17, 1, 21, 9, 1, 0 ; 'ПАУЗА'
+str_hkpause_pos     dd      1112, 504
+str_hkexit          db      3, 29, 23, 16, 5, 0 ; 'ВЫХОД'
+str_hkexit_pos      dd      1112, 549
+str_hkrestart       db      9, 1, 15, 16, 3, 16, 0 ; 'ЗАНОВО'
+str_hkrestart_pos   dd      1112, 594
 ; ====== Program models ====== ;
 txt_headline        dd      ?
 txt_headline_bc     dd      ?
@@ -309,6 +322,12 @@ txt_yes             dd      ?
 txt_no              dd      ?
 txt_gamerool        dd      ?
 txt_grtext          dd      ?
+txt_hkplay          dd      ?
+txt_hkabout         dd      ?
+txt_hksettings      dd      ?
+txt_hkpause         dd      ?
+txt_hkexit          dd      ?
+txt_hkrestart       dd      ?
 
 arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5,  ltr_RU_6,  ltr_RU_7,\ ; RU
                             ltr_RU_8,  ltr_RU_9,  ltr_RU_10, ltr_RU_11, ltr_RU_12, ltr_RU_13, ltr_RU_14,\

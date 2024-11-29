@@ -68,6 +68,7 @@ fs_wantExit     =       10
 fs_yesno        =       5
 fs_gamerool     =       27
 fs_grtext       =       0
+fs_hktext       =       0
 
 include 'Letters/RussianLetters.inc'
 include 'Letters/Digits.inc'

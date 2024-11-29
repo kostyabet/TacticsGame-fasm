@@ -65,7 +65,7 @@ proc Game.OnClick.TickButton uses eax ebx ecx edi,\
          stdcall Game.OnTickClick, [matrixTick], ebx
          jmp     .exit
         .exitFromLoop:
-         add     ebx, 11540 ; skeep circle
+         add     ebx, 2900 ; skeep circle
         dec    ecx
         cmp   ecx, 0
         jne   .mainLoop

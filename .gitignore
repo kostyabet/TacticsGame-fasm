@@ -8,7 +8,10 @@
 /Debug
 /Release
 bin/
-settings.txt
+settings.ini
+ticks.ini
+builder/
+tactickgame.fas
 
 # temp close
 .github/
@@ -18,3 +21,8 @@ build.yml/
 
 # Texture Packer resource files
 Graphics/Draw/ASCII/TextureAtlases/Resources
+
+
+# node js temp
+node_modules/
+package-lock.json

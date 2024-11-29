@@ -26,15 +26,45 @@ proc Graphics.Draw.Text.Write uses ebx ecx,\
         ret
 endp
 
+proc Graphics.Draw.Text.GetLength uses ebx edx,\
+    string
+    mov     ebx, [string]
+    xor     eax, eax
+    xor     edx, edx
+    .mainLoop:
+        mov     dl, byte [ebx]
+        inc     ebx
+        inc     eax
+        cmp     dl, 0
+        jne     .mainLoop
+    dec     eax
+    ret
+endp
+
 proc Graphics.Draw.Text.Prepear uses eax ebx edi,\
      result, string, fontSize, fontGap, position
     locals
         x               dd      ?
         y               dd      ?  
         multiplier      dd      4
-        counterLen      dd      0      
+        counterLen      dd      ?     
         fs_multiplier   dd      ?
+        startX          dd      ?
+        startY          dd      ?
     endl
+    ; set font size
+    mov     ebx, spl_50
+    mov     eax, 28 ; [fontSize]
+    mov     dword [ebx + 8], 28
+    ; memory creat
+    stdcall Graphics.Draw.Text.GetLength, [string]
+    mov     [counterLen], eax
+    mov     ebx, sizeof.Char ; sizeof Char
+    imul    dword ebx ; Char * count
+    add     eax, 4 ; main length
+    mov     ebx, [result]
+    malloc  eax
+    mov     [ebx], eax
     .start:
         ; multiplier
         stdcall Scripts.Getters.GetFSMultiplier, fs_default, [fontSize]
@@ -44,19 +74,21 @@ proc Graphics.Draw.Text.Prepear uses eax ebx edi,\
         ; x
         mov     eax, [ebx]
         mov     [x], eax
+        mov     [startX], eax
         ; y
         mov     eax, [ebx + 4]
         mov     [y], eax
+        mov     [startY], eax
     .main:
         mov     ebx, [string]
         mov     edi, [result]
+        mov     edi, [edi]
         add     edi, 4
         .while:
             xor     eax, eax
-            mov     al, [ebx]
+            mov     al, byte [ebx]
             cmp     eax, 0
             je      .exit
-            inc     [counterLen]
         .do:    
             dec     eax
             mul     dword [multiplier]
@@ -64,15 +96,25 @@ proc Graphics.Draw.Text.Prepear uses eax ebx edi,\
             xchg    ebx, eax
             stdcall Graphics.Draw.ASCII.Letters.CreateGLChar, edi, [arr_of_letters + ebx], [x], [y], [fs_multiplier]
             stdcall Graphics.Draw.ASCII.Letters.GetLetterLen, [arr_of_letters + ebx], [fs_multiplier]
-            add     eax, [fontGap]
-            add     eax, 10
-            add     [x], eax
+            cmp     ebx, -1
+            je      @F
+                add     eax, [fontGap]
+                add     eax, 10
+                add     [x], eax
+                jmp     .exitFromWhile
+            @@:
+                add     [y], eax
+                mov     eax, [startX]
+                mov     [x], eax
+                jmp     .exitFromWhile
+            .exitFromWhile:
             pop     ebx
             inc     ebx
             add     edi, 228 ; skip char
             jmp     .while
     .exit:
         mov     ebx, [result]
+        mov     ebx, [ebx]
         mov     eax, [counterLen]
         mov     [ebx], eax
         ret

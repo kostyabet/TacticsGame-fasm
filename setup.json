@@ -1,14 +1,20 @@
 {
     "debug": {
         "input": "C:/KostyaBetenya/GitHub/TacticsGame-fasm/main.asm",
-        "output": "C:/KostyaBetenya/GitHub/TacticsGame-fasm/bin/Debug/tactickgame.exe"
+        "output": "C:/KostyaBetenya/GitHub/TacticsGame-fasm/bin/Debug/tactickgame.exe",
+        "folder": "C:/KostyaBetenya/GitHub/TacticsGame-fasm/bin/Debug/"
     },
     "release": {
         "input": "C:/KostyaBetenya/GitHub/TacticsGame-fasm/main.asm",
-        "output": "C:/KostyaBetenya/GitHub/TacticsGame-fasm/bin/Release/tactickgame.exe"
+        "output": "C:/KostyaBetenya/GitHub/TacticsGame-fasm/bin/Release/tactickgame.exe",
+        "folder": "C:/KostyaBetenya/GitHub/TacticsGame-fasm/bin/Release/"
     },
     "fasmPath": "C:/KostyaBetenya/FASM",
     "projectDir": "C:/KostyaBetenya/GitHub/TacticsGame-fasm",
     "ollyDbgPath": "C:/KostyaBetenya/OllyDbg/OllyDbg.exe",
-    "debugExecutablePath": "C:/KostyaBetenya/GitHub/TacticsGame-fasm/bin/Debug/tactickgame.exe"
+    "debugExecutablePath": "C:/KostyaBetenya/GitHub/TacticsGame-fasm/bin/Debug/tactickgame.exe",
+    "copy": {
+        "srcFolder": "source",
+        "destFolder": "source"
+    }
 }

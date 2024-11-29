@@ -51,7 +51,7 @@ ends
 struct Circle 
     center   Point   ?
     radius   dd      ?
-    dots     dd      2882 dup(?)
+    dots     dd      722 dup(?)
 ends
 
 struct Circles
@@ -68,13 +68,12 @@ struct DrawModel
     circles         Circles ?
 ends
 
-degreeCount         dd  1440
+degreeCount         dd  360
 curentDeg           dd  0
 curentRudDeg        dd  ?
 
 ; ====== Program models ====== ;
 font_design                   DrawModel   ?
-
 book_root_design              DrawModel   ?
 book_endg_design              DrawModel   ?
 book_brdcrn_design            DrawModel   ?
@@ -82,11 +81,9 @@ book_corner_design            DrawModel   ?
 book_brdfnt_design            DrawModel   ?
 book_brd_design               DrawModel   ?
 book_flgpl_design             DrawModel   ?
-
 button_play_design            DrawModel   ?
 button_about_design           DrawModel   ?
 button_stngs_design           DrawModel   ?
-
 game_border_design            DrawModel   ?
 game_garbage_font_design      DrawModel   ?
 game_garbabe_border_design    DrawModel   ?
@@ -802,3 +799,188 @@ hp_return_chrest_coords dd  2,\
                             1244, 408, 1248, 408, 1260, 420, 1256, 420,\
                             1244, 420, 1248, 420, 1260, 408, 1256, 408,\
                             0
+hp_playbrdr_design      DrawModel ?
+hp_playbrdr_coords      dd  2,\
+                            704, 501, 787, 535,\
+                            701, 504, 791, 532,\
+                            4,\
+                            704, 504, 3,\
+                            704, 532, 3,\
+                            787, 504, 3,\
+                            787, 532, 3
+hp_playfont_design      DrawModel ?
+hp_playfont_coords      dd  2,\
+                            704, 502, 788, 534,\
+                            702, 504, 790, 532,\
+                            4,\
+                            704, 504, 2,\
+                            704, 532, 2,\
+                            788, 504, 2,\
+                            788, 532, 2
+
+hp_pausebrdr_design     DrawModel ?
+hp_pausebrdr_coords     dd  2,\
+                            1012, 500, 1096, 534,\
+                            1009, 503, 1099, 531,\
+                            4,\
+                            1012, 503, 3,\
+                            1012, 531, 3,\
+                            1096, 503, 3,\
+                            1096, 531, 3
+hp_pausefont_design     DrawModel ?
+hp_pausefont_coords     dd  2,\
+                            1012, 501, 1096, 533,\
+                            1010, 503, 1098, 531,\
+                            4,\
+                            1012, 503, 2,\
+                            1012, 531, 2,\
+                            1096, 503, 2,\
+                            1096, 531, 2
+hp_aboutbrdr_design     DrawModel ?
+hp_aboutbrdr_coords     dd  2,\
+                            704, 546, 788, 580,\
+                            701, 549, 791, 577,\
+                            4,\
+                            704, 549, 3,\
+                            704, 577, 3,\
+                            788, 549, 3,\
+                            788, 577, 3
+hp_aboutfont_design     DrawModel ?
+hp_aboutfont_coords     dd  2,\
+                            704, 547, 788, 579,\
+                            702, 549, 790, 577,\
+                            4,\
+                            704, 549, 2,\
+                            704, 577, 2,\
+                            788, 549, 2,\
+                            788, 577, 2
+hp_exitbrdr_design      DrawModel ?
+hp_exitbrdr_coords      dd  2,\
+                            1013, 545, 1097, 579,\
+                            1010, 548, 1100, 576,\
+                            4,\
+                            1013, 548, 3,\
+                            1013, 576, 3,\
+                            1097, 548, 3,\
+                            1097, 576, 3
+hp_exitfont_design      DrawModel ?
+hp_exitfont_coords      dd  2,\
+                            1013, 546, 1097, 578,\
+                            1011, 548, 1099, 576,\
+                            4,\
+                            1013, 548, 2,\
+                            1013, 576, 2,\
+                            1097, 548, 2,\
+                            1097, 576, 2
+
+hp_stngbrdr_design      DrawModel ?
+hp_stngbrdr_coords      dd  2,\
+                            704, 591, 788, 625,\
+                            701, 594, 791, 622,\
+                            4,\
+                            704, 594, 3,\
+                            704, 622, 3,\
+                            788, 594, 3,\
+                            788, 622, 3
+hp_stngfont_design      DrawModel ?
+hp_stngfont_coords      dd  2,\
+                            704, 592, 788, 624,\
+                            702, 594, 790, 622,\
+                            4,\
+                            704, 594, 2,\
+                            704, 622, 2,\
+                            788, 594, 2,\
+                            788, 622, 2
+
+hp_rstrbrdr_design      DrawModel ?
+hp_rstrbrdr_coords      dd  2,\
+                            1013, 590, 1097, 624,\
+                            1010, 593, 1100, 621,\
+                            4,\
+                            1013, 593, 3,\
+                            1013, 621, 3,\
+                            1097, 593, 3,\
+                            1097, 621, 3
+hp_rstrfont_design      DrawModel ?
+hp_rstrfont_coords      dd  2,\
+                            1013, 591, 1097, 623,\
+                            1011, 593, 1099, 621,\
+                            4,\
+                            1013, 593, 2,\
+                            1013, 621, 2,\
+                            1097, 593, 2,\
+                            1097, 621, 2 
+; exit page
+ep_border_design    DrawModel   ?
+ep_border_coords    dd          2,\
+                                745, 450, 1175, 630,\
+                                725, 470, 1195, 610,\
+                                4,\
+                                 745, 470, 20,\
+                                 745, 610, 20,\
+                                1175, 470, 20,\
+                                1175, 610, 20
+ep_font_desing      DrawModel   ?
+ep_font_coords      dd          2,\
+                                747, 455, 1173, 625,\
+                                730, 472, 1190, 608,\
+                                4,\
+                                 747, 472, 17,\
+                                 747, 608, 17,\
+                                1173, 472, 17,\
+                                1173, 608, 17
+ep_yes_brdr_design  DrawModel   ?
+ep_yes_brdr_coords  dd          2,\
+                                767, 543, 947, 597,\
+                                757, 553, 957, 587,\
+                                4,\
+                                767, 553, 10,\
+                                767, 587, 10,\
+                                947, 553, 10,\
+                                947, 587, 10
+ep_yes_font_design  DrawModel   ?
+ep_yes_font_coords  dd          2,\
+                                767, 545, 946, 595,\ 
+                                759, 553, 954, 587,\ 
+                                4,\
+                                767, 553, 8,\
+                                767, 587, 8,\
+                                946, 553, 8,\
+                                946, 587, 8
+ep_no_brdr_design   DrawModel   ?
+ep_no_brdr_coords   dd          2,\
+                                972, 543, 1152, 597,\
+                                962, 553, 1162, 587,\
+                                4,\
+                                972, 553, 10,\
+                                972, 587, 10,\
+                                1152, 553, 10,\
+                                1152, 587, 10                              
+ep_no_font_design   DrawModel   ?
+ep_no_font_coords   dd          2,\
+                                972, 545, 1152, 595,\
+                                964, 553, 1160, 587,\
+                                4,\
+                                972, 553, 8,\
+                                972, 587, 8,\
+                                1152, 553, 8,\
+                                1152, 587, 8
+; === about page === ;
+ap_brdr_design      DrawModel   ?
+ap_brdr_coords      dd          2,\
+                                136, 195, 1783, 884,\
+                                 96, 235, 1823, 844,\
+                                4,\
+                                 136, 235, 40,\
+                                 136, 844, 40,\
+                                1783, 235, 40,\
+                                1783, 844, 40
+ap_font_design      DrawModel   ?
+ap_font_coords      dd          2,\
+                                138, 202, 1781, 877,\
+                                103, 237, 1816, 842,\
+                                4,\
+                                 138, 237, 35,\
+                                 138, 842, 35,\
+                                1781, 237, 35,\
+                                1781, 842, 35

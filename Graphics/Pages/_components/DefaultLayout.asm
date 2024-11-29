@@ -18,7 +18,7 @@ proc Draw.Pages.DefaultLayout,\
                jmp       .exit
           @@:
           stdcall Graphics.Draw.Shapes, exitbtn_font_design, exit_button_color
-          stdcall Graphics.Draw.Text.Write, txt_return, brown_text_color
+          stdcall Graphics.Draw.Text.Write, [txt_return], brown_text_color
      .exit:
           ret
 endp

@@ -42,6 +42,8 @@ proc File.IniFile.Read uses eax ebx ecx edx edi
         invoke  HeapAlloc, [hHeap], 8, [bufferLength]
         mov     [readBuffer], eax
         invoke  ReadFile, [hIniFile], [readBuffer], [bufferLength], bytesRead, 0
+        cmp     [bytesRead], 0
+        je      @F
 ; ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ;
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT TOUCH EDI !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ;
         mov     edi, [readBuffer]
@@ -56,7 +58,8 @@ proc File.IniFile.Read uses eax ebx ecx edx edi
         stdcall File.IniFIle.ReadString, HK_SETTINGS, 0
         stdcall File.IniFIle.ReadString, HK_RESTART, 0
 ; !!!!!!!!!!!!!!!!!!!!! ALARM DIACTIVATE! GOOD LUCK :) !!!!!!!!!!!!!!!!!!!!!!!! ;
-        invoke HeapFree, [hHeap], 0, [readBuffer]
+        @@:
+            invoke HeapFree, [hHeap], 0, [readBuffer]
     .exit:
         invoke  CloseHandle, [hIniFile]
         ret
@@ -187,6 +190,46 @@ proc File.IniFile.IntToStr uses ecx edx ebx esi,\
     ret
 endp
 
+proc File.IniFile.ArrIntToStr uses eax ebx edx ecx,\
+     prompt, arr, size
+    stdcall File.IniFile.WriteLine, [prompt]
+    mov     ecx, [size]
+    mov     ebx, [arr]
+    .convertLoop:
+        push    ecx
+        mov     edx, [ebx]
+        stdcall File.IniFile.IntToStr, edx
+        stdcall File.IniFile.WriteLine, strBuffer
+        pop     ecx
+        add     ebx, 4
+        loop    .convertLoop
+    mov     eax, arrayBuffer
+    stdcall File.IniFile.WriteLine, NEXT_LINE
+    ret
+endp
+
+proc File.IniFile.StrToArrInt uses eax ebx ecx,\
+    arr, size
+    stdcall File.IniFile.ReadRule, edi
+    push    edi
+    
+    mov     edi, strBuffer
+    mov     ecx, [size]
+    mov     ebx, [arr]
+    .convertLoop:
+        xor     eax, eax
+        mov     al, byte [edi]
+        sub     eax, '0'
+        mov     [ebx], eax
+        add     ebx, 4
+        inc     edi
+        loop    .convertLoop
+    mov     eax, arrayBuffer
+    
+    pop     edi
+    ret
+endp
+
 proc File.IniFile.WriteRule,\
     prompt, status
     stdcall File.IniFile.WriteLine, [prompt]
@@ -195,7 +238,7 @@ proc File.IniFile.WriteRule,\
     ret
 endp
 
-proc File.IniFile.WriteLine,\
+proc File.IniFile.WriteLine uses eax,\
     message
     locals
         messageLen      dd      ?

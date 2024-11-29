@@ -42,6 +42,7 @@ section '.text' code readable executable
 
       ; prepear data
       stdcall File.IniFile.Read
+      stdcall File.TicksPosition.Read
       stdcall Graphics.Draw.CoordsRectPrepears
       stdcall Graphics.Colors.Prepear
       stdcall Graphics.Draw.ASCIIPrepear
@@ -119,16 +120,15 @@ proc WindowProc hwnd,wmsg,wparam,lparam
             xor     eax,eax
             jmp     .finish
   .wmkeydown:
-      stdcall Keyboard.OnKeyDown
+      cmp     [wparam],VK_ESCAPE
+      jne     @F
+        stdcall Keyboard.OnHotkeyClick.Exit
+      @@:
+        stdcall Keyboard.OnKeyDown
       xor     eax,eax
       jmp     .finish
   .wmdestroy:
-      stdcall File.IniFile.Write
-      invoke  HeapDestroy, [hHeap]
-      invoke  wglMakeCurrent,0,0
-      invoke  wglDeleteContext,[hrc]
-      invoke  ReleaseDC,[hwnd],[hdc]
-      invoke  PostQuitMessage,0
+      stdcall Application.Exit
       xor     eax,eax
       jmp     .finish
   .wmmousemove:
@@ -159,7 +159,7 @@ section '.data' data readable writeable
   boatBookPath   db  "source/ship_book.bmp", 0
 
   hHeap  dd ?
-  
+
   msg    MSG
   rc     RECT
   pfd    PIXELFORMATDESCRIPTOR

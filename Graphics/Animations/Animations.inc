@@ -34,7 +34,8 @@ Anim_GamePage                   dd  4,\
                                     Anim_btn_cl, Anim_Settingsbtn_cl,\
                                     Anim_btn_cl, Anim_Pausebtn_cl
 
-Anim_AboutPage                  dd  1,\
+Anim_AboutPage                  dd  2,\
+                                    Anim_btn_cl, Anim_Settingsbtn_cl,\
                                     Anim_btn_cl, Anim_SubPages_cl
 
 Anim_SReturnFont_cl             dd  sp_return_circle_design,\
@@ -105,4 +106,18 @@ Anim_HotkeysPage                dd  2,\
                                     Anim_btn_cl, Anim_HRetBtnFont_cl,\
                                     Anim_btn_cl, Anim_HRetBtnHrst_cl
 
-AnimsList                       dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage, Anim_PausePage, Anim_WinnerPage, Anim_HotkeysPage
+Anim_EPYesFont_cl               dd  ep_yes_brdr_design,\
+                                    yes_font_color, brown_text_color, brown_color
+Anim_EPYesText_cl               dd  ep_yes_brdr_design,\
+                                    yes_text_color, brown_color, brown_text_color
+Anim_EPNoFont_cl                dd  ep_no_brdr_design,\
+                                    no_font_color, brown_text_color, pale_color
+Anim_EPNoText_cl                dd  ep_no_brdr_design,\
+                                    no_text_color, pale_color, brown_text_color
+Anim_ExitPage                   dd  4,\
+                                    Anim_btn_cl, Anim_EPYesFont_cl,\
+                                    Anim_btn_cl, Anim_EPYesText_cl,\
+                                    Anim_btn_cl, Anim_EPNoFont_cl,\
+                                    Anim_btn_cl, Anim_EPNoText_cl                                    
+
+AnimsList                       dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage, Anim_PausePage, Anim_WinnerPage, Anim_HotkeysPage, Anim_ExitPage

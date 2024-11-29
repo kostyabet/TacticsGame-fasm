@@ -68,15 +68,19 @@ proc Graphics.Draw.ASCII.Letters.CreateGLChar uses eax ecx ebx edi,\
         ret
 endp
 
-proc Graphics.Draw.ASCII.Letters.GetLetterLen uses ebx,\
+proc Graphics.Draw.ASCII.Letters.GetLetterLen,\
      letter, multiplier
     mov     ebx, [letter]
-    stdcall Math.Absolute, [multiplier]
-    mov     eax, [multiplier]
-    cmp     eax, 0
-    jne     @F
-        inc     eax
+    cmp     dword [ebx + 4], -1
+    je      @F
+        stdcall Scripts.Getters.GetIMULNumber, [ebx + 4], [multiplier]
+        mov     ebx, 1
+        jmp     .exit
     @@:
-    stdcall Scripts.Getters.GetIMULNumber, [ebx + 4], eax
-    ret
+        stdcall Scripts.Getters.GetIMULNumber, [ebx + 8], [multiplier]
+        mov     eax, 33
+        mov     ebx, -1
+        jmp     .exit
+    .exit:
+        ret
 endp

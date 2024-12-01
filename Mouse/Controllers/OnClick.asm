@@ -79,9 +79,10 @@ proc Game.OnClick.WindowButton uses ebx,\
     stdcall Mouse.CheckIsInShape, [coords]
     cmp     eax, GL_FALSE
     je      .exit
-            
+    
+    stdcall Audio.Button, btClick
     mov     ebx, [callFucntionAddress]
     stdcall ebx
     .exit:
         ret
-endp 
+endp

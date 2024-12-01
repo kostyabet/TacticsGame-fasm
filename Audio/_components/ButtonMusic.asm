@@ -1,4 +1,4 @@
-proc Audio.Button,\
+proc Audio.Button uses eax ebx ecx edx,\
     type
     cmp     [IS_VOICE_ON], GL_FALSE
     je      .exit
@@ -9,8 +9,8 @@ proc Audio.Button,\
         jmp     .exit
 
         .hover:
-           invoke  CreateThread, 0, 0, Audio.Button.Play.Hover, 0, 0, 0
-           jmp     .exit
+            invoke  CreateThread, 0, 0, Audio.Button.Play.Hover, 0, 0, 0
+            jmp     .exit
         .click:
             invoke  CreateThread, 0, 0, Audio.Button.Play.Click, 0, 0, 0
             jmp     .exit
@@ -22,25 +22,25 @@ proc Audio.Button,\
 endp
 
 proc Audio.Button.Play.Hover
-    invoke mciSendStringA, hoverButtonSoundCommand, 0, 0, 0
-    invoke mciSendStringA, hoverButtonSoundPlay, 0, 0, 0
-    .wait:
+    invoke  mciSendStringA, hoverButtonSoundCommand, 0, 0, 0
+    invoke  mciSendStringA, hoverButtonSoundPlay, 0, 0, 0
+    .waitLoop:
         invoke  mciSendStringA, hoverButtonSoundStatus, statusBuffer, statusBufferLen, 0
         stdcall Status.IsStopped, statusBuffer, stoppedStr
         cmp     eax, 1
-        jne     .wait
-    invoke mciSendStringA, hoverButtonSoundClose, 0, 0, 0
+        jne     .waitLoop
+    invoke  mciSendStringA, hoverButtonSoundClose, 0, 0, 0
     ret
 endp
 
 proc Audio.Button.Play.Click
     invoke mciSendStringA, clickButtonSoundCommand, 0, 0, 0
     invoke mciSendStringA, clickButtonSoundPlay, 0, 0, 0
-    .wait:
+    .waitLoop:
         invoke  mciSendStringA, clickButtonSoundStatus, statusBuffer, statusBufferLen, 0
         stdcall Status.IsStopped, statusBuffer, stoppedStr
         cmp     eax, 1
-        jne     .wait
+        jne     .waitLoop
     invoke mciSendStringA, clickButtonSoundClose, 0, 0, 0
     ret
 endp
@@ -48,11 +48,11 @@ endp
 proc Audio.Button.Play.Exit
     invoke mciSendStringA, exitButtonSoundCommand, 0, 0, 0
     invoke mciSendStringA, exitButtonSoundPlay, 0, 0, 0
-    .wait:
+    .waitLoop:
         invoke  mciSendStringA, exitButtonSoundStatus, statusBuffer, statusBufferLen, 0
         stdcall Status.IsStopped, statusBuffer, stoppedStr
         cmp     eax, 1
-        jne     .wait
+        jne     .waitLoop
     invoke mciSendStringA, exitButtonSoundClose, 0, 0, 0
     ret
 endp

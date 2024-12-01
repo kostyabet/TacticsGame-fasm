@@ -11,6 +11,7 @@ proc Game.Leave.WithSaving
 endp
 
 proc Game.Leave.Winner
+    stdcall Audio.Victory
     stdcall Page.ChangePage, WinnerPage
     ret
 endp

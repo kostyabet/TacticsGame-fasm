@@ -22,6 +22,12 @@
     hoverButtonSoundPlay    db  'play hoverButton', 0
     hoverButtonSoundClose   db  'close hoverButton', 0
     hoverButtonSoundStatus  db  'status hoverButton mode', 0
+; victory
+    victoryButtonSoundPath    db  'source/victory.mp3', 0
+    victoryButtonSoundCommand db  'open "source/victory.mp3" type mpegvideo alias hoverButton', 0
+    victoryButtonSoundPlay    db  'play hoverButton', 0
+    victoryButtonSoundClose   db  'close hoverButton', 0
+    victoryButtonSoundStatus  db  'status hoverButton mode', 0
 ; status check params
     statusBuffer        db  16 dup(0)
     statusBufferLen     dd  16

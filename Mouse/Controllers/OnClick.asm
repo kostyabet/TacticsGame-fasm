@@ -35,7 +35,7 @@ proc Mouse.OnClick uses ebx eax,\
             add     ebx, 12
             loop    .mainAnimLoop
     .exitProc:
-        ret
+    ret
 endp
 proc Game.OnClick.PageButton uses eax ebx,\
      coords, nextPage

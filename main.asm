@@ -2,6 +2,7 @@ format PE GUI 4.0
 entry start
 
 include 'win32a.inc'
+include 'winmm.inc'
 include 'opengl.inc'
 include 'main.inc'
 
@@ -51,6 +52,8 @@ section '.text' code readable executable
       stdcall Graphics.Colors.PrepearWithAlpha
       stdcall Graphics.Texture
       mov     [IS_INFO_PREPEAR], GL_TRUE
+
+      stdcall Audio.FoneMusic
 
   msg_loop:
       invoke  GetMessage, msg,NULL,0,0
@@ -170,7 +173,8 @@ section '.idata' import data readable writeable
       user,'USER32.DLL',\
       gdi,'GDI32.DLL',\
       opengl,'OPENGL32.DLL',\
-      glu,'GLU32.DLL'
+      glu,'GLU32.DLL',\
+      winmm, 'WINMM.DLL'
 
   import kernel,\
       CreateFile,'CreateFileA',\
@@ -189,7 +193,8 @@ section '.idata' import data readable writeable
       GetStdHandle,'GetStdHandle',\
       HeapDestroy,'HeapDestroy',\
       WriteConsole,'WriteConsole',\
-      WriteFile,'WriteFile'
+      WriteFile,'WriteFile',\
+      CreateThread, 'CreateThread'
 
   import user,\
       ShowWindow,'ShowWindow',\

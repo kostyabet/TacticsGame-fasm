@@ -43,6 +43,7 @@ proc Game.OnClick.PageButton uses eax ebx,\
     cmp     eax, GL_FALSE
     je      .exit
             
+    stdcall Audio.Button, btClick
     stdcall Page.ChangePage, [nextPage]
     .exit:
         ret

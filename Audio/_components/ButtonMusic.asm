@@ -5,15 +5,17 @@ proc Audio.Button,\
         switch  [type]
         case    .hover, btHover
         case    .click, btClick
-        case    .exit, btExit
+        case    .exitBtn, btExit
+        jmp     .exit
+
         .hover:
-            invoke  CreateThread, 0, 0, Audio.Button.Hover, 0, 0, 0
-            jmp     .exit
+           invoke  CreateThread, 0, 0, Audio.Button.Play.Hover, 0, 0, 0
+           jmp     .exit
         .click:
-            invoke  CreateThread, 0, 0, Audio.Button.Click, 0, 0, 0
+            invoke  CreateThread, 0, 0, Audio.Button.Play.Click, 0, 0, 0
             jmp     .exit
-        .exit:
-            invoke  CreateThread, 0, 0, Audio.Button.Exit, 0, 0, 0
+        .exitBtn:
+            invoke  CreateThread, 0, 0, Audio.Button.Play.Exit, 0, 0, 0
             jmp     .exit
     .exit:
         ret
@@ -31,7 +33,7 @@ proc Audio.Button.Play.Hover
     ret
 endp
 
-proc Audio.Button.Play.Click,
+proc Audio.Button.Play.Click
     invoke mciSendStringA, clickButtonSoundCommand, 0, 0, 0
     invoke mciSendStringA, clickButtonSoundPlay, 0, 0, 0
     .wait:

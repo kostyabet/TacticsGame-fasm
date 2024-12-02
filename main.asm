@@ -76,6 +76,7 @@ proc WindowProc hwnd,wmsg,wparam,lparam
       case    .wmdestroy, WM_DESTROY
       case    .wmmousemove, WM_MOUSEMOVE
       case    .wmmauseclick, WM_LBUTTONDOWN
+      case    .wmmauseup, WM_LBUTTONUP
 
   .defwndproc:
       invoke  DefWindowProc,[hwnd],[wmsg],[wparam],[lparam]
@@ -135,10 +136,15 @@ proc WindowProc hwnd,wmsg,wparam,lparam
       jmp     .finish
   .wmmousemove:
       stdcall Mouse.OnMove, [lparam], XPosition, YPosition
+      stdcall Mouse.CheckSwitchOnMove
       xor     eax, eax
       jmp     .finish
   .wmmauseclick:
       stdcall Mouse.OnClick, [lparam]
+      xor     eax, eax
+      jmp     .finish
+  .wmmauseup:
+      stdcall Mouse.KeyUp, [lparam]
       xor     eax, eax
       jmp     .finish
   .finish:

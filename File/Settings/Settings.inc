@@ -14,3 +14,8 @@ HK_RESTART          dd      'R'
 
 HotKeysSize         dd      6
 HotKeysList         dd      HK_PLAY, HK_STOP, HK_ABOUT, HK_EXIT, HK_SETTINGS, HK_RESTART
+
+isVolumeSwitchClicked   dd  GL_FALSE
+switchStartX            dd  916
+switchEndX              dd  1166
+switchLength            dd  250

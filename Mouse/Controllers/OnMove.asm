@@ -31,3 +31,11 @@ proc Mouse.OnMove uses eax ebx,\
     mov     [ebx], eax
     ret
 endp
+
+proc Mouse.CheckSwitchOnMove
+    cmp     [isVolumeSwitchClicked], GL_TRUE
+    jne     .exit
+
+    .exit:
+        ret
+endp

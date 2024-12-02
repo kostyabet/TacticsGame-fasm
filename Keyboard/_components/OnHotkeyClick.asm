@@ -1,7 +1,7 @@
 proc Keyboard.OnHotkeyClick.PauseStop
     switch  [CurentPage]
-    case    .mainPage, MainPage
-    case    .gamePage, GamePage
+    case    .mainPage,  MainPage
+    case    .gamePage,  GamePage
     case    .pausePage, PausePage
     jmp     .exit
 
@@ -33,14 +33,14 @@ endp
 
 proc Keyboard.OnHotkeyClick.Exit
     switch  [CurentPage]
-    case    .exitPage, ExitPage
-    case    .exitCall, LoadingPage
-    case    .mainPage, MainPage
-    case    .gamePage, GamePage
-    case    .aboutPage, AboutPage
+    case    .exitPage,    ExitPage
+    case    .exitCall,    LoadingPage
+    case    .mainPage,    MainPage
+    case    .gamePage,    GamePage
+    case    .aboutPage,   AboutPage
     case    .prevousPage, SettingsPage
     case    .prevousPage, PausePage
-    case    .winnerPage, WinnerPage
+    case    .winnerPage,  WinnerPage
     case    .prevousPage, HotkeysPage
     jmp     .exit
 

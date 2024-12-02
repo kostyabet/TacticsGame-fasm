@@ -3,9 +3,10 @@ proc Audio.Button uses eax ebx ecx edx,\
     cmp     [IS_VOICE_ON], GL_FALSE
     je      .exit
         switch  [type]
-        case    .hover, btHover
-        case    .click, btClick
+        case    .hover,   btHover
+        case    .click,   btClick
         case    .exitBtn, btExit
+        case    .tickBtn, btTick
         jmp     .exit
 
         .hover:
@@ -16,6 +17,9 @@ proc Audio.Button uses eax ebx ecx edx,\
             jmp     .exit
         .exitBtn:
             invoke  CreateThread, 0, 0, Audio.Button.Play.Exit, 0, 0, 0
+            jmp     .exit
+        .tickBtn:
+            invoke  CreateThread, 0, 0, Audio.Button.Play.Tick, 0, 0, 0
             jmp     .exit
     .exit:
         ret
@@ -57,6 +61,19 @@ proc Audio.Button.Play.Exit
         cmp     eax, 1
         jne     .waitLoop
     invoke mciSendStringA, exitButtonSoundClose, 0, 0, 0
+    ret
+endp
+
+proc Audio.Button.Play.Tick
+    invoke mciSendStringA, tickButtonSoundCommand, 0, 0, 0
+    invoke mciSendStringA, tickButtonSoundPlay, 0, 0, 0
+    .waitLoop:
+        invoke  mciSendStringA, setTickVolume, 0, 0, 0
+        invoke  mciSendStringA, tickButtonSoundStatus, statusBuffer, statusBufferLen, 0
+        stdcall Status.IsStopped, statusBuffer, stoppedStr
+        cmp     eax, 1
+        jne     .waitLoop
+    invoke mciSendStringA, tickButtonSoundClose, 0, 0, 0
     ret
 endp
 

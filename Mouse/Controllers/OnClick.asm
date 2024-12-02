@@ -60,6 +60,7 @@ proc Game.OnClick.TickButton uses eax ebx ecx edi,\
         stdcall Mouse.CheckIsInCircle, [ebx], [ebx + 4], [ebx + 8] ; x y radius
         cmp     eax, GL_TRUE
         jne     .exitFromLoop
+         stdcall Audio.Button, btTick
          mov     edi, [floatList]
          mov     ebx, [edi]
          sub     ebx, ecx

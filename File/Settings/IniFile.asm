@@ -170,9 +170,9 @@ proc File.IniFile.IntToStr uses ecx edx ebx esi,\
     xor     ecx, ecx
     xor     edx, edx
     mov     eax, [value]
-    mov     ebx, 10
     .readInStack:
-        idiv    bx
+        xor     edx, edx
+        div     dword [divizer]
         push    edx
         inc     ecx
         cmp     eax, 0

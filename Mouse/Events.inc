@@ -23,11 +23,11 @@ ap_events       dd  2,\
                     et_pagebutton, exitbtn_font_design,     MainPage
 
 sp_events       dd  6,\
+                    et_wndbutton,  sp_volume_font_design,   Audio.Volume.Change,\
                     et_prevpage,   sp_return_circle_design, PrevousPage,\
                     et_wndbutton,  sp_switch_mbrdr_design,  Audio.Switch.Music,\
                     et_wndbutton,  sp_switch_vbrdr_design,  Audio.Switch.Voice,\
                     et_wndbutton,  sp_switch_hbrdr_design,  Audio.Switch.Hotkey,\
-                    et_wndbutton,  sp_volume_font_design,   Audio.Volume.Change,\
                     et_pagebutton, sp_chhkbrdr_design,      HotkeysPage
 
 pp_events       dd  3,\

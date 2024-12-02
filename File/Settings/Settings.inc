@@ -3,7 +3,7 @@
 IS_MUSIC_ON         dd      GL_TRUE
 IS_VOICE_ON         dd      GL_TRUE
 IS_HOTKEY_ON        dd      GL_TRUE
-VOLUME              dd      50
+VOLUME              dd      10
 ; ==== Hot keys ==== ;
 HK_PLAY             dd      'P'
 HK_STOP             dd      'P'
@@ -19,3 +19,5 @@ isVolumeSwitchClicked   dd  GL_FALSE
 switchStartX            dd  916
 switchEndX              dd  1166
 switchLength            dd  250
+switchMaxValue          dd  90
+switchMinValue          dd  0

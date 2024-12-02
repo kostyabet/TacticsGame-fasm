@@ -40,3 +40,6 @@ mp_boatsprite_design    DrawModel ?
 mp_boatsprite_coords    dd  1,\
                             462, 360, 685, 508,\
                             0
+
+boatLoaderPath db  "source/textures/ship_loader.bmp", 0
+boatBookPath   db  "source/textures/ship_book.bmp", 0

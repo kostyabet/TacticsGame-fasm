@@ -157,9 +157,6 @@ section '.data' data readable writeable
   hdc    dd ?
   hrc    dd ?
 
-  boatLoaderPath db  "source/ship_loader.bmp", 0
-  boatBookPath   db  "source/ship_book.bmp", 0
-
   hHeap  dd ?
 
   msg    MSG

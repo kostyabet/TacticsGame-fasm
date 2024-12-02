@@ -5,32 +5,32 @@ setHoverVolume              db  'setaudio hoverButton volume to ', 5 dup(0)
 setVictoryVolume            db  'setaudio victorySound volume to ', 5 dup(0)
 setVolumeList               dd  setMusicVolume, setClickVolume, setExitVolume, setHoverVolume, setVictoryVolume, 0
 ; fone music
-    foneMusicPath           db  'source/fone.mp3', 0
-    foneMusicCommand        db  'open "source/fone.mp3" type mpegvideo alias foneMusic', 0
+    foneMusicPath           db  'source/sounds/fone.mp3', 0
+    foneMusicCommand        db  'open "source/sounds/fone.mp3" type mpegvideo alias foneMusic', 0
     foneMusicPlay           db  'play foneMusic', 0
     foneMusicClose          db  'close foneMusic', 0
     foneMusicStatus         db  'status foneMusic mode', 0
 ; click
-    clickButtonSoundPath    db  'source/click.mp3', 0
-    clickButtonSoundCommand db  'open "source/click.mp3" type mpegvideo alias clickButton', 0
+    clickButtonSoundPath    db  'source/sounds/click.mp3', 0
+    clickButtonSoundCommand db  'open "source/sounds/click.mp3" type mpegvideo alias clickButton', 0
     clickButtonSoundPlay    db  'play clickButton', 0
     clickButtonSoundClose   db  'close clickButton', 0
     clickButtonSoundStatus  db  'status clickButton mode', 0
 ; exit
-    exitButtonSoundPath     db  'source/exit.mp3', 0
-    exitButtonSoundCommand  db  'open "source/exit.mp3" type mpegvideo alias exitButton', 0
+    exitButtonSoundPath     db  'source/sounds/exit.mp3', 0
+    exitButtonSoundCommand  db  'open "source/sounds/exit.mp3" type mpegvideo alias exitButton', 0
     exitButtonSoundPlay     db  'play exitButton', 0
     exitButtonSoundClose    db  'close exitButton', 0
     exitButtonSoundStatus   db  'status exitButton mode', 0
 ; hover
-    hoverButtonSoundPath    db  'source/hover.mp3', 0
-    hoverButtonSoundCommand db  'open "source/hover.mp3" type mpegvideo alias hoverButton', 0
+    hoverButtonSoundPath    db  'source/sounds/hover.mp3', 0
+    hoverButtonSoundCommand db  'open "source/sounds/hover.mp3" type mpegvideo alias hoverButton', 0
     hoverButtonSoundPlay    db  'play hoverButton', 0
     hoverButtonSoundClose   db  'close hoverButton', 0
     hoverButtonSoundStatus  db  'status hoverButton mode', 0
 ; victory
-    victoryButtonSoundPath    db  'source/victory.mp3', 0
-    victoryButtonSoundCommand db  'open "source/victory.mp3" type mpegvideo alias victorySound', 0
+    victoryButtonSoundPath    db  'source/sounds/victory.mp3', 0
+    victoryButtonSoundCommand db  'open "source/sounds/victory.mp3" type mpegvideo alias victorySound', 0
     victoryButtonSoundPlay    db  'play victorySound', 0
     victoryButtonSoundClose   db  'close victorySound', 0
     victoryButtonSoundStatus  db  'status victorySound mode', 0

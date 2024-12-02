@@ -8,6 +8,7 @@ proc Audio.FoneMusicOn
     je      .stopMusic
     .start:
         invoke mciSendStringA, foneMusicCommand, 0, 0, 0
+        invoke mciSendStringA, setMusicVolume, 0, 0, 0
         invoke mciSendStringA, foneMusicPlay, 0, 0, 0
         .waitUntilEnd:
             cmp     [IS_MUSIC_ON], GL_FALSE

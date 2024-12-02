@@ -1,3 +1,9 @@
+setMusicVolume              db  'setaudio foneMusic volume to ', 5 dup(0)
+setClickVolume              db  'setaudio clickButton volume to ', 5 dup(0)
+setExitVolume               db  'setaudio exitButton volume to ', 5 dup(0)
+setHoverVolume              db  'setaudio hoverButton volume to ', 5 dup(0)
+setVictoryVolume            db  'setaudio victorySound volume to ', 5 dup(0)
+setVolumeList               dd  setMusicVolume, setClickVolume, setExitVolume, setHoverVolume, setVictoryVolume, 0
 ; fone music
     foneMusicPath           db  'source/fone.mp3', 0
     foneMusicCommand        db  'open "source/fone.mp3" type mpegvideo alias foneMusic', 0
@@ -24,10 +30,10 @@
     hoverButtonSoundStatus  db  'status hoverButton mode', 0
 ; victory
     victoryButtonSoundPath    db  'source/victory.mp3', 0
-    victoryButtonSoundCommand db  'open "source/victory.mp3" type mpegvideo alias hoverButton', 0
-    victoryButtonSoundPlay    db  'play hoverButton', 0
-    victoryButtonSoundClose   db  'close hoverButton', 0
-    victoryButtonSoundStatus  db  'status hoverButton mode', 0
+    victoryButtonSoundCommand db  'open "source/victory.mp3" type mpegvideo alias victorySound', 0
+    victoryButtonSoundPlay    db  'play victorySound', 0
+    victoryButtonSoundClose   db  'close victorySound', 0
+    victoryButtonSoundStatus  db  'status victorySound mode', 0
 ; status check params
     statusBuffer        db  16 dup(0)
     statusBufferLen     dd  16

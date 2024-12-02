@@ -51,9 +51,8 @@ section '.text' code readable executable
       stdcall Game.PrepearTicks
       stdcall Graphics.Colors.PrepearWithAlpha
       stdcall Graphics.Texture
+      stdcall Audio.Start
       mov     [IS_INFO_PREPEAR], GL_TRUE
-
-      stdcall Audio.FoneMusic
 
   msg_loop:
       invoke  GetMessage, msg,NULL,0,0

@@ -281,13 +281,13 @@ str_hkexit          db      3, 29, 23, 16, 5, 0 ; 'ВЫХОД'
 str_hkexit_pos      dd      1112, 549
 str_hkrestart       db      9, 1, 15, 16, 3, 16, 0 ; 'ЗАНОВО'
 str_hkrestart_pos   dd      1112, 594
-str_hkplayS_pos     dd      736, 504
-str_hkaboutS_pos    dd      736, 549
-str_hksettingsS_pos dd      736, 594
-str_hkpauseS_pos    dd      1044, 504
-str_hkexitS_pos     dd      1044, 549
-str_hkrestartS_pos  dd      1044, 594
-str_hotkey          db      70, 0 ; 'ЗАНОВО'
+str_hkplayS_pos     dd      741, 504
+str_hkaboutS_pos    dd      741, 549
+str_hksettingsS_pos dd      741, 594
+str_hkpauseS_pos    dd      1049, 504
+str_hkexitS_pos     dd      1049, 549
+str_hkrestartS_pos  dd      1049, 594
+str_hotkey          db      ?, 0 ; 'ЗАНОВО'
 ; ====== Program models ====== ;
 txt_headline        dd      ?
 txt_headline_bc     dd      ?

@@ -71,8 +71,6 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, sp_switch_hbrdr_coords, sp_switch_hbrdr_design
     stdcall Scripts.Getters.ConvertCoords, sp_switch_hfont_coords, sp_switch_hfont_design
     stdcall Scripts.Getters.ConvertCoords, sp_volume_font_coords, sp_volume_font_design
-    stdcall Scripts.Getters.ConvertCoords, sp_volume_cmpl_coords, sp_volume_cmpl_design
-    stdcall Scripts.Getters.ConvertCoords, sp_volume_dot_coords, sp_volume_dot_design
     stdcall Scripts.Getters.ConvertCoords, sp_switch_moff_coords, sp_switch_moff_design
     stdcall Scripts.Getters.ConvertCoords, sp_switch_mon_coords, sp_switch_mon_design
     stdcall Scripts.Getters.ConvertCoords, sp_switch_voff_coords, sp_switch_voff_design
@@ -110,6 +108,10 @@ proc Graphics.Draw.CoordsRectPrepears
 endp
 
 proc Graphics.Draw.CoordsRectPrepears.ForAnimations
+    stdcall Graphics.Pages.SettingsPage.CheckSwitchDot
+    stdcall Scripts.Getters.ConvertCoords, sp_volume_dot_coords, sp_volume_dot_design
+    stdcall Scripts.Getters.ConvertCoords, sp_volume_cmpl_coords, sp_volume_cmpl_design
+
     stdcall Scripts.Getters.ConvertCoords, button_play_coords, button_play_design
     stdcall Scripts.Getters.ConvertCoords, button_about_coords, button_about_design
     stdcall Scripts.Getters.ConvertCoords, button_stngs_coords, button_stngs_design

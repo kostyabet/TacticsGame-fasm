@@ -35,7 +35,7 @@ proc Mouse.OnClick uses ebx eax,\
             add     ebx, 12
             loop    .mainAnimLoop
     .exitProc:
-        ret
+    ret
 endp
 proc Game.OnClick.PageButton uses eax ebx,\
      coords, nextPage
@@ -43,6 +43,7 @@ proc Game.OnClick.PageButton uses eax ebx,\
     cmp     eax, GL_FALSE
     je      .exit
             
+    stdcall Audio.Button, btClick
     stdcall Page.ChangePage, [nextPage]
     .exit:
         ret
@@ -59,6 +60,7 @@ proc Game.OnClick.TickButton uses eax ebx ecx edi,\
         stdcall Mouse.CheckIsInCircle, [ebx], [ebx + 4], [ebx + 8] ; x y radius
         cmp     eax, GL_TRUE
         jne     .exitFromLoop
+         stdcall Audio.Button, btTick
          mov     edi, [floatList]
          mov     ebx, [edi]
          sub     ebx, ecx
@@ -78,9 +80,10 @@ proc Game.OnClick.WindowButton uses ebx,\
     stdcall Mouse.CheckIsInShape, [coords]
     cmp     eax, GL_FALSE
     je      .exit
-            
+    
+    stdcall Audio.Button, btClick
     mov     ebx, [callFucntionAddress]
     stdcall ebx
     .exit:
         ret
-endp 
+endp

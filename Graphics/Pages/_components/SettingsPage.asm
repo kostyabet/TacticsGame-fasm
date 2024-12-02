@@ -57,3 +57,28 @@ proc Draw.DrawSwitch,\
 
     ret
 endp
+
+proc Graphics.Pages.SettingsPage.CheckSwitchDot
+    locals
+        res     dd  ?
+    endl
+    ; create coords
+    mov     eax, [VOLUME]
+    fild    dword [VOLUME]
+    fidiv   dword [switchMaxValue]
+    fimul   dword [switchLength]
+    fistp   dword [res]
+    mov     eax, [res]
+    add     eax, [switchStartX]
+    ; set dot
+    mov     ebx, sp_volume_dot_coords
+    mov     [ebx + 8], eax
+    ; set line
+    mov     edi, sp_volume_cmpl_coords
+    mov     [edi + 28], eax
+    sub     eax, 2
+    mov     [edi + 12], eax
+    mov     [edi + 64], eax
+    mov     [edi + 76], eax
+    ret
+endp

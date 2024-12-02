@@ -31,3 +31,41 @@ proc Mouse.OnMove uses eax ebx,\
     mov     [ebx], eax
     ret
 endp
+
+proc Mouse.CheckSwitchOnMove
+    locals
+        curCoordsX  dd  ?
+        fixVal      dd  ?
+        result      dd  ?
+    endl
+    cmp     [isVolumeSwitchClicked], GL_TRUE
+    jne     .exit
+        ; get X coords
+        stdcall GetXDecimalCoord, [XPosition]
+        mov     [curCoordsX], eax
+        ; check range
+        cmp     eax, [switchStartX]
+        jae     @F
+            mov     eax, 0
+            jmp     .convert
+        @@:
+        cmp     eax, [switchEndX]
+        jbe     @F
+            mov     eax, [switchLength]
+            jmp     .convert
+        @@:
+        sub     eax, [switchStartX]
+        .convert:
+        mov     [fixVal], eax
+        ; find current VOLUME
+        fild    dword [fixVal]
+        fidiv   dword [switchLength]
+        fimul   dword [switchMaxValue]
+        fistp   [result]
+        mov     eax, [result]
+        mov     [VOLUME], eax
+        stdcall Graphics.Draw.CoordsRectPrepears.ForAnimations
+        stdcall Audio.GenerateVolume, setVolumeList
+    .exit:
+        ret
+endp

@@ -1,5 +1,7 @@
 ;   0000_0000_0000_0001
 proc Keyboard.OnKeyDown
+    cmp     [IS_HOTKEY_ON], GL_TRUE
+    jne     .exit
     stdcall Keyboard.IsHotKeyClick
     cmp     eax, GL_TRUE
     jne     .exit

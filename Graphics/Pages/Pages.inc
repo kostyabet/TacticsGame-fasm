@@ -9,7 +9,7 @@ HotkeysPage     =       28
 ExitPage        =       32
 
 PrevousPage     dd      MainPage
-CurentPage      dd      MainPage
+CurentPage      dd      LoadingPage
 
 PagesList       dd      Draw.Pages.LoadingPage, Draw.Pages.MainPage,\
                         Draw.Pages.GamePage, Draw.Pages.AboutPage,\

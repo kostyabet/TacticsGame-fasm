@@ -2,6 +2,7 @@ format PE GUI 4.0
 entry start
 
 include 'win32a.inc'
+include 'winmm.inc'
 include 'opengl.inc'
 include 'main.inc'
 
@@ -50,6 +51,7 @@ section '.text' code readable executable
       stdcall Game.PrepearTicks
       stdcall Graphics.Colors.PrepearWithAlpha
       stdcall Graphics.Texture
+      stdcall Audio.Start
       mov     [IS_INFO_PREPEAR], GL_TRUE
 
   msg_loop:
@@ -74,6 +76,7 @@ proc WindowProc hwnd,wmsg,wparam,lparam
       case    .wmdestroy, WM_DESTROY
       case    .wmmousemove, WM_MOUSEMOVE
       case    .wmmauseclick, WM_LBUTTONDOWN
+      case    .wmmauseup, WM_LBUTTONUP
 
   .defwndproc:
       invoke  DefWindowProc,[hwnd],[wmsg],[wparam],[lparam]
@@ -133,10 +136,15 @@ proc WindowProc hwnd,wmsg,wparam,lparam
       jmp     .finish
   .wmmousemove:
       stdcall Mouse.OnMove, [lparam], XPosition, YPosition
+      stdcall Mouse.CheckSwitchOnMove
       xor     eax, eax
       jmp     .finish
   .wmmauseclick:
       stdcall Mouse.OnClick, [lparam]
+      xor     eax, eax
+      jmp     .finish
+  .wmmauseup:
+      stdcall Mouse.KeyUp, [lparam]
       xor     eax, eax
       jmp     .finish
   .finish:
@@ -155,9 +163,6 @@ section '.data' data readable writeable
   hdc    dd ?
   hrc    dd ?
 
-  boatLoaderPath db  "source/ship_loader.bmp", 0
-  boatBookPath   db  "source/ship_book.bmp", 0
-
   hHeap  dd ?
 
   msg    MSG
@@ -170,7 +175,8 @@ section '.idata' import data readable writeable
       user,'USER32.DLL',\
       gdi,'GDI32.DLL',\
       opengl,'OPENGL32.DLL',\
-      glu,'GLU32.DLL'
+      glu,'GLU32.DLL',\
+      winmm, 'WINMM.DLL'
 
   import kernel,\
       CreateFile,'CreateFileA',\
@@ -189,7 +195,8 @@ section '.idata' import data readable writeable
       GetStdHandle,'GetStdHandle',\
       HeapDestroy,'HeapDestroy',\
       WriteConsole,'WriteConsole',\
-      WriteFile,'WriteFile'
+      WriteFile,'WriteFile',\
+      CreateThread, 'CreateThread'
 
   import user,\
       ShowWindow,'ShowWindow',\

@@ -22,10 +22,10 @@ proc Audio.Button uses eax ebx ecx edx,\
 endp
 
 proc Audio.Button.Play.Hover
-    invoke mciSendStringA, setHoverVolume, 0, 0, 0
     invoke mciSendStringA, hoverButtonSoundCommand, 0, 0, 0
     invoke mciSendStringA, hoverButtonSoundPlay, 0, 0, 0
     .waitLoop:
+        invoke  mciSendStringA, setHoverVolume, 0, 0, 0
         invoke  mciSendStringA, hoverButtonSoundStatus, statusBuffer, statusBufferLen, 0
         stdcall Status.IsStopped, statusBuffer, stoppedStr
         cmp     eax, 1
@@ -35,10 +35,10 @@ proc Audio.Button.Play.Hover
 endp
 
 proc Audio.Button.Play.Click
-    invoke mciSendStringA, setClickVolume, 0, 0, 0
     invoke mciSendStringA, clickButtonSoundCommand, 0, 0, 0
     invoke mciSendStringA, clickButtonSoundPlay, 0, 0, 0
     .waitLoop:
+        invoke  mciSendStringA, setClickVolume, 0, 0, 0
         invoke  mciSendStringA, clickButtonSoundStatus, statusBuffer, statusBufferLen, 0
         stdcall Status.IsStopped, statusBuffer, stoppedStr
         cmp     eax, 1
@@ -48,10 +48,10 @@ proc Audio.Button.Play.Click
 endp
 
 proc Audio.Button.Play.Exit
-    invoke mciSendStringA, setExitVolume, 0, 0, 0
     invoke mciSendStringA, exitButtonSoundCommand, 0, 0, 0
     invoke mciSendStringA, exitButtonSoundPlay, 0, 0, 0
     .waitLoop:
+        invoke  mciSendStringA, setExitVolume, 0, 0, 0
         invoke  mciSendStringA, exitButtonSoundStatus, statusBuffer, statusBufferLen, 0
         stdcall Status.IsStopped, statusBuffer, stoppedStr
         cmp     eax, 1

@@ -10,7 +10,6 @@ proc Audio.FoneMusicOn
     cmp     [isGameStart], GL_TRUE
     je      .stopMusic
     .start:
-        invoke WaitForSingleObject, hMutex, INFINITE
         invoke mciSendStringA, foneMusicCommand, 0, 0, 0
         invoke mciSendStringA, foneMusicPlay, 0, 0, 0
         .waitUntilEnd:
@@ -28,7 +27,6 @@ proc Audio.FoneMusicOn
         jmp    .start
     .stopMusic:
         invoke  mciSendStringA, foneMusicClose, 0, 0, 0
-        invoke  ReleaseMutex, hMutex
         .waitMusicStart:
             cmp     [IS_MUSIC_ON], GL_FALSE
             je      .waitMusicStart
@@ -44,13 +42,12 @@ proc Audio.GameMusicOn
     cmp     [isGameStart], GL_FALSE
     je      .stopMusic
     .start:
-        invoke WaitForSingleObject, hMutex, INFINITE
         invoke mciSendStringA, gameMusicCommand, 0, 0, 0
         invoke mciSendStringA, gameMusicPlay, 0, 0, 0
         .waitUntilEnd:
-            invoke mciSendStringA, setGameVolume, 0, 0, 0 
+            invoke  mciSendStringA, setGameVolume, 0, 0, 0 
             cmp     [IS_MUSIC_ON], GL_FALSE
-            je      .stopMusic
+            je      .stopMusic  
             cmp     [isGameStart], GL_FALSE
             je      .stopMusic
             invoke  mciSendStringA, gameMusicStatus, statusBuffer, statusBufferLen, 0
@@ -58,11 +55,9 @@ proc Audio.GameMusicOn
             cmp     eax, 1
             jne     .waitUntilEnd
         invoke mciSendStringA, gameMusicClose, 0, 0, 0
-        invoke  ReleaseMutex, hMutex
         jmp     .start
     .stopMusic:
         invoke mciSendStringA, gameMusicClose, 0, 0, 0
-        invoke  ReleaseMutex, hMutex
         .waitMusicStart:
             cmp     [IS_MUSIC_ON], GL_FALSE
             je      .waitMusicStart

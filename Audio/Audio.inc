@@ -41,3 +41,5 @@ setVolumeList               dd  setMusicVolume, setClickVolume, setVictoryVolume
 ; button voice types
     btClick     =   0x0001
     btTick      =   0x0002
+    btFree      =   0x0000
+    btType      dd  btFree

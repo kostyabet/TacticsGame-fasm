@@ -109,13 +109,9 @@ str_Mexit_pos       dd      1184, 862
 str_saveAexit       db      19, 16, 23, 18, 1, 15, 10, 20, 30, 44, 10, 44, 3, 29, 11, 20, 10, 0 ; 'СОХРАНИТЬ И ВЫЙТИ'
 str_saveAexit_pos   dd      802, 523
 str_winner          db      17, 16, 2, 6, 5, 1, 0; 'ПОБЕДА'
-str_winner_pos      dd      863, 393
-str_score           db      19, 25, 7, 20, 0 ; 'СЧЁТ'
-str_score_pos       dd      940, 485
-str_score_num       db      35, 34, 36, 0 ; '102'
-str_score_num_pos   dd      927, 445
+str_winner_pos      dd      863, 452
 str_again           db      9, 1, 15, 16, 3, 16, 0 ; 'ЗАНОВО'
-str_again_pos       dd      907, 527
+str_again_pos       dd      907, 529
 str_wexit_pos       dd      917, 590
 str_msettings_pos   dd      845, 420
 str_chhotkeys       db      4, 16, 18, 33, 25, 10, 6, 44, 12, 13, 1, 3, 10, 26, 10, 0 ; 'ГОРЯЧИЕ КЛАВИШИ'

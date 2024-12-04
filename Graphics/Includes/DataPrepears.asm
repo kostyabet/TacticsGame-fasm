@@ -56,8 +56,6 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, wp_againbtn_font_coords, wp_againbtn_font_design
     stdcall Scripts.Getters.ConvertCoords, wp_exitbtn_brdr_coords, wp_exitbtn_brdr_design
     stdcall Scripts.Getters.ConvertCoords, wp_exitbtn_font_coords, wp_exitbtn_font_design
-    stdcall Scripts.Getters.ConvertCoords, wp_leadbtn_brdr_coords, wp_leadbtn_brdr_design
-    stdcall Scripts.Getters.ConvertCoords, wp_leadbtn_font_coords, wp_leadbtn_font_design
     stdcall Scripts.Getters.ConvertCoords, sp_border_coords, sp_border_design
     stdcall Scripts.Getters.ConvertCoords, sp_font_coords, sp_font_design
     stdcall Scripts.Getters.ConvertCoords, sp_return_circle_coords, sp_return_circle_design
@@ -169,11 +167,8 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_exit,         str_exit,        fs_exit,      tg_exit,      str_exit_pos
     stdcall Graphics.Draw.Text.Prepear, txt_saveAexit,    str_saveAexit,   fs_saveAexit, tg_saveAexit, str_saveAexit_pos
     stdcall Graphics.Draw.Text.Prepear, txt_winner,       str_winner,      fs_winner,    tg_winner,    str_winner_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_score,        str_score,       fs_score,     tg_score,     str_score_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_score_num,    str_score_num,   fs_score_num, tg_score_num, str_score_num_pos
     stdcall Graphics.Draw.Text.Prepear, txt_again,        str_again,       fs_again,     tg_again,     str_again_pos
     stdcall Graphics.Draw.Text.Prepear, txt_wexit,        str_exit,        fs_again,     tg_again,     str_wexit_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_stats,        str_stats,       fs_again,     tg_again,     str_stats_pos
     stdcall Graphics.Draw.Text.Prepear, txt_msettings,    str_settings,    fs_msettings, tg_msettings, str_msettings_pos
     stdcall Graphics.Draw.Text.Prepear, txt_chhotkeys,    str_chhotkeys,   fs_chhotkeys, tg_chhotkeys, str_chhotkeys_pos
     stdcall Graphics.Draw.Text.Prepear, txt_music,        str_music,       fs_music,     tg_music,     str_music_pos

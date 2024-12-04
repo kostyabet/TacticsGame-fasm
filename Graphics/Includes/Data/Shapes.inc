@@ -572,24 +572,6 @@ wp_exitbtn_font_coords  dd          2,\
                                      851, 614, 8,\
                                     1075, 590, 8,\
                                     1075, 614, 8
-wp_leadbtn_brdr_design  DrawModel   ?
-wp_leadbtn_brdr_coords  dd          2,\
-                                    851, 640, 1075, 684,\
-                                    841, 650, 1085, 674,\
-                                    4,\
-                                     851, 650, 10,\
-                                     851, 674, 10,\
-                                    1075, 650, 10,\
-                                    1075, 674, 10
-wp_leadbtn_font_design  DrawModel   ?
-wp_leadbtn_font_coords  dd          2,\
-                                    851, 642, 1075, 682,\
-                                    843, 650, 1083, 674,\
-                                    4,\
-                                     851, 650, 8,\
-                                     851, 674, 8,\
-                                    1075, 650, 8,\
-                                    1075, 674, 8
 ; settings page
 sp_border_design    DrawModel   ?
 sp_border_coords    dd  2,\

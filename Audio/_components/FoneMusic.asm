@@ -1,6 +1,7 @@
 proc Audio.FoneMusic
     invoke CreateThread, 0, 0, Audio.FoneMusicOn, 0, 0, 0
     invoke CreateThread, 0, 0, Audio.GameMusicOn, 0, 0, 0
+    invoke CreateThread, 0, 0, Audio.Button.Play, 0, 0, 0
     ret
 endp
 
@@ -53,7 +54,7 @@ proc Audio.GameMusicOn
             stdcall Audio.Button
             mov     [btType], btFree
             cmp     [IS_MUSIC_ON], GL_FALSE
-            je      .stopMusic  
+            je      .stopMusic
             cmp     [isGameStart], GL_FALSE
             je      .stopMusic
             invoke  mciSendStringA, gameMusicStatus, statusBuffer, statusBufferLen, 0

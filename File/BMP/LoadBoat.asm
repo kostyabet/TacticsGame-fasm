@@ -11,16 +11,11 @@ proc Texture.Create,\
     
     stdcall BMP.LoadFromFile, [textPath]
     mov [temp], eax
-
         invoke glTexImage2D, GL_TEXTURE_2D, 0, GL_RGB, edx, ecx, 0, GL_BGR, GL_UNSIGNED_BYTE, eax
-
         invoke glTexParameteri, GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP
         invoke glTexParameteri, GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP
         invoke glTexParameteri, GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST
         invoke glTexParameteri, GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST
-
-        
-    
     invoke HeapFree, [hHeap], 0, [temp]
     invoke glBindTexture, GL_TEXTURE_2D, 0
     mov     eax, [texture]

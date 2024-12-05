@@ -2,27 +2,27 @@ proc Game.MoveTick uses eax ebx,\
     from, between, to
     ; from
     mov     eax, [from]
-    mov     ebx, 4
+    mov     ebx, MATRIX_EL_SIZE ; 4
     imul    ebx
     xchg    ebx, eax
     mov     [TicksMatrix + ebx], TickEmpty
     ; to
     mov     eax, [to]
-    mov     ebx, 4
+    mov     ebx, MATRIX_EL_SIZE ; 4
     imul    ebx
     xchg    ebx, eax
     mov     [TicksMatrix + ebx], TickExist
     ; between
     ; reset on board
         mov     eax, [between]
-        mov     ebx, 4
+        mov     ebx, MATRIX_EL_SIZE ; 4
         imul    ebx
         xchg    ebx, eax
         mov     [TicksMatrix + ebx], TickEmpty
     ; go to garbage
         mov     eax, [garbgeCounter]
-        add     eax, 33
-        mov     ebx, 4
+        add     eax, GAME_BOARD_SIZE ; 33
+        mov     ebx, MATRIX_EL_SIZE ; 4
         imul    ebx
         xchg    ebx, eax
         mov     [TicksMatrix + ebx], TickExist

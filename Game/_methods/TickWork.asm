@@ -93,7 +93,7 @@ proc Game.TickWork.SearchIsExistTick uses ebx edx,\
     cmp     eax, [result]
     je     .exit
         ; поиск значения в матрице фишек
-        imul    eax, [MATRIX_EL_SIZE]
+        imul    eax, MATRIX_EL_SIZE
         mov     ebx, [matrix]
         add     ebx, eax
         mov     edx, [ebx]

@@ -1,6 +1,7 @@
 proc Audio.FoneMusic
     invoke CreateThread, 0, 0, Audio.FoneMusicOn, 0, 0, 0
     invoke CreateThread, 0, 0, Audio.GameMusicOn, 0, 0, 0
+    invoke CreateThread, 0, 0, Audio.Button.Play, 0, 0, 0
     ret
 endp
 
@@ -11,9 +12,12 @@ proc Audio.FoneMusicOn
     je      .stopMusic
     .start:
         invoke mciSendStringA, foneMusicCommand, 0, 0, 0
+        invoke  mciSendStringA, setMusicVolume, 0, 0, 0
         invoke mciSendStringA, foneMusicPlay, 0, 0, 0
         .waitUntilEnd:
-            invoke mciSendStringA, setMusicVolume, 0, 0, 0 
+            invoke  mciSendStringA, setMusicVolume, 0, 0, 0
+            stdcall Audio.Button
+            mov     [btType], btFree
             cmp     [IS_MUSIC_ON], GL_FALSE
             je      .stopMusic
             cmp     [isGameStart], GL_TRUE
@@ -22,10 +26,11 @@ proc Audio.FoneMusicOn
             stdcall Status.IsStopped, statusBuffer, stoppedStr
             cmp     eax, 1
             jne     .waitUntilEnd
-        invoke mciSendStringA, foneMusicClose, 0, 0, 0
-        jmp     .start
+        invoke  mciSendStringA, foneMusicClose, 0, 0, 0
+        invoke  ReleaseMutex, hMutex
+        jmp    .start
     .stopMusic:
-        invoke mciSendStringA, foneMusicClose, 0, 0, 0
+        invoke  mciSendStringA, foneMusicClose, 0, 0, 0
         .waitMusicStart:
             cmp     [IS_MUSIC_ON], GL_FALSE
             je      .waitMusicStart
@@ -42,9 +47,12 @@ proc Audio.GameMusicOn
     je      .stopMusic
     .start:
         invoke mciSendStringA, gameMusicCommand, 0, 0, 0
+        invoke mciSendStringA, setGameVolume, 0, 0, 0 
         invoke mciSendStringA, gameMusicPlay, 0, 0, 0
         .waitUntilEnd:
-            invoke mciSendStringA, setGameVolume, 0, 0, 0 
+            invoke  mciSendStringA, setGameVolume, 0, 0, 0 
+            stdcall Audio.Button
+            mov     [btType], btFree
             cmp     [IS_MUSIC_ON], GL_FALSE
             je      .stopMusic
             cmp     [isGameStart], GL_FALSE

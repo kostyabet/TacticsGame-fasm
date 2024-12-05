@@ -13,6 +13,7 @@ proc Audio.Victory.Play uses eax
     mov     eax, [IS_MUSIC_ON]
     mov     [musicStatus], eax
     mov     [IS_MUSIC_ON], GL_FALSE
+    invoke  WaitForSingleObject, hMutex, INFINITE
     invoke  mciSendStringA, victoryButtonSoundCommand, 0, 0, 0
     invoke  mciSendStringA, victoryButtonSoundPlay, 0, 0, 0
     .waitLoop:
@@ -22,6 +23,7 @@ proc Audio.Victory.Play uses eax
         cmp     eax, 1
         jne     .waitLoop
     invoke  mciSendStringA, victoryButtonSoundClose, 0, 0, 0
+    invoke  ReleaseMutex, hMutex
     mov     eax, [musicStatus]
     mov     [IS_MUSIC_ON], eax
     ret

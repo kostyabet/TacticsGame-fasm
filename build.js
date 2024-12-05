@@ -26,7 +26,11 @@ try {
     process.chdir(config.fasmPath);
 
     console.log(`55% - Try to build;`);
-    const command = `fasm ${buildConfig.input} ${buildConfig.output} -s ${buildConfig.folder}tactickgame.fas`;
+    let command = ``;
+    if (buildType.toLowerCase() != "release")
+        command = `fasm ${buildConfig.input} ${buildConfig.output} -s ${buildConfig.folder}tactickgame.fas`
+    else
+        command = `fasm ${buildConfig.input} ${buildConfig.output}`
     execSync(command, { stdio: 'inherit' });
     console.log(`85% - Success`);
 

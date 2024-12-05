@@ -18,7 +18,6 @@ cl_flgpl          dd      0x005B2E15
 cl_text_buttom    dd      0x00773A18
 cl_headline_bc    dd      0x00773A18
 cl_title          dd      0x005B2E15
-
 cl_milk           dd      0x00E5C4B2
 cl_milk_light     dd      0x00DFB69F
 cl_brown          dd      0x00C88762
@@ -39,62 +38,56 @@ cl_orange         dd      0x00EF9837
 cl_pale           dd      0x00D09F83
 
 ; ====== Program models ====== ;
-font_color        BackgroundColor ?
-book_root_color   BackgroundColor ?
-book_strk_color   BackgroundColor ?
-book_endg_color   BackgroundColor ?
-book_ebrd_color   BackgroundColor ?
-button_color      BackgroundColor ?
-headline_color    BackgroundColor ?
-headline_bc_color BackgroundColor ?
-book_flgpl_color  BackgroundColor ?
-btn_text_color    BackgroundColor ?
-book_title_color  BackgroundColor ?
-
-play_button_color     BackgroundColor ?
-about_button_color    BackgroundColor ?
-settings_button_color BackgroundColor ?
-exit_button_color     BackgroundColor ?
-
-milk_color         BackgroundColor ?
-milk_light_color   BackgroundColor ?
-brown_color        BackgroundColor ?
-brown_light_color  BackgroundColor ?
-brown_medium_color BackgroundColor ?
-brown_dark_color   BackgroundColor ?
-brown_black_color  BackgroundColor ?
-gray_color         BackgroundColor ?
-red_light_color    BackgroundColor ? 
-red_color          BackgroundColor ?
-red_black_color    BackgroundColor ?
-vinous_color       BackgroundColor ?
-vinous_black_color BackgroundColor ?
-brown_text_color   BackgroundColor ?
-lime_color         BackgroundColor ?
-body_color         BackgroundColor ?
-orange_color       BackgroundColor ?
-pale_color         BackgroundColor ?
-
-recovery_button_color BackgroundColor ?
-pause_button_color    BackgroundColor ?
-
-font_dark_color       BackgroundColor ?
-ebtn_text_color       BackgroundColor ?
-ebtn_font_color       BackgroundColor ?
-esbtn_text_color      BackgroundColor ?
-esbtn_font_color      BackgroundColor ?
-retbtn_font_color     BackgroundColor ?
-retbtn_chrst_color    BackgroundColor ?
-againbtn_font_color   BackgroundColor ?
-againbtn_text_color   BackgroundColor ?
-lbbtn_font_color      BackgroundColor ?
-lbbtn_text_color      BackgroundColor ?
-chhtkeys_font_color   BackgroundColor ?
-chhtkeys_text_color   BackgroundColor ?
-yes_font_color        BackgroundColor ?
-yes_text_color        BackgroundColor ?
-no_font_color         BackgroundColor ?
-no_text_color         BackgroundColor ?
+font_color              BackgroundColor ?
+book_root_color         BackgroundColor ?
+book_strk_color         BackgroundColor ?
+book_endg_color         BackgroundColor ?
+book_ebrd_color         BackgroundColor ?
+button_color            BackgroundColor ?
+headline_color          BackgroundColor ?
+headline_bc_color       BackgroundColor ?
+book_flgpl_color        BackgroundColor ?
+btn_text_color          BackgroundColor ?
+book_title_color        BackgroundColor ?
+play_button_color       BackgroundColor ?
+about_button_color      BackgroundColor ?
+settings_button_color   BackgroundColor ?
+exit_button_color       BackgroundColor ?
+milk_color              BackgroundColor ?
+milk_light_color        BackgroundColor ?
+brown_color             BackgroundColor ?
+brown_light_color       BackgroundColor ?
+brown_medium_color      BackgroundColor ?
+brown_dark_color        BackgroundColor ?
+brown_black_color       BackgroundColor ?
+gray_color              BackgroundColor ?
+red_light_color         BackgroundColor ? 
+red_color               BackgroundColor ?
+red_black_color         BackgroundColor ?
+vinous_color            BackgroundColor ?
+vinous_black_color      BackgroundColor ?
+brown_text_color        BackgroundColor ?
+lime_color              BackgroundColor ?
+body_color              BackgroundColor ?
+orange_color            BackgroundColor ?
+pale_color              BackgroundColor ?
+recovery_button_color   BackgroundColor ?
+pause_button_color      BackgroundColor ?
+font_dark_color         BackgroundColor ?
+ebtn_text_color         BackgroundColor ?
+ebtn_font_color         BackgroundColor ?
+esbtn_text_color        BackgroundColor ?
+esbtn_font_color        BackgroundColor ?
+retbtn_font_color       BackgroundColor ?
+retbtn_chrst_color      BackgroundColor ?
+againbtn_font_color     BackgroundColor ?
+againbtn_text_color     BackgroundColor ?
+chhtkeys_font_color     BackgroundColor ?
+chhtkeys_text_color     BackgroundColor ?
+yes_font_color          BackgroundColor ?
+yes_text_color          BackgroundColor ?
+no_font_color           BackgroundColor ?
+no_text_color           BackgroundColor ?
 
 TicksFontList_Colors     dd  milk_color,   brown_color      ; base
 TicksFontList_MltColors  dd  orange_color, body_color       ; for "TO" Ticks

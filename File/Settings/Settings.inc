@@ -19,5 +19,5 @@ isVolumeSwitchClicked   dd  GL_FALSE
 switchStartX            dd  916
 switchEndX              dd  1166
 switchLength            dd  250
-switchMaxValue          dd  90
+switchMaxValue          dd  100
 switchMinValue          dd  0

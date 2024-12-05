@@ -43,8 +43,6 @@ tg_pause        =       18
 tg_exit         =       10
 tg_saveAexit    =       10
 tg_winner       =       18
-tg_score        =       5
-tg_score_num    =       10
 tg_again        =       10
 tg_msettings    =       10
 tg_chhotkeys    =       7
@@ -111,16 +109,10 @@ str_Mexit_pos       dd      1184, 862
 str_saveAexit       db      19, 16, 23, 18, 1, 15, 10, 20, 30, 44, 10, 44, 3, 29, 11, 20, 10, 0 ; 'СОХРАНИТЬ И ВЫЙТИ'
 str_saveAexit_pos   dd      802, 523
 str_winner          db      17, 16, 2, 6, 5, 1, 0; 'ПОБЕДА'
-str_winner_pos      dd      863, 393
-str_score           db      19, 25, 7, 20, 0 ; 'СЧЁТ'
-str_score_pos       dd      940, 485
-str_score_num       db      35, 34, 36, 0 ; '102'
-str_score_num_pos   dd      927, 445
+str_winner_pos      dd      863, 452
 str_again           db      9, 1, 15, 16, 3, 16, 0 ; 'ЗАНОВО'
-str_again_pos       dd      907, 527
+str_again_pos       dd      907, 529
 str_wexit_pos       dd      917, 590
-str_stats           db      19, 20, 1, 20, 10, 19, 20, 10, 12, 1, 0 ; 'СТАТИСТИКА'
-str_stats_pos       dd      867, 648
 str_msettings_pos   dd      845, 420
 str_chhotkeys       db      4, 16, 18, 33, 25, 10, 6, 44, 12, 13, 1, 3, 10, 26, 10, 0 ; 'ГОРЯЧИЕ КЛАВИШИ'
 str_chhotkeys_pos   dd      855, 637
@@ -307,11 +299,8 @@ txt_pause           dd      ?
 txt_exit            dd      ?
 txt_saveAexit       dd      ?
 txt_winner          dd      ?
-txt_score           dd      ?
-txt_score_num       dd      ?
 txt_again           dd      ?
 txt_wexit           dd      ?
-txt_stats           dd      ?
 txt_msettings       dd      ?
 txt_chhotkeys       dd      ?
 txt_music           dd      ?
@@ -345,12 +334,12 @@ txt_hkrestartS      dd      ?
 
 txts_array          dd      txt_headline,    txt_headline_bc, txt_play,     txt_about,     txt_settings,  txt_return,   txt_grtext,\
                             txt_Mexit,       txt_title,       txt_cost,     txt_info,      txt_watermark, txt_R_hk,     txt_P_hk,\
-                            txt_S_hk,        txt_pause,       txt_exit,     txt_saveAexit, txt_winner,    txt_score,    txt_score_num,\
-                            txt_again,       txt_wexit,       txt_stats,    txt_msettings, txt_chhotkeys, txt_music,    txt_voice,\
+                            txt_S_hk,        txt_pause,       txt_exit,     txt_saveAexit, txt_winner,    txt_hkpauseS, txt_hkexitS,\
+                            txt_again,       txt_wexit,       txt_msettings, txt_chhotkeys, txt_music,    txt_voice,    txt_hkrestartS,\
                             txt_hotkeys,     txt_HPhotkeys,   txt_volume,   txt_moff,      txt_voff,      txt_hoff,     txt_mon,\
                             txt_von,         txt_hon,         txt_wantExit, txt_yes,       txt_no,        txt_gamerool, txt_hkplay,\
                             txt_hkabout,     txt_hksettings,  txt_hkpause,  txt_hkexit,    txt_hkrestart, txt_hkplayS,  txt_hkaboutS,\
-                            txt_hksettingsS, txt_hkpauseS,    txt_hkexitS,  txt_hkrestartS, 0
+                            txt_hksettingsS, 0
 
 arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5,  ltr_RU_6,  ltr_RU_7,\ ; RU
                             ltr_RU_8,  ltr_RU_9,  ltr_RU_10, ltr_RU_11, ltr_RU_12, ltr_RU_13, ltr_RU_14,\

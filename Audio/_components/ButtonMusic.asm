@@ -1,74 +1,56 @@
-proc Audio.Button uses eax ebx ecx edx,\
-    type
+proc Audio.Button.Play
+    cmp     [IS_MUSIC_ON], GL_TRUE
+    je      .waitLoop
+    .playSound:
+        stdcall Audio.Button
+        cmp     [IS_MUSIC_ON], GL_TRUE
+        je      .waitLoop
+        jmp     .playSound
+    .waitLoop:
+        cmp     [IS_MUSIC_ON], GL_TRUE
+        je      .waitLoop
+        jmp     .playSound
+    ret
+endp
+
+proc Audio.Button uses eax ebx ecx edx
     cmp     [IS_VOICE_ON], GL_FALSE
     je      .exit
-        switch  [type]
-        case    .hover,   btHover
+        switch  [btType]
         case    .click,   btClick
-        case    .exitBtn, btExit
         case    .tickBtn, btTick
         jmp     .exit
 
-        .hover:
-            invoke  CreateThread, 0, 0, Audio.Button.Play.Hover, 0, 0, 0
-            jmp     .exit
         .click:
-            invoke  CreateThread, 0, 0, Audio.Button.Play.Click, 0, 0, 0
-            jmp     .exit
-        .exitBtn:
-            invoke  CreateThread, 0, 0, Audio.Button.Play.Exit, 0, 0, 0
+            stdcall Audio.Button.Play.Click
             jmp     .exit
         .tickBtn:
-            invoke  CreateThread, 0, 0, Audio.Button.Play.Tick, 0, 0, 0
+            stdcall Audio.Button.Play.Tick
             jmp     .exit
     .exit:
         ret
 endp
 
-proc Audio.Button.Play.Hover
-    invoke mciSendStringA, hoverButtonSoundCommand, 0, 0, 0
-    invoke mciSendStringA, hoverButtonSoundPlay, 0, 0, 0
-    .waitLoop:
-        invoke  mciSendStringA, setHoverVolume, 0, 0, 0
-        invoke  mciSendStringA, hoverButtonSoundStatus, statusBuffer, statusBufferLen, 0
-        stdcall Status.IsStopped, statusBuffer, stoppedStr
-        cmp     eax, 1
-        jne     .waitLoop
-    invoke  mciSendStringA, hoverButtonSoundClose, 0, 0, 0
-    ret
-endp
-
 proc Audio.Button.Play.Click
-    invoke mciSendStringA, clickButtonSoundCommand, 0, 0, 0
-    invoke mciSendStringA, clickButtonSoundPlay, 0, 0, 0
+    invoke  mciSendStringA, clickButtonSoundCommand, 0, 0, 0
+    invoke  mciSendStringA, setClickVolume, 0, 0, 0
+    invoke  mciSendStringA, clickButtonSoundPlay, 0, 0, 0
     .waitLoop:
-        invoke  mciSendStringA, setClickVolume, 0, 0, 0
+        mov     [btType], btFree
         invoke  mciSendStringA, clickButtonSoundStatus, statusBuffer, statusBufferLen, 0
         stdcall Status.IsStopped, statusBuffer, stoppedStr
         cmp     eax, 1
         jne     .waitLoop
-    invoke mciSendStringA, clickButtonSoundClose, 0, 0, 0
-    ret
-endp
-
-proc Audio.Button.Play.Exit
-    invoke mciSendStringA, exitButtonSoundCommand, 0, 0, 0
-    invoke mciSendStringA, exitButtonSoundPlay, 0, 0, 0
-    .waitLoop:
-        invoke  mciSendStringA, setExitVolume, 0, 0, 0
-        invoke  mciSendStringA, exitButtonSoundStatus, statusBuffer, statusBufferLen, 0
-        stdcall Status.IsStopped, statusBuffer, stoppedStr
-        cmp     eax, 1
-        jne     .waitLoop
-    invoke mciSendStringA, exitButtonSoundClose, 0, 0, 0
+    invoke  mciSendStringA, clickButtonSoundClose, 0, 0, 0
     ret
 endp
 
 proc Audio.Button.Play.Tick
-    invoke mciSendStringA, tickButtonSoundCommand, 0, 0, 0
-    invoke mciSendStringA, tickButtonSoundPlay, 0, 0, 0
+    invoke  mciSendStringA, tickButtonSoundCommand, 0, 0, 0
+    invoke  mciSendStringA, setTickVolume, 0, 0, 0
+    invoke  mciSendStringA, tickButtonSoundPlay, 0, 0, 0
+    mov     [btType], btFree
     .waitLoop:
-        invoke  mciSendStringA, setTickVolume, 0, 0, 0
         invoke  mciSendStringA, tickButtonSoundStatus, statusBuffer, statusBufferLen, 0
         stdcall Status.IsStopped, statusBuffer, stoppedStr
         cmp     eax, 1

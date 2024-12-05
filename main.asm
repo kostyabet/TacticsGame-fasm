@@ -41,6 +41,9 @@ section '.text' code readable executable
       invoke glEnable, GL_BLEND
       invoke glBlendFunc, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
 
+      invoke CreateMutexA, 0, 1, 0
+      mov    [hMutex], eax
+
       ; prepear data
       stdcall File.IniFile.Read
       stdcall File.TicksPosition.Read
@@ -159,6 +162,8 @@ section '.data' data readable writeable
 
   wc WNDCLASS 0,WindowProc,0,0,NULL,NULL,NULL,NULL,NULL,_class
 
+  hMutex dd ?
+
   hwnd   dd ?
   hdc    dd ?
   hrc    dd ?
@@ -196,7 +201,11 @@ section '.idata' import data readable writeable
       HeapDestroy,'HeapDestroy',\
       WriteConsole,'WriteConsole',\
       WriteFile,'WriteFile',\
-      CreateThread, 'CreateThread'
+      CreateThread, 'CreateThread',\
+      WaitForSingleObject,'WaitForSingleObject',\
+      ReleaseMutex,'ReleaseMutex',\
+      CreateMutexA,'CreateMutexA',\
+      CreateMutexW,'CreateMutexW'
 
   import user,\
       ShowWindow,'ShowWindow',\

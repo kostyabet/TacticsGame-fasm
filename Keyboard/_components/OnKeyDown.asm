@@ -59,7 +59,7 @@ proc Keyboard.IsHotKeyClick uses ecx edx
             mov     [result], GL_TRUE
             jmp     .true
         @@:
-        add     ebx, 4
+        add     ebx, MATRIX_EL_SIZE ; 4
         loop    .mainLoop
     jmp     .false
     .true:

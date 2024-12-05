@@ -21,13 +21,18 @@ endp
 proc GetGLfloatColor\
      num
     locals
+        ; переменная хранящая результат конвертации
         res     dd       ?
-        divider GLfloat  256.0
+        ; максимальное значение hex-канала цвета
+        clChanel GLfloat  256.0
     endl
-        fild    dword [num]
-        fdiv    [divider]
-        fstp    [res]
-        mov     eax, [res]
+    ; загрузка в fpu hex-числа
+    fild    dword [num]
+    ; деление на максимум
+    fdiv    [clChanel]
+    ; выгрузка результата
+    fstp    [res]
+    mov     eax, [res]
     ret
 endp
 ; =================== Creat Quard coords ===== ;

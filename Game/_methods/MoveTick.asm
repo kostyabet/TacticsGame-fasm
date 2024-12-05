@@ -1,31 +1,32 @@
 proc Game.MoveTick uses eax ebx,\
     from, between, to
-    ; from
+    ; присваивание статуса пустой нажатой фишке
     mov     eax, [from]
-    mov     ebx, MATRIX_EL_SIZE ; 4
+    mov     ebx, MATRIX_EL_SIZE
     imul    ebx
     xchg    ebx, eax
     mov     [TicksMatrix + ebx], TickEmpty
-    ; to
+    ; присваивание новому месту фишки статуса существующей
     mov     eax, [to]
-    mov     ebx, MATRIX_EL_SIZE ; 4
+    mov     ebx, MATRIX_EL_SIZE
     imul    ebx
     xchg    ebx, eax
     mov     [TicksMatrix + ebx], TickExist
-    ; between
-    ; reset on board
+    ; работы с бьющейся фишкой
+        ; удаление из игровой доски путём присваивания статуса пустой
         mov     eax, [between]
-        mov     ebx, MATRIX_EL_SIZE ; 4
+        mov     ebx, MATRIX_EL_SIZE
         imul    ebx
         xchg    ebx, eax
         mov     [TicksMatrix + ebx], TickEmpty
-    ; go to garbage
+        ; добавление новой фишки в место для битых фишек
         mov     eax, [garbgeCounter]
-        add     eax, GAME_BOARD_SIZE ; 33
-        mov     ebx, MATRIX_EL_SIZE ; 4
+        add     eax, GAME_BOARD_SIZE
+        mov     ebx, MATRIX_EL_SIZE
         imul    ebx
         xchg    ebx, eax
         mov     [TicksMatrix + ebx], TickExist
+        ; увеличиваем размер битых фишек на единицу
         inc     [garbgeCounter]
     ret
 endp

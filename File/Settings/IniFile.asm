@@ -1,15 +1,17 @@
 include 'IniFile.inc'
 
 proc File.IniFile.Write uses eax ebx ecx edx
+    ; создание объекта файла
     invoke  CreateFile, iniFilePath, GENERIC_WRITE, 0, 0, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0
     mov     [hIniFile], eax
+    ; проверка на код ошибки
     cmp     eax, INVALID_HANDLE_VALUE
     jne     @F
         stdcall File.IniFile.Error
         jmp     .exit
     @@:
 
-    ; write settings in file
+    ; запись настроек в файл
     stdcall File.IniFile.IntToStr, [IS_MUSIC_ON]
     stdcall File.IniFile.WriteRule, IS_MUSIC_ON_PROMPT, eax
     stdcall File.IniFile.IntToStr, [IS_VOICE_ON]
@@ -26,26 +28,29 @@ proc File.IniFile.Write uses eax ebx ecx edx
     stdcall File.IniFile.WriteRule, HK_RESTART_PROMPT, HK_RESTART
 
     .exit:
+        ; закрытие объекта файла
         invoke  CloseHandle, [hIniFile]
         ret
 endp
 
 proc File.IniFile.Read uses eax ebx ecx edx edi
+    ; создание объекта файла
     invoke  CreateFile, iniFilePath, GENERIC_READ, 0, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0
     mov     [hIniFile], eax
+    ; проверка на код ошибки
     cmp     eax, INVALID_HANDLE_VALUE
     jne     @F
         stdcall File.IniFile.Error
         jmp     .exit
     @@:
-        ; length
+        ; инициализация в куче места под чтение из файла
         invoke  HeapAlloc, [hHeap], 8, [bufferLength]
         mov     [readBuffer], eax
         invoke  ReadFile, [hIniFile], [readBuffer], [bufferLength], bytesRead, 0
+        ; если файл пустой, то выходим
         cmp     [bytesRead], 0
         je      @F
-; ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ;
-; !!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT TOUCH EDI !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ;
+        ; чтение из файла
         mov     edi, [readBuffer]
         stdcall File.IniFIle.ReadString, IS_MUSIC_ON, 1
         stdcall File.IniFIle.ReadString, IS_VOICE_ON, 1
@@ -57,10 +62,10 @@ proc File.IniFile.Read uses eax ebx ecx edx edi
         stdcall File.IniFIle.ReadString, HK_EXIT, 0
         stdcall File.IniFIle.ReadString, HK_SETTINGS, 0
         stdcall File.IniFIle.ReadString, HK_RESTART, 0
-; !!!!!!!!!!!!!!!!!!!!! ALARM DIACTIVATE! GOOD LUCK :) !!!!!!!!!!!!!!!!!!!!!!!! ;
         @@:
             invoke HeapFree, [hHeap], 0, [readBuffer]
     .exit:
+        ; закрытие объекта файла
         invoke  CloseHandle, [hIniFile]
         ret
 endp

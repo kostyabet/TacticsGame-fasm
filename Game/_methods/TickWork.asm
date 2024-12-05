@@ -84,22 +84,27 @@ endp
 proc Game.TickWork.SearchIsExistTick uses ebx edx,\
      matrix, number 
     locals
+        ; инициализация результата, как отрицательный
         result  dd  -1
-        multiplier dd  4
     endl
+    ; присваивание текущего индекса в eax
     mov     eax, [number]
+    ; проверка индекса на валидность
     cmp     eax, [result]
     je     .exit
-        ; check if empty
-        imul    eax, [multiplier]
+        ; поиск значения в матрице фишек
+        imul    eax, [MATRIX_EL_SIZE]
         mov     ebx, [matrix]
         add     ebx, eax
         mov     edx, [ebx]
+        ; проверка значения фишки на существование
         cmp     edx, TickExist
         jne     .exit
+        ; если фишка существует присвоить индекс в результат
         mov     eax, [number]
         mov     [result], eax
     .exit:
+    ; присвоить регистру возврата результат
     mov     eax, [result]
     ret
 endp

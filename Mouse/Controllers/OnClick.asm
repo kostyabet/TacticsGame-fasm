@@ -43,7 +43,7 @@ proc Game.OnClick.PageButton uses eax ebx,\
     cmp     eax, GL_FALSE
     je      .exit
             
-    stdcall Audio.Button, btClick
+    mov     [btType], btClick
     stdcall Page.ChangePage, [nextPage]
     .exit:
         ret
@@ -60,7 +60,7 @@ proc Game.OnClick.TickButton uses eax ebx ecx edi,\
         stdcall Mouse.CheckIsInCircle, [ebx], [ebx + 4], [ebx + 8] ; x y radius
         cmp     eax, GL_TRUE
         jne     .exitFromLoop
-         stdcall Audio.Button, btTick
+         mov     [btType], btTick
          mov     edi, [floatList]
          mov     ebx, [edi]
          sub     ebx, ecx
@@ -81,7 +81,7 @@ proc Game.OnClick.WindowButton uses ebx,\
     cmp     eax, GL_FALSE
     je      .exit
     
-    stdcall Audio.Button, btClick
+    mov     [btType], btClick
     mov     ebx, [callFucntionAddress]
     stdcall ebx
     .exit:

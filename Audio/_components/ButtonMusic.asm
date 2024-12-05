@@ -1,24 +1,22 @@
-proc Audio.Button uses eax ebx ecx edx,\
-    type
+proc Audio.Button uses eax ebx ecx edx
     cmp     [IS_VOICE_ON], GL_FALSE
     je      .exit
-        switch  [type]
+        switch  [btType]
         case    .click,   btClick
         case    .tickBtn, btTick
         jmp     .exit
 
         .click:
-            invoke  CreateThread, 0, 0, Audio.Button.Play.Click, 0, 0, 0
+            stdcall Audio.Button.Play.Click
             jmp     .exit
         .tickBtn:
-            invoke  CreateThread, 0, 0, Audio.Button.Play.Tick, 0, 0, 0
+            stdcall Audio.Button.Play.Tick
             jmp     .exit
     .exit:
         ret
 endp
 
 proc Audio.Button.Play.Click
-    invoke WaitForSingleObject, hMutex, INFINITE
     invoke mciSendStringA, clickButtonSoundCommand, 0, 0, 0
     invoke mciSendStringA, clickButtonSoundPlay, 0, 0, 0
     .waitLoop:
@@ -28,12 +26,10 @@ proc Audio.Button.Play.Click
         cmp     eax, 1
         jne     .waitLoop
     invoke  mciSendStringA, clickButtonSoundClose, 0, 0, 0
-    invoke  ReleaseMutex, hMutex
     ret
 endp
 
 proc Audio.Button.Play.Tick
-    invoke WaitForSingleObject, hMutex, INFINITE
     invoke mciSendStringA, tickButtonSoundCommand, 0, 0, 0
     invoke mciSendStringA, tickButtonSoundPlay, 0, 0, 0
     .waitLoop:
@@ -43,7 +39,6 @@ proc Audio.Button.Play.Tick
         cmp     eax, 1
         jne     .waitLoop
     invoke mciSendStringA, tickButtonSoundClose, 0, 0, 0
-    invoke  ReleaseMutex, hMutex
     ret
 endp
 

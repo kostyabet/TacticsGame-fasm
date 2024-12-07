@@ -179,7 +179,7 @@ section '.data' data readable writeable
   rc     RECT
   pfd    PIXELFORMATDESCRIPTOR
 
-  iconId = 2
+  iconId = 501
 
 section '.rsrc' resource data readable
     directory RT_GROUP_ICON, group_icons,\

@@ -21,8 +21,9 @@ section '.text' code readable executable
   start:
       invoke  GetModuleHandle, 0
       mov     [wc.hInstance], eax
-      invoke  LoadIcon, 0, IDI_APPLICATION
+      invoke  LoadIcon, [wc.hInstance], iconId
       mov     [wc.hIcon], eax
+
       invoke  LoadCursor, 0, IDC_ARROW
       mov     [wc.hCursor], eax
 
@@ -36,8 +37,8 @@ section '.text' code readable executable
       mov     ecx, eax
 
       invoke  CreateWindowEx, 0, _class, _title, WS_VISIBLE+WS_POPUP+WS_CLIPCHILDREN+WS_CLIPSIBLINGS, 0, 0, ebx, ecx, NULL, NULL, [wc.hInstance], NULL
-      mov     [hwnd],eax
-        
+      mov     [hwnd], eax
+
       invoke glEnable, GL_BLEND
       invoke glBlendFunc, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
 
@@ -80,6 +81,7 @@ proc WindowProc hwnd,wmsg,wparam,lparam
       case    .wmmousemove, WM_MOUSEMOVE
       case    .wmmauseclick, WM_LBUTTONDOWN
       case    .wmmauseup, WM_LBUTTONUP
+      case    .vmcommand, WM_COMMAND
 
   .defwndproc:
       invoke  DefWindowProc,[hwnd],[wmsg],[wparam],[lparam]
@@ -117,11 +119,11 @@ proc WindowProc hwnd,wmsg,wparam,lparam
   .wmpaint:
       invoke  glClear,GL_COLOR_BUFFER_BIT
       cmp     [IS_INFO_PREPEAR], GL_TRUE
-      jne     .exit
+      jne     .exitDraw
       .draw:
             stdcall Graphics.Animation
             stdcall Draw.Page
-      .exit:
+      .exitDraw:
             invoke  SwapBuffers,[hdc]
             xor     eax,eax
             jmp     .finish
@@ -150,6 +152,9 @@ proc WindowProc hwnd,wmsg,wparam,lparam
       stdcall Mouse.KeyUp, [lparam]
       xor     eax, eax
       jmp     .finish
+  .vmcommand:
+      xor     eax, eax
+      jmp     .finish  
   .finish:
       pop     edi esi ebx
       ret
@@ -157,8 +162,8 @@ endp
 
 section '.data' data readable writeable
 
-  _title db 'Tacticks Game',0
-  _class db 'FASMOPENGL32',0
+  _title  db 'Tacticks Game', 0
+  _class  db 'FASMOPENGL32', 0
 
   wc WNDCLASS 0,WindowProc,0,0,NULL,NULL,NULL,NULL,NULL,_class
 
@@ -173,6 +178,17 @@ section '.data' data readable writeable
   msg    MSG
   rc     RECT
   pfd    PIXELFORMATDESCRIPTOR
+
+  iconId = 2
+
+section '.rsrc' resource data readable
+    directory RT_GROUP_ICON, group_icons,\
+	          RT_ICON,       icons
+    resource group_icons,\
+		iconId, LANG_NEUTRAL, favicon
+    resource icons,\
+        iconId, LANG_NEUTRAL, faviconData
+    icon    favicon, faviconData, 'source/favicon.ico'
 
 section '.idata' import data readable writeable
 
@@ -208,6 +224,7 @@ section '.idata' import data readable writeable
       CreateMutexW,'CreateMutexW'
 
   import user,\
+	  SendMessage,'SendMessageA',\
       ShowWindow,'ShowWindow',\
       UpdateWindow,'UpdateWindow',\
       GetSystemMetrics,'GetSystemMetrics',\

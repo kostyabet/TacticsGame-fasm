@@ -50,5 +50,5 @@ jobs:
           file: ./Server/DataBaseAPI/Dockerfile
           push: true
           tags: |
-            ghcr.io${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
-            ghcr.io${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            ghcr.io/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
+            ghcr.io/${{ env.IMAGE_NAME }}:latest

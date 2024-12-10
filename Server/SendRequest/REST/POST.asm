@@ -1,4 +1,10 @@
-proc Server.SendRequest.GET,\
+contentType     db  'Content-Type: application/json', 0
+postData        db  '{"id": 9, "login": "testlogin", "password": "testpassword"}', 0
+postDataLength  =   $ - postData
+
+WINHTTP_ADD_HEADER_FLAGS    =   0
+
+proc Server.SendRequest.POST,\
     host, port, type, url
     invoke  WinHttpOpen, HttpOpenTitle, WINHTTP_ACCESS_TYPE_NO_PROXY, NULL, NULL, NULL
     mov     [hSession], eax
@@ -15,17 +21,21 @@ proc Server.SendRequest.GET,\
     test    eax, eax
     jz      .error
 
-    invoke  WinHttpSendRequest, [hRequest], NULL, 0, NULL, 0, 0, 0
-    test    eax, eax
-    jz      .error
+    ; invoke WinHttpAddRequestHeaders, [hRequest], contentType, -1, WINHTTP_ADD_HEADER_FLAGS
+    ; test eax, eax
+    ; jz .error
 
-    invoke  WinHttpReceiveResponse, [hRequest], NULL
+    ; invoke  WinHttpSendRequest, [hRequest], NULL, 0, postData, postDataLength, postDataLength, 0
+    ; test    eax, eax
+    ; jz      .error
 
-    invoke  WinHttpReadData, [hRequest], requestBuffer, [requestBufferLen], 0
-    test    eax, eax
-    jz      .error
+    ; invoke  WinHttpReceiveResponse, [hRequest], NULL
 
-    mov     eax, requestBuffer; have data in buffer
+    ; invoke  WinHttpReadData, [hRequest], requestBuffer, [requestBufferLen], 0
+    ; test    eax, eax
+    ; jz      .error
+
+    ; mov     eax, requestBuffer
 
     jmp     .exit
     .error:

@@ -48,7 +48,7 @@ section '.text' code readable executable
       invoke CreateMutexA, 0, 1, 0
       mov    [hMutex], eax
 
-      stdcall Server.SendRequest.GET
+      stdcall Server.Requests
       ; prepear data
       stdcall File.IniFile.Read
       stdcall File.TicksPosition.Read
@@ -213,7 +213,8 @@ section '.idata' import data readable writeable
       WinHttpCloseHandle, 'WinHttpCloseHandle',\
       WinHttpReceiveResponse, 'WinHttpReceiveResponse',\
       WinHttpSetOption, 'WinHttpSetOption',\
-      WinHttpReadData, 'WinHttpReadData'
+      WinHttpReadData, 'WinHttpReadData',\
+      WinHttpAddRequestHeaders, 'WinHttpAddRequestHeaders'
 
   import kernel,\
       CreateFile,'CreateFileA',\

@@ -1,1 +1,3 @@
-include 'GET.asm'
+include 'REST\GET.asm'
+
+include '_components/GetPlayers.asm'

@@ -2,41 +2,53 @@ name: release-prod
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches: ['master']
+
+env: 
+  GO_VERSION: 1.23
+  REGISTRY: ghcr.io
+  IMAGE_NAME: tacticksgame_rest_api
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Go ${{ env.GO_VERSION }}
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+      - name: Install dependencies
+        run:  |
+          cd ./Server/DataBaseAPI/
+          go get .
+      - name: Build
+        run: |
+          cd ./Server/DataBaseAPI/
+          go build -v ./
+
+  build-and-push-image:
+    needs:
+      - build
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Install FASM
-        uses: stevenwdv/setup-fasm@v1
-      
-      - name: Test fasm
-        run: fasm main.asm main.exe
-  
-  release:
-    needs: build
-    runs-on: windows-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      
-      - name: Install FASM
-        uses: stevenwdv/setup-fasm@v1
-      
-      - name: Test fasm
-        run: fasm main.asm main.exe
-
-#      - name: Release Project
-#        uses: softprops/action-gh-release@v2
-#        if: startsWith(github.ref, 'refs/tags/')
-#        with:
-#          files: |
-#            main.asm
-#            README.md
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Log in to the Container registry
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+        with:
+          context: ./Server/DataBaseAPI
+          file: ./Server/DataBaseAPI/Dockerfile
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ github.repository_owner }}-${{ env.IMAGE_NAME }}:${{ github.ref_name }}
+            ${{ env.REGISTRY }}/${{ github.repository_owner }}-${{ env.IMAGE_NAME }}:latest

@@ -46,7 +46,10 @@ section '.text' code readable executable
       invoke glBlendFunc, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
 
       invoke CreateMutexA, 0, 1, 0
-      mov    [hMutex], eax
+      mov    [hMutex], eax  
+
+      mov     [progressStatus], 30
+      stdcall Animation.Static.LoadingPage.Bar
 
       stdcall Server.Requests
       ; prepear data

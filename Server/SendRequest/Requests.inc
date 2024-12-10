@@ -23,4 +23,4 @@ requestBuffer   dd 255 dup (0)
 requestBufferLen dd $ - requestBuffer
 
 
-progressStatus  dd ?
+progressStatus  dd 0

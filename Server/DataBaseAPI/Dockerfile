@@ -1,6 +1,6 @@
 FROM golang:1.20 AS builder
-WORKDIR /app/Server/DataBaseAPI
-COPY Server/DataBaseAPI/go.mod Server/DataBaseAPI/go.sum ./
+WORKDIR /app
+COPY go.mod go.sum ./
 RUN go get .
-COPY Server/DataBaseAPI/ .
+COPY . .
 RUN go build -o tg_api .

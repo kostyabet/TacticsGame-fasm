@@ -21,9 +21,13 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
       - name: Install dependencies
-        run: go get ./Server/DataBaseAPI/
+        run:  |
+          cd ./Server/DataBaseAPI/
+          go get .
       - name: Build
-        run: go build -v ./Server/DataBaseAPI/
+        run: |
+          cd ./Server/DataBaseAPI/
+          go build -v ./Server/DataBaseAPI/
 
   build-and-push-image:
     needs:

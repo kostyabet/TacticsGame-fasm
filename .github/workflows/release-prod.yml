@@ -2,7 +2,7 @@ name: release-prod
 
 on:
   push:
-    branches: ['master', 'dev']
+    branches: ['master']
 
 env: 
   GO_VERSION: 1.23

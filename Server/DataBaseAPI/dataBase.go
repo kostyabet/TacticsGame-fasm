@@ -61,7 +61,7 @@ func main() {
 		port = os.Getenv("PROD_PORT")
 	}
 
-	connStr := fmt.Sprintf("host=localhost user=postgres password=postgres dbname=tacticsgamedb sslmode=disable", host)
+	connStr := "host=172.19.0.3 user=postgres password=postgres dbname=tacticsgamedb sslmode=disable"
 	db, err = sql.Open("postgres", connStr)
 	if err != nil {
 		log.Fatal(err)

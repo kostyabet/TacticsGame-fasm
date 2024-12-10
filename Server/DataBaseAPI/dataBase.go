@@ -2,15 +2,16 @@ package main
 
 import (
 	"database/sql"
+	"flag"
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
-
-var db *sql.DB
 
 type player struct {
 	Login    string `json:"login"`
@@ -37,9 +38,30 @@ type bestScore struct {
 	Login   string `json:"pl_login"`
 }
 
+var db *sql.DB
+
 func main() {
 	var err error
-	connStr := "host=localhost user=postgres password=postgres dbname=tacticsgamedb sslmode=disable"
+	var host string
+	var port string
+
+	err = godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+	env := flag.String("env", "dev", "Set environment (dev or prod)")
+	flag.Parse()
+
+	if *env == "prod" {
+		host = os.Getenv("PROD_HOST")
+		port = os.Getenv("PROD_PORT")
+	} else {
+		host = os.Getenv("DEV_HOST")
+		port = os.Getenv("DEV_PORT")
+	}
+
+	connStr := fmt.Sprintf("host=%s user=postgres password=postgres dbname=tacticsgamedb sslmode=disable", host)
 	db, err = sql.Open("postgres", connStr)
 	if err != nil {
 		log.Fatal(err)
@@ -52,7 +74,8 @@ func main() {
 	router.POST("/scores", AddScore)
 	router.GET("/scores", AllUserScores)
 	router.GET("/bestscores", AllBestScores)
-	router.Run("localhost:8080")
+	var url = fmt.Sprintf("%s:%s", host, port)
+	router.Run(url)
 }
 
 func AddPlayer(c *gin.Context) {

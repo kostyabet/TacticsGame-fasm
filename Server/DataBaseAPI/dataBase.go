@@ -13,7 +13,7 @@ import (
 var db *sql.DB
 
 type player struct {
-	Id       string `json:"id"`
+	Id       int    `json:"id"`
 	Login    string `json:"login"`
 	Password string `json:"password"`
 }

@@ -25,7 +25,7 @@ proc Server.SendRequest.GET,\
     test    eax, eax
     jz      .error
 
-    mov     eax, requestBuffer; have data in buffer
+    mov     eax, requestBuffer
 
     jmp     .exit
     .error:

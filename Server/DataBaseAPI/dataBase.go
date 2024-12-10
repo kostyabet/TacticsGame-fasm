@@ -61,7 +61,7 @@ func main() {
 		port = os.Getenv("PROD_PORT")
 	}
 
-	connStr := fmt.Sprintf("host=%s user=postgres password=postgres dbname=tacticsgamedb sslmode=disable", host)
+	connStr := fmt.Sprintf("host=localhost user=postgres password=postgres dbname=tacticsgamedb sslmode=disable", host)
 	db, err = sql.Open("postgres", connStr)
 	if err != nil {
 		log.Fatal(err)
@@ -102,30 +102,29 @@ func AddPlayer(c *gin.Context) {
 }
 
 func IsPlayerExist(c *gin.Context) {
-	// var newPlayer player
-	// if err := c.BindJSON(&newPlayer); err != nil {
-	// 	c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Invalid request payload"})
-	// 	return
-	// }
+	var newPlayer player
+	if err := c.BindJSON(&newPlayer); err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Invalid request payload"})
+		return
+	}
 
-	// var playerExists bool
-	// err := db.QueryRow("SELECT EXISTS(SELECT 1 FROM players WHERE pl_login = $1 AND pl_password = $2)", newPlayer.Login, newPlayer.Password).Scan(&playerExists)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
+	var playerExists bool
+	err := db.QueryRow("SELECT EXISTS(SELECT 1 FROM players WHERE pl_login = $1 AND pl_password = $2)", newPlayer.Login, newPlayer.Password).Scan(&playerExists)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	var newId idStruct
-	// if playerExists {
-	// 	var playerID int
-	// 	err := db.QueryRow("SELECT player_id FROM players WHERE pl_login = $1 AND pl_password = $2", newPlayer.Login, newPlayer.Password).Scan(&playerID)
-	// 	if err != nil {
-	// 		log.Fatal(err)
-	// 	}
-	// 	newId.Id = playerID
-	// } else {
-	// 	newId.Id = -1
-	// }
-	newId.Id = 1
+	if playerExists {
+		var playerID int
+		err := db.QueryRow("SELECT player_id FROM players WHERE pl_login = $1 AND pl_password = $2", newPlayer.Login, newPlayer.Password).Scan(&playerID)
+		if err != nil {
+			log.Fatal(err)
+		}
+		newId.Id = playerID
+	} else {
+		newId.Id = -1
+	}
 	c.JSON(http.StatusCreated, newId)
 }
 

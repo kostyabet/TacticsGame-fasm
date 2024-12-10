@@ -53,12 +53,12 @@ func main() {
 	env := flag.String("env", "dev", "Set environment (dev or prod)")
 	flag.Parse()
 
-	if *env == "prod" {
-		host = os.Getenv("PROD_HOST")
-		port = os.Getenv("PROD_PORT")
-	} else {
+	if *env == "dev" {
 		host = os.Getenv("DEV_HOST")
 		port = os.Getenv("DEV_PORT")
+	} else {
+		host = os.Getenv("PROD_HOST")
+		port = os.Getenv("PROD_PORT")
 	}
 
 	connStr := fmt.Sprintf("host=%s user=postgres password=postgres dbname=tacticsgamedb sslmode=disable", host)

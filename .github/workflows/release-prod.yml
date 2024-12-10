@@ -7,7 +7,7 @@ on:
 env: 
   GO_VERSION: 1.23.2
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: tacticksgame_rest_api
 
 jobs:
   build:

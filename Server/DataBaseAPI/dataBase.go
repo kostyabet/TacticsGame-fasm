@@ -61,12 +61,13 @@ func main() {
 		port = os.Getenv("PROD_PORT")
 	}
 
-	connStr := "host=172.19.0.3 user=postgres password=postgres dbname=tacticsgamedb sslmode=disable"
+	connStr := "postgresql://postgres:postgres@c7db4baca3e2:5432/tacticsgamedb?gssencmode=disable"
 	db, err = sql.Open("postgres", connStr)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer db.Close()
+	fmt.Println("CORRECT CONNECT TO DATA BASE CYKAAAAAAAAAAAAAAAAA")
 
 	router := gin.Default()
 	router.POST("/players", AddPlayer)

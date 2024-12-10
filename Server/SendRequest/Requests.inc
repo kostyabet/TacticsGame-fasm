@@ -17,6 +17,7 @@ requestTpPOST   dw  'P', 'O', 'S', 'T', 0
 contentType     dw  'C','o','n','t','e','n','t','-','T','y','p','e',':',' ','a','p','p','l','i','c','a','t','i','o','n','/','j','s','o','n', 0
 
 requestPlayersURL  dw  '/','p','l','a','y','e','r','s', 0
+requestScoresURL   dw  '/','s','c','o','r','e','s', 0
 
 ErrorMessage    db 'Error!', 0
 ErrorTitle      db 'Error', 0
@@ -26,5 +27,5 @@ requestBufferLen dd $ - requestBuffer
 
 progressStatus  dd 0
 
-postData        db  '{"id":6, "login":"t", "password":"s"}', 0
-postDataLength  dd  $ - postData
+postScoresData          db  '{"id":2,"points":100,"player_id":1}', 0
+postScoresDataLength    dd  $ - postScoresData

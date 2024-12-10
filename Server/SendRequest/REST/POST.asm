@@ -1,5 +1,5 @@
 proc Server.SendRequest.POST,\
-    host, port, type, url
+    host, port, type, url, data, length
     invoke  WinHttpOpen, HttpOpenTitle, WINHTTP_ACCESS_TYPE_NO_PROXY, NULL, NULL, NULL
     mov     [hSession], eax
     test    eax, eax
@@ -19,7 +19,7 @@ proc Server.SendRequest.POST,\
     test    eax, eax
     jz      .error
 
-    invoke  WinHttpSendRequest, [hRequest], NULL, 0, postData, [postDataLength], [postDataLength], 0
+    invoke  WinHttpSendRequest, [hRequest], NULL, 0, [data], [length], [length], 0
     test    eax, eax
     jz      .error
 
@@ -30,7 +30,6 @@ proc Server.SendRequest.POST,\
     jz      .error
 
     mov     eax, requestBuffer
-    invoke  MessageBox, 0, requestBuffer, ErrorTitle, MB_OK
 
     jmp     .exit
     .error:

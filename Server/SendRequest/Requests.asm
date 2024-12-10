@@ -8,6 +8,8 @@ proc Server.GetStartData
     ;stdcall Server.SendRequest.GetPlayers
     ;mov     [progressStatus], 50
     ;stdcall Server.SendRequest.SetPlayers
+    ;stdcall Server.SendRequest.AddNewScore
+    ;stdcall Server.SendRequest.PrintUserScores
     mov     [progressStatus], 100
     ret
 endp

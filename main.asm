@@ -48,9 +48,6 @@ section '.text' code readable executable
       invoke CreateMutexA, 0, 1, 0
       mov    [hMutex], eax  
 
-      mov     [progressStatus], 30
-      stdcall Animation.Static.LoadingPage.Bar
-
       stdcall Server.Requests
       ; prepear data
       stdcall File.IniFile.Read

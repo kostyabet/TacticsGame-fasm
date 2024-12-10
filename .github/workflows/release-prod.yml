@@ -27,7 +27,7 @@ jobs:
       - name: Build
         run: |
           cd ./Server/DataBaseAPI/
-          go build -v ./Server/DataBaseAPI/
+          go build -v ./
 
   build-and-push-image:
     needs:

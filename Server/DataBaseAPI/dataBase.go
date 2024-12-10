@@ -28,23 +28,33 @@ func main() {
 	defer db.Close()
 
 	router := gin.Default()
-	router.GET("/users", PrintUsers)
+	router.POST("/players", AddPlayer)
+	router.GET("/players", PrintPlayers)
 
 	router.Run("localhost:8080")
-	// AddUser(4, "login", "password")
-
-	// PrintUsers()
 }
 
-func AddUser(id int, login string, password string) {
-	result, err := db.Exec("INSERT INTO player (player_id, pl_login, pl_pswrd) VALUES ($1, $2, $3)", id, login, password)
-	if err != nil {
-		panic(err)
+func AddPlayer(c *gin.Context) {
+	var newPleyer player
+	if err := c.BindJSON(&newPleyer); err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Invalid request payload"})
+		return
 	}
-	fmt.Println(result.RowsAffected())
+
+	stmt, err := db.Prepare("INSERT INTO player (player_id, pl_login, pl_pswrd) VALUES ($1, $2, $3)")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer stmt.Close()
+
+	if _, err := stmt.Exec(newPleyer.Id, newPleyer.Login, newPleyer.Password); err != nil {
+		log.Fatal(err)
+	}
+
+	c.JSON(http.StatusCreated, newPleyer)
 }
 
-func PrintUsers(c *gin.Context) {
+func PrintPlayers(c *gin.Context) {
 	c.Header("Content-Type", "application/json")
 
 	rows, err := db.Query("SELECT * FROM player")

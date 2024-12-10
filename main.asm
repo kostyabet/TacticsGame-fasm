@@ -2,9 +2,11 @@ format PE GUI 4.0
 entry start
 
 include 'win32a.inc'
-include 'winmm.inc'
 include 'opengl.inc'
 include 'main.inc'
+;include 'ole32.inc'
+;include 'oleaut32.inc'
+include 'winmm.inc'
 
 include 'Scripts/Includes.asm'
 include 'Math/Includes.asm'
@@ -15,6 +17,7 @@ include 'Mouse/Includes.asm'
 include 'Keyboard/Includes.asm'
 include 'Audio/Includes.asm'
 include 'Application/Includes.asm'
+include 'Server/SendRequest/Includes.asm'
 
 section '.text' code readable executable
 
@@ -45,6 +48,7 @@ section '.text' code readable executable
       invoke CreateMutexA, 0, 1, 0
       mov    [hMutex], eax
 
+      stdcall Server.SendRequest.GET
       ; prepear data
       stdcall File.IniFile.Read
       stdcall File.TicksPosition.Read
@@ -172,6 +176,7 @@ section '.data' data readable writeable
   hwnd   dd ?
   hdc    dd ?
   hrc    dd ?
+  request dd 1
 
   hHeap  dd ?
 
@@ -197,7 +202,18 @@ section '.idata' import data readable writeable
       gdi,'GDI32.DLL',\
       opengl,'OPENGL32.DLL',\
       glu,'GLU32.DLL',\
-      winmm, 'WINMM.DLL'
+      winmm, 'WINMM.DLL',\
+      winhttp, 'WINHTTP.DLL'
+
+  import winhttp,\
+      WinHttpSendRequest, 'WinHttpSendRequest',\
+      WinHttpOpen, 'WinHttpOpen',\
+      WinHttpConnect, 'WinHttpConnect',\
+      WinHttpOpenRequest, 'WinHttpOpenRequest',\
+      WinHttpCloseHandle, 'WinHttpCloseHandle',\
+      WinHttpReceiveResponse, 'WinHttpReceiveResponse',\
+      WinHttpSetOption, 'WinHttpSetOption',\
+      WinHttpReadData, 'WinHttpReadData'
 
   import kernel,\
       CreateFile,'CreateFileA',\
@@ -221,9 +237,11 @@ section '.idata' import data readable writeable
       WaitForSingleObject,'WaitForSingleObject',\
       ReleaseMutex,'ReleaseMutex',\
       CreateMutexA,'CreateMutexA',\
-      CreateMutexW,'CreateMutexW'
+      CreateMutexW,'CreateMutexW',\
+      GetLastError, 'GetLastError'
 
   import user,\
+      MessageBox, 'MessageBoxA',\
 	  SendMessage,'SendMessageA',\
       ShowWindow,'ShowWindow',\
       UpdateWindow,'UpdateWindow',\

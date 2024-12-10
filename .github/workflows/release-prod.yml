@@ -2,41 +2,51 @@ name: release-prod
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches: ['master', 'dev']
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: [ '1.19', '1.20', '1.21.x' ]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Go ${{ matrix.go-version }}
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go-version }}
+      - name: Install dependencies
+        run: go get .
+      - name: Build
+        run: go build -v ./
+
+  build-and-push-image:
+    needs:
+      - build
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Install FASM
-        uses: stevenwdv/setup-fasm@v1
-      
-      - name: Test fasm
-        run: fasm main.asm main.exe
-  
-  release:
-    needs: build
-    runs-on: windows-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      
-      - name: Install FASM
-        uses: stevenwdv/setup-fasm@v1
-      
-      - name: Test fasm
-        run: fasm main.asm main.exe
-
-#      - name: Release Project
-#        uses: softprops/action-gh-release@v2
-#        if: startsWith(github.ref, 'refs/tags/')
-#        with:
-#          files: |
-#            main.asm
-#            README.md
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Log in to the Container registry
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+        with:
+          context: ./Server/DataBaseAPI
+          file: ./Dockerfile
+          push: true
+          tags: |
+            ghcr.io${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
+            ghcr.io${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest

@@ -67,7 +67,19 @@ func main() {
 		log.Fatal(err)
 	}
 	defer db.Close()
-	fmt.Println("CORRECT CONNECT TO DATA BASE CYKAAAAAAAAAAAAAAAAA")
+	log.Println("CORRECT CONNECT TO DATA BASE CYKAAAAAAAAAAAAAAAAA")
+
+	//create the table if it doesn't exist
+	_, err = db.Exec("CREATE TABLE IF NOT EXISTS players (player_id SERIAL PRIMARY KEY, pl_login varchar(30) NOT NULL, pl_password varchar(30) NOT NULL)")
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println("create players table")
+	_, err = db.Exec("CREATE TABLE IF NOT EXISTS scores (score_id SERIAL PRIMARY KEY, points INT NOT NULL, fk_player_id INT, FOREIGN KEY (fk_player_id) REFERENCES players(player_id));")
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println("create scores table")
 
 	router := gin.Default()
 	router.POST("/players", AddPlayer)

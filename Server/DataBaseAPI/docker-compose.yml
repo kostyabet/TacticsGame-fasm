@@ -32,4 +32,4 @@ volumes:
     driver: local
 
 networks:
-  tacticsgame_bridge:
+  my_network:

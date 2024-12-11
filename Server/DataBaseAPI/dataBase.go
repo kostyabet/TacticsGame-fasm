@@ -95,6 +95,13 @@ func main() {
 	router.Run(url)
 }
 
+func database(db *gorm.DB) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Set("db", db)
+		c.Next()
+	}
+}
+
 func AddPlayer(c *gin.Context) {
 	var newPlayer player
 	if err := c.BindJSON(&newPlayer); err != nil {

@@ -3,7 +3,7 @@ version: '3.7'
 services:
   go-app:
     container_name: go-app
-    image: francescoxx/go-app:1.0.1
+    image: ghcr.io/kostyabet/tacticksgame_rest_api:master
     build: .
     environment:
       DATABASE_URL: "host=go_db user=postgres password=postgres dbname=postgres sslmode=disable"

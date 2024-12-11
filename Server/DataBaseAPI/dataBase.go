@@ -95,7 +95,7 @@ func main() {
 	router.Run(url)
 }
 
-func database(db *gorm.DB) gin.HandlerFunc {
+func database(db *sql.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		c.Set("db", db)
 		c.Next()

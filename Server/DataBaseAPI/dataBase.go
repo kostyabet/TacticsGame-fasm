@@ -58,6 +58,7 @@ func main() {
 	}
 	log.Println("Create SCORES table if they are don't exist yet.")
 
+	gin.TrustedPlatform = "http://tactics.tw1.su/"
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.New()
 	router.POST("/players", AddPlayer)

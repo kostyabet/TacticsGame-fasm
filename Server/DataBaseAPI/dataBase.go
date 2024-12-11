@@ -41,6 +41,7 @@ type bestScore struct {
 var db *sql.DB
 
 func main() {
+	gin.SetMode(gin.ReleaseMode)
 	var err error
 	var host string
 	var port string
@@ -82,6 +83,9 @@ func main() {
 	log.Println("create scores table")
 
 	router := gin.Default()
+	router.Use(gin.Logger())
+	router.Use(gin.Recovery())
+	router.Use(database(db))
 	router.POST("/players", AddPlayer)
 	router.GET("/players", IsPlayerExist)
 	router.POST("/scores", AddScore)

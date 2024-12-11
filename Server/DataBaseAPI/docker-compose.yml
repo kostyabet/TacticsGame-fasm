@@ -1,3 +1,5 @@
+version: '3.7'
+
 services:
   go-app:
     container_name: go-app
@@ -9,8 +11,6 @@ services:
       - "8080:8080"
     depends_on:
       - go_db
-    networks:
-      - my_network
   go_db:
     container_name: go_db
     image: postgres:12
@@ -22,12 +22,6 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-    networks:
-      - my_network
 
 volumes:
-  pgdata:
-    driver: local
-
-networks:
-  my_network:
+  pgdata: {}

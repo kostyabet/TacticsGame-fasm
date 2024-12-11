@@ -1,5 +1,3 @@
-version: '3.7'
-
 services:
   go-app:
     container_name: go-app

@@ -2,14 +2,11 @@ package main
 
 import (
 	"database/sql"
-	"flag"
 	"fmt"
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
 
@@ -41,65 +38,34 @@ type bestScore struct {
 var db *sql.DB
 
 func main() {
-	gin.SetMode(gin.ReleaseMode)
 	var err error
-	var host string
-	var port string
-
-	err = godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-
-	env := flag.String("env", "dev", "Set environment (dev or prod)")
-	flag.Parse()
-
-	if *env == "dev" {
-		host = os.Getenv("DEV_HOST")
-		port = os.Getenv("DEV_PORT")
-	} else {
-		host = os.Getenv("PROD_HOST")
-		port = os.Getenv("PROD_PORT")
-	}
-
 	connStr := "go_db:5432"
 	db, err = sql.Open("postgres", connStr)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer db.Close()
-	log.Println("CORRECT CONNECT TO DATA BASE CYKAAAAAAAAAAAAAAAAA")
+	log.Println("Db port open for DataBase")
 
-	//create the table if it doesn't exist
 	_, err = db.Exec("CREATE TABLE IF NOT EXISTS players (player_id SERIAL PRIMARY KEY, pl_login varchar(30) NOT NULL, pl_password varchar(30) NOT NULL)")
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Println("create players table")
+	log.Println("Create PLAYERS table if they are don't exist yet.")
 	_, err = db.Exec("CREATE TABLE IF NOT EXISTS scores (score_id SERIAL PRIMARY KEY, points INT NOT NULL, fk_player_id INT, FOREIGN KEY (fk_player_id) REFERENCES players(player_id));")
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Println("create scores table")
+	log.Println("Create SCORES table if they are don't exist yet.")
 
-	router := gin.Default()
-	router.Use(gin.Logger())
-	router.Use(gin.Recovery())
-	router.Use(database(db))
+	gin.SetMode(gin.ReleaseMode)
+	router := gin.New()
 	router.POST("/players", AddPlayer)
 	router.GET("/players", IsPlayerExist)
 	router.POST("/scores", AddScore)
 	router.GET("/scores", AllUserScores)
 	router.GET("/bestscores", AllBestScores)
-	var url = fmt.Sprintf("%s:%s", host, port)
-	router.Run(url)
-}
-
-func database(db *sql.DB) gin.HandlerFunc {
-	return func(c *gin.Context) {
-		c.Set("db", db)
-		c.Next()
-	}
+	router.Run("localhost:8080")
 }
 
 func AddPlayer(c *gin.Context) {

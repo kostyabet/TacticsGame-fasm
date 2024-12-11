@@ -5,4 +5,5 @@ RUN go mod download
 COPY . .
 RUN go build -o tg_api .
 
-CMD './tg_api'
+EXPOSE 8080
+CMD ["./tg_api"]

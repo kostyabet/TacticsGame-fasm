@@ -61,7 +61,7 @@ func main() {
 		port = os.Getenv("PROD_PORT")
 	}
 
-	connStr := "postgres://postgres:postgres@go_db:5432/postgres"
+	connStr := "go_db:5432"
 	db, err = sql.Open("postgres", connStr)
 	if err != nil {
 		log.Fatal(err)

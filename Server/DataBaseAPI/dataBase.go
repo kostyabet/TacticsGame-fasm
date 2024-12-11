@@ -39,7 +39,7 @@ var db *sql.DB
 
 func main() {
 	var err error
-	connStr := "go_db:5432"
+	connStr := "host=go_db user=postgres password=postgres dbname=postgres sslmode=disable"
 	db, err = sql.Open("postgres", connStr)
 	if err != nil {
 		log.Fatal(err)
@@ -58,9 +58,8 @@ func main() {
 	}
 	log.Println("Create SCORES table if they are don't exist yet.")
 
-	gin.TrustedPlatform = "http://tactics.tw1.su/"
-	gin.SetMode(gin.ReleaseMode)
-	router := gin.New()
+	router := gin.Default()
+	log.Println("Set gin default")
 	router.POST("/players", AddPlayer)
 	router.GET("/players", IsPlayerExist)
 	router.POST("/scores", AddScore)

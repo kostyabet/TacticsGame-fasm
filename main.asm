@@ -4,8 +4,6 @@ entry start
 include 'win32a.inc'
 include 'opengl.inc'
 include 'main.inc'
-;include 'ole32.inc'
-;include 'oleaut32.inc'
 include 'winmm.inc'
 
 include 'Scripts/Includes.asm'
@@ -17,7 +15,7 @@ include 'Mouse/Includes.asm'
 include 'Keyboard/Includes.asm'
 include 'Audio/Includes.asm'
 include 'Application/Includes.asm'
-include 'Server/SendRequest/Includes.asm'
+include 'Server/Includes.asm'
 
 section '.text' code readable executable
 
@@ -50,8 +48,7 @@ section '.text' code readable executable
 
       stdcall Server.Requests
       ; prepear data
-      stdcall File.IniFile.Read
-      stdcall File.TicksPosition.Read
+      stdcall File.Read
       stdcall Graphics.Draw.CoordsRectPrepears
       stdcall Graphics.Colors.Prepear
       stdcall Graphics.Draw.ASCIIPrepear

@@ -26,7 +26,7 @@ proc Server.SendRequest.GET,\
     jz      .error
 
     mov     eax, requestBuffer
-    invoke MessageBox, 0, eax, ErrorTitle, MB_OK
+    ;invoke MessageBox, 0, eax, ErrorTitle, MB_OK
 
     jmp     .exit
     .error:

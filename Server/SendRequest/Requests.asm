@@ -5,14 +5,11 @@ endp
 
 proc Server.GetStartData
     mov     [progressStatus], 0
-    stdcall Server.SendRequest.GetBestScores
-    mov     [progressStatus], 25
-    stdcall Server.SendRequest.PostAddPlayers
-    mov     [progressStatus], 50
-    stdcall Server.SendRequest.GetIsPlayerExist
-    mov     [progressStatus], 75
-    stdcall Server.SendRequest.PostAddScores
-    stdcall Server.SendRequest.GetAllUserScores
+    ; stdcall Server.SendRequest.GetBestScores
+    ; stdcall Server.SendRequest.PostAddPlayers
+    ; stdcall Server.SendRequest.GetIsPlayerExist
+    ; stdcall Server.SendRequest.PostAddScores
+    ; stdcall Server.SendRequest.GetAllUserScores
     mov     [progressStatus], 100
     ret
 endp

@@ -11,3 +11,6 @@ include 'TicksPositions/TicksPosition.inc'
 ; API
 include 'API/API.asm'
 include 'API/API.inc'
+; Log
+include 'Log/Log.inc'
+include 'Log/Log.asm'

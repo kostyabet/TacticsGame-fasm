@@ -20,6 +20,7 @@ include 'Server/Includes.asm'
 section '.text' code readable executable
 
   start:
+      stdcall Log.Create
       invoke  GetModuleHandle, 0
       mov     [wc.hInstance], eax
       invoke  LoadIcon, [wc.hInstance], iconId
@@ -229,7 +230,7 @@ section '.idata' import data readable writeable
       AllocConsole,'AllocConsole',\
       GetStdHandle,'GetStdHandle',\
       HeapDestroy,'HeapDestroy',\
-      WriteConsole,'WriteConsole',\
+      WriteConsole,'WriteConsoleA',\
       WriteFile,'WriteFile',\
       CreateThread, 'CreateThread',\
       WaitForSingleObject,'WaitForSingleObject',\
@@ -239,7 +240,7 @@ section '.idata' import data readable writeable
       GetLastError, 'GetLastError'
 
   import user,\
-      MessageBox, 'MessageBoxA',\
+      MessageBox,'MessageBoxA',\
 	  SendMessage,'SendMessageA',\
       ShowWindow,'ShowWindow',\
       UpdateWindow,'UpdateWindow',\

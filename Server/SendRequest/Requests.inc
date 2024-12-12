@@ -16,8 +16,9 @@ requestTpGET    dw  'G', 'E', 'T', 0
 requestTpPOST   dw  'P', 'O', 'S', 'T', 0
 contentType     dw  'C','o','n','t','e','n','t','-','T','y','p','e',':',' ','a','p','p','l','i','c','a','t','i','o','n','/','j','s','o','n', 0
 
-requestPlayersURL  dw  '/','p','l','a','y','e','r','s', 0
-requestScoresURL   dw  '/','s','c','o','r','e','s', 0
+requestPlayersURL       dw  '/','p','l','a','y','e','r','s', 0
+requestScoresURL        dw  '/','s','c','o','r','e','s', 0
+requestBestScoresURL    dw  '/','b','e','s','t','s','c','o','r','e','s', 0
 
 ErrorMessage    db 'Error!', 0
 ErrorTitle      db 'Error', 0
@@ -27,5 +28,11 @@ requestBufferLen dd $ - requestBuffer
 
 progressStatus  dd 0
 
-postScoresData          db  '{"id":2,"points":100,"player_id":1}', 0
+postScoresData          db  '{"points":100,"player_id":1}', 0
 postScoresDataLength    dd  $ - postScoresData
+
+postPlayersData         db  '{"login":"testlogin","password":"testpassword"}', 0
+postPlayersDataLength   dd  $ - postPlayersData
+
+getUserIdData           db  '{"id":1}'
+getUserIdDataLength     dd  $ - getUserIdData

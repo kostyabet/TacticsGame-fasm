@@ -11,6 +11,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type player struct {
@@ -98,6 +99,22 @@ func AddPlayer(c *gin.Context) {
 		return
 	}
 
+	var existingID int
+	err := db.QueryRow("SELECT player_id FROM players WHERE pl_login = $1", newPlayer.Login).Scan(&existingID)
+	if err != nil && err != sql.ErrNoRows {
+		log.Fatal(err)
+	}
+
+	if existingID != 0 {
+		c.AbortWithStatusJSON(http.StatusConflict, gin.H{"error": "Login already exists"})
+		return
+	}
+
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(newPlayer.Password), bcrypt.DefaultCost)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	stmt, err := db.Prepare("INSERT INTO players (pl_login, pl_password) VALUES ($1, $2) RETURNING player_id")
 	if err != nil {
 		log.Fatal(err)
@@ -105,7 +122,7 @@ func AddPlayer(c *gin.Context) {
 	defer stmt.Close()
 
 	var generatedID int
-	err = stmt.QueryRow(newPlayer.Login, newPlayer.Password).Scan(&generatedID)
+	err = stmt.QueryRow(newPlayer.Login, hashedPassword).Scan(&generatedID)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -121,8 +138,13 @@ func IsPlayerExist(c *gin.Context) {
 		return
 	}
 
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(newPlayer.Password), bcrypt.DefaultCost)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	var playerExists bool
-	err := db.QueryRow("SELECT EXISTS(SELECT 1 FROM players WHERE pl_login = $1 AND pl_password = $2)", newPlayer.Login, newPlayer.Password).Scan(&playerExists)
+	err := db.QueryRow("SELECT EXISTS(SELECT 1 FROM players WHERE pl_login = $1 AND pl_password = $2)", newPlayer.Login, hashedPassword).Scan(&playerExists)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -130,7 +152,7 @@ func IsPlayerExist(c *gin.Context) {
 	var newId idStruct
 	if playerExists {
 		var playerID int
-		err := db.QueryRow("SELECT player_id FROM players WHERE pl_login = $1 AND pl_password = $2", newPlayer.Login, newPlayer.Password).Scan(&playerID)
+		err := db.QueryRow("SELECT player_id FROM players WHERE pl_login = $1 AND pl_password = $2", newPlayer.Login, hashedPassword).Scan(&playerID)
 		if err != nil {
 			log.Fatal(err)
 		}

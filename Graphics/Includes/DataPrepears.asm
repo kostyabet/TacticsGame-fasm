@@ -100,6 +100,8 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, ep_no_font_coords, ep_no_font_design
     stdcall Scripts.Getters.ConvertCoords, ap_brdr_coords, ap_brdr_design
     stdcall Scripts.Getters.ConvertCoords, ap_font_coords, ap_font_design
+    stdcall Scripts.Getters.ConvertCoords, lgp_border_coords, lgp_border_desing
+    stdcall Scripts.Getters.ConvertCoords, lgp_font_coords, lgp_font_desing
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
     ret
@@ -205,6 +207,7 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_hkexitS,      str_hotkey,      fs_hktextS,   tg_hktextS,   str_hkexitS_pos
     stdcall Scripts.Convert.FromENtoASCII, [HK_RESTART],  str_hotkey
     stdcall Graphics.Draw.Text.Prepear, txt_hkrestartS,   str_hotkey,      fs_hktextS,   tg_hktextS,   str_hkrestartS_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_logging,      str_logging,     fs_logging,   tg_logging,   str_logging_pos
     ret
 endp
 

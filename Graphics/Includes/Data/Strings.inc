@@ -58,6 +58,7 @@ tg_gamerool     =       10
 tg_grtext       =       8
 tg_hktext       =       7
 tg_hktextS      =       0
+tg_logging      =       12
 
 ; ====== Interfaces ====== ;
 struct Points
@@ -280,6 +281,8 @@ str_hkpauseS_pos    dd      1049, 504
 str_hkexitS_pos     dd      1049, 549
 str_hkrestartS_pos  dd      1049, 594
 str_hotkey          db      ?, 0 ; 'ЗАНОВО'
+str_logging         db      1, 3, 20, 16, 18, 10, 9, 1, 24, 10, 33, 0 ; 'АВТОРИЗАЦИЯ'
+str_logging_pos     dd      806, 448
 ; ====== Program models ====== ;
 txt_headline        dd      ?
 txt_headline_bc     dd      ?
@@ -331,6 +334,7 @@ txt_hksettingsS     dd      ?
 txt_hkpauseS        dd      ?
 txt_hkexitS         dd      ?
 txt_hkrestartS      dd      ?
+txt_logging         dd      ?
 
 txts_array          dd      txt_headline,    txt_headline_bc, txt_play,     txt_about,     txt_settings,  txt_return,   txt_grtext,\
                             txt_Mexit,       txt_title,       txt_cost,     txt_info,      txt_watermark, txt_R_hk,     txt_P_hk,\
@@ -339,7 +343,7 @@ txts_array          dd      txt_headline,    txt_headline_bc, txt_play,     txt_
                             txt_hotkeys,     txt_HPhotkeys,   txt_volume,   txt_moff,      txt_voff,      txt_hoff,     txt_mon,\
                             txt_von,         txt_hon,         txt_wantExit, txt_yes,       txt_no,        txt_gamerool, txt_hkplay,\
                             txt_hkabout,     txt_hksettings,  txt_hkpause,  txt_hkexit,    txt_hkrestart, txt_hkplayS,  txt_hkaboutS,\
-                            txt_hksettingsS, 0
+                            txt_hksettingsS, txt_logging,     0
 
 arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5,  ltr_RU_6,  ltr_RU_7,\ ; RU
                             ltr_RU_8,  ltr_RU_9,  ltr_RU_10, ltr_RU_11, ltr_RU_12, ltr_RU_13, ltr_RU_14,\

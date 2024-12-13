@@ -1,4 +1,5 @@
-proc Server.SendRequest.GetIsPlayerExist
-    stdcall Server.SendRequest.GET, apiHOST, [apiPORT], requestTpGET, requestPlayersURL, postPlayersData, [postPlayersDataLength]
+proc Server.SendRequest.GetIsPlayerExist,\
+    data, length
+    stdcall Server.SendRequest.GET, apiHOST, [apiPORT], requestTpGET, requestPlayersURL, [data], [length]
     ret
 endp

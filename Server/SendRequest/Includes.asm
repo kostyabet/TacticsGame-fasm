@@ -9,3 +9,5 @@ include '_components/GetBestScores.asm'
 include '_components/GetIsPlayerExist.asm'
 include '_components/PostAddScores.asm'
 include '_components/GetAllUserScores.asm'
+
+include 'Methods/Player.asm'

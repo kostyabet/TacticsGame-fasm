@@ -8,4 +8,7 @@ struc LogString [text*] {
     .size = $-.
 }
 
-logCreateSignal     LogString 'Log console was created!', 13, 10, 0
+logCreateSignal     LogString 'Log console was created!', 10
+playerExistCheck    LogString 'Check is player exist', 10
+sendString          LogString 'Send string to method: '
+serverAnswer        LogString 10, 'Server request: '

@@ -1,5 +1,5 @@
-Login       db  30 dup(0)
-Password    db  30 dup(0)
+Login       db  'test', 0;30 dup(0)
+Password    db  'test', 0;30 dup(0)
 
 apiFilePath db  'api.ini', 0
 hApiFile    dd  ?

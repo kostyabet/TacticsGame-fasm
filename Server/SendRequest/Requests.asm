@@ -8,6 +8,7 @@ proc Server.GetStartData
     ; stdcall Server.SendRequest.GetBestScores
     ; stdcall Server.SendRequest.PostAddPlayers
     ; stdcall Server.SendRequest.GetIsPlayerExist
+    stdcall Server.Methods.Player.IsExist
     ; stdcall Server.SendRequest.PostAddScores
     ; stdcall Server.SendRequest.GetAllUserScores
     mov     [progressStatus], 100

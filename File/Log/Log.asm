@@ -6,7 +6,7 @@ proc Log.Create uses edi esi ebx eax
     ret
 endp
 
-proc Log.Console,\
+proc Log.Console uses eax,\
     buffer, length
     invoke  WriteConsole, [hConsole], [buffer], [length], 0, 0
     ret

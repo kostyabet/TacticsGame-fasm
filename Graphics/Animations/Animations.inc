@@ -112,6 +112,8 @@ Anim_ExitPage                   dd  4,\
                                     Anim_btn_cl, Anim_EPYesFont_cl,\
                                     Anim_btn_cl, Anim_EPYesText_cl,\
                                     Anim_btn_cl, Anim_EPNoFont_cl,\
-                                    Anim_btn_cl, Anim_EPNoText_cl                                    
+                                    Anim_btn_cl, Anim_EPNoText_cl  
 
-AnimsList                       dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage, Anim_PausePage, Anim_WinnerPage, Anim_HotkeysPage, Anim_ExitPage
+Anim_LoggingPage                dd  0                                  
+
+AnimsList                       dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage, Anim_PausePage, Anim_WinnerPage, Anim_HotkeysPage, Anim_ExitPage, Anim_LoggingPage

@@ -47,4 +47,6 @@ ep_events       dd  2,\
                     et_wndbutton, ep_yes_brdr_design, Application.Exit,\
                     et_prevpage,  ep_no_brdr_design,  PrevousPage
 
-EventsList      dd  lp_events, mp_events, gp_events, ap_events, sp_events, pp_events, wp_events, hp_events, ep_events
+lgp_events      dd  0
+
+EventsList      dd  lp_events, mp_events, gp_events, ap_events, sp_events, pp_events, wp_events, hp_events, ep_events, lgp_events

@@ -11,8 +11,7 @@ services:
       - "8080:8080"
     depends_on:
       - go_db
-    restart: 
-      - "always"
+    restart: "always"
   go_db:
     container_name: go_db
     image: postgres:12

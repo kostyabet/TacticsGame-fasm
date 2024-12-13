@@ -49,7 +49,6 @@ section '.text' code readable executable
 
       stdcall Server.Requests
       ; prepear data
-      stdcall File.Read
       stdcall Graphics.Draw.CoordsRectPrepears
       stdcall Graphics.Colors.Prepear
       stdcall Graphics.Draw.ASCIIPrepear

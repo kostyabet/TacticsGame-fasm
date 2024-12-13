@@ -5,6 +5,8 @@ endp
 
 proc Server.GetStartData
     mov     [progressStatus], 0
+    stdcall File.Read
+    mov     [progressStatus], 33
     ; stdcall Server.SendRequest.GetBestScores
     ; stdcall Server.SendRequest.PostAddPlayers
     ; stdcall Server.SendRequest.GetIsPlayerExist

@@ -17,7 +17,7 @@ proc File.API.Write
 endp
 
 proc File.API.Read uses eax ebx ecx edx edi
-    invoke  CreateFile, ticksFilePath, GENERIC_READ, 0, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0
+    invoke  CreateFile, apiFilePath, GENERIC_READ, 0, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0
     mov     [hApiFile], eax
     cmp     eax, INVALID_HANDLE_VALUE
     jne     @F

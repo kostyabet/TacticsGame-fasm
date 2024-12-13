@@ -12,7 +12,7 @@ services:
     depends_on:
       - go_db
     restart: 
-      - always
+      - "always"
   go_db:
     container_name: go_db
     image: postgres:12

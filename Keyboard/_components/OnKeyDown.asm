@@ -51,8 +51,9 @@ proc Keyboard.OnKeyDown,\
             jmp     .exit
         @@:
             stdcall Server.Methods.Player.AddSymbolIn, Password, eax
-            stdcall ConvertStringToOutputString, Password, outputStrBufPas
-            stdcall Server.AutorizationString
+            stdcall Server.Methods.Player.StartPassword
+            ; stdcall ConvertStringToOutputString, Password, outputStrBufPas
+            ; stdcall Server.AutorizationString
             jmp     .exit
     .exit:
     ret

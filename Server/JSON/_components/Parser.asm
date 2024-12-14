@@ -1,5 +1,5 @@
 errorMessage    db  '{"error":"Invalid request payload"}', 0
-proc Server.JSON.IsError,\
+proc Server.JSON.IsError uses ebx edi,\
     jsonLink
     locals
         result dd 0
@@ -11,10 +11,74 @@ proc Server.JSON.IsError,\
         cmp     byte [edi], al
         jne     .exit
         inc     ebx
-        inc     edx
+        inc     edi
         cmp     byte [ebx], 0
         jne     .next
-        cmp     byte [edx], 0
+        cmp     byte [edi], 0
+        jne     .next
+            mov     [result], 1
+        .next:
+        jmp     .loop
+    .exit:
+        mov     eax, [result]
+    ret
+endp
+
+errorLoginMessage db '{"error":"Login must be at most 3 characters long"}', 0
+proc Server.JSON.IsLoginError uses ebx edi,\
+    jsonLink
+    locals
+        result dd 0
+    endl
+    stdcall File.IniFile.StrLen, [jsonLink]
+    mov     ebx, eax
+    stdcall File.IniFile.StrLen, errorLoginMessage
+    cmp     eax, ebx
+    jne     .exit
+    
+    mov     ebx, [jsonLink]
+    mov     edi, errorLoginMessage
+    .loop:
+        mov     al, byte [ebx]
+        cmp     byte [edi], al
+        jne     .exit
+        inc     ebx
+        inc     edi
+        cmp     byte [ebx], 0
+        jne     .next
+        cmp     byte [edi], 0
+        jne     .next
+            mov     [result], 1
+        .next:
+        jmp     .loop
+    .exit:
+        mov     eax, [result]
+    ret
+endp
+
+errorPasswordMessage db '{"error":"Password must be at most 8 characters long"}', 0
+proc Server.JSON.IsPasswordError uses ebx edi,\
+    jsonLink
+    locals
+        result dd 0
+    endl
+    stdcall File.IniFile.StrLen, [jsonLink]
+    mov     ebx, eax
+    stdcall File.IniFile.StrLen, errorLoginMessage
+    cmp     eax, ebx
+    jne     .exit
+
+    mov     ebx, [jsonLink]
+    mov     edi, errorLoginMessage
+    .loop:
+        mov     al, byte [ebx]
+        cmp     byte [edi], al
+        jne     .exit
+        inc     ebx
+        inc     edi
+        cmp     byte [ebx], 0
+        jne     .next
+        cmp     byte [edi], 0
         jne     .next
             mov     [result], 1
         .next:

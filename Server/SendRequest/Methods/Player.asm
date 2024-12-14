@@ -34,18 +34,19 @@ proc Server.Methods.Player.IsExist uses eax ebx
     @@:
     mov     eax, 1
     .exit:
+    stdcall ClearBuffer, [jsonLink]
     ret
 endp
 
 proc Server.Methods.Player.NewPlayer uses eax ebx ecx edx
-    ; stdcall Page.ChangePage, LoadingPage
     stdcall Server.Methods.Player.AddNewPlayer
-    ; stdcall CreateThread, 0, 0, Server.Methods.Player.AddNewPlayer, 0, 0, 0
     ret
 endp
 
 proc Server.Methods.Player.AddNewPlayer
-    ;int3
+    locals
+        jsonLink    dd  ?
+    endl
     stdcall Log.Console, addNewPlayerSignal, addNewPlayerSignal.size
     ; prepear data
     stdcall JSON.SendStrign.Clear, playerJSON.login, JSON_STRING_LENGTH
@@ -61,7 +62,30 @@ proc Server.Methods.Player.AddNewPlayer
     mov     ebx, eax
     stdcall File.IniFile.StrLen, eax
     stdcall Log.Console, ebx, eax
-    ; xchg    eax, ebx
+    xchg    eax, ebx
+    mov     [jsonLink], eax
+    stdcall Server.JSON.IsError, [jsonLink]
+    cmp     eax, GL_TRUE
+    jne     .Login
+        ; error
+        jmp     .exit
+    .Login:
+        ; int3
+        stdcall Server.JSON.IsLoginError, [jsonLink]
+        cmp     eax, GL_TRUE
+        jne     .Password
+            ; login error
+            jmp     .exit
+    .Password:
+        stdcall Server.JSON.IsPasswordError, [jsonLink]
+        cmp     eax, GL_TRUE
+        jne     .correct
+            ; password error
+            jmp     .exit
+    .correct:
+        ; stdcall Page.ChangePage, LoadingPage
+    .exit:
+    stdcall ClearBuffer, [jsonLink]
     ret
 endp
 
@@ -187,5 +211,19 @@ proc Server.Methods.Player.SwapPaswordHideStatus uses eax ecx
         mov     [PasswordHide], GL_TRUE
     @@:
     stdcall StartPassword.Body
+    ret
+endp
+
+proc ClearBuffer,\
+    json
+    mov     ebx, [json]
+    cmp     byte [ebx], 0
+    je      .exit
+    .mainLoop:
+        mov     byte [ebx], 0
+        inc     ebx
+        cmp     byte [ebx], 0
+        jne     .mainLoop
+    .exit:
     ret
 endp

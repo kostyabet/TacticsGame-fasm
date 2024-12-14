@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"regexp"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -99,8 +100,20 @@ func AddPlayer(c *gin.Context) {
 		return
 	}
 
+	if len(newPlayer.Login) > 3 {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Login must be at most 3 characters long"})
+		return
+	}
+
+	passwordRegex := `^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$`
+	matched, err := regexp.MatchString(passwordRegex, newPlayer.Password)
+	if err != nil || !matched {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Password must be at least 8 characters long and contain at least one letter and one number"})
+		return
+	}
+
 	var existingID int
-	err := db.QueryRow("SELECT player_id FROM players WHERE pl_login = $1", newPlayer.Login).Scan(&existingID)
+	err = db.QueryRow("SELECT player_id FROM players WHERE pl_login = $1", newPlayer.Login).Scan(&existingID)
 	if err != nil && err != sql.ErrNoRows {
 		log.Fatal(err)
 	}

@@ -40,13 +40,17 @@ endp
 proc Server.Methods.Player.StartLogin uses eax ecx
     stdcall ConvertStringToOutputString, Login
     stdcall Server.AutorizationString, eax, str_password
+    stdcall Colors.Copy, login_color, brown_text_color
     mov     [IsLogin], GL_TRUE
+    mov     [IsPassword], GL_FALSE
     ret
 endp
 
 proc Server.Methods.Player.StartPassword uses eax ecx
     stdcall ConvertStringToOutputString, Password
     stdcall Server.AutorizationString, str_login, eax
+    stdcall Colors.Copy, password_color, brown_text_color
+    mov     [IsLogin], GL_FALSE
     mov     [IsPassword], GL_TRUE
     ret
 endp
@@ -86,5 +90,25 @@ proc ConvertStringToOutputString uses ebx edi,\
     .exit:
     mov     byte [edi], 0
     mov     eax, outputStringBuffer
+    ret
+endp
+
+proc Server.Methods.Player.AddSymbolIn,\
+    string, symbol
+    mov     ebx, [string]
+    stdcall File.IniFile.StrLen, ebx
+    cmp     eax, JSON_STRING_LENGTH
+    je      .exit
+        cmp     byte [ebx], 0
+        je      .endOfString
+        .loop:
+            inc     ebx
+            cmp     byte [ebx], 0
+            jne     .loop
+        .endOfString:
+            mov     eax, [symbol]
+            mov     byte [ebx], al
+            mov     byte [ebx + 1], 0
+    .exit:
     ret
 endp

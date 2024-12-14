@@ -58,6 +58,7 @@ section '.text' code readable executable
       stdcall Graphics.Texture
       stdcall Audio.Start
       mov     [IS_INFO_PREPEAR], GL_TRUE
+      
 
   msg_loop:
       invoke  GetMessage, msg,NULL,0,0
@@ -133,7 +134,7 @@ proc WindowProc hwnd,wmsg,wparam,lparam
       jne     @F
         stdcall Keyboard.OnHotkeyClick.Exit
       @@:
-        stdcall Keyboard.OnKeyDown
+        stdcall Keyboard.OnKeyDown, [wparam]
       xor     eax,eax
       jmp     .finish
   .wmdestroy:

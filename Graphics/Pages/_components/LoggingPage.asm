@@ -12,12 +12,12 @@ proc Draw.Pages.LoggingPage
     ; login
     stdcall Graphics.Draw.Shapes, lgp_lbrdr_design, brown_text_color
     stdcall Graphics.Draw.Shapes, lgp_lfont_design, milk_color
-    stdcall Graphics.Draw.Text.Write, [txt_login], brown_dark_color
+    stdcall Graphics.Draw.Text.Write, [txt_login], login_color
 
     ; password
     stdcall Graphics.Draw.Shapes, lgp_pbrdr_design, brown_text_color
     stdcall Graphics.Draw.Shapes, lgp_pfont_design, milk_color
-    stdcall Graphics.Draw.Text.Write, [txt_password], brown_dark_color
+    stdcall Graphics.Draw.Text.Write, [txt_password], password_color
 
     ; submit
     stdcall Graphics.Draw.Shapes, lgp_sbtn_brdr_design, brown_text_color

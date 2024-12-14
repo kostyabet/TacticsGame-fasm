@@ -155,6 +155,23 @@ proc Graphics.Colors.Prepear
     stdcall Scripts.Getters.Color, [cl_orange],       orange_color
     stdcall Scripts.Getters.Color, [cl_pale],         pale_color
     stdcall Scripts.Getters.Color, [cl_brow_black],   brown_black_color
+
+    stdcall Colors.Copy, login_color, brown_dark_color
+    stdcall Colors.Copy, password_color, brown_dark_color
+    ret
+endp
+
+proc Colors.Copy uses ebx edi,\
+    dest, src
+    mov     ebx, [dest]
+    mov     edi, [src]
+    mov     ecx, 4
+    .loop:
+        mov     eax, [edi]
+        mov     [ebx], eax
+        add     ebx, 4
+        add     edi, 4
+        loop    .loop
     ret
 endp
 
@@ -218,7 +235,6 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_logging,      str_logging,     fs_logging,   tg_logging,   str_logging_pos
     stdcall Graphics.Draw.Text.Prepear, txt_lgpexit,      str_lgpexit,     fs_lgpexit,   tg_lgpexit,   str_lgpexit_pos
     stdcall Graphics.Draw.Text.Prepear, txt_submit,       str_submit,      fs_lgpexit,   tg_lgpexit,   str_submit_pos
-
     stdcall Server.AutorizationString, str_login, str_password
     ret
 endp

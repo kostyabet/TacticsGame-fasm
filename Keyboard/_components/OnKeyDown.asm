@@ -1,7 +1,13 @@
 ;   0000_0000_0000_0001
-proc Keyboard.OnKeyDown
+proc Keyboard.OnKeyDown,\
+    wparam
     cmp     [IS_HOTKEY_ON], GL_TRUE
-    jne     .exit
+    jne     .autentic
+    cmp     [IsLogin], GL_TRUE
+    je      .autentic
+    cmp     [IsPassword], GL_TRUE
+    je      .autentic
+    ; hot keys
     stdcall Keyboard.IsHotKeyClick
     cmp     eax, GL_TRUE
     jne     .exit
@@ -32,8 +38,45 @@ proc Keyboard.OnKeyDown
         .hkRestart:
             stdcall Keyboard.OnHotkeyClick.Restart
             jmp     .exit
-
+    ; autentic
+    .autentic:
+    stdcall Keyboard.GetCurrentKey, [wparam]
+    cmp     eax, -1
+    je      .exit
+        cmp     [IsLogin], GL_TRUE
+        jne     @F
+            stdcall Server.Methods.Player.AddSymbolIn, Login, eax
+            stdcall ConvertStringToOutputString, Login
+            stdcall Server.AutorizationString, eax, str_password
+            jmp     .exit
+        @@:
+            stdcall Server.Methods.Player.AddSymbolIn, Password, eax
+            stdcall ConvertStringToOutputString, Password
+            stdcall Server.AutorizationString, str_login, eax
+            jmp     .exit
     .exit:
+    ret
+endp
+
+proc Keyboard.GetCurrentKey,\
+    wparam
+    locals
+        result  dd  -1
+    endl
+    mov     ecx, [lettersModelLength]
+    mov     ebx, lettersModel
+    .mainLoop:
+        mov     eax, [ebx]
+        cmp     [wparam], eax
+        jne      @F
+            mov     eax, [ebx]
+            mov     [result], eax
+            jmp     .exit
+        @@:
+        add     ebx, 4
+        loop    .mainLoop
+    .exit:
+    mov     eax, [result]
     ret
 endp
 

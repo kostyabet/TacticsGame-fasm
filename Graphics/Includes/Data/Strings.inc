@@ -59,6 +59,8 @@ tg_grtext       =       8
 tg_hktext       =       7
 tg_hktextS      =       0
 tg_logging      =       12
+tg_lgpexit      =       7
+tg_logpas       =       5
 
 ; ====== Interfaces ====== ;
 struct Points
@@ -283,6 +285,14 @@ str_hkrestartS_pos  dd      1049, 594
 str_hotkey          db      ?, 0 ; 'ЗАНОВО'
 str_logging         db      1, 3, 20, 16, 18, 10, 9, 1, 24, 10, 33, 0 ; 'АВТОРИЗАЦИЯ'
 str_logging_pos     dd      806, 448
+str_lgpexit         db      3, 29, 23, 16, 5, 0 ; 'ВЫХОД'
+str_lgpexit_pos     dd      806, 614
+str_submit          db      17, 16, 5, 20, 3, 6, 18, 5, 10, 20, 30, 0 ; 'ПОДТВЕРДИТЬ'
+str_submit_pos      dd      935, 615
+str_login           db      13, 16, 4, 10, 15, 0 ; 'ЛОГИН'
+str_login_pos       dd      773, 513
+str_password        db      17, 1, 18, 16, 13, 30, 0 ; 'ПАРОЛЬ'
+str_password_pos    dd      773, 568
 ; ====== Program models ====== ;
 txt_headline        dd      ?
 txt_headline_bc     dd      ?
@@ -335,15 +345,19 @@ txt_hkpauseS        dd      ?
 txt_hkexitS         dd      ?
 txt_hkrestartS      dd      ?
 txt_logging         dd      ?
+txt_lgpexit         dd      ?
+txt_submit          dd      ?
+txt_login           dd      ?
+txt_password        dd      ?
 
-txts_array          dd      txt_headline,    txt_headline_bc, txt_play,     txt_about,     txt_settings,  txt_return,   txt_grtext,\
-                            txt_Mexit,       txt_title,       txt_cost,     txt_info,      txt_watermark, txt_R_hk,     txt_P_hk,\
-                            txt_S_hk,        txt_pause,       txt_exit,     txt_saveAexit, txt_winner,    txt_hkpauseS, txt_hkexitS,\
-                            txt_again,       txt_wexit,       txt_msettings, txt_chhotkeys, txt_music,    txt_voice,    txt_hkrestartS,\
-                            txt_hotkeys,     txt_HPhotkeys,   txt_volume,   txt_moff,      txt_voff,      txt_hoff,     txt_mon,\
-                            txt_von,         txt_hon,         txt_wantExit, txt_yes,       txt_no,        txt_gamerool, txt_hkplay,\
-                            txt_hkabout,     txt_hksettings,  txt_hkpause,  txt_hkexit,    txt_hkrestart, txt_hkplayS,  txt_hkaboutS,\
-                            txt_hksettingsS, txt_logging,     0
+txts_array          dd      txt_headline,    txt_headline_bc, txt_play,         txt_about,      txt_settings,   txt_return,   txt_grtext,\
+                            txt_Mexit,       txt_title,       txt_cost,         txt_info,       txt_watermark,  txt_R_hk,     txt_P_hk,\
+                            txt_S_hk,        txt_pause,       txt_exit,         txt_saveAexit,  txt_winner,     txt_hkpauseS, txt_hkexitS,\
+                            txt_again,       txt_wexit,       txt_msettings,    txt_chhotkeys,  txt_music,      txt_voice,    txt_hkrestartS,\
+                            txt_hotkeys,     txt_HPhotkeys,   txt_volume,       txt_moff,       txt_voff,       txt_hoff,     txt_mon,\
+                            txt_von,         txt_hon,         txt_wantExit,     txt_yes,        txt_no,         txt_gamerool, txt_hkplay,\
+                            txt_hkabout,     txt_hksettings,  txt_hkpause,      txt_hkexit,     txt_hkrestart,  txt_hkplayS,  txt_hkaboutS,\
+                            txt_hksettingsS, txt_logging,     txt_lgpexit,      txt_submit,     txt_login,      txt_password, 0
 
 arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5,  ltr_RU_6,  ltr_RU_7,\ ; RU
                             ltr_RU_8,  ltr_RU_9,  ltr_RU_10, ltr_RU_11, ltr_RU_12, ltr_RU_13, ltr_RU_14,\

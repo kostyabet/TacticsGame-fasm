@@ -36,3 +36,55 @@ proc Server.Methods.Player.IsExist uses eax ebx
     .exit:
     ret
 endp
+
+proc Server.Methods.Player.StartLogin uses eax ecx
+    stdcall ConvertStringToOutputString, Login
+    stdcall Server.AutorizationString, eax, str_password
+    mov     [IsLogin], GL_TRUE
+    ret
+endp
+
+proc Server.Methods.Player.StartPassword uses eax ecx
+    stdcall ConvertStringToOutputString, Password
+    stdcall Server.AutorizationString, str_login, eax
+    mov     [IsPassword], GL_TRUE
+    ret
+endp
+
+proc Server.Methods.Player.DeactivateAunt uses eax ecx
+    stdcall Mouse.CheckIsInShape, lgp_pbrdr_design
+    cmp     eax, GL_FALSE
+    jne     .exit
+    stdcall Mouse.CheckIsInShape, lgp_lbrdr_design
+    cmp     eax, GL_FALSE
+    jne     .exit
+
+    mov     [IsLogin], GL_FALSE
+    mov     [IsPassword], GL_FALSE
+    stdcall Server.AutorizationString, str_login, str_password
+
+    .exit:
+    ret
+endp
+
+outputStringBuffer   db     30 dup(0), 0
+proc ConvertStringToOutputString uses ebx edi,\
+    string
+    mov     ebx, [string]
+    mov     edi, outputStringBuffer
+    cmp     byte [ebx], 0
+    je      .exit
+    .loop:
+        mov     al, byte [ebx]
+        sub     al, 'A'
+        add     al, 54
+        mov     byte [edi], al
+        inc     ebx
+        inc     edi
+        cmp     byte [ebx], 0
+        jne     .loop
+    .exit:
+    mov     byte [edi], 0
+    mov     eax, outputStringBuffer
+    ret
+endp

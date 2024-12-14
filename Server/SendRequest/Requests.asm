@@ -10,6 +10,8 @@ proc Server.GetStartData
     stdcall Server.Methods.Player.IsExist
     cmp     eax, 1
     je      @F
+        mov     byte [Login], 0
+        mov     byte [Password], 0
         stdcall Page.ChangePage, LoggingPage
     @@:
     ; stdcall Server.SendRequest.GetBestScores

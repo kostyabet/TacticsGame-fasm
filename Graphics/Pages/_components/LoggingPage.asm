@@ -9,19 +9,25 @@ proc Draw.Pages.LoggingPage
     stdcall Graphics.Draw.Shapes, lgp_border_desing, brown_text_color
     stdcall Graphics.Draw.Shapes, lgp_font_desing, milk_light_color
 
-    ; ; return button
-    ; stdcall Graphics.Draw.Shapes, pp_return_circle_desing, retbtn_font_color
-    ; stdcall Graphics.Draw.Shapes, pp_return_chrest_design, retbtn_chrst_color
-    
-    ; ; submit
-    ; stdcall Graphics.Draw.Shapes, pp_esbtn_brdr_design, brown_text_color
-    ; stdcall Graphics.Draw.Shapes, pp_esbtn_font_desing, esbtn_font_color
-    ; stdcall Graphics.Draw.Text.Write, [txt_saveAexit], esbtn_text_color
+    ; login
+    stdcall Graphics.Draw.Shapes, lgp_lbrdr_design, brown_text_color
+    stdcall Graphics.Draw.Shapes, lgp_lfont_design, milk_color
+    stdcall Graphics.Draw.Text.Write, [txt_login], brown_dark_color
 
-    ; ; exit
-    ; stdcall Graphics.Draw.Shapes, pp_ebtn_brdr_design, brown_text_color
-    ; stdcall Graphics.Draw.Shapes, pp_ebtn_font_desing, ebtn_font_color
-    ; stdcall Graphics.Draw.Text.Write, [txt_exit], ebtn_text_color
+    ; password
+    stdcall Graphics.Draw.Shapes, lgp_pbrdr_design, brown_text_color
+    stdcall Graphics.Draw.Shapes, lgp_pfont_design, milk_color
+    stdcall Graphics.Draw.Text.Write, [txt_password], brown_dark_color
+
+    ; submit
+    stdcall Graphics.Draw.Shapes, lgp_sbtn_brdr_design, brown_text_color
+    stdcall Graphics.Draw.Shapes, lgp_sbtn_font_design, esbtn_font_color
+    stdcall Graphics.Draw.Text.Write, [txt_submit], esbtn_text_color
+
+    ; exit
+    stdcall Graphics.Draw.Shapes, lgp_ebtn_brdr_design, brown_text_color
+    stdcall Graphics.Draw.Shapes, lgp_ebtn_font_design, ebtn_font_color
+    stdcall Graphics.Draw.Text.Write, [txt_lgpexit], ebtn_text_color
 
     ; txt_logging
     stdcall Graphics.Draw.Text.Write, [txt_logging], brown_text_color

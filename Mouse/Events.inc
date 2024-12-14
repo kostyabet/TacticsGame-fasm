@@ -47,6 +47,10 @@ ep_events       dd  2,\
                     et_wndbutton, ep_yes_brdr_design, Application.Exit,\
                     et_prevpage,  ep_no_brdr_design,  PrevousPage
 
-lgp_events      dd  0
+lgp_events      dd  4,\
+                    et_wndbutton, lgp_ebtn_brdr_design, Application.Exit,\
+                    et_wndbutton, lgp_lbrdr_design,     Server.Methods.Player.StartLogin,\
+                    et_wndbutton, lgp_pbrdr_design,     Server.Methods.Player.StartPassword,\
+                    et_wndbutton, font_design,          Server.Methods.Player.DeactivateAunt
 
 EventsList      dd  lp_events, mp_events, gp_events, ap_events, sp_events, pp_events, wp_events, hp_events, ep_events, lgp_events

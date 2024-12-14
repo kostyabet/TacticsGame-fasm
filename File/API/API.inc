@@ -1,5 +1,8 @@
-Login           db  31 dup(0)
-Password        db  31 dup(0)
+Login           db  'A', 30 dup(0)
+Password        db  'A', 30 dup(0)
+
+IsLogin         dd GL_FALSE
+IsPassword      dd GL_FALSE
 
 apiFilePath     db  'api.ini', 0
 hApiFile        dd  ?

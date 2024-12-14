@@ -40,7 +40,7 @@ mp_boatsprite_coords    dd      1,\
 
 lgp_eyeopen_design      DrawModel ?
 lgp_eyeopen_coords      dd      1,\
-                                1126, 569, 1154, 589,\
+                                1126, 570, 1154, 587,\; 1128, 571, 1152, 586,\
                                 0
 lgp_eyeclose_design     DrawModel ?
 lgp_eyeclose_coords     dd      1,\

@@ -3,6 +3,7 @@ Password        db  30 dup(0), 0
 
 IsLogin         dd GL_FALSE
 IsPassword      dd GL_FALSE
+PasswordHide    dd GL_TRUE
 
 apiFilePath     db  'api.ini', 0
 hApiFile        dd  ?

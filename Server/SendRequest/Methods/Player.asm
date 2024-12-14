@@ -47,11 +47,15 @@ proc Server.Methods.Player.StartLogin uses eax ecx
 endp
 
 proc Server.Methods.Player.StartPassword uses eax ecx
-    mov     [IsLogin], GL_FALSE
-    mov     [IsPassword], GL_TRUE
-    stdcall ConvertStringToOutputString, Password, outputStrBufPas
-    stdcall Server.AutorizationString
-    stdcall Colors.Copy, password_color, brown_text_color
+    stdcall Mouse.CheckIsInShape, lgp_eyeclose_design
+    cmp     eax, GL_TRUE
+    je      .exit
+        mov     [IsLogin], GL_FALSE
+        mov     [IsPassword], GL_TRUE
+        stdcall ConvertStringToOutputString, Password, outputStrBufPas
+        stdcall Server.AutorizationString
+        stdcall Colors.Copy, password_color, brown_text_color
+    .exit:
     ret
 endp
 
@@ -111,5 +115,18 @@ proc Server.Methods.Player.AddSymbolIn,\
             mov     byte [ebx], al
             mov     byte [ebx + 1], 0
     .exit:
+    ret
+endp
+
+proc Server.Methods.Player.SwapPaswordHideStatus uses eax
+    mov     eax, [PasswordHide]
+    cmp     eax, GL_FALSE
+    je      .FALSE
+    .TRUE:
+        mov     [PasswordHide], GL_FALSE
+        jmp     @F
+    .FALSE:
+        mov     [PasswordHide], GL_TRUE
+    @@:
     ret
 endp

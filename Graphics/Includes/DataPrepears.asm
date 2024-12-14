@@ -110,6 +110,8 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, lgp_lfont_coords,                lgp_lfont_design
     stdcall Scripts.Getters.ConvertCoords, lgp_pbrdr_coords,                lgp_pbrdr_design
     stdcall Scripts.Getters.ConvertCoords, lgp_pfont_coords,                lgp_pfont_design
+    stdcall Scripts.Getters.ConvertCoords, lgp_eyeopen_coords,              lgp_eyeopen_design
+    stdcall Scripts.Getters.ConvertCoords, lgp_eyeclose_coords,             lgp_eyeclose_design
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
     ret
@@ -287,6 +289,8 @@ endp
 
 proc Graphics.Texture
     stdcall Texture.Create, boatloading_texture, boatLoaderPath
-    stdcall Texture.Create, boatbook_texture, boatBookPath
+    stdcall Texture.Create, boatbook_texture,    boatBookPath
+    stdcall Texture.Create, eyeopen_texture,     eyeOpenPath
+    stdcall Texture.Create, eyeclose_texture,    eyeClosePath
     ret
 endp

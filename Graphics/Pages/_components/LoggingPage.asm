@@ -19,6 +19,14 @@ proc Draw.Pages.LoggingPage
     stdcall Graphics.Draw.Shapes, lgp_pfont_design, milk_color
     stdcall Graphics.Draw.Text.Write, [txt_password], password_color
 
+    cmp     [PasswordHide], GL_TRUE
+    je      .close
+        stdcall Graphics.Draw.Sprite, [eyeopen_texture], lgp_eyeopen_design
+        jmp     @F
+    .close:
+        stdcall Graphics.Draw.Sprite, [eyeclose_texture], lgp_eyeclose_design
+    @@:
+
     ; submit
     stdcall Graphics.Draw.Shapes, lgp_sbtn_brdr_design, brown_text_color
     stdcall Graphics.Draw.Shapes, lgp_sbtn_font_design, esbtn_font_color

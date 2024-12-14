@@ -120,11 +120,6 @@ func AddPlayer(c *gin.Context) {
 		return
 	}
 
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(newPlayer.Password), bcrypt.DefaultCost)
-	if err != nil {
-		log.Fatal(err)
-	}
-
 	stmt, err := db.Prepare("INSERT INTO players (pl_login, pl_password) VALUES ($1, $2) RETURNING player_id")
 	if err != nil {
 		log.Fatal(err)
@@ -132,7 +127,7 @@ func AddPlayer(c *gin.Context) {
 	defer stmt.Close()
 
 	var generatedID int
-	err = stmt.QueryRow(newPlayer.Login, hashedPassword).Scan(&generatedID)
+	err = stmt.QueryRow(newPlayer.Login, newPlayer.Password).Scan(&generatedID)
 	if err != nil {
 		log.Fatal(err)
 	}

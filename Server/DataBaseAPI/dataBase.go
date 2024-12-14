@@ -143,7 +143,7 @@ func IsPlayerExist(c *gin.Context) {
 	}
 
 	var playerExists bool
-	err = db.QueryRow("SELECT EXISTS(SELECT 1 FROM players WHERE pl_login = $1 AND pl_password = $2)", newPlayer.Login, newPlayer.Password).Scan(&playerExists)
+	err := db.QueryRow("SELECT EXISTS(SELECT 1 FROM players WHERE pl_login = $1 AND pl_password = $2)", newPlayer.Login, newPlayer.Password).Scan(&playerExists)
 	if err != nil {
 		log.Fatal(err)
 	}

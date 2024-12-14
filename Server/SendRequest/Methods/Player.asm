@@ -37,6 +37,34 @@ proc Server.Methods.Player.IsExist uses eax ebx
     ret
 endp
 
+proc Server.Methods.Player.NewPlayer uses eax ebx ecx edx
+    ; stdcall Page.ChangePage, LoadingPage
+    stdcall Server.Methods.Player.AddNewPlayer
+    ; stdcall CreateThread, 0, 0, Server.Methods.Player.AddNewPlayer, 0, 0, 0
+    ret
+endp
+
+proc Server.Methods.Player.AddNewPlayer
+    ;int3
+    stdcall Log.Console, addNewPlayerSignal, addNewPlayerSignal.size
+    ; prepear data
+    stdcall JSON.SendStrign.Clear, playerJSON.login, JSON_STRING_LENGTH
+    stdcall JSON.SendStrign.Clear, playerJSON.password, JSON_STRING_LENGTH
+    ; input data in fields
+    stdcall JSON.SendStrign.InputString, playerJSON.login, JSON_STRING_LENGTH, Login
+    stdcall JSON.SendStrign.InputString, playerJSON.password, JSON_STRING_LENGTH, Password
+    ; send response
+    stdcall Log.Console, sendString, sendString.size
+    stdcall Log.Console, playerJSON.loginStart, sizeof.PlayerJSON
+    stdcall Server.SendRequest.PostAddPlayers, playerJSON.loginStart, sizeof.PlayerJSON
+    stdcall Log.Console, serverAnswer, serverAnswer.size
+    mov     ebx, eax
+    stdcall File.IniFile.StrLen, eax
+    stdcall Log.Console, ebx, eax
+    ; xchg    eax, ebx
+    ret
+endp
+
 proc Server.Methods.Player.StartLogin uses eax ecx
     mov     [IsLogin], GL_TRUE
     mov     [IsPassword], GL_FALSE

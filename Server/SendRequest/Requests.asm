@@ -14,10 +14,10 @@ proc Server.GetStartData
         mov     byte [Password], 0
         stdcall Page.ChangePage, LoggingPage
     @@:
-    ; stdcall Server.SendRequest.GetBestScores
-    ; stdcall Server.SendRequest.PostAddPlayers
-    ; stdcall Server.SendRequest.PostAddScores
-    ; stdcall Server.SendRequest.GetAllUserScores
     mov     [progressStatus], 100
     ret
 endp
+
+; stdcall Server.SendRequest.GetBestScores
+; stdcall Server.SendRequest.PostAddScores
+; stdcall Server.SendRequest.GetAllUserScores

@@ -1,5 +1,8 @@
 proc Server.SendRequest.POST,\
     host, port, type, url, data, length
+    locals
+        result  dd  ?
+    endl
     invoke  WinHttpOpen, HttpOpenTitle, WINHTTP_ACCESS_TYPE_NO_PROXY, NULL, NULL, NULL
     mov     [hSession], eax
     test    eax, eax
@@ -29,7 +32,7 @@ proc Server.SendRequest.POST,\
     test    eax, eax
     jz      .error
 
-    mov     eax, requestBuffer
+    mov     [result], requestBuffer
     ;invoke MessageBox, 0, eax, ErrorTitle, MB_OK
     
     jmp     .exit
@@ -51,5 +54,6 @@ proc Server.SendRequest.POST,\
         jz .skipSession
         invoke WinHttpCloseHandle, [hSession]
     .skipSession:
+        mov     eax, [result]
         ret
 endp

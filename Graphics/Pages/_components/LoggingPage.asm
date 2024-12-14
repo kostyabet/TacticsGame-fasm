@@ -39,5 +39,8 @@ proc Draw.Pages.LoggingPage
 
     ; txt_logging
     stdcall Graphics.Draw.Text.Write, [txt_logging], brown_text_color
+
+    ; error
+    stdcall Graphics.Draw.Text.Write, [txt_error], red_color
     ret
 endp

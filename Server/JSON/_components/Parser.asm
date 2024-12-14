@@ -24,20 +24,51 @@ proc Server.JSON.IsError uses ebx edi,\
     ret
 endp
 
-errorLoginMessage db '{"error":"Login must be at most 3 characters long"}', 0
-proc Server.JSON.IsLoginError uses ebx edi,\
+errorLoginMessageExist db '{"error":"Login already exists"}'
+proc Server.JSON.IsLoginErrorExist uses ebx edi,\
     jsonLink
     locals
         result dd 0
     endl
     stdcall File.IniFile.StrLen, [jsonLink]
     mov     ebx, eax
-    stdcall File.IniFile.StrLen, errorLoginMessage
+    stdcall File.IniFile.StrLen, errorLoginMessageExist
     cmp     eax, ebx
     jne     .exit
     
     mov     ebx, [jsonLink]
-    mov     edi, errorLoginMessage
+    mov     edi, errorLoginMessageExist
+    .loop:
+        mov     al, byte [ebx]
+        cmp     byte [edi], al
+        jne     .exit
+        inc     ebx
+        inc     edi
+        cmp     byte [ebx], 0
+        jne     .next
+        cmp     byte [edi], 0
+        jne     .next
+            mov     [result], 1
+        .next:
+        jmp     .loop
+    .exit:
+        mov     eax, [result]
+    ret
+endp
+errorLoginMessageError db '{"error":"Login must be at most 3 characters long"}', 0
+proc Server.JSON.IsLoginErrorError uses ebx edi,\
+    jsonLink
+    locals
+        result dd 0
+    endl
+    stdcall File.IniFile.StrLen, [jsonLink]
+    mov     ebx, eax
+    stdcall File.IniFile.StrLen, errorLoginMessageError
+    cmp     eax, ebx
+    jne     .exit
+    
+    mov     ebx, [jsonLink]
+    mov     edi, errorLoginMessageError
     .loop:
         mov     al, byte [ebx]
         cmp     byte [edi], al
@@ -64,12 +95,12 @@ proc Server.JSON.IsPasswordError uses ebx edi,\
     endl
     stdcall File.IniFile.StrLen, [jsonLink]
     mov     ebx, eax
-    stdcall File.IniFile.StrLen, errorLoginMessage
+    stdcall File.IniFile.StrLen, errorPasswordMessage
     cmp     eax, ebx
     jne     .exit
 
     mov     ebx, [jsonLink]
-    mov     edi, errorLoginMessage
+    mov     edi, errorPasswordMessage
     .loop:
         mov     al, byte [ebx]
         cmp     byte [edi], al

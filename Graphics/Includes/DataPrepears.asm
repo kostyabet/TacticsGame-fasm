@@ -237,6 +237,7 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_logging,      str_logging,     fs_logging,   tg_logging,   str_logging_pos
     stdcall Graphics.Draw.Text.Prepear, txt_lgpexit,      str_lgpexit,     fs_lgpexit,   tg_lgpexit,   str_lgpexit_pos
     stdcall Graphics.Draw.Text.Prepear, txt_submit,       str_submit,      fs_lgpexit,   tg_lgpexit,   str_submit_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_error,        str_error,       fs_error,     tg_error,     str_error_pos
 
     stdcall Server.AutorizationString
     ret

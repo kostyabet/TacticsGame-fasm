@@ -66,12 +66,18 @@ proc Server.Methods.Player.AddNewPlayer
     mov     [jsonLink], eax
     stdcall Server.JSON.IsError, [jsonLink]
     cmp     eax, GL_TRUE
-    jne     .Login
+    jne     .LoginError
         ; error
         jmp     .exit
-    .Login:
+    .LoginError:
         ; int3
-        stdcall Server.JSON.IsLoginError, [jsonLink]
+        stdcall Server.JSON.IsLoginErrorError, [jsonLink]
+        cmp     eax, GL_TRUE
+        jne     .LoginExist
+            ; login error
+            jmp     .exit
+    .LoginExist:
+        stdcall Server.JSON.IsLoginErrorExist, [jsonLink]
         cmp     eax, GL_TRUE
         jne     .Password
             ; login error

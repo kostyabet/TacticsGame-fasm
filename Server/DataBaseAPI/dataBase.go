@@ -11,7 +11,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
-	"golang.org/x/crypto/bcrypt"
 )
 
 type player struct {
@@ -143,13 +142,8 @@ func IsPlayerExist(c *gin.Context) {
 		return
 	}
 
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(newPlayer.Password), bcrypt.DefaultCost)
-	if err != nil {
-		log.Fatal(err)
-	}
-
 	var playerExists bool
-	err = db.QueryRow("SELECT EXISTS(SELECT 1 FROM players WHERE pl_login = $1 AND pl_password = $2)", newPlayer.Login, hashedPassword).Scan(&playerExists)
+	err = db.QueryRow("SELECT EXISTS(SELECT 1 FROM players WHERE pl_login = $1 AND pl_password = $2)", newPlayer.Login, newPlayer.Password).Scan(&playerExists)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -157,7 +151,7 @@ func IsPlayerExist(c *gin.Context) {
 	var newId idStruct
 	if playerExists {
 		var playerID int
-		err := db.QueryRow("SELECT player_id FROM players WHERE pl_login = $1 AND pl_password = $2", newPlayer.Login, hashedPassword).Scan(&playerID)
+		err := db.QueryRow("SELECT player_id FROM players WHERE pl_login = $1 AND pl_password = $2", newPlayer.Login, newPlayer.Password).Scan(&playerID)
 		if err != nil {
 			log.Fatal(err)
 		}

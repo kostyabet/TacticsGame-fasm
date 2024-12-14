@@ -235,14 +235,32 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_logging,      str_logging,     fs_logging,   tg_logging,   str_logging_pos
     stdcall Graphics.Draw.Text.Prepear, txt_lgpexit,      str_lgpexit,     fs_lgpexit,   tg_lgpexit,   str_lgpexit_pos
     stdcall Graphics.Draw.Text.Prepear, txt_submit,       str_submit,      fs_lgpexit,   tg_lgpexit,   str_submit_pos
-    stdcall Server.AutorizationString, str_login, str_password
+
+    stdcall Server.AutorizationString
     ret
 endp
 
-proc Server.AutorizationString,\
-    login, password
-    stdcall Graphics.Draw.Text.Prepear, txt_login,        [login],       fs_logpas,    tg_logpas,    str_login_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_password,     [password],    fs_logpas,    tg_logpas,    str_password_pos
+proc Server.AutorizationString uses ebx edi
+    mov     ebx, outputStrBufLog
+    cmp     byte [ebx], 0
+    jne     @F
+        cmp     [IsLogin], GL_TRUE
+        je      @F
+            stdcall Graphics.Draw.Text.Prepear, txt_login, str_login, fs_logpas, tg_logpas, str_login_pos
+            jmp     .password
+    @@:
+        stdcall Graphics.Draw.Text.Prepear, txt_login, outputStrBufLog, fs_logpas, tg_logpas, str_login_pos
+    .password:
+    mov     edi, outputStrBufPas
+    cmp     byte [edi], 0
+    jne     @F
+        cmp     [IsPassword], GL_TRUE
+        je      @F
+            stdcall Graphics.Draw.Text.Prepear, txt_password, str_password, fs_logpas, tg_logpas, str_password_pos
+            jmp     .exit
+    @@:
+        stdcall Graphics.Draw.Text.Prepear, txt_password, outputStrBufPas, fs_logpas, tg_logpas, str_password_pos
+    .exit:
     ret
 endp
 

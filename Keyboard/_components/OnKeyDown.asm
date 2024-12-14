@@ -46,13 +46,13 @@ proc Keyboard.OnKeyDown,\
         cmp     [IsLogin], GL_TRUE
         jne     @F
             stdcall Server.Methods.Player.AddSymbolIn, Login, eax
-            stdcall ConvertStringToOutputString, Login
-            stdcall Server.AutorizationString, eax, str_password
+            stdcall ConvertStringToOutputString, Login, outputStrBufLog
+            stdcall Server.AutorizationString
             jmp     .exit
         @@:
             stdcall Server.Methods.Player.AddSymbolIn, Password, eax
-            stdcall ConvertStringToOutputString, Password
-            stdcall Server.AutorizationString, str_login, eax
+            stdcall ConvertStringToOutputString, Password, outputStrBufPas
+            stdcall Server.AutorizationString
             jmp     .exit
     .exit:
     ret

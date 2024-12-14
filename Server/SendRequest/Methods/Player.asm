@@ -38,20 +38,20 @@ proc Server.Methods.Player.IsExist uses eax ebx
 endp
 
 proc Server.Methods.Player.StartLogin uses eax ecx
-    stdcall ConvertStringToOutputString, Login
-    stdcall Server.AutorizationString, eax, str_password
-    stdcall Colors.Copy, login_color, brown_text_color
     mov     [IsLogin], GL_TRUE
     mov     [IsPassword], GL_FALSE
+    stdcall ConvertStringToOutputString, Login, outputStrBufLog
+    stdcall Server.AutorizationString
+    stdcall Colors.Copy, login_color, brown_text_color
     ret
 endp
 
 proc Server.Methods.Player.StartPassword uses eax ecx
-    stdcall ConvertStringToOutputString, Password
-    stdcall Server.AutorizationString, str_login, eax
-    stdcall Colors.Copy, password_color, brown_text_color
     mov     [IsLogin], GL_FALSE
     mov     [IsPassword], GL_TRUE
+    stdcall ConvertStringToOutputString, Password, outputStrBufPas
+    stdcall Server.AutorizationString
+    stdcall Colors.Copy, password_color, brown_text_color
     ret
 endp
 
@@ -65,17 +65,18 @@ proc Server.Methods.Player.DeactivateAunt uses eax ecx
 
     mov     [IsLogin], GL_FALSE
     mov     [IsPassword], GL_FALSE
-    stdcall Server.AutorizationString, str_login, str_password
+    stdcall Server.AutorizationString
 
     .exit:
     ret
 endp
 
-outputStringBuffer   db     30 dup(0), 0
+outputStrBufLog   db     30 dup(0), 0
+outputStrBufPas   db     30 dup(0), 0
 proc ConvertStringToOutputString uses ebx edi,\
-    string
+    string, buffer
     mov     ebx, [string]
-    mov     edi, outputStringBuffer
+    mov     edi, [buffer]
     cmp     byte [ebx], 0
     je      .exit
     .loop:
@@ -89,7 +90,7 @@ proc ConvertStringToOutputString uses ebx edi,\
         jne     .loop
     .exit:
     mov     byte [edi], 0
-    mov     eax, outputStringBuffer
+    mov     eax, [buffer]
     ret
 endp
 

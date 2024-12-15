@@ -8,8 +8,8 @@ proc Server.GetStartData
     stdcall File.Read
     mov     [progressStatus], 50
     stdcall Server.Methods.Player.IsExist
-    cmp     eax, 1
-    je      @F
+    cmp     [CurrentPlayerId], -1
+    jne     @F
         mov     byte [Login], 0
         mov     byte [Password], 0
         stdcall Page.ChangePage, LoggingPage

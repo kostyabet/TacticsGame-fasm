@@ -222,6 +222,20 @@ proc Server.Methods.Player.AddSymbolIn,\
     ret
 endp
 
+proc Server.Methods.Player.DeleteSymbol,\
+    string
+    mov     ebx, [string]
+    cmp     byte [ebx], 0
+    je      .exit
+    .loop:
+        inc     ebx
+        cmp     byte [ebx], 0
+        jne     .loop
+    mov     byte [ebx - 1], 0
+    .exit:
+    ret
+endp
+
 proc Server.Methods.Player.SwapPaswordHideStatus uses eax ecx
     mov     eax, [PasswordHide]
     cmp     eax, GL_FALSE

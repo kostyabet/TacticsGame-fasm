@@ -40,6 +40,20 @@ proc Keyboard.OnKeyDown,\
             jmp     .exit
     ; autentic
     .autentic:
+    mov     eax, VK_BACK
+    cmp     [wparam], eax
+    jne     .input
+        cmp     [IsLogin], GL_TRUE
+        jne     @F
+            stdcall Server.Methods.Player.DeleteSymbol, Login
+            stdcall ConvertStringToOutputString, Login, outputStrBufLog
+            stdcall Server.AutorizationString
+            jmp     .exit
+        @@:
+            stdcall Server.Methods.Player.DeleteSymbol, Password
+            stdcall Server.Methods.Player.StartPassword
+            jmp     .exit
+    .input:
     stdcall Keyboard.GetCurrentKey, [wparam]
     cmp     eax, -1
     je      .exit
@@ -52,8 +66,6 @@ proc Keyboard.OnKeyDown,\
         @@:
             stdcall Server.Methods.Player.AddSymbolIn, Password, eax
             stdcall Server.Methods.Player.StartPassword
-            ; stdcall ConvertStringToOutputString, Password, outputStrBufPas
-            ; stdcall Server.AutorizationString
             jmp     .exit
     .exit:
     ret

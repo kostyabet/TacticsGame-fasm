@@ -71,7 +71,7 @@ fs_hktextS      =       0
 fs_logging      =       10
 fs_lgpexit      =       0
 fs_logpas       =       -5
-fs_error        =       0
+fs_error        =       -5
 
 include 'Letters/RussianLetters.inc'
 include 'Letters/Digits.inc'

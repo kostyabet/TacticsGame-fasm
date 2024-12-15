@@ -19,6 +19,7 @@ proc Server.Methods.Player.IsExist uses eax ebx
     stdcall Log.Console, ebx, eax
     xchg    eax, ebx
     ; check result
+    mov     [CurrentPlayerId], -1
     mov     [jsonLink], eax
     stdcall Server.JSON.IsError, [jsonLink]
     cmp     eax, 1
@@ -27,6 +28,7 @@ proc Server.Methods.Player.IsExist uses eax ebx
         jmp     .exit
     @@:
     stdcall Server.JSON.GetId, [jsonLink]
+    mov     [CurrentPlayerId], eax
     cmp     eax, -1
     jne     @F
         mov     eax, 0
@@ -39,7 +41,14 @@ proc Server.Methods.Player.IsExist uses eax ebx
 endp
 
 proc Server.Methods.Player.NewPlayer uses eax ebx ecx edx
-    stdcall Server.Methods.Player.AddNewPlayer
+    stdcall Server.Methods.Player.IsExist
+    cmp     [CurrentPlayerId], -1
+    jne     @F
+        stdcall Server.Methods.Player.AddNewPlayer
+        jmp     .exit
+    @@:
+        stdcall Page.ChangePage, LoadingPage
+    .exit:
     ret
 endp
 
@@ -67,29 +76,36 @@ proc Server.Methods.Player.AddNewPlayer
     stdcall Server.JSON.IsError, [jsonLink]
     cmp     eax, GL_TRUE
     jne     .LoginError
-        ; error
+        mov     [str_error], str_invalidrequest
+        stdcall Server.ErrorPayloadUpdate ; unknown error
         jmp     .exit
     .LoginError:
-        ; int3
         stdcall Server.JSON.IsLoginErrorError, [jsonLink]
         cmp     eax, GL_TRUE
         jne     .LoginExist
-            ; login error
+            mov     [str_error], str_loginshort 
+            stdcall Server.ErrorPayloadUpdate ; login type error
             jmp     .exit
     .LoginExist:
         stdcall Server.JSON.IsLoginErrorExist, [jsonLink]
         cmp     eax, GL_TRUE
         jne     .Password
-            ; login error
+            mov     [str_error], str_loginexit 
+            stdcall Server.ErrorPayloadUpdate ; login exist error
             jmp     .exit
     .Password:
         stdcall Server.JSON.IsPasswordError, [jsonLink]
         cmp     eax, GL_TRUE
         jne     .correct
-            ; password error
+            mov     [str_error], str_passwordshort 
+            stdcall Server.ErrorPayloadUpdate ; password error
             jmp     .exit
     .correct:
-        ; stdcall Page.ChangePage, LoadingPage
+        stdcall Server.JSON.GetId, [jsonLink]
+        mov     [CurrentPlayerId], eax
+        mov     [str_error], str_nullerror
+        stdcall Server.ErrorPayloadUpdate ; null error
+        stdcall Page.ChangePage, LoadingPage
     .exit:
     stdcall ClearBuffer, [jsonLink]
     ret

@@ -55,7 +55,7 @@ proc Server.JSON.IsLoginErrorExist uses ebx edi,\
         mov     eax, [result]
     ret
 endp
-errorLoginMessageError db '{"error":"Login must be at most 3 characters long"}', 0
+errorLoginMessageError db '{"error":"Login must be at least 3 characters long"}', 0
 proc Server.JSON.IsLoginErrorError uses ebx edi,\
     jsonLink
     locals
@@ -87,7 +87,7 @@ proc Server.JSON.IsLoginErrorError uses ebx edi,\
     ret
 endp
 
-errorPasswordMessage db '{"error":"Password must be at most 8 characters long"}', 0
+errorPasswordMessage db '{"error":"Password must be at least 8 characters long"}', 0
 proc Server.JSON.IsPasswordError uses ebx edi,\
     jsonLink
     locals
@@ -120,7 +120,7 @@ proc Server.JSON.IsPasswordError uses ebx edi,\
 endp
 
 preIdMessage   db  '{"id":', 0
-preIdMesSize   dd   $ - preIdMessage - 2
+preIdMesSize   dd   $ - preIdMessage - 1
 proc Server.JSON.GetId,\
     jsonLink
     locals

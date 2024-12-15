@@ -1,5 +1,6 @@
 Login           db  30 dup(0), 0
 Password        db  30 dup(0), 0
+CurrentPlayerId dd  0
 
 IsLogin         dd GL_FALSE
 IsPassword      dd GL_FALSE

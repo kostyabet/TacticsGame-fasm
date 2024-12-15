@@ -98,6 +98,27 @@ func AddPlayer(c *gin.Context) {
 		return
 	}
 
+	if len(newPlayer.Login) < 3 {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Login must be at least 3 characters long"})
+		return
+	}
+
+	if len(newPlayer.Password) < 8 {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Password must be at least 8 characters long"})
+		return
+	}
+
+	var existingID int
+	err := db.QueryRow("SELECT player_id FROM players WHERE pl_login = $1", newPlayer.Login).Scan(&existingID)
+	if err != nil && err != sql.ErrNoRows {
+		log.Fatal(err)
+	}
+
+	if existingID != 0 {
+		c.AbortWithStatusJSON(http.StatusConflict, gin.H{"error": "Login already exists"})
+		return
+	}
+
 	stmt, err := db.Prepare("INSERT INTO players (pl_login, pl_password) VALUES ($1, $2) RETURNING player_id")
 	if err != nil {
 		log.Fatal(err)

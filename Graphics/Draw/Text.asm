@@ -5,6 +5,8 @@ proc Graphics.Draw.Text.Write uses ebx ecx,\
     .start:
         mov     ebx, [string]
         mov     ecx, [ebx]
+        cmp     ecx, 0
+        je      .exit
         add     ebx, 4
         .writeLetter:
             push    ebx ecx
@@ -31,6 +33,8 @@ proc Graphics.Draw.Text.GetLength uses ebx edx,\
     mov     ebx, [string]
     xor     eax, eax
     xor     edx, edx
+    cmp     byte [ebx], 0
+    je      .exit
     .mainLoop:
         mov     dl, byte [ebx]
         inc     ebx
@@ -38,6 +42,7 @@ proc Graphics.Draw.Text.GetLength uses ebx edx,\
         cmp     dl, 0
         jne     .mainLoop
     dec     eax
+    .exit:
     ret
 endp
 
@@ -65,6 +70,8 @@ proc Graphics.Draw.Text.Prepear uses eax ebx edi,\
     mov     ebx, [result]
     malloc  eax
     mov     [ebx], eax
+    cmp     [counterLen], 0
+    je      .exit
     .start:
         ; multiplier
         stdcall Scripts.Getters.GetFSMultiplier, fs_default, [fontSize]

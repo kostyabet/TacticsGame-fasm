@@ -112,6 +112,19 @@ Anim_ExitPage                   dd  4,\
                                     Anim_btn_cl, Anim_EPYesFont_cl,\
                                     Anim_btn_cl, Anim_EPYesText_cl,\
                                     Anim_btn_cl, Anim_EPNoFont_cl,\
-                                    Anim_btn_cl, Anim_EPNoText_cl                                    
+                                    Anim_btn_cl, Anim_EPNoText_cl  
+Anim_EBFont_cl                  dd  lgp_ebtn_brdr_design,\
+                                    ebtn_font_color, brown_text_color, pale_color
+Anim_EBText_cl                  dd  lgp_ebtn_brdr_design,\
+                                    ebtn_text_color, pale_color, brown_text_color
+Anim_SBFont_cl                  dd  lgp_sbtn_brdr_design,\
+                                    esbtn_font_color, brown_text_color, brown_color
+Anim_SBText_cl                  dd  lgp_sbtn_brdr_design,\
+                                    esbtn_text_color, brown_color, brown_text_color
+Anim_LoggingPage                dd  4,\
+                                    Anim_btn_cl, Anim_EBFont_cl,\
+                                    Anim_btn_cl, Anim_EBText_cl,\
+                                    Anim_btn_cl, Anim_SBFont_cl,\
+                                    Anim_btn_cl, Anim_SBText_cl
 
-AnimsList                       dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage, Anim_PausePage, Anim_WinnerPage, Anim_HotkeysPage, Anim_ExitPage
+AnimsList                       dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage, Anim_PausePage, Anim_WinnerPage, Anim_HotkeysPage, Anim_ExitPage, Anim_LoggingPage

@@ -4,8 +4,6 @@ entry start
 include 'win32a.inc'
 include 'opengl.inc'
 include 'main.inc'
-;include 'ole32.inc'
-;include 'oleaut32.inc'
 include 'winmm.inc'
 
 include 'Scripts/Includes.asm'
@@ -17,11 +15,12 @@ include 'Mouse/Includes.asm'
 include 'Keyboard/Includes.asm'
 include 'Audio/Includes.asm'
 include 'Application/Includes.asm'
-include 'Server/SendRequest/Includes.asm'
+include 'Server/Includes.asm'
 
 section '.text' code readable executable
 
   start:
+      stdcall Log.Create
       invoke  GetModuleHandle, 0
       mov     [wc.hInstance], eax
       invoke  LoadIcon, [wc.hInstance], iconId
@@ -50,8 +49,6 @@ section '.text' code readable executable
 
       stdcall Server.Requests
       ; prepear data
-      stdcall File.IniFile.Read
-      stdcall File.TicksPosition.Read
       stdcall Graphics.Draw.CoordsRectPrepears
       stdcall Graphics.Colors.Prepear
       stdcall Graphics.Draw.ASCIIPrepear
@@ -61,6 +58,7 @@ section '.text' code readable executable
       stdcall Graphics.Texture
       stdcall Audio.Start
       mov     [IS_INFO_PREPEAR], GL_TRUE
+      
 
   msg_loop:
       invoke  GetMessage, msg,NULL,0,0
@@ -136,7 +134,7 @@ proc WindowProc hwnd,wmsg,wparam,lparam
       jne     @F
         stdcall Keyboard.OnHotkeyClick.Exit
       @@:
-        stdcall Keyboard.OnKeyDown
+        stdcall Keyboard.OnKeyDown, [wparam]
       xor     eax,eax
       jmp     .finish
   .wmdestroy:
@@ -232,7 +230,7 @@ section '.idata' import data readable writeable
       AllocConsole,'AllocConsole',\
       GetStdHandle,'GetStdHandle',\
       HeapDestroy,'HeapDestroy',\
-      WriteConsole,'WriteConsole',\
+      WriteConsole,'WriteConsoleA',\
       WriteFile,'WriteFile',\
       CreateThread, 'CreateThread',\
       WaitForSingleObject,'WaitForSingleObject',\
@@ -242,7 +240,7 @@ section '.idata' import data readable writeable
       GetLastError, 'GetLastError'
 
   import user,\
-      MessageBox, 'MessageBoxA',\
+      MessageBox,'MessageBoxA',\
 	  SendMessage,'SendMessageA',\
       ShowWindow,'ShowWindow',\
       UpdateWindow,'UpdateWindow',\

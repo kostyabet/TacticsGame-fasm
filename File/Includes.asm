@@ -1,3 +1,4 @@
+include 'File.asm'
 ; work with BMP
 include 'BMP/LoadBoat.asm'
 include 'BMP/BMP.inc'
@@ -7,3 +8,9 @@ include 'Settings/Settings.inc'
 ; ticks
 include 'TicksPositions/Ticks.asm'
 include 'TicksPositions/TicksPosition.inc'
+; API
+include 'API/API.asm'
+include 'API/API.inc'
+; Log
+include 'Log/Log.inc'
+include 'Log/Log.asm'

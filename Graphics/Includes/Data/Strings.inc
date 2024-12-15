@@ -58,6 +58,10 @@ tg_gamerool     =       10
 tg_grtext       =       8
 tg_hktext       =       7
 tg_hktextS      =       0
+tg_logging      =       12
+tg_lgpexit      =       7
+tg_logpas       =       5
+tg_error        =       5
 
 ; ====== Interfaces ====== ;
 struct Points
@@ -280,6 +284,45 @@ str_hkpauseS_pos    dd      1049, 504
 str_hkexitS_pos     dd      1049, 549
 str_hkrestartS_pos  dd      1049, 594
 str_hotkey          db      ?, 0 ; 'ЗАНОВО'
+str_logging         db      1, 3, 20, 16, 18, 10, 9, 1, 24, 10, 33, 0 ; 'АВТОРИЗАЦИЯ'
+str_logging_pos     dd      806, 448
+str_lgpexit         db      3, 29, 23, 16, 5, 0 ; 'ВЫХОД'
+str_lgpexit_pos     dd      806, 614
+str_submit          db      17, 16, 5, 20, 3, 6, 18, 5, 10, 20, 30, 0 ; 'ПОДТВЕРДИТЬ'
+str_submit_pos      dd      935, 615
+str_login           db      13, 16, 4, 10, 15, 0 ; 'ЛОГИН'
+str_login_pos       dd      773, 513
+str_password        db      17, 1, 18, 16, 13, 30, 0 ; 'ПАРОЛЬ'
+str_password_pos    dd      773, 568
+
+str_invalidrequest  db      15, 6, 3, 6, 18, 15, 1, 33, 44,\
+                            17, 16, 13, 6, 9, 15, 1, 33, 44,\
+                            15, 1, 4, 18, 21, 9, 12, 1, 44,\
+                            9, 1, 17, 18, 16, 19, 1, 46, 44,\
+                            17, 16, 17, 18, 16, 2, 21, 11, 20, 6, 44,\
+                            17, 16, 9, 8, 6, 46, 46, 46, 0 ; 'Неверная полезная нагрузка запроса. Попробуйте позже...'
+str_loginexit       db      13, 16, 4, 10, 15, 44,\
+                            21, 8, 6, 44,\
+                            19, 21, 27, 6, 19, 20, 3, 21, 6, 20, 0 ; 'Логин уже существует'
+str_loginshort      db      5, 13, 10, 15, 1, 44,\
+                            13, 16, 4, 10, 15, 1, 44,\
+                            5, 16, 13, 8, 15, 1, 44,\
+                            19, 16, 19, 20, 1, 3, 13, 33, 20, 30, 44,\
+                            15, 6, 44,\
+                            2, 16, 13, 6, 6, 44,\
+                            37, 44,\
+                            19, 10, 14, 3, 16, 13, 16, 3, 0 ; 'Длина логина должна составлять не менее 3 символов'
+str_passwordshort   db      5, 13, 10, 15, 1, 44,\
+                            17, 1, 18, 16, 13, 33, 44,\
+                            5, 16, 13, 8, 15, 1, 44,\
+                            19, 16, 19, 20, 1, 3, 13, 33, 20, 30, 44,\
+                            15, 6, 44,\
+                            2, 16, 13, 6, 6, 44,\
+                            42, 44,\
+                            19, 10, 14, 3, 16, 13, 16, 3, 0 ; 'Длина пароля должна составлять не менее 8 символов'
+str_nullerror       db      0 ; 'Нет ошибки'
+str_error           dd      str_nullerror
+str_error_pos       dd      10, 1040
 ; ====== Program models ====== ;
 txt_headline        dd      ?
 txt_headline_bc     dd      ?
@@ -331,15 +374,22 @@ txt_hksettingsS     dd      ?
 txt_hkpauseS        dd      ?
 txt_hkexitS         dd      ?
 txt_hkrestartS      dd      ?
+txt_logging         dd      ?
+txt_lgpexit         dd      ?
+txt_submit          dd      ?
+txt_login           dd      ?
+txt_password        dd      ?
+txt_error           dd      ?
 
-txts_array          dd      txt_headline,    txt_headline_bc, txt_play,     txt_about,     txt_settings,  txt_return,   txt_grtext,\
-                            txt_Mexit,       txt_title,       txt_cost,     txt_info,      txt_watermark, txt_R_hk,     txt_P_hk,\
-                            txt_S_hk,        txt_pause,       txt_exit,     txt_saveAexit, txt_winner,    txt_hkpauseS, txt_hkexitS,\
-                            txt_again,       txt_wexit,       txt_msettings, txt_chhotkeys, txt_music,    txt_voice,    txt_hkrestartS,\
-                            txt_hotkeys,     txt_HPhotkeys,   txt_volume,   txt_moff,      txt_voff,      txt_hoff,     txt_mon,\
-                            txt_von,         txt_hon,         txt_wantExit, txt_yes,       txt_no,        txt_gamerool, txt_hkplay,\
-                            txt_hkabout,     txt_hksettings,  txt_hkpause,  txt_hkexit,    txt_hkrestart, txt_hkplayS,  txt_hkaboutS,\
-                            txt_hksettingsS, 0
+txts_array          dd      txt_headline,    txt_headline_bc, txt_play,         txt_about,      txt_settings,   txt_return,   txt_grtext,\
+                            txt_Mexit,       txt_title,       txt_cost,         txt_info,       txt_watermark,  txt_R_hk,     txt_P_hk,\
+                            txt_S_hk,        txt_pause,       txt_exit,         txt_saveAexit,  txt_winner,     txt_hkpauseS, txt_hkexitS,\
+                            txt_again,       txt_wexit,       txt_msettings,    txt_chhotkeys,  txt_music,      txt_voice,    txt_hkrestartS,\
+                            txt_hotkeys,     txt_HPhotkeys,   txt_volume,       txt_moff,       txt_voff,       txt_hoff,     txt_mon,\
+                            txt_von,         txt_hon,         txt_wantExit,     txt_yes,        txt_no,         txt_gamerool, txt_hkplay,\
+                            txt_hkabout,     txt_hksettings,  txt_hkpause,      txt_hkexit,     txt_hkrestart,  txt_hkplayS,  txt_hkaboutS,\
+                            txt_hksettingsS, txt_logging,     txt_lgpexit,      txt_submit,     txt_login,      txt_password, txt_error,\ 
+                            0
 
 arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5,  ltr_RU_6,  ltr_RU_7,\ ; RU
                             ltr_RU_8,  ltr_RU_9,  ltr_RU_10, ltr_RU_11, ltr_RU_12, ltr_RU_13, ltr_RU_14,\
@@ -352,3 +402,15 @@ arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5
                             ltr_EN_61, ltr_EN_62, ltr_EN_63, ltr_EN_64, ltr_EN_65, ltr_EN_66, ltr_EN_67,\
                             ltr_EN_68, ltr_EN_69, ltr_EN_70, ltr_EN_71, ltr_EN_72, ltr_EN_73, ltr_EN_74,\
                             ltr_EN_75, ltr_EN_76, ltr_EN_77, ltr_EN_78, ltr_EN_79
+lettersModel        dd      'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё',\
+                            'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М',\
+                            'Н', 'О', 'П', 'Р', 'С', 'Т', 'У',\
+                            'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ',\
+                            'Ы', 'Ь', 'Э', 'Ю', 'Я',\
+                            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',\
+                            ' ', ',', '.', '?', '!', '-', '\n', '"', '', '',\
+                            'A', 'B', 'C', 'D', 'E', 'F', 'G',\
+                            'H', 'I', 'J', 'K', 'L', 'M', 'N',\
+                            'O', 'P', 'Q', 'R', 'S', 'T', 'U',\
+                            'V', 'W', 'X', 'Y', 'Z'
+lettersModelLength  dd      $ - lettersModel

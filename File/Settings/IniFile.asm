@@ -75,6 +75,11 @@ proc File.IniFIle.ReadString uses eax ebx,\
     stdcall File.IniFile.ReadRule, edi
     add     edi, ebx
     add     edi, 2 ; 13 10
+    mov     ebx, eax
+    cmp     byte [ebx], 10
+    je      .exit
+    cmp     byte [ebx], 13
+    je      .exit
     cmp     [isInt], 1
     jne     .string
     .int:
@@ -120,8 +125,11 @@ proc File.IniFile.ReadRule uses edi,\
             mov     [edi], al
             inc     ebx
             inc     edi
+            cmp     byte [ebx], 10
+            je      .exit
             cmp     byte [ebx], 13
             jne     .next
+
     mov     byte [edi], 0
     .exit:
     sub     ebx, [buffer]

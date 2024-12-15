@@ -98,13 +98,13 @@ func AddPlayer(c *gin.Context) {
 		return
 	}
 
-	if len(newPlayer.Login) > 3 {
-		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Login must be at most 3 characters long"})
+	if len(newPlayer.Login) < 3 {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Login must be at least 3 characters long"})
 		return
 	}
 
-	if len(newPlayer.Password) > 8 {
-		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Password must be at most 8 characters long"})
+	if len(newPlayer.Password) < 8 {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Password must be at least 8 characters long"})
 		return
 	}
 

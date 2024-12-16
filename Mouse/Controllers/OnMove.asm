@@ -32,7 +32,7 @@ proc Mouse.OnMove uses eax ebx,\
     ret
 endp
 
-proc Mouse.CheckSwitchOnMove
+proc Mouse.CheckSwitchOnMove uses eax ecx
     locals
         curCoordsX  dd  ?
         fixVal      dd  ?

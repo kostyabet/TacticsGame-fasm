@@ -239,11 +239,33 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_submit,       str_submit,      fs_lgpexit,   tg_lgpexit,   str_submit_pos
     stdcall Server.ErrorPayloadUpdate
     stdcall Server.AutorizationString
+    stdcall Game.CurrentPointsRender
+    ret
+endp
+
+proc Game.CurrentPointsRender
+    mov     eax, [currentPoints]
+    stdcall File.IniFile.IntToStr, eax
+    mov     ebx, eax
+    push    ebx
+    cmp     byte [ebx], 0
+    je      .exit
+    .mainLoop:
+        mov     al, byte [ebx]
+        sub     al, '0'
+        add     al, 34
+        mov     byte [ebx], al
+        inc     ebx
+        cmp     byte [ebx], 0
+        jne     .mainLoop        
+    .exit:
+    pop     ebx
+    stdcall Graphics.Draw.Text.Prepear, txt_points, ebx, fs_error, tg_error, str_points_pos
     ret
 endp
 
 proc Server.ErrorPayloadUpdate
-    stdcall Graphics.Draw.Text.Prepear, txt_error,        [str_error],       fs_error,     tg_error,     str_error_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_error, [str_error], fs_error, tg_error, str_error_pos
     ret
 endp
 

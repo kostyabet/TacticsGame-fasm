@@ -323,6 +323,7 @@ str_passwordshort   db      5, 13, 10, 15, 1, 44,\
 str_nullerror       db      0 ; 'Нет ошибки'
 str_error           dd      str_nullerror
 str_error_pos       dd      10, 1040
+str_points_pos      dd      10, 7
 ; ====== Program models ====== ;
 txt_headline        dd      ?
 txt_headline_bc     dd      ?
@@ -380,6 +381,7 @@ txt_submit          dd      ?
 txt_login           dd      ?
 txt_password        dd      ?
 txt_error           dd      ?
+txt_points          dd      ?
 
 txts_array          dd      txt_headline,    txt_headline_bc, txt_play,         txt_about,      txt_settings,   txt_return,   txt_grtext,\
                             txt_Mexit,       txt_title,       txt_cost,         txt_info,       txt_watermark,  txt_R_hk,     txt_P_hk,\
@@ -389,7 +391,7 @@ txts_array          dd      txt_headline,    txt_headline_bc, txt_play,         
                             txt_von,         txt_hon,         txt_wantExit,     txt_yes,        txt_no,         txt_gamerool, txt_hkplay,\
                             txt_hkabout,     txt_hksettings,  txt_hkpause,      txt_hkexit,     txt_hkrestart,  txt_hkplayS,  txt_hkaboutS,\
                             txt_hksettingsS, txt_logging,     txt_lgpexit,      txt_submit,     txt_login,      txt_password, txt_error,\ 
-                            0
+                            txt_points,      0
 
 arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5,  ltr_RU_6,  ltr_RU_7,\ ; RU
                             ltr_RU_8,  ltr_RU_9,  ltr_RU_10, ltr_RU_11, ltr_RU_12, ltr_RU_13, ltr_RU_14,\

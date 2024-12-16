@@ -13,5 +13,6 @@ proc Draw.Pages.GamePage
     
     stdcall Graphics.Draw.Ticks, TicksFontMltDrList_Float,  TicksFontList_MltColors
 
+    stdcall Graphics.Draw.Text.Write, [txt_points], red_color
     ret
 endp

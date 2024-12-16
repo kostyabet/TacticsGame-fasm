@@ -16,8 +16,9 @@ endp
 
 proc Game.MissTick uses eax
     locals
-        divider dd  pointsByBadMove
+        divider dd  pointsByBadMove ; 1
     endl
+    ; culc sub part
     mov     eax, [strikeCounter]
     cmp     eax, [loseStrikeCouner]
     jle     @F
@@ -27,11 +28,14 @@ proc Game.MissTick uses eax
     inc     [loseStrikeCouner]
     add     eax, [loseStrikeCouner]
     imul    dword [divider]
-    sub     [currentPoints], eax ; 1
-    cmp     [currentPoints], 0
-    jnb     @F
-        mov     [currentPoints], 0
+    ; sub part  
+    cmp     [currentPoints], eax
+    jb     @F
+        sub     [currentPoints], eax
+        jmp     .exit
     @@:
+        mov     [currentPoints], 0 
+    .exit:
     ret
 endp
 

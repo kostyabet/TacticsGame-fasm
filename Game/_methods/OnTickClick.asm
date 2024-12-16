@@ -149,6 +149,7 @@ proc Game.OnTickClick,\
         stdcall Game.ResetDirectionsMltTicksCoords ; reset multi directions coords
     .exit:
         stdcall Game.PrepearTicks
+        stdcall Game.CurrentPointsRender
         ; fot tests
         stdcall Log.WriteCurrentPoints
     ret

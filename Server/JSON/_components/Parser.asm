@@ -24,6 +24,32 @@ proc Server.JSON.IsError uses ebx edi,\
     ret
 endp
 
+errorNullMessage    db  'null', 0
+proc Server.JSON.IsNULL uses ebx edi,\
+    jsonLink
+    locals
+        result dd 0
+    endl
+    mov     ebx, [jsonLink]
+    mov     edi, errorNullMessage
+    .loop:
+        mov     al, byte [ebx]
+        cmp     byte [edi], al
+        jne     .exit
+        inc     ebx
+        inc     edi
+        cmp     byte [ebx], 0
+        jne     .next
+        cmp     byte [edi], 0
+        jne     .next
+            mov     [result], 1
+        .next:
+        jmp     .loop
+    .exit:
+        mov     eax, [result]
+    ret
+endp
+
 errorLoginMessageExist db '{"error":"Login already exists"}'
 proc Server.JSON.IsLoginErrorExist uses ebx edi,\
     jsonLink

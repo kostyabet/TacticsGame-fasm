@@ -29,7 +29,7 @@ requestBufferLen dd $ - requestBuffer
 
 progressStatus  dd 0
 
-JSON_STRING_LENGTH  = 30
+JSON_STRING_LENGTH  = 31
 JSON_INTEGER_LENGTH = 10
 
 struct ScoreJSON
@@ -44,9 +44,9 @@ ends
 struct PlayerJSON
     buffer          db  ' '
     loginStart      db  '{"login":"'
-    login           db  20 dup ('a'), 9 dup(' '), '"'
+    login           db  31 dup(' ')
     passwordStart   db  ',"password":"'
-    password        db  20 dup ('a'), 9 dup(' '), '"'
+    password        db  31 dup(' ')
     endStrc         db  '}', 0
 ends
 
@@ -64,3 +64,10 @@ idJSON      IdJSON      ? ; '{"id":1}'
 
 testData        db  ' {"login":"test"                         ,"password":"test"                         } ', 0
 testDataLength  dd  $ - testData
+
+
+idResponseBuffer        db  32 dup(0)
+idResponseBufferLength  dd  $ - idResponseBuffer
+
+scoresResponseBuffer        db  1000 dup(0)
+scoresResponseBufferLength  dd  $ - idResponseBuffer

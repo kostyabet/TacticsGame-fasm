@@ -6,13 +6,13 @@ proc Server.Methods.Player.IsExist uses eax ebx
     ; prepear data
     stdcall JSON.SendStrign.Clear, playerJSON.login, JSON_STRING_LENGTH
     stdcall JSON.SendStrign.Clear, playerJSON.password, JSON_STRING_LENGTH
-    ; ; input data in fields
+    ; input data in fields
     stdcall JSON.SendStrign.InputString, playerJSON.login, JSON_STRING_LENGTH, Login
     stdcall JSON.SendStrign.InputString, playerJSON.password, JSON_STRING_LENGTH, Password
     ; send response
     stdcall Log.Console, sendString, sendString.size
     stdcall Log.Console, playerJSON.loginStart, sizeof.PlayerJSON
-    stdcall Server.SendRequest.GetIsPlayerExist, playerJSON.loginStart, sizeof.PlayerJSON
+    stdcall Server.SendRequest.GetIsPlayerExist, playerJSON.loginStart, sizeof.PlayerJSON, idResponseBuffer, [idResponseBufferLength]
     stdcall Log.Console, serverAnswer, serverAnswer.size
     mov     ebx, eax
     stdcall File.IniFile.StrLen, eax
@@ -66,7 +66,7 @@ proc Server.Methods.Player.AddNewPlayer
     ; send response
     stdcall Log.Console, sendString, sendString.size
     stdcall Log.Console, playerJSON.loginStart, sizeof.PlayerJSON
-    stdcall Server.SendRequest.PostAddPlayers, playerJSON.loginStart, sizeof.PlayerJSON
+    stdcall Server.SendRequest.PostAddPlayers, playerJSON.loginStart, sizeof.PlayerJSON, idResponseBuffer, [idResponseBufferLength]
     stdcall Log.Console, serverAnswer, serverAnswer.size
     mov     ebx, eax
     stdcall File.IniFile.StrLen, eax
@@ -108,6 +108,44 @@ proc Server.Methods.Player.AddNewPlayer
         stdcall Page.ChangePage, LoadingPage
     .exit:
     stdcall ClearBuffer, [jsonLink]
+    ret
+endp
+
+proc Server.Methods.Player.ScoresCount
+    locals
+        jsonLink    dd      ?
+    endl
+    stdcall Log.Console, getScoresCountSignal, getScoresCountSignal.size
+    ; clear
+    stdcall JSON.SendStrign.Clear, idJSON.id, JSON_INTEGER_LENGTH
+    ; input data in fields
+    stdcall JSON.SendStrign.InputInteger, idJSON.id, JSON_INTEGER_LENGTH, [CurrentPlayerId]
+    ; send response
+    stdcall Log.Console, sendString, sendString.size
+    stdcall Log.Console, idJSON.idStart, sizeof.IdJSON
+    stdcall Server.SendRequest.GetAllUserScores, idJSON.idStart, sizeof.IdJSON, scoresResponseBuffer, [scoresResponseBufferLength]
+    stdcall Log.Console, serverAnswer, serverAnswer.size
+    mov     ebx, eax
+    stdcall File.IniFile.StrLen, eax
+    stdcall Log.Console, ebx, eax
+    xchg    eax, ebx
+    mov     [jsonLink], eax
+    stdcall Server.JSON.IsError, [jsonLink]
+    cmp     eax, GL_TRUE
+    jne     @F
+        mov     eax, 0
+        jmp     .exit
+    @@:
+    stdcall Server.JSON.IsNULL, [jsonLink]
+    cmp     eax, GL_TRUE
+    jne     @F
+        mov     eax, 0
+        jmp     .exit
+    @@:
+        ; search length
+        mov     eax, 1 ; test string
+    .exit:
+        stdcall ClearBuffer, [jsonLink]
     ret
 endp
 

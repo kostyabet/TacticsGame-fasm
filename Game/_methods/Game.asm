@@ -1,0 +1,67 @@
+proc Game.Start
+    cmp     [isGameStart], GL_TRUE
+    je      .start
+        mov     [isGameStart], GL_TRUE
+        ; start points set
+        stdcall Game.StartPointsSearch, [gameCounter]
+        mov     [strikeCounter], 0
+        mov     [currentPoints], eax
+    .start:
+        stdcall Game.AddPointsByGoodMove, [currentPoints], [strikeCounter]
+        mov     [currentPoints], eax
+    .exit:
+    inc     [strikeCounter]
+    ret
+endp
+
+proc Game.MissTick uses eax
+    locals
+        divider dd  pointsByBadMove
+    endl
+    mov     eax, [strikeCounter]
+    cmp     eax, [loseStrikeCouner]
+    jle     @F
+        mov     [loseStrikeCouner], eax
+    @@:
+    mov     [strikeCounter], 0
+    inc     [loseStrikeCouner]
+    add     eax, [loseStrikeCouner]
+    imul    dword [divider]
+    sub     [currentPoints], eax ; 1
+    cmp     [currentPoints], 0
+    jnb     @F
+        mov     [currentPoints], 0
+    @@:
+    ret
+endp
+
+proc Game.Leave
+    mov     [strikeCounter], 0
+    mov     [loseStrikeCouner], 0
+    mov     [isGameStart], GL_FALSE
+    ret
+endp
+
+proc Game.StartPointsSearch,\
+    gameCounter
+    locals
+        divider dd  10
+    endl
+    mov     eax, [gameCounter]
+    idiv    dword [divider]
+    ret
+endp
+
+proc Game.AddPointsByGoodMove uses ebx,\
+    current, strike
+    locals
+        divider dd 4
+    endl
+    mov     eax, [strike]
+    idiv    dword [divider]
+    add     eax, pointsByGoodMove ; 1
+    mov     ebx, [current]
+    add     ebx, eax
+    xchg    eax, ebx
+    ret
+endp

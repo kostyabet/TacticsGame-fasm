@@ -14,3 +14,4 @@ sendString           LogString 'Send string to method: '
 serverAnswer         LogString 10, 'Server request: '
 addNewPlayerSignal   LogString 10, '===================================', 10, 'Try to create new user', 10
 getScoresCountSignal LogString 10, '===================================', 10, 'Get all user scores', 10
+currentPointsSignal  LogString 10, 'Current Points = '

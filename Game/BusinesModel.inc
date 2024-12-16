@@ -61,6 +61,12 @@ currentScore    dd  0
 GAME_BOARD_SIZE =   33
 MATRIX_EL_SIZE  =   4
 
+pointsByGoodMove    =    1
+pointsByBadMove     =    1
+currentPoints   dd  0
+strikeCounter   dd  0
+loseStrikeCouner dd 0
+
 struct TickMoveDirection
     BETWEEN dd  0
     TO      dd  0

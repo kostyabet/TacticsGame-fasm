@@ -66,7 +66,7 @@ testData        db  ' {"login":"test"                         ,"password":"test"
 testDataLength  dd  $ - testData
 
 
-idResponseBuffer        db  32 dup(0)
+idResponseBuffer        db  100 dup(0)
 idResponseBufferLength  dd  $ - idResponseBuffer
 
 scoresResponseBuffer        db  1000 dup(0)

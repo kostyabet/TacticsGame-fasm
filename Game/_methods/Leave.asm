@@ -6,9 +6,7 @@ proc Game.Leave.WithoutSaving
 endp
 
 proc Game.Leave.WithSaving
-    ; stdcall saving function
     stdcall Page.ChangePage, MainPage
-    stdcall Game.Leave
     ret
 endp
 

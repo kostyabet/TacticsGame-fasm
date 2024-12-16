@@ -328,7 +328,7 @@ str_passwordshort   db      5, 13, 10, 15, 1, 44,\
 str_nullerror       db      0 ; 'Нет ошибки'
 str_error           dd      str_nullerror
 str_error_pos       dd      10, 1040
-str_points_pos      dd      10, 7
+str_points_pos      dd      956, 126
 ; ====== Program models ====== ;
 txt_headline        dd      ?
 txt_headline_bc     dd      ?

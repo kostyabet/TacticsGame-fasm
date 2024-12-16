@@ -1057,3 +1057,22 @@ lgp_pfont_coords    dd  2,\
                         1150, 566, 8,\
                          770, 591, 8,\
                         1150, 591, 8
+; == game page == ;
+gp_pointsbar_brdr_design DrawModel ?
+gp_pointsbar_brdr_coords dd     2,\
+                                871, 116, 1049, 156,\
+                                864, 123, 1056, 149,\
+                                4,\
+                                 871, 123, 7,\
+                                 871, 149, 7,\
+                                1049, 123, 7,\
+                                1049, 149, 7
+gp_pointsbar_font_design DrawModel ?
+gp_pointsbar_font_coords dd     2,\
+                                871, 118, 1049, 154,\
+                                866, 123, 1054, 149,\
+                                4,\
+                                 871, 123, 5,\
+                                 871, 149, 5,\
+                                1049, 123, 5,\
+                                1049, 149, 5

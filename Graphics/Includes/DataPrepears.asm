@@ -112,6 +112,8 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, lgp_pfont_coords,                lgp_pfont_design
     stdcall Scripts.Getters.ConvertCoords, lgp_eyeopen_coords,              lgp_eyeopen_design
     stdcall Scripts.Getters.ConvertCoords, lgp_eyeclose_coords,             lgp_eyeclose_design
+    stdcall Scripts.Getters.ConvertCoords, gp_pointsbar_font_coords,        gp_pointsbar_font_design
+    stdcall Scripts.Getters.ConvertCoords, gp_pointsbar_brdr_coords,        gp_pointsbar_brdr_design
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
     ret
@@ -285,10 +287,20 @@ proc Game.WinnerPointsRender
 endp
 
 proc Game.CurrentPointsRender
+    locals
+        strSize     dd  ?
+        numsize     dd  8
+        startSize   dd  0
+        divider     dd  2
+    endl
     mov     eax, [currentPoints]
     stdcall File.IniFile.IntToStr, eax
     mov     ebx, eax
     push    ebx
+    stdcall File.IniFile.StrLen, ebx
+    pop     ebx
+    push    ebx
+    mov     [strSize], eax
     cmp     byte [ebx], 0
     je      .exit
     .mainLoop:
@@ -301,7 +313,16 @@ proc Game.CurrentPointsRender
         jne     .mainLoop        
     .exit:
     pop     ebx
+    mov     eax, [str_points_pos]
+    push    eax
+    mov     eax, [strSize]
+    imul    dword [numsize]
+    sub     eax, [startSize]
+    idiv    dword [divider]
+    sub     [str_points_pos], eax
     stdcall Graphics.Draw.Text.Prepear, txt_points, ebx, fs_error, tg_error, str_points_pos
+    pop     eax
+    mov     [str_points_pos], eax
     ret
 endp
 

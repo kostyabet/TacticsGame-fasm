@@ -181,65 +181,106 @@ proc Graphics.Draw.ASCIIPrepear
     locals
         address     dd  ?
     endl
-    stdcall Graphics.Draw.Text.Prepear, txt_headline,     str_headline,    fs_headline,  tg_headline,  str_headline_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_headline_bc,  str_headline_bc, fs_headline,  tg_headline,  str_headline_bc_pos 
-    stdcall Graphics.Draw.Text.Prepear, txt_play,         str_play,        fs_play,      tg_play,      str_play_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_about,        str_about,       fs_about,     tg_about,     str_about_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_settings,     str_settings,    fs_settings,  tg_settings,  str_settings_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_Mexit,        str_exit,        fs_Mexit,     tg_Mexit,     str_Mexit_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_title,        str_title,       fs_title,     tg_title,     str_title_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_return,       str_return,      fs_return,    tg_return,    str_return_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_R_hk,         str_R_hk,        fs_hk,        tg_hk,        str_R_hk_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_P_hk,         str_P_hk,        fs_hk,        tg_hk,        str_P_hk_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_S_hk,         str_S_hk,        fs_hk,        tg_hk,        str_S_hk_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_pause,        str_pause,       fs_pause,     tg_pause,     str_pause_pos 
-    stdcall Graphics.Draw.Text.Prepear, txt_exit,         str_exit,        fs_exit,      tg_exit,      str_exit_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_saveAexit,    str_saveAexit,   fs_saveAexit, tg_saveAexit, str_saveAexit_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_winner,       str_winner,      fs_winner,    tg_winner,    str_winner_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_again,        str_again,       fs_again,     tg_again,     str_again_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_wexit,        str_exit,        fs_again,     tg_again,     str_wexit_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_msettings,    str_settings,    fs_msettings, tg_msettings, str_msettings_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_chhotkeys,    str_chhotkeys,   fs_chhotkeys, tg_chhotkeys, str_chhotkeys_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_music,        str_music,       fs_music,     tg_music,     str_music_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_voice,        str_voice,       fs_music,     tg_voice,     str_voice_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_hotkeys,      str_hotkeys,     fs_hotkeys,   tg_hotkeys,   str_hotkeys_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_volume,       str_volume,      fs_music,     tg_volume,    str_volume_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_moff,         str_off,         fs_switch,    tg_switch,    str_moff_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_voff,         str_off,         fs_switch,    tg_switch,    str_voff_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_hoff,         str_off,         fs_switch,    tg_switch,    str_hoff_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_mon,          str_on,          fs_switch,    tg_switch,    str_mon_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_von,          str_on,          fs_switch,    tg_switch,    str_von_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_hon,          str_on,          fs_switch,    tg_switch,    str_hon_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_HPhotkeys,    str_chhotkeys,   fs_HPhotkeys, tg_HPhotkeys, str_HPhotkeys_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_wantExit,     str_wantExit,    fs_wantExit,  tg_wantExit,  str_wantExit_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_yes,          str_yes,         fs_yesno,     tg_yesno,     str_yes_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_no,           str_no,          fs_yesno,     tg_yesno,     str_no_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_gamerool,     str_gamerool,    fs_gamerool,  tg_gamerool,  str_gamerool_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_grtext,       str_grtext,      fs_grtext,    tg_grtext,    str_grtext_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_hkplay,       str_hkplay,      fs_hktext,    tg_hktext,    str_hkplay_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_hkabout,      str_hkabout,     fs_hktext,    tg_hktext,    str_hkabout_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_hksettings,   str_hksettings,  fs_hktext,    tg_hktext,    str_hksettings_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_hkpause,      str_hkpause,     fs_hktext,    tg_hktext,    str_hkpause_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_hkexit,       str_hkexit,      fs_hktext,    tg_hktext,    str_hkexit_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_hkrestart,    str_hkrestart,   fs_hktext,    tg_hktext,    str_hkrestart_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_headline,     str_headline,    fs_headline,     tg_headline,    str_headline_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_headline_bc,  str_headline_bc, fs_headline,     tg_headline,    str_headline_bc_pos 
+    stdcall Graphics.Draw.Text.Prepear, txt_play,         str_play,        fs_play,         tg_play,        str_play_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_about,        str_about,       fs_about,        tg_about,       str_about_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_settings,     str_settings,    fs_settings,     tg_settings,    str_settings_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_Mexit,        str_exit,        fs_Mexit,        tg_Mexit,       str_Mexit_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_title,        str_title,       fs_title,        tg_title,       str_title_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_return,       str_return,      fs_return,       tg_return,      str_return_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_R_hk,         str_R_hk,        fs_hk,           tg_hk,          str_R_hk_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_P_hk,         str_P_hk,        fs_hk,           tg_hk,          str_P_hk_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_S_hk,         str_S_hk,        fs_hk,           tg_hk,          str_S_hk_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_pause,        str_pause,       fs_pause,        tg_pause,       str_pause_pos 
+    stdcall Graphics.Draw.Text.Prepear, txt_exit,         str_exit,        fs_exit,         tg_exit,        str_exit_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_saveAexit,    str_saveAexit,   fs_saveAexit,    tg_saveAexit,   str_saveAexit_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_winner,       str_winner,      fs_winner,       tg_winner,      str_winner_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_again,        str_again,       fs_again,        tg_again,       str_again_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_wexit,        str_exit,        fs_again,        tg_again,       str_wexit_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_msettings,    str_settings,    fs_msettings,    tg_msettings,   str_msettings_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_chhotkeys,    str_chhotkeys,   fs_chhotkeys,    tg_chhotkeys,   str_chhotkeys_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_music,        str_music,       fs_music,        tg_music,       str_music_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_voice,        str_voice,       fs_music,        tg_voice,       str_voice_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hotkeys,      str_hotkeys,     fs_hotkeys,      tg_hotkeys,     str_hotkeys_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_volume,       str_volume,      fs_music,        tg_volume,      str_volume_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_moff,         str_off,         fs_switch,       tg_switch,      str_moff_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_voff,         str_off,         fs_switch,       tg_switch,      str_voff_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hoff,         str_off,         fs_switch,       tg_switch,      str_hoff_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_mon,          str_on,          fs_switch,       tg_switch,      str_mon_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_von,          str_on,          fs_switch,       tg_switch,      str_von_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hon,          str_on,          fs_switch,       tg_switch,      str_hon_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_HPhotkeys,    str_chhotkeys,   fs_HPhotkeys,    tg_HPhotkeys,   str_HPhotkeys_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_wantExit,     str_wantExit,    fs_wantExit,     tg_wantExit,    str_wantExit_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_yes,          str_yes,         fs_yesno,        tg_yesno,       str_yes_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_no,           str_no,          fs_yesno,        tg_yesno,       str_no_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_gamerool,     str_gamerool,    fs_gamerool,     tg_gamerool,    str_gamerool_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_grtext,       str_grtext,      fs_grtext,       tg_grtext,      str_grtext_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hkplay,       str_hkplay,      fs_hktext,       tg_hktext,      str_hkplay_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hkabout,      str_hkabout,     fs_hktext,       tg_hktext,      str_hkabout_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hksettings,   str_hksettings,  fs_hktext,       tg_hktext,      str_hksettings_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hkpause,      str_hkpause,     fs_hktext,       tg_hktext,      str_hkpause_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hkexit,       str_hkexit,      fs_hktext,       tg_hktext,      str_hkexit_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hkrestart,    str_hkrestart,   fs_hktext,       tg_hktext,      str_hkrestart_pos
     stdcall Scripts.Convert.FromENtoASCII, [HK_PLAY],     str_hotkey
-    stdcall Graphics.Draw.Text.Prepear, txt_hkplayS,      str_hotkey,      fs_hktextS,   tg_hktextS,   str_hkplayS_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hkplayS,      str_hotkey,      fs_hktextS,      tg_hktextS,     str_hkplayS_pos
     stdcall Scripts.Convert.FromENtoASCII, [HK_ABOUT],    str_hotkey
-    stdcall Graphics.Draw.Text.Prepear, txt_hkaboutS,     str_hotkey,      fs_hktextS,   tg_hktextS,   str_hkaboutS_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hkaboutS,     str_hotkey,      fs_hktextS,      tg_hktextS,     str_hkaboutS_pos
     stdcall Scripts.Convert.FromENtoASCII, [HK_SETTINGS], str_hotkey
-    stdcall Graphics.Draw.Text.Prepear, txt_hksettingsS,  str_hotkey,      fs_hktextS,   tg_hktextS,   str_hksettingsS_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hksettingsS,  str_hotkey,      fs_hktextS,      tg_hktextS,     str_hksettingsS_pos
     stdcall Scripts.Convert.FromENtoASCII, [HK_STOP],     str_hotkey
-    stdcall Graphics.Draw.Text.Prepear, txt_hkpauseS,     str_hotkey,      fs_hktextS,   tg_hktextS,   str_hkpauseS_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hkpauseS,     str_hotkey,      fs_hktextS,      tg_hktextS,     str_hkpauseS_pos
     stdcall Scripts.Convert.FromENtoASCII, [HK_EXIT],     str_hotkey
-    stdcall Graphics.Draw.Text.Prepear, txt_hkexitS,      str_hotkey,      fs_hktextS,   tg_hktextS,   str_hkexitS_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hkexitS,      str_hotkey,      fs_hktextS,      tg_hktextS,     str_hkexitS_pos
     stdcall Scripts.Convert.FromENtoASCII, [HK_RESTART],  str_hotkey
-    stdcall Graphics.Draw.Text.Prepear, txt_hkrestartS,   str_hotkey,      fs_hktextS,   tg_hktextS,   str_hkrestartS_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_logging,      str_logging,     fs_logging,   tg_logging,   str_logging_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_lgpexit,      str_lgpexit,     fs_lgpexit,   tg_lgpexit,   str_lgpexit_pos
-    stdcall Graphics.Draw.Text.Prepear, txt_submit,       str_submit,      fs_lgpexit,   tg_lgpexit,   str_submit_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_hkrestartS,   str_hotkey,      fs_hktextS,      tg_hktextS,     str_hkrestartS_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_logging,      str_logging,     fs_logging,      tg_logging,     str_logging_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_lgpexit,      str_lgpexit,     fs_lgpexit,      tg_lgpexit,     str_lgpexit_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_submit,       str_submit,      fs_lgpexit,      tg_lgpexit,     str_submit_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_pointstitle,  str_pointstitle, fs_pointstitle,  tg_pointstitle, str_pointstitle_pos
     stdcall Server.ErrorPayloadUpdate
     stdcall Server.AutorizationString
     stdcall Game.CurrentPointsRender
+    ret
+endp
+
+proc Game.WinnerPointsRender
+    locals
+        strSize     dd  ?
+        numsize     dd  25
+        startSize   dd  11
+        divider     dd  2
+    endl
+    mov     eax, [currentPoints]
+    stdcall File.IniFile.IntToStr, eax
+    mov     ebx, eax
+    push    ebx
+    stdcall File.IniFile.StrLen, ebx
+    pop     ebx
+    push    ebx
+    mov     [strSize], eax
+    cmp     byte [ebx], 0
+    je      .exit
+    .mainLoop:
+        mov     al, byte [ebx]
+        sub     al, '0'
+        add     al, 34
+        mov     byte [ebx], al
+        inc     ebx
+        cmp     byte [ebx], 0
+        jne     .mainLoop        
+    .exit:
+    pop     ebx
+    mov     eax, [str_winpoints_pos]
+    push    eax
+    mov     eax, [strSize]
+    imul    dword [numsize]
+    sub     eax, [startSize]
+    idiv    dword [divider]
+    sub     [str_winpoints_pos], eax
+    stdcall Graphics.Draw.Text.Prepear, txt_winpoints, ebx, fs_winpos, tg_winpos, str_winpoints_pos
+    pop     eax
+    mov     [str_winpoints_pos], eax
     ret
 endp
 

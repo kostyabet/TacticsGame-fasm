@@ -16,6 +16,7 @@ proc Game.Leave.Winner
     stdcall Audio.Victory
     stdcall Page.ChangePage, WinnerPage
     stdcall Game.Leave
+    stdcall Game.WinnerPointsRender
     inc     [gameCounter]
     ret
 endp

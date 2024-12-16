@@ -27,5 +27,8 @@ proc Draw.Pages.WinnerPage
     stdcall Graphics.Draw.Shapes, wp_exitbtn_font_design, ebtn_font_color
     stdcall Graphics.Draw.Text.Write, [txt_wexit], ebtn_text_color
 
+    ; points
+    stdcall Graphics.Draw.Text.Write, [txt_pointstitle], brown_black_color
+    stdcall Graphics.Draw.Text.Write, [txt_winpoints], brown_text_color
     ret
 endp

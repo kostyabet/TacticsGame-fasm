@@ -2,6 +2,7 @@ proc Game.Start
     cmp     [isGameStart], GL_TRUE
     je      .start
         mov     [isGameStart], GL_TRUE
+        mov     [currentPoints], 0
         ; start points set
         stdcall Game.StartPointsSearch, [gameCounter]
         mov     [strikeCounter], 0

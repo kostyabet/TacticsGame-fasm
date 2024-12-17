@@ -115,6 +115,7 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, gp_pointsbar_font_coords,        gp_pointsbar_font_design
     stdcall Scripts.Getters.ConvertCoords, gp_pointsbar_brdr_coords,        gp_pointsbar_brdr_design
     stdcall Scripts.Getters.ConvertCoords, button_leadboard_coords,         button_leadboard_design
+    stdcall Scripts.Getters.ConvertCoords, mp_cup_coords,                   mp_cup_design
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
     ret
@@ -382,5 +383,6 @@ proc Graphics.Texture
     stdcall Texture.Create, boatbook_texture,    boatBookPath
     stdcall Texture.Create, eyeopen_texture,     eyeOpenPath
     stdcall Texture.Create, eyeclose_texture,    eyeClosePath
+    stdcall Texture.Create, cup_texture,         cupPath
     ret
 endp

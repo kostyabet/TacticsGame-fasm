@@ -5,11 +5,12 @@ et_tick         =  $0201
 
 lp_events       dd  0
 
-mp_events       dd  4,\
-                    et_pagebutton, button_play_design,  GamePage,\
-                    et_pagebutton, button_about_design, AboutPage,\
-                    et_pagebutton, button_stngs_design, SettingsPage,\
-                    et_pagebutton, button_exit_design,  ExitPage
+mp_events       dd  5,\
+                    et_pagebutton, button_play_design,      GamePage,\
+                    et_pagebutton, button_about_design,     AboutPage,\
+                    et_pagebutton, button_stngs_design,     SettingsPage,\
+                    et_pagebutton, button_exit_design,      ExitPage,\
+                    et_pagebutton, button_leadboard_design, LeadBoardPage
 
 gp_events       dd  5,\
                     et_pagebutton, exitbtn_font_design,     MainPage,\
@@ -55,4 +56,7 @@ lgp_events      dd  6,\
                     et_wndbutton, lgp_eyeclose_design,  Server.Methods.Player.SwapPaswordHideStatus,\
                     et_wndbutton, lgp_sbtn_brdr_design, Server.Methods.Player.NewPlayer
 
-EventsList      dd  lp_events, mp_events, gp_events, ap_events, sp_events, pp_events, wp_events, hp_events, ep_events, lgp_events
+lbp_events      dd  0
+
+EventsList      dd  lp_events, mp_events, gp_events, ap_events,  sp_events, pp_events,\
+                    wp_events, hp_events, ep_events, lgp_events, lbp_events

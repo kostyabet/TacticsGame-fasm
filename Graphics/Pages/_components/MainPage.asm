@@ -26,7 +26,7 @@ proc Draw.Pages.MainPage
 	.boat: 
         stdcall Graphics.Draw.Sprite, [boatbook_texture], mp_boatsprite_design
 	.leaderboard:
-		stdcall Graphics.Draw.Shapes, button_leadboard_design, leadboard_color
-        ; stdcall Graphics.Draw.Sprite, [cup_texture], mp_cup_design
+		stdcall Graphics.Draw.Shapes, button_leadboard_design, milk_light_color
+        stdcall Graphics.Draw.Sprite, [cup_texture], mp_cup_design
     ret
 endp

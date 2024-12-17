@@ -8,6 +8,7 @@ WinnerPage      =       24
 HotkeysPage     =       28
 ExitPage        =       32
 LoggingPage     =       36
+LeadBoardPage   =       40
 
 PrevousPage     dd      MainPage
 CurentPage      dd      LoadingPage
@@ -17,4 +18,4 @@ PagesList       dd      Draw.Pages.LoadingPage, Draw.Pages.MainPage,\
                         Draw.Pages.SettingsPage, Draw.Pages.PausePage, Draw.Pages.WinnerPage,\
                         Draw.Pages.HotkeysPage,\
                         Draw.Pages.ExitPage,\
-                        Draw.Pages.LoggingPage
+                        Draw.Pages.LoggingPage, Draw.Pages.LeadBoardPage

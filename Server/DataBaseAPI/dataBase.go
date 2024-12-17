@@ -215,7 +215,7 @@ func AllUserScores(c *gin.Context) {
 		return
 	}
 
-	rows, err := db.Query("SELECT score_id, points FROM scores WHERE fk_player_id = $1", curId.Id)
+	rows, err := db.Query("SELECT score_id, points FROM scores WHERE fk_player_id = $1 LIMIT 30", curId.Id)
 	if err != nil {
 		log.Fatal(err)
 	}

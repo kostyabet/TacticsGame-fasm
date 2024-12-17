@@ -62,7 +62,7 @@ proc Game.AddPointsByGoodMove uses ebx,\
         res     dw ?
     endl
     mov     eax, [strike]
-    idiv    byte [divider]
+    idiv    dword [divider]
     mov     [res], ax
     xor     eax, eax
     mov     ax, [res]

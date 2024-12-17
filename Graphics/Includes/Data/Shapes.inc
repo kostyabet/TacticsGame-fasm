@@ -1086,3 +1086,58 @@ button_leadboard_coords dd  2,\
                             1860, 60, 10,\
                             1900, 20, 10,\
                             1900, 60, 10
+; == leader board page == ;
+lbp_brdr_design DrawModel ?
+lbp_brdr_coords dd  2,\
+                    600, 290, 1320, 780,\
+                    585, 305, 1335, 765,\
+                    4,\
+                     600, 305, 15,\
+                     600, 765, 15,\
+                    1320, 305, 15,\
+                    1320, 765, 15
+lbp_font_design DrawModel ?
+lbp_font_coords dd  2,\
+                    600, 295, 1320, 775,\
+                    590, 305, 1330, 765,\
+                    4,\
+                     600, 305, 10,\
+                     600, 765, 10,\
+                    1320, 305, 10,\
+                    1320, 765, 10
+lbp_localbtn_design DrawModel   ?
+lbp_localbtn_coords dd  2,\
+                        605, 378, 960, 438,\
+                        590, 393, 960, 438,\
+                        1,\
+                        605, 393, 15
+lbp_globbtn_design DrawModel   ?
+lbp_globbtn_coords dd  2,\
+                        960, 378, 1315, 438,\
+                        960, 393, 1330, 438,\
+                        1,\
+                        1315, 393, 15
+lbp_datafont_design DrawModel   ?
+lbp_datafont_coords dd  2,\
+                        600, 440, 1320, 775,\
+                        590, 440, 1330, 765,\
+                        2,\
+                         600, 765, 10,\
+                        1320, 765, 10
+lbp_horline_design  DrawModel   ?
+lbp_horline_coords  dd  1,\
+                        590, 438, 1330, 440,\
+                        0
+lbp_verline_design  DrawModel   ?
+lbp_verline_coords  dd  1,\
+                        959, 378, 961, 438,\
+                        0
+lbp_return_circle_desing  DrawModel ?
+lbp_return_circle_coords  dd  0,\
+                              1,\
+                              1313, 312, 13
+lbp_return_chrest_design DrawModel ?
+lbp_return_chrest_coords dd 2,\
+                            1305, 306, 1309, 306, 1322, 319, 1318, 319,\
+                            1305, 319, 1309, 319, 1322, 306, 1318, 306,\
+                            0

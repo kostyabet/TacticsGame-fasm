@@ -74,6 +74,8 @@ fs_logpas       =       -5
 fs_error        =       -5
 fs_pointstitle  =       -5
 fs_winpos       =       5
+fs_ldbrdtitle   =       10
+fs_local        =       5
 
 include 'Letters/RussianLetters.inc'
 include 'Letters/Digits.inc'

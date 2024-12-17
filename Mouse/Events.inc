@@ -56,7 +56,8 @@ lgp_events      dd  6,\
                     et_wndbutton, lgp_eyeclose_design,  Server.Methods.Player.SwapPaswordHideStatus,\
                     et_wndbutton, lgp_sbtn_brdr_design, Server.Methods.Player.NewPlayer
 
-lbp_events      dd  0
+lbp_events      dd  1,\
+                    et_prevpage,   lbp_return_circle_desing, PrevousPage
 
 EventsList      dd  lp_events, mp_events, gp_events, ap_events,  sp_events, pp_events,\
                     wp_events, hp_events, ep_events, lgp_events, lbp_events

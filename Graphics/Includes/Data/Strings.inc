@@ -64,6 +64,8 @@ tg_logpas       =       5
 tg_error        =       5
 tg_pointstitle  =       5
 tg_winpos       =       10
+tg_ldbrdtitle   =       10
+tg_local        =       16
 
 ; ====== Interfaces ====== ;
 struct Points
@@ -329,6 +331,12 @@ str_nullerror       db      0 ; 'Нет ошибки'
 str_error           dd      str_nullerror
 str_error_pos       dd      10, 1040
 str_points_pos      dd      956, 126
+str_ldbrdtitle      db      19, 17, 10, 19, 12, 10, 44, 13, 10, 5, 6, 18, 16, 3, 0 ; 'СПИСКИ ЛИДЕРОВ'
+str_ldbrdtitle_pos  dd      785, 315
+str_local           db      13, 16, 12, 1, 13, 30, 15, 29, 11, 0 ; 'ЛОКАЛЬНЫЙ'
+str_local_pos       dd      645, 393
+str_global          db      4, 13, 16, 2, 1, 13, 30, 15, 29, 11, 0 ; 'ГЛОБАЛЬНЫЙ'
+str_global_pos      dd      1006, 393
 ; ====== Program models ====== ;
 txt_headline        dd      ?
 txt_headline_bc     dd      ?
@@ -389,6 +397,9 @@ txt_error           dd      ?
 txt_points          dd      ?
 txt_pointstitle     dd      ?
 txt_winpoints       dd      ?
+txt_ldbrdtitle      dd      ?
+txt_local           dd      ?
+txt_global          dd      ?
 
 txts_array          dd      txt_headline,    txt_headline_bc, txt_play,         txt_about,      txt_settings,   txt_return,   txt_grtext,\
                             txt_Mexit,       txt_title,       txt_cost,         txt_info,       txt_watermark,  txt_R_hk,     txt_P_hk,\
@@ -398,7 +409,7 @@ txts_array          dd      txt_headline,    txt_headline_bc, txt_play,         
                             txt_von,         txt_hon,         txt_wantExit,     txt_yes,        txt_no,         txt_gamerool, txt_hkplay,\
                             txt_hkabout,     txt_hksettings,  txt_hkpause,      txt_hkexit,     txt_hkrestart,  txt_hkplayS,  txt_hkaboutS,\
                             txt_hksettingsS, txt_logging,     txt_lgpexit,      txt_submit,     txt_login,      txt_password, txt_error,\
-                            txt_points,      txt_pointstitle, txt_winpoints,    0
+                            txt_points,      txt_pointstitle, txt_winpoints,    txt_ldbrdtitle, txt_local,      txt_global,   0
 
 arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5,  ltr_RU_6,  ltr_RU_7,\ ; RU
                             ltr_RU_8,  ltr_RU_9,  ltr_RU_10, ltr_RU_11, ltr_RU_12, ltr_RU_13, ltr_RU_14,\

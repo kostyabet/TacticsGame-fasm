@@ -6,7 +6,11 @@ proc Game.OnTickClick,\
     jne     .mainBlock
         stdcall Game.CheckIsFromEqualTo, [currentNumber]
         cmp     eax, GL_TRUE
-        jne     .reset
+        je      @F
+            stdcall Game.MissTick
+            jmp     .reset
+        @@:
+
         stdcall Game.Move.CheckDirectionByTo, [currentNumber]
         jmp     .single
 
@@ -14,7 +18,10 @@ proc Game.OnTickClick,\
     ; convert to matrix
     stdcall Game.TickWork.SearchIsExistTick, [matrixTick], [currentNumber]
     cmp     eax, -1
-    je      .reset
+    jne      @F
+        stdcall Game.MissTick
+        jmp     .reset
+    @@:
 
     stdcall Game.Convert.ToMatrix, [currentNumber]
     mov     [TicksMoveDirections.FROM], eax
@@ -100,20 +107,28 @@ proc Game.OnTickClick,\
      cmp     [TicksMoveDirections.TOP.TO], -1
      je      @F
       stdcall Game.MoveTick, [TicksMoveDirections.FROM], [TicksMoveDirections.TOP.BETWEEN], [TicksMoveDirections.TOP.TO]
+      jmp     .strike
      @@:
      cmp     [TicksMoveDirections.LEFT.TO], -1
      je      @F
       stdcall Game.MoveTick, [TicksMoveDirections.FROM], [TicksMoveDirections.LEFT.BETWEEN], [TicksMoveDirections.LEFT.TO]
+      jmp     .strike
      @@:
      cmp     [TicksMoveDirections.RIGHT.TO], -1
      je      @F
       stdcall Game.MoveTick, [TicksMoveDirections.FROM], [TicksMoveDirections.RIGHT.BETWEEN], [TicksMoveDirections.RIGHT.TO]
+      jmp     .strike
      @@:
      cmp     [TicksMoveDirections.BOTTOM.TO], -1
-     je      @F
+     je      .miss
       stdcall Game.MoveTick, [TicksMoveDirections.FROM], [TicksMoveDirections.BOTTOM.BETWEEN], [TicksMoveDirections.BOTTOM.TO]
-     @@:
-     mov     [isGameStart], GL_TRUE
+      jmp     .strike
+     .miss:
+        stdcall Game.MissTick
+        jmp     .after
+     .strike:
+        stdcall Game.Start
+     .after:
      stdcall Game.CheckIsGameEnd
      cmp     eax, GL_TRUE
      jne     @F
@@ -122,7 +137,10 @@ proc Game.OnTickClick,\
      jmp     .reset
     .notASingle:
     cmp     [TicksMoveDirections.POSSIBLE], 0
-    je      .reset
+    jne     @F
+        stdcall Game.MissTick
+        jmp     .reset
+    @@:
      mov     [TicksMoveDirections.MULTI_DIRECTION], 1
      stdcall Game.Move.SetMultiTicksCoords
      jmp    .exit
@@ -131,5 +149,9 @@ proc Game.OnTickClick,\
         stdcall Game.ResetDirectionsMltTicksCoords ; reset multi directions coords
     .exit:
         stdcall Game.PrepearTicks
+        stdcall Game.WinnerPointsRender
+        stdcall Game.CurrentPointsRender
+        ; fot tests
+        stdcall Log.WriteCurrentPoints
     ret
 endp

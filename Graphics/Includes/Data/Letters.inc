@@ -72,6 +72,8 @@ fs_logging      =       10
 fs_lgpexit      =       0
 fs_logpas       =       -5
 fs_error        =       -5
+fs_pointstitle  =       -5
+fs_winpos       =       5
 
 include 'Letters/RussianLetters.inc'
 include 'Letters/Digits.inc'

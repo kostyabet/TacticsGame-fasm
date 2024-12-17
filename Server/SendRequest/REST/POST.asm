@@ -1,5 +1,5 @@
 proc Server.SendRequest.POST,\
-    host, port, type, url, data, length
+    host, port, type, url, data, length, buffer, buflen
     locals
         result  dd  ?
     endl
@@ -28,11 +28,12 @@ proc Server.SendRequest.POST,\
 
     invoke  WinHttpReceiveResponse, [hRequest], NULL
 
-    invoke  WinHttpReadData, [hRequest], requestBuffer, [requestBufferLen], 0
+    invoke  WinHttpReadData, [hRequest], [buffer], [buflen], 0
     test    eax, eax
     jz      .error
 
-    mov     [result], requestBuffer
+    mov     eax, [buffer]
+    mov     [result], eax
     ;invoke MessageBox, 0, eax, ErrorTitle, MB_OK
     
     jmp     .exit

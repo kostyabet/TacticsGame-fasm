@@ -8,6 +8,14 @@ proc File.TicksPosition.Write
     @@:
 
     ; write settings in file
+    ;;
+    stdcall File.IniFile.IntToStr, [currentPoints]
+    stdcall File.IniFile.WriteRule, CURRENT_POINTS_PROMPT, eax
+    stdcall File.IniFile.IntToStr, [strikeCounter]
+    stdcall File.IniFile.WriteRule, WIN_STRICK_PROMPT, eax
+    stdcall File.IniFile.IntToStr, [loseStrikeCouner]
+    stdcall File.IniFile.WriteRule, LOSE_STRICK_PROMPT, eax
+    ;;
     stdcall File.IniFile.IntToStr, [garbgeCounter]
     stdcall File.IniFile.WriteRule, GARBAGE_COUNTER_PROMPT, eax
     stdcall File.IniFile.IntToStr, [isGameStart]
@@ -39,6 +47,9 @@ proc File.TicksPosition.Read uses eax ebx ecx edx edi
 ; ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ;
 ; !!!!!!!!!!!!!!!!!!!!!!!!!!! DO NOT TOUCH EDI !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ;
         mov     edi, [readBuffer]
+        stdcall File.IniFIle.ReadString, currentPoints, 1
+        stdcall File.IniFIle.ReadString, strikeCounter, 1
+        stdcall File.IniFIle.ReadString, loseStrikeCouner, 1
         stdcall File.IniFIle.ReadString, garbgeCounter, 1
         stdcall File.IniFIle.ReadString, isGameStart, 1
         stdcall File.IniFIle.ReadString, currentScore, 1

@@ -86,9 +86,38 @@ func main() {
 	router.GET("/players", IsPlayerExist)
 	router.POST("/scores", AddScore)
 	router.GET("/scores", AllUserScores)
+	router.GET("/scorescount", UserScoresCount)
 	router.GET("/bestscores", AllBestScores)
 	var url = fmt.Sprintf("%s:%s", host, port)
 	router.Run(url)
+}
+
+func UserScoresCount(c *gin.Context) {
+	var curId idStruct
+	if err := c.BindJSON(&curId); err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Invalid request payload"})
+		return
+	}
+
+	var playerExists bool
+	err := db.QueryRow("SELECT EXISTS(SELECT 1 FROM players WHERE player_id = $1)", curId.Id).Scan(&playerExists)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(playerExists)
+	if !playerExists {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Player does not exist"})
+		return
+	}
+
+	var totalScore int
+	err = db.QueryRow("SELECT COUNT(score_id) FROM scores WHERE fk_player_id = $1", curId.Id).Scan(&totalScore)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	c.JSON(http.StatusOK, gin.H{"total_scores": totalScore})
 }
 
 func AddPlayer(c *gin.Context) {
@@ -215,7 +244,7 @@ func AllUserScores(c *gin.Context) {
 		return
 	}
 
-	rows, err := db.Query("SELECT score_id, points FROM scores WHERE fk_player_id = $1", curId.Id)
+	rows, err := db.Query("SELECT score_id, points FROM scores WHERE fk_player_id = $1 ORDER BY score_id DESC LIMIT 30", curId.Id)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -27,8 +27,20 @@ proc JSON.SendStrign.InputString,\
     ret
 endp
 
-proc JSON.SendStrign.InputInteger,\
+proc JSON.SendStrign.InputInteger uses eax ebx ecx,\
     string, length, data
-
+    mov     edi, [string]
+    mov     ecx, [length]
+    stdcall File.IniFile.IntToStr, [data]
+    xchg    ebx, eax
+    .copyLoop:
+        mov     al, byte [ebx]
+        mov     byte [edi], al
+        inc     ebx
+        inc     edi
+        cmp     byte [ebx], 0
+        je      .exit
+        loop    .copyLoop
+    .exit:
     ret
 endp

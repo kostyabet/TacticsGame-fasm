@@ -1,5 +1,5 @@
 proc Server.SendRequest.PostAddPlayers,\
-    data, length
-    stdcall Server.SendRequest.POST, apiHOST, [apiPORT], requestTpPOST, requestPlayersURL, [data], [length]
+    data, length, buffer, buflen
+    stdcall Server.SendRequest.POST, apiHOST, [apiPORT], requestTpPOST, requestPlayersURL, [data], [length], [buffer], [buflen]
     ret
 endp

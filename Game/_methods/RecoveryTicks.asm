@@ -13,6 +13,8 @@ proc Game.RecoveryTicks uses ebx edi ecx eax
     stdcall Game.ResetDirectionsMltTicksCoords ; reset multi directions coords
     stdcall Game.PrepearTicks
     mov     [garbgeCounter], freeGarbage
-    mov     [isGameStart], GL_FALSE
+    stdcall Game.Leave
+    mov     [currentPoints], 0
+    stdcall Game.CurrentPointsRender
     ret
 endp

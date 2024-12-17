@@ -13,5 +13,8 @@ proc Draw.Pages.GamePage
     
     stdcall Graphics.Draw.Ticks, TicksFontMltDrList_Float,  TicksFontList_MltColors
 
+    stdcall Graphics.Draw.Shapes, gp_pointsbar_brdr_design, brown_text_color 
+    stdcall Graphics.Draw.Shapes, gp_pointsbar_font_design, milk_color
+    stdcall Graphics.Draw.Text.Write, [txt_points], brown_text_color
     ret
 endp

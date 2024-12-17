@@ -24,6 +24,32 @@ proc Server.JSON.IsError uses ebx edi,\
     ret
 endp
 
+errorNullMessage    db  'null', 0
+proc Server.JSON.IsNULL uses ebx edi,\
+    jsonLink
+    locals
+        result dd 0
+    endl
+    mov     ebx, [jsonLink]
+    mov     edi, errorNullMessage
+    .loop:
+        mov     al, byte [ebx]
+        cmp     byte [edi], al
+        jne     .exit
+        inc     ebx
+        inc     edi
+        cmp     byte [ebx], 0
+        jne     .next
+        cmp     byte [edi], 0
+        jne     .next
+            mov     [result], 1
+        .next:
+        jmp     .loop
+    .exit:
+        mov     eax, [result]
+    ret
+endp
+
 errorLoginMessageExist db '{"error":"Login already exists"}'
 proc Server.JSON.IsLoginErrorExist uses ebx edi,\
     jsonLink
@@ -144,6 +170,26 @@ proc Server.JSON.GetId,\
         mov     eax, -1
         jmp     .exit
     .exit:
+    ret
+endp
+
+preScoresData   db  '{"total_scores":', 0
+preScrDataLen   dd  $ - preScoresData - 1
+proc Server.JSON.GetScoresCount,\
+    jsonLink
+    locals
+        startPtr    dd  ?
+    endl
+    mov     ebx, [jsonLink]
+    add     ebx, [preScrDataLen]
+    mov     [startPtr], ebx
+    .loop:
+        inc     ebx
+        mov     al, byte [ebx]
+        cmp     al, '}'
+        jne     .loop
+    mov     byte [ebx], 0
+    stdcall File.IniFile.StrToInt, [startPtr]
     ret
 endp
 

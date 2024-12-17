@@ -2,7 +2,6 @@ proc Game.Start
     cmp     [isGameStart], GL_TRUE
     je      .start
         mov     [isGameStart], GL_TRUE
-        ; start points set
         stdcall Game.StartPointsSearch, [gameCounter]
         mov     [strikeCounter], 0
         mov     [currentPoints], eax
@@ -56,15 +55,14 @@ proc Game.StartPointsSearch,\
     ret
 endp
 
-proc Game.AddPointsByGoodMove uses ebx ecx,\
+proc Game.AddPointsByGoodMove uses ebx,\
     current, strike
     locals
         divider dd 4
         res     dw ?
     endl
     mov     eax, [strike]
-    mov     ecx, [divider]
-    idiv    ecx
+    idiv    byte [divider]
     mov     [res], ax
     xor     eax, eax
     mov     ax, [res]

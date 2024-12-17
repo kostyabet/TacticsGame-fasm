@@ -38,7 +38,6 @@ proc Server.SendRequest.GET,\
 
     jmp     .exit
     .error:
-        int3
         invoke GetLastError
         invoke MessageBox, 0, ErrorMessage, ErrorTitle, MB_OK
     .exit:

@@ -20,6 +20,7 @@ contentType     dw  'C','o','n','t','e','n','t','-','T','y','p','e',':',' ','a',
 requestPlayersURL       dw  '/','p','l','a','y','e','r','s', 0
 requestScoresURL        dw  '/','s','c','o','r','e','s', 0
 requestBestScoresURL    dw  '/','b','e','s','t','s','c','o','r','e','s', 0
+requestScoresCountURL   dw  '/','s','c','o','r','e','s','c','o','u','n','t', 0
 
 ErrorMessage    db 'Error!', 0
 ErrorTitle      db 'Error', 0

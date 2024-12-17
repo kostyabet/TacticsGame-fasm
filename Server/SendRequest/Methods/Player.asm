@@ -123,7 +123,7 @@ proc Server.Methods.Player.ScoresCount
     ; send response
     stdcall Log.Console, sendString, sendString.size
     stdcall Log.Console, idJSON.idStart, sizeof.IdJSON
-    stdcall Server.SendRequest.GetAllUserScores, idJSON.idStart, sizeof.IdJSON, scoresResponseBuffer, [scoresResponseBufferLength]
+    stdcall Server.SendRequest.GetUserScoresCount, idJSON.idStart, sizeof.IdJSON, scoresResponseBuffer, [scoresResponseBufferLength]
     stdcall Log.Console, serverAnswer, serverAnswer.size
     mov     ebx, eax
     stdcall File.IniFile.StrLen, eax
@@ -142,8 +142,7 @@ proc Server.Methods.Player.ScoresCount
         mov     eax, 0
         jmp     .exit
     @@:
-        ; search length
-        mov     eax, 1 ; test string
+        stdcall Server.JSON.GetScoresCount, [jsonLink]
     .exit:
         stdcall ClearBuffer, [jsonLink]
     ret

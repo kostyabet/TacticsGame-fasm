@@ -1076,3 +1076,13 @@ gp_pointsbar_font_coords dd     2,\
                                  871, 149, 5,\
                                 1049, 123, 5,\
                                 1049, 149, 5
+; == main page == ;
+button_leadboard_design DrawModel ?
+button_leadboard_coords dd  2,\
+                            1860, 10, 1900, 70,\
+                            1850, 20, 1910, 60,\
+                            4,\
+                            1860, 20, 10,\
+                            1860, 60, 10,\
+                            1900, 20, 10,\
+                            1900, 60, 10

@@ -90,6 +90,7 @@ no_font_color           BackgroundColor ?
 no_text_color           BackgroundColor ?
 login_color             BackgroundColor ?
 password_color          BackgroundColor ?
+leadboard_color         BackgroundColor ?
 
 TicksFontList_Colors     dd  milk_color,   brown_color      ; base
 TicksFontList_MltColors  dd  orange_color, body_color       ; for "TO" Ticks

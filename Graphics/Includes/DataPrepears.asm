@@ -114,6 +114,7 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, lgp_eyeclose_coords,             lgp_eyeclose_design
     stdcall Scripts.Getters.ConvertCoords, gp_pointsbar_font_coords,        gp_pointsbar_font_design
     stdcall Scripts.Getters.ConvertCoords, gp_pointsbar_brdr_coords,        gp_pointsbar_brdr_design
+    stdcall Scripts.Getters.ConvertCoords, button_leadboard_coords,         button_leadboard_design
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
     ret

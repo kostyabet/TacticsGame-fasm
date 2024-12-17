@@ -13,11 +13,11 @@ proc Log.Console uses eax,\
 endp
 
 proc Log.WriteCurrentPoints uses eax
-    stdcall Log.Console, currentPointsSignal, currentPointsSignal.size
-    mov     eax, [currentPoints]
-    stdcall File.IniFile.IntToStr, eax
-    mov     ebx, eax
-    stdcall File.IniFile.StrLen, ebx
-    invoke  WriteConsole, [hConsole], ebx, eax, 0, 0
+    ; stdcall Log.Console, currentPointsSignal, currentPointsSignal.size
+    ; mov     eax, [currentPoints]
+    ; stdcall File.IniFile.IntToStr, eax
+    ; mov     ebx, eax
+    ; stdcall File.IniFile.StrLen, ebx
+    ; invoke  WriteConsole, [hConsole], ebx, eax, 0, 0
     ret
 endp

@@ -11,3 +11,4 @@ include '_components/PostAddScores.asm'
 include '_components/GetAllUserScores.asm'
 
 include 'Methods/Player.asm'
+include 'Methods/Score.asm'

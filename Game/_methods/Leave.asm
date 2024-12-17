@@ -16,6 +16,7 @@ proc Game.Leave.Winner
     stdcall Game.Leave
     stdcall Game.WinnerPointsRender
     inc     [gameCounter]
+    stdcall Server.AddNewScore
     ret
 endp
 

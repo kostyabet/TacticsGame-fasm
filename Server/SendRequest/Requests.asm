@@ -23,6 +23,11 @@ proc Server.GetStartData
     ret
 endp
 
+proc Server.AddNewScore
+    invoke CreateThread, 0, 0, Server.Methods.Score.Add, 0, 0, 0
+    ret
+endp
+
 ; stdcall Server.SendRequest.GetBestScores
 ; stdcall Server.SendRequest.PostAddScores
 ; stdcall Server.SendRequest.GetAllUserScores

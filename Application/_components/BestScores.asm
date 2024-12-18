@@ -32,6 +32,10 @@ proc BestScores.DrawScores uses eax ecx ebx,\
     mov     ecx, [ebx]
     cmp     ecx, 0
     je      .exit
+    cmp     ecx, TABELS_ON_PAGE
+    jbe     @F
+        mov     ecx, TABELS_ON_PAGE
+    @@:
     mov     ebx, [object]
     .saveData:
         push    edi
@@ -50,10 +54,26 @@ proc BestScores.DrawScores uses eax ecx ebx,\
         pop     edi
         add     edi, 4
         loop    .saveData
-    .exit:
     mov     ebx, [count]
     mov     ecx, [ebx]
-    cmp     ecx, 
+    cmp     ecx, TABELS_ON_PAGE
+    ja      .exit
+    mov     eax, TABELS_ON_PAGE
+    sub     eax, ecx
+    xchg    ecx, eax
+    .clearLoop:
+        push    edi
+        mov     edi, [edi]
+        inc     edi
+        stdcall ConvertStringToOutputString, str_nullerror, edi
+        add     edi, 3
+        stdcall ConvertStringToOutputString, str_nullerror, edi
+        add     edi, 31
+        stdcall ConvertStringToOutputString, str_nullerror, edi
+        pop     edi
+        add     edi, 4
+        loop    .clearLoop
+    .exit:
     stdcall BestScores.DataPrepears
     ret
 endp

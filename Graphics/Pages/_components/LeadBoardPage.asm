@@ -30,6 +30,8 @@ proc Draw.Pages.LeadBoardPage
     ; Tabels
     mov     ebx, [Tabels]
     mov     ecx, TABELS_ON_PAGE
+    cmp     ecx, 0
+    je      .exit
     .drawTabel:
         lea     eax, [sizeof.DrawModel + 4 * 3]
         mov     edi, ebx
@@ -40,6 +42,8 @@ proc Draw.Pages.LeadBoardPage
         loop    .drawTabel
     mov     ebx, [Tabels]
     mov     ecx, TABELS_ON_PAGE
+    cmp     ecx, 0
+    je      .exit
     .drawTabelText:
         add     ebx, sizeof.DrawModel
         push    ebx
@@ -56,5 +60,6 @@ proc Draw.Pages.LeadBoardPage
         add     ebx, sizeof.BackgroundColor
         add     ebx, sizeof.BackgroundColor
         loop    .drawTabelText
+    .exit:
     ret
 endp

@@ -31,7 +31,7 @@ proc BestScores.DrawScores uses eax ecx ebx,\
     mov     ebx, [count]
     mov     ecx, [ebx]
     cmp     ecx, 0
-    je      .clearLoop
+    je      .clearPart
     cmp     ecx, TABELS_ON_PAGE
     jbe     @F
         mov     ecx, TABELS_ON_PAGE
@@ -54,6 +54,7 @@ proc BestScores.DrawScores uses eax ecx ebx,\
         pop     edi
         add     edi, 4
         loop    .saveData
+    .clearPart:
     mov     ebx, [count]
     mov     ecx, [ebx]
     cmp     ecx, TABELS_ON_PAGE
@@ -138,6 +139,8 @@ proc BestScores.DataPrepears uses eax ebx edi ecx
     mov     ebx, [Tabels]
     mov     edi, TabelsFonts
     mov     ecx, TABELS_ON_PAGE
+    cmp     ecx, 0
+    je      .exit
     .convertLoop:
         push    ecx
         
@@ -189,5 +192,6 @@ proc BestScores.DataPrepears uses eax ebx edi ecx
         dec     ecx
         cmp     ecx, 0
         ja      .convertLoop
+    .exit:
     ret
 endp

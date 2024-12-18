@@ -193,14 +193,65 @@ proc Server.JSON.GetScoresCount,\
     ret
 endp
 
-proc Server.JSON.GetScores
-    jsonLink
-    
+pointsString db ',"points":', 0
+pointsStringLen dd $ - pointsString - 1
+scoreIdString db '{"score_id":', 0
+scoreIdStringLen dd $ - scoreIdString - 1
+proc Server.JSON.ParseUserScore uses eax ebx edi,\
+    jsonLink, object
+    locals
+        scoresCount  dd  0
+    endl
+    mov     ebx, [jsonLink] ; [{"score_id":4,"points":136},{"score_id":3,"points":11656},{"score_id":2,"points":136},{"score_id":1,"points":136}]
+    mov     edi, [object]   ; place | login | points
+    .currentObject:
+        inc     ebx     ; [ - skip
+        add     ebx, [scoreIdStringLen]
+        .skeepNum:
+            inc     ebx
+            cmp     byte [ebx], ','
+            jne     .skeepNum
+        add     ebx, [pointsStringLen]
+        push    ebx ; push current number
+        .findEnd:
+            inc     ebx
+            cmp     byte [ebx], '}'
+            jne     .findEnd
+        mov     byte [ebx], 0
+        pop     eax ; pop number
+        push    ebx ; push end
+        xchg    ebx, eax
+            push    edi
+
+            inc     [scoresCount]
+            mov     eax, [scoresCount]
+            mov     [edi], eax
+            
+            add     edi, 4
+            stdcall File.IniFile.StrCpy, edi, Login
+
+            add     edi, JSON_STRING_LENGTH
+            stdcall File.IniFile.StrToInt, ebx
+            mov     [edi], eax
+
+            pop     edi
+        pop     ebx
+        inc     ebx
+        add     edi, sizeof.Score
+        cmp     byte [ebx], ']' ; ]- check end
+        jne     .currentObject
+    mov     eax, [scoresCount] ; length of object
     ret
 endp
 
-proc Server.JSON.GetBestScores
-    jsonLink
-    
+proc Server.JSON.ParseBestScore,\
+    jsonLink, object
+    locals
+        scoresCount  dd  0
+    endl
+    mov     ebx, [jsonLink] ; [{"score_id":3,"points":11656,"pl_login":"QWERTY"}]
+    mov     edi, [object]   ; place | login | points
+
+    mov     eax, [scoresCount] ; length of object
     ret
 endp

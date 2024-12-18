@@ -262,6 +262,23 @@ proc File.IniFile.WriteLine uses eax,\
     ret
 endp   
 
+proc File.IniFile.StrCpy uses ebx edi,\
+    dest, src
+    mov     ebx, [dest]
+    mov     edi, [src]
+    cmp     byte [edi], 0
+    je      .exit
+    .copy:
+        mov     al, byte [edi]
+        mov     byte [ebx], al
+        inc     ebx
+        inc     edi
+        cmp     byte [edi], 0
+        jne     .copy
+    .exit:
+    ret
+endp
+
 proc File.IniFile.StrLen uses ebx edi,\
     string
     mov     ebx, [string]

@@ -51,6 +51,3 @@ proc Server.ScoresDataPrepear uses eax ebx
     mov     [BestScores], eax
     ret
 endp
-
-; stdcall Server.SendRequest.GetBestScores
-; stdcall Server.SendRequest.GetAllUserScores

@@ -53,9 +53,11 @@ proc Server.Methods.Score.UserScores
     cmp     eax, GL_TRUE
     jne     @F
         mov     eax, 0
+        mov     [BestScoresLen], 0
         jmp     .exit
     @@:
-        ; parse result
+        stdcall Server.JSON.ParseUserScore, [jsonLink], [UserScores]
+        mov     [UserScoresLen], eax
     .exit:
         stdcall ClearBuffer, [jsonLink]
     ret
@@ -83,9 +85,11 @@ proc Server.Methods.Score.BestScores
     cmp     eax, GL_TRUE
     jne     @F
         mov     eax, 0
+        mov     [BestScoresLen], 0
         jmp     .exit
     @@:
-        ; parse result
+        stdcall Server.JSON.ParseBestScore, [jsonLink], [BestScores]
+        mov     [BestScoresLen], eax
     .exit:
         stdcall ClearBuffer, [jsonLink]
     ret

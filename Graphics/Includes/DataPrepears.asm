@@ -173,10 +173,11 @@ proc Graphics.Colors.Prepear
 
     stdcall Colors.Copy, login_color, brown_dark_color
     stdcall Colors.Copy, password_color, brown_dark_color
+    stdcall BestScores.ColorInit
     ret
 endp
 
-proc Colors.Copy uses ebx edi,\
+proc Colors.Copy uses eax ecx ebx edi,\
     dest, src
     mov     ebx, [dest]
     mov     edi, [src]

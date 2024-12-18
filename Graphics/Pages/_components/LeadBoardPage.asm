@@ -16,9 +16,9 @@ proc Draw.Pages.LeadBoardPage
 
     ; leaderboard
         ; main blocks
-        stdcall Graphics.Draw.Shapes, lbp_localbtn_design, brown_color
-        stdcall Graphics.Draw.Shapes, lbp_globbtn_design,  book_ebrd_color
-        stdcall Graphics.Draw.Shapes, lbp_datafont_design, brown_color
+        stdcall Graphics.Draw.Shapes, lbp_localbtn_design,  local_color
+        stdcall Graphics.Draw.Shapes, lbp_globbtn_design,   global_color
+        stdcall Graphics.Draw.Shapes, lbp_datafont_design,  brown_color
         ; lines
         stdcall Graphics.Draw.Shapes, lbp_horline_design, brown_text_color
         stdcall Graphics.Draw.Shapes, lbp_verline_design, brown_text_color

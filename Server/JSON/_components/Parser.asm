@@ -197,7 +197,7 @@ pointsString db ',"points":', 0
 pointsStringLen dd $ - pointsString - 1
 scoreIdString db '{"score_id":', 0
 scoreIdStringLen dd $ - scoreIdString - 1
-proc Server.JSON.ParseUserScore uses eax ebx edi,\
+proc Server.JSON.ParseUserScore uses ebx edi,\
     jsonLink, object
     locals
         scoresCount  dd  0
@@ -244,6 +244,8 @@ proc Server.JSON.ParseUserScore uses eax ebx edi,\
     ret
 endp
 
+plLoginString       db  '"pl_login":"', 0
+plLoginStringLen    dd  $ - plLoginString - 1
 proc Server.JSON.ParseBestScore,\
     jsonLink, object
     locals
@@ -251,6 +253,62 @@ proc Server.JSON.ParseBestScore,\
     endl
     mov     ebx, [jsonLink] ; [{"score_id":3,"points":11656,"pl_login":"QWERTY"}]
     mov     edi, [object]   ; place | login | points
+
+    .currentObject:
+        inc     ebx     ; [ - skip
+        add     ebx, [scoreIdStringLen]
+        .skeepNum:
+            inc     ebx
+            cmp     byte [ebx], ','
+            jne     .skeepNum
+        add     ebx, [pointsStringLen]
+        push    ebx ; push current number
+        .findEnd:
+            inc     ebx
+            cmp     byte [ebx], ','
+            jne     .findEnd
+        mov     byte [ebx], 0
+        pop     eax ; pop number
+        push    ebx ; push end
+        xchg    ebx, eax
+            push    edi
+
+            inc     [scoresCount]
+            mov     eax, [scoresCount]
+            mov     [edi], eax
+            
+            add     edi, 4
+            ; stdcall File.IniFile.StrCpy, edi, Login
+
+            add     edi, JSON_STRING_LENGTH
+            stdcall File.IniFile.StrToInt, ebx
+            mov     [edi], eax
+
+            pop     edi
+        pop     ebx
+        inc     ebx
+        add     ebx, [plLoginStringLen]
+        push    ebx ; save login
+        .findLoginEnd:
+            inc     ebx
+            cmp     byte [ebx], '"'
+            jne     .findLoginEnd
+        mov     byte [ebx], 0
+        pop     eax
+        push    ebx
+        xchg    ebx, eax
+            push    edi
+            add     edi, 4
+            stdcall File.IniFile.StrCpy, edi, ebx
+            pop     edi
+        pop     ebx
+        inc     ebx
+
+        inc     ebx
+        add     edi, sizeof.Score
+        cmp     byte [ebx], ']' ; ]- check end
+        jne     .currentObject
+    
 
     mov     eax, [scoresCount] ; length of object
     ret

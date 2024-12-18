@@ -53,7 +53,7 @@ proc Server.Methods.Score.UserScores
     cmp     eax, GL_TRUE
     jne     @F
         mov     eax, 0
-        mov     [BestScoresLen], 0
+        mov     [UserScoresLen], 0
         jmp     .exit
     @@:
         stdcall Server.JSON.ParseUserScore, [jsonLink], [UserScores]
@@ -68,6 +68,7 @@ proc Server.Methods.Score.BestScores
         jsonLink    dd      ?
     endl
     stdcall Log.Console, getBestScoreSignal, getBestScoreSignal.size
+    stdcall Log.Console, sendString, sendString.size
     stdcall Server.SendRequest.GetBestScores, 0, 0, scoresGlobRespBuffer, [scoresGlobRespBufferLength]
     stdcall Log.Console, serverAnswer, serverAnswer.size
     mov     ebx, eax

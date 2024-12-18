@@ -8,19 +8,40 @@ IsFinishGlobal          dd  GL_FALSE
 proc BestScores.OnLocalClick uses ecx
     stdcall BestScores.Graphics.MarkLocal
     mov     [CurrentScoresFolder], LocalScoresFolder
-    stdcall BestScores.DrawScores, [UserScores]
+    stdcall BestScores.DrawScores, [UserScores], UserScoresLen, IsFinishLocal
     ret
 endp
 proc BestScores.OnGlobalClick uses ecx
     mov     [CurrentScoresFolder], GlobalScoresFolder
     stdcall BestScores.Graphics.MarkGlobal
-    stdcall BestScores.DrawScores, [BestScores]
+    stdcall BestScores.DrawScores, [BestScores], BestScoresLen, IsFinishGlobal
     ret
 endp
 
-proc BestScores.DrawScores,\
-    object
+proc BestScores.DrawScores uses eax ecx ebx,\
+    object, count, status
+    mov     ebx, [status]
+    .wait:
+        cmp     dword [ebx], GL_FALSE
+        je      .wait
 
+    mov     ebx, [count]
+    mov     ecx, [ebx]
+    cmp     ecx, 0
+    je      .exit
+    mov     ebx, [object]
+    .output:
+        ; mov     eax, [ebx]
+        
+        ; add     ebx, 4
+        ; mov     eax, ebx
+        
+        ; add     ebx, JSON_STRING_LENGTH
+        ; mov     eax, [ebx]
+
+        ; add     ebx, 4
+        loop    .output
+    .exit:
     ret
 endp
 

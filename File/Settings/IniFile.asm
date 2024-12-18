@@ -162,7 +162,9 @@ proc File.IniFile.StrToInt uses ebx edx ecx,\
         cmp     ecx, 0
         je      @F
         .mult:
+            push    edx
             imul    edx
+            pop     edx
             loop    .mult
         @@:
         pop     ecx

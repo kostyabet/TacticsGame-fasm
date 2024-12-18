@@ -79,9 +79,9 @@ tbl_fontsize    =   0
 
 struct TabelText
     buffer   db 0
-    position db 32, 10, 0 ; 3 dup(0)
-    login    db 13, 12, 11, 0, 27 dup(0)
-    points   db 1, 2, 3, 0, 0, 0, 0, 0, 0, 0
+    position db 3 dup(0)
+    login    db 31 dup(0)
+    points   db 10 dup(0)
 ends
 
 TabelText1  TabelText   ?

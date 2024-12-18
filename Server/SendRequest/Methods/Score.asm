@@ -43,13 +43,14 @@ proc Server.Methods.Score.UserScores
     stdcall Log.Console, ebx, eax
     xchg    eax, ebx
     mov     [jsonLink], eax
-    stdcall Server.JSON.IsError, [jsonLink]
+    stdcall Server.JSON.IsNULL, [jsonLink]
     cmp     eax, GL_TRUE
     jne     @F
         mov     eax, 0
+        mov     [UserScoresLen], 0
         jmp     .exit
     @@:
-    stdcall Server.JSON.IsNULL, [jsonLink]
+    stdcall Server.JSON.IsError, [jsonLink]
     cmp     eax, GL_TRUE
     jne     @F
         mov     eax, 0
@@ -76,17 +77,17 @@ proc Server.Methods.Score.BestScores
     stdcall Log.Console, ebx, eax
     xchg    eax, ebx
     mov     [jsonLink], eax
-    stdcall Server.JSON.IsError, [jsonLink]
-    cmp     eax, GL_TRUE
-    jne     @F
-        mov     eax, 0
-        jmp     .exit
-    @@:
     stdcall Server.JSON.IsNULL, [jsonLink]
     cmp     eax, GL_TRUE
     jne     @F
         mov     eax, 0
         mov     [BestScoresLen], 0
+        jmp     .exit
+    @@:
+    stdcall Server.JSON.IsError, [jsonLink]
+    cmp     eax, GL_TRUE
+    jne     @F
+        mov     eax, 0
         jmp     .exit
     @@:
         stdcall Server.JSON.ParseBestScore, [jsonLink], [BestScores]

@@ -31,7 +31,7 @@ proc BestScores.DrawScores uses eax ecx ebx,\
     mov     ebx, [count]
     mov     ecx, [ebx]
     cmp     ecx, 0
-    je      .exit
+    je      .clearLoop
     cmp     ecx, TABELS_ON_PAGE
     jbe     @F
         mov     ecx, TABELS_ON_PAGE
@@ -57,7 +57,7 @@ proc BestScores.DrawScores uses eax ecx ebx,\
     mov     ebx, [count]
     mov     ecx, [ebx]
     cmp     ecx, TABELS_ON_PAGE
-    ja      .exit
+    jae     .exit
     mov     eax, TABELS_ON_PAGE
     sub     eax, ecx
     xchg    ecx, eax

@@ -5,11 +5,12 @@ et_tick         =  $0201
 
 lp_events       dd  0
 
-mp_events       dd  5,\
+mp_events       dd  6,\
                     et_pagebutton, button_play_design,      GamePage,\
                     et_pagebutton, button_about_design,     AboutPage,\
                     et_pagebutton, button_stngs_design,     SettingsPage,\
                     et_pagebutton, button_exit_design,      ExitPage,\
+                    et_wndbutton,  button_leadboard_design, BestScores.LoadData,\
                     et_pagebutton, button_leadboard_design, LeadBoardPage
 
 gp_events       dd  5,\

@@ -1,5 +1,5 @@
-Login           db  30 dup(0), 0
-Password        db  30 dup(0), 0
+Login           db  'QWERTY', 0; 30 dup(0), 0
+Password        db  '12345678', 0; 30 dup(0), 0
 CurrentPlayerId dd  0
 gameCounter     dd  0
 

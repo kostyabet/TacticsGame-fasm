@@ -1,5 +1,6 @@
 proc Application.FreeMamory
     stdcall Application.FreeArray, [txts_array]
+    stdcall Application.FreeScores
     ret
 endp
 
@@ -12,5 +13,11 @@ proc Application.FreeArray uses eax ebx,\
         mov     eax, [ebx]
         cmp     eax, 0
         jne     .freeLoop
+    ret
+endp
+
+proc Application.FreeScores
+    invoke HeapFree, [hHeap], 0, [UserScores]
+    invoke HeapFree, [hHeap], 0, [BestScores]
     ret
 endp

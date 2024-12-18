@@ -72,3 +72,16 @@ idResponseBufferLength  dd  $ - idResponseBuffer
 
 scoresResponseBuffer        db  1000 dup(0)
 scoresResponseBufferLength  dd  $ - idResponseBuffer
+
+struct Score
+    place   dd  ?
+    login   db  31 dup (?)
+    points  dd  ?
+ends
+
+MAX_SCORES_COUNT = 30
+
+UserScores      dd  ?
+UserScoresLen   dd  ?
+BestScores      dd  ?
+BestScoresLen   dd  ?

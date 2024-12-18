@@ -28,39 +28,65 @@ proc Server.Methods.Score.UserScores
     locals
         jsonLink    dd      ?
     endl
-    ; stdcall Log.Console, getUserScoreSignal, getUserScoreSignal.size
+    stdcall Log.Console, getUserScoreSignal, getUserScoreSignal.size
     ; clear
-    ;stdcall JSON.SendStrign.Clear, idJSON.id, JSON_INTEGER_LENGTH
+    stdcall JSON.SendStrign.Clear, idJSON.id, JSON_INTEGER_LENGTH
     ; input data in fields
-    ;stdcall JSON.SendStrign.InputInteger, idJSON.id, JSON_INTEGER_LENGTH, [CurrentPlayerId]
+    stdcall JSON.SendStrign.InputInteger, idJSON.id, JSON_INTEGER_LENGTH, [CurrentPlayerId]
     ; send response
-    ;stdcall Log.Console, sendString, sendString.size
-    ;stdcall Log.Console, idJSON.idStart, sizeof.IdJSON
-    ;stdcall Server.SendRequest.GetUserScoresCount, idJSON.idStart, sizeof.IdJSON, scoresResponseBuffer, [scoresResponseBufferLength]
-    ; stdcall Log.Console, serverAnswer, serverAnswer.size
-    ; mov     ebx, eax
-    ; stdcall File.IniFile.StrLen, eax
-    ; stdcall Log.Console, ebx, eax
-    ; xchg    eax, ebx
-    ; mov     [jsonLink], eax
-    ; stdcall Server.JSON.IsError, [jsonLink]
-    ; cmp     eax, GL_TRUE
-    ; jne     @F
-    ;     mov     eax, 0
-    ;     jmp     .exit
-    ; @@:
-    ; stdcall Server.JSON.IsNULL, [jsonLink]
-    ; cmp     eax, GL_TRUE
-    ; jne     @F
-    ;     mov     eax, 0
-    ;     jmp     .exit
-    ; @@:
-    ;     ; parse result
-    ; .exit:
-    ;     stdcall ClearBuffer, [jsonLink]
+    stdcall Log.Console, sendString, sendString.size
+    stdcall Log.Console, idJSON.idStart, sizeof.IdJSON
+    stdcall Server.SendRequest.GetAllUserScores, idJSON.idStart, sizeof.IdJSON, scoresUserRespBuffer, [scoresUserRespBufferLength]
+    stdcall Log.Console, serverAnswer, serverAnswer.size
+    mov     ebx, eax
+    stdcall File.IniFile.StrLen, eax
+    stdcall Log.Console, ebx, eax
+    xchg    eax, ebx
+    mov     [jsonLink], eax
+    stdcall Server.JSON.IsError, [jsonLink]
+    cmp     eax, GL_TRUE
+    jne     @F
+        mov     eax, 0
+        jmp     .exit
+    @@:
+    stdcall Server.JSON.IsNULL, [jsonLink]
+    cmp     eax, GL_TRUE
+    jne     @F
+        mov     eax, 0
+        jmp     .exit
+    @@:
+        ; parse result
+    .exit:
+        stdcall ClearBuffer, [jsonLink]
     ret
 endp
 
 proc Server.Methods.Score.BestScores
+    locals
+        jsonLink    dd      ?
+    endl
+    stdcall Log.Console, getBestScoreSignal, getBestScoreSignal.size
+    stdcall Server.SendRequest.GetBestScores, 0, 0, scoresGlobRespBuffer, [scoresGlobRespBufferLength]
+    stdcall Log.Console, serverAnswer, serverAnswer.size
+    mov     ebx, eax
+    stdcall File.IniFile.StrLen, eax
+    stdcall Log.Console, ebx, eax
+    xchg    eax, ebx
+    mov     [jsonLink], eax
+    stdcall Server.JSON.IsError, [jsonLink]
+    cmp     eax, GL_TRUE
+    jne     @F
+        mov     eax, 0
+        jmp     .exit
+    @@:
+    stdcall Server.JSON.IsNULL, [jsonLink]
+    cmp     eax, GL_TRUE
+    jne     @F
+        mov     eax, 0
+        jmp     .exit
+    @@:
+        ; parse result
+    .exit:
+        stdcall ClearBuffer, [jsonLink]
     ret
 endp

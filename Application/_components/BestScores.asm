@@ -25,18 +25,16 @@ proc BestScores.DrawScores,\
 endp
 
 proc BestScores.LoadData uses ecx
-    invoke CreateThread, 0, 0, BestScores.LoadLocal, 0, 0, 0
-    invoke CreateThread, 0, 0, BestScores.LoadGlobal, 0, 0, 0
+    invoke CreateThread, 0, 0, BestScores.LoadLocalAnGlobal, 0, 0, 0
     ret
 endp
-proc BestScores.LoadLocal
+proc BestScores.LoadLocalAnGlobal
     mov     [IsFinishLocal], GL_FALSE
+    mov     [IsFinishGlobal], GL_FALSE
+    
     stdcall Server.GetUserScores
     mov     [IsFinishLocal], GL_TRUE
-    ret
-endp
-proc BestScores.LoadGlobal
-    mov     [IsFinishGlobal], GL_FALSE
+    
     stdcall Server.GetBestScores
     mov     [IsFinishGlobal], GL_TRUE
     ret

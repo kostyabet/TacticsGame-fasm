@@ -59,13 +59,14 @@ proc Game.AddPointsByGoodMove uses ebx,\
     current, strike
     locals
         divider dd 4
-        res     dw ?
+        res     db ?
     endl
     mov     eax, [strike]
-    idiv    dword [divider]
-    mov     [res], ax
+    mov     ebx, [divider]
+    idiv    bl
+    mov     [res], al
     xor     eax, eax
-    mov     ax, [res]
+    mov     al, [res]
     add     eax, pointsByGoodMove ; 1
     mov     ebx, [current]
     add     ebx, eax

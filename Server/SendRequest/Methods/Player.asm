@@ -123,7 +123,7 @@ proc Server.Methods.Player.ScoresCount
     ; send response
     stdcall Log.Console, sendString, sendString.size
     stdcall Log.Console, idJSON.idStart, sizeof.IdJSON
-    stdcall Server.SendRequest.GetUserScoresCount, idJSON.idStart, sizeof.IdJSON, scoresResponseBuffer, [scoresResponseBufferLength]
+    stdcall Server.SendRequest.GetUserScoresCount, idJSON.idStart, sizeof.IdJSON, idResponseBuffer, [idResponseBufferLength]
     stdcall Log.Console, serverAnswer, serverAnswer.size
     mov     ebx, eax
     stdcall File.IniFile.StrLen, eax

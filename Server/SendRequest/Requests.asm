@@ -21,6 +21,7 @@ proc Server.GetStartData
         mov     [gameCounter], eax
     mov     [progressStatus], 75
         stdcall Server.ScoresDataPrepear
+        stdcall BestScores.TabelGen
     mov     [progressStatus], 100
     ret
 endp

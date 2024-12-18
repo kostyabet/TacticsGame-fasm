@@ -25,5 +25,36 @@ proc Draw.Pages.LeadBoardPage
         ; blocks text
         stdcall Graphics.Draw.Text.Write, [txt_local], brown_text_color
         stdcall Graphics.Draw.Text.Write, [txt_global], brown_text_color
+
+
+    ; Tabels
+    mov     ebx, [Tabels]
+    mov     ecx, TABELS_ON_PAGE
+    .drawTabel:
+        lea     eax, [sizeof.DrawModel + 4 * 3]
+        mov     edi, ebx
+        add     ebx, eax
+        stdcall Graphics.Draw.Shapes, edi, ebx
+        lea     eax, [sizeof.BackgroundColor * 2]
+        add     ebx, eax
+        loop    .drawTabel
+    mov     ebx, [Tabels]
+    mov     ecx, TABELS_ON_PAGE
+    .drawTabelText:
+        add     ebx, sizeof.DrawModel
+        push    ebx
+        lea     eax, [4 * 3 + sizeof.BackgroundColor]
+        add     ebx, eax
+        mov     edi, ebx
+        pop     ebx
+        stdcall Graphics.Draw.Text.Write, [ebx], edi
+        add     ebx, 4
+        stdcall Graphics.Draw.Text.Write, [ebx], edi
+        add     ebx, 4
+        stdcall Graphics.Draw.Text.Write, [ebx], edi
+        add     ebx, 4
+        add     ebx, sizeof.BackgroundColor
+        add     ebx, sizeof.BackgroundColor
+        loop    .drawTabelText
     ret
 endp

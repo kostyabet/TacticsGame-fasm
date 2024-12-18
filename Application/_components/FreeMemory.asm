@@ -1,6 +1,7 @@
 proc Application.FreeMamory
     stdcall Application.FreeArray, [txts_array]
     stdcall Application.FreeScores
+    stdcall Application.FreeTabels
     ret
 endp
 
@@ -19,5 +20,10 @@ endp
 proc Application.FreeScores
     invoke HeapFree, [hHeap], 0, [UserScores]
     invoke HeapFree, [hHeap], 0, [BestScores]
+    ret
+endp
+
+proc Application.FreeTabels
+    invoke HeapFree, [hHeap], 0, [Tabels]
     ret
 endp

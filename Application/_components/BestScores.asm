@@ -27,29 +27,39 @@ proc BestScores.DrawScores uses eax ecx ebx,\
 
     mov     [UpHead], MIN_UP_HEAD
     mov     [DownHead], MIN_DOWN_HEAD
-
+    mov     edi, TabelTexts
     mov     ebx, [count]
     mov     ecx, [ebx]
     cmp     ecx, 0
     je      .exit
     mov     ebx, [object]
     .saveData:
-        ; mov     eax, [ebx]
-        
-        ; add     ebx, 4
-        ; mov     eax, ebx
-        
-        ; add     ebx, JSON_STRING_LENGTH
-        ; mov     eax, [ebx]
-
-        ; add     ebx, 4
+        push    edi
+        mov     edi, [edi]
+        inc     edi
+        stdcall File.IniFile.IntToStr, [ebx]
+        stdcall ConvertStringToOutputString, eax, edi
+        add     ebx, 4
+        add     edi, 3
+        stdcall ConvertStringToOutputString, ebx, edi
+        add     edi, 31
+        add     ebx, JSON_STRING_LENGTH
+        stdcall File.IniFile.IntToStr, [ebx]
+        stdcall ConvertStringToOutputString, eax, edi
+        add     ebx, 4
+        pop     edi
+        add     edi, 4
         loop    .saveData
     .exit:
+    mov     ebx, [count]
+    mov     ecx, [ebx]
+    cmp     ecx, 
+    stdcall BestScores.DataPrepears
     ret
 endp
 
 proc BestScores.LoadData uses ecx
-    invoke CreateThread, 0, 0, BestScores.LoadLocalAnGlobal, 0, 0, 0
+    invoke  CreateThread, 0, 0, BestScores.LoadLocalAnGlobal, 0, 0, 0
     ret
 endp
 proc BestScores.LoadLocalAnGlobal

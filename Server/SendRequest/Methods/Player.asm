@@ -210,8 +210,21 @@ proc ConvertStringToOutputString uses ebx edi,\
     je      .exit
     .loop:
         mov     al, byte [ebx]
-        sub     al, 'A'
-        add     al, 54
+        cmp     al, 'A'
+        jb      .Digit
+        cmp     al, 'Z'
+        ja      .Digit
+        .EN:
+            sub     al, 'A'
+            add     al, 54
+        .Digit:
+        cmp     al, '0'
+        jb      .RU
+        cmp     al, '9'
+        ja      .RU
+            sub     al, '0'
+            add     al, 34
+        .RU:
         mov     byte [edi], al
         inc     ebx
         inc     edi

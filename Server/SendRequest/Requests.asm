@@ -29,15 +29,16 @@ proc Server.AddNewScore
 endp
 
 proc Server.GetUserScores
-    ; thread to scores
+    ; invoke CreateThread, 0, 0, Server.Methods.Score.UserScores, 0, 0, 0
+    stdcall Server.Methods.Score.UserScores
     ret
 endp
 
 proc Server.GetBestScores
-    ; thread to scores
+    ; invoke CreateThread, 0, 0, Server.Methods.Score.BestScores, 0, 0, 0
+    stdcall Server.Methods.Score.BestScores
     ret
 endp
 
 ; stdcall Server.SendRequest.GetBestScores
-; stdcall Server.SendRequest.PostAddScores
 ; stdcall Server.SendRequest.GetAllUserScores

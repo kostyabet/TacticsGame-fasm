@@ -18,24 +18,81 @@ proc Server.Methods.Score.Add
     stdcall File.IniFile.StrLen, eax
     stdcall Log.Console, ebx, eax
     xchg    eax, ebx
-    ; check result
-    ; mov     [CurrentPlayerId], -1
     mov     [jsonLink], eax
-    ; stdcall Server.JSON.IsError, [jsonLink]
-    ; cmp     eax, 1
-    ; jne     @F
-    ;     mov     eax, 0
-    ;     jmp     .exit
-    ; @@:
-    ; stdcall Server.JSON.GetId, [jsonLink]
-    ; mov     [CurrentPlayerId], eax
-    ; cmp     eax, -1
-    ; jne     @F
-    ;     mov     eax, 0
-    ;     jmp     .exit
-    ; @@:
-    ; mov     eax, 1
     .exit:
     stdcall ClearBuffer, [jsonLink]
+    ret
+endp
+
+proc Server.Methods.Score.UserScores
+    locals
+        jsonLink    dd      ?
+    endl
+    stdcall Log.Console, getUserScoreSignal, getUserScoreSignal.size
+    ; clear
+    stdcall JSON.SendStrign.Clear, idJSON.id, JSON_INTEGER_LENGTH
+    ; input data in fields
+    stdcall JSON.SendStrign.InputInteger, idJSON.id, JSON_INTEGER_LENGTH, [CurrentPlayerId]
+    ; send response
+    stdcall Log.Console, sendString, sendString.size
+    stdcall Log.Console, idJSON.idStart, sizeof.IdJSON
+    stdcall Server.SendRequest.GetAllUserScores, idJSON.idStart, sizeof.IdJSON, scoresUserRespBuffer, [scoresUserRespBufferLength]
+    stdcall Log.Console, serverAnswer, serverAnswer.size
+    mov     ebx, eax
+    stdcall File.IniFile.StrLen, eax
+    stdcall Log.Console, ebx, eax
+    xchg    eax, ebx
+    mov     [jsonLink], eax
+    stdcall Server.JSON.IsNULL, [jsonLink]
+    cmp     eax, GL_TRUE
+    jne     @F
+        mov     eax, 0
+        mov     [UserScoresLen], 0
+        jmp     .exit
+    @@:
+    stdcall Server.JSON.IsError, [jsonLink]
+    cmp     eax, GL_TRUE
+    jne     @F
+        mov     eax, 0
+        mov     [UserScoresLen], 0
+        jmp     .exit
+    @@:
+        stdcall Server.JSON.ParseUserScore, [jsonLink], [UserScores]
+        mov     [UserScoresLen], eax
+    .exit:
+        stdcall ClearBuffer, [jsonLink]
+    ret
+endp
+
+proc Server.Methods.Score.BestScores
+    locals
+        jsonLink    dd      ?
+    endl
+    stdcall Log.Console, getBestScoreSignal, getBestScoreSignal.size
+    stdcall Log.Console, sendString, sendString.size
+    stdcall Server.SendRequest.GetBestScores, 0, 0, scoresGlobRespBuffer, [scoresGlobRespBufferLength]
+    stdcall Log.Console, serverAnswer, serverAnswer.size
+    mov     ebx, eax
+    stdcall File.IniFile.StrLen, eax
+    stdcall Log.Console, ebx, eax
+    xchg    eax, ebx
+    mov     [jsonLink], eax
+    stdcall Server.JSON.IsNULL, [jsonLink]
+    cmp     eax, GL_TRUE
+    jne     @F
+        mov     eax, 0
+        mov     [BestScoresLen], 0
+        jmp     .exit
+    @@:
+    stdcall Server.JSON.IsError, [jsonLink]
+    cmp     eax, GL_TRUE
+    jne     @F
+        mov     eax, 0
+        jmp     .exit
+    @@:
+        stdcall Server.JSON.ParseBestScore, [jsonLink], [BestScores]
+        mov     [BestScoresLen], eax
+    .exit:
+        stdcall ClearBuffer, [jsonLink]
     ret
 endp

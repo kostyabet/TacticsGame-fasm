@@ -162,7 +162,9 @@ proc File.IniFile.StrToInt uses ebx edx ecx,\
         cmp     ecx, 0
         je      @F
         .mult:
+            push    edx
             imul    edx
+            pop     edx
             loop    .mult
         @@:
         pop     ecx
@@ -261,6 +263,23 @@ proc File.IniFile.WriteLine uses eax,\
     invoke  WriteFile, [hIniFile], [message], [messageLen], 0, 0
     ret
 endp   
+
+proc File.IniFile.StrCpy uses ebx edi,\
+    dest, src
+    mov     ebx, [dest]
+    mov     edi, [src]
+    cmp     byte [edi], 0
+    je      .exit
+    .copy:
+        mov     al, byte [edi]
+        mov     byte [ebx], al
+        inc     ebx
+        inc     edi
+        cmp     byte [edi], 0
+        jne     .copy
+    .exit:
+    ret
+endp
 
 proc File.IniFile.StrLen uses ebx edi,\
     string

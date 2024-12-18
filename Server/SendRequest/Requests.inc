@@ -67,8 +67,23 @@ testData        db  ' {"login":"test"                         ,"password":"test"
 testDataLength  dd  $ - testData
 
 
-idResponseBuffer        db  100 dup(0)
+idResponseBuffer        db  512 dup(0)
 idResponseBufferLength  dd  $ - idResponseBuffer
 
-scoresResponseBuffer        db  1000 dup(0)
-scoresResponseBufferLength  dd  $ - idResponseBuffer
+scoresUserRespBuffer        db  1024 dup(0)
+scoresUserRespBufferLength  dd  $ - scoresUserRespBuffer
+scoresGlobRespBuffer        db  1024 dup(0)
+scoresGlobRespBufferLength  dd  $ - scoresGlobRespBuffer
+
+struct Score
+    place   dd  ?
+    login   db  31 dup (?)
+    points  dd  ?
+ends
+
+MAX_SCORES_COUNT = 30
+
+UserScores      dd  ?
+UserScoresLen   dd  ?
+BestScores      dd  ?
+BestScoresLen   dd  ?

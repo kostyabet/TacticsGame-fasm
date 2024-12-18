@@ -1,5 +1,5 @@
 ; =================== Color =================== ;
-proc Scripts.Getters.Color uses eax ecx,\
+proc Scripts.Getters.Color uses eax ecx ebx,\
      hex, resAdress
     mov       ebx, [resAdress]
     mov       eax, [hex]

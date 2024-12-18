@@ -8,6 +8,7 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertWithQuardCoords, wp_return_chrest_coords,     wp_return_chrest_design
     stdcall Scripts.Getters.ConvertWithQuardCoords, sp_return_chrest_coords,     sp_return_chrest_design
     stdcall Scripts.Getters.ConvertWithQuardCoords, hp_return_chrest_coords,     hp_return_chrest_design
+    stdcall Scripts.Getters.ConvertWithQuardCoords, lbp_return_chrest_coords,    lbp_return_chrest_design
     ; default
     stdcall Scripts.Getters.ConvertCoords, font_coords,                     font_design
     stdcall Scripts.Getters.ConvertCoords, book_root_coords,                book_root_design
@@ -114,6 +115,16 @@ proc Graphics.Draw.CoordsRectPrepears
     stdcall Scripts.Getters.ConvertCoords, lgp_eyeclose_coords,             lgp_eyeclose_design
     stdcall Scripts.Getters.ConvertCoords, gp_pointsbar_font_coords,        gp_pointsbar_font_design
     stdcall Scripts.Getters.ConvertCoords, gp_pointsbar_brdr_coords,        gp_pointsbar_brdr_design
+    stdcall Scripts.Getters.ConvertCoords, button_leadboard_coords,         button_leadboard_design
+    stdcall Scripts.Getters.ConvertCoords, mp_cup_coords,                   mp_cup_design
+    stdcall Scripts.Getters.ConvertCoords, lbp_brdr_coords,                 lbp_brdr_design
+    stdcall Scripts.Getters.ConvertCoords, lbp_font_coords,                 lbp_font_design
+    stdcall Scripts.Getters.ConvertCoords, lbp_localbtn_coords,             lbp_localbtn_design
+    stdcall Scripts.Getters.ConvertCoords, lbp_globbtn_coords,              lbp_globbtn_design
+    stdcall Scripts.Getters.ConvertCoords, lbp_datafont_coords,             lbp_datafont_design 
+    stdcall Scripts.Getters.ConvertCoords, lbp_verline_coords,              lbp_verline_design
+    stdcall Scripts.Getters.ConvertCoords, lbp_horline_coords,              lbp_horline_design
+    stdcall Scripts.Getters.ConvertCoords, lbp_return_circle_coords,        lbp_return_circle_desing
     ; repeat
     stdcall Scripts.Getters.ConvertRepeatCoords, book_strk_design
     ret
@@ -162,10 +173,11 @@ proc Graphics.Colors.Prepear
 
     stdcall Colors.Copy, login_color, brown_dark_color
     stdcall Colors.Copy, password_color, brown_dark_color
+    stdcall BestScores.ColorInit
     ret
 endp
 
-proc Colors.Copy uses ebx edi,\
+proc Colors.Copy uses eax ecx ebx edi,\
     dest, src
     mov     ebx, [dest]
     mov     edi, [src]
@@ -240,6 +252,9 @@ proc Graphics.Draw.ASCIIPrepear
     stdcall Graphics.Draw.Text.Prepear, txt_lgpexit,      str_lgpexit,     fs_lgpexit,      tg_lgpexit,     str_lgpexit_pos
     stdcall Graphics.Draw.Text.Prepear, txt_submit,       str_submit,      fs_lgpexit,      tg_lgpexit,     str_submit_pos
     stdcall Graphics.Draw.Text.Prepear, txt_pointstitle,  str_pointstitle, fs_pointstitle,  tg_pointstitle, str_pointstitle_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_ldbrdtitle,   str_ldbrdtitle,  fs_ldbrdtitle,   tg_ldbrdtitle,  str_ldbrdtitle_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_local,        str_local,       fs_local,        tg_local,       str_local_pos
+    stdcall Graphics.Draw.Text.Prepear, txt_global,       str_global,      fs_local,        tg_local,       str_global_pos
     stdcall Server.ErrorPayloadUpdate
     stdcall Server.AutorizationString
     stdcall Game.CurrentPointsRender
@@ -381,5 +396,6 @@ proc Graphics.Texture
     stdcall Texture.Create, boatbook_texture,    boatBookPath
     stdcall Texture.Create, eyeopen_texture,     eyeOpenPath
     stdcall Texture.Create, eyeclose_texture,    eyeClosePath
+    stdcall Texture.Create, cup_texture,         cupPath
     ret
 endp

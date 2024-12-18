@@ -27,6 +27,7 @@ boatloading_texture     GLuint  0
 boatbook_texture        GLuint  0 
 eyeopen_texture         GLuint  0 
 eyeclose_texture        GLuint  0 
+cup_texture             GLuint  0
 
 ; Sprite
 lp_boatsprite_design    DrawModel ?
@@ -40,14 +41,19 @@ mp_boatsprite_coords    dd      1,\
 
 lgp_eyeopen_design      DrawModel ?
 lgp_eyeopen_coords      dd      1,\
-                                1126, 570, 1154, 587,\; 1128, 571, 1152, 586,\
+                                1126, 570, 1154, 587,\
                                 0
 lgp_eyeclose_design     DrawModel ?
 lgp_eyeclose_coords     dd      1,\
                                 1126, 570, 1154, 587,\
+                                0
+mp_cup_design           DrawModel ?
+mp_cup_coords           dd      1,\
+                                1856, 16, 1904, 64,\
                                 0
 
 boatLoaderPath  db      "source/textures/ship/loader.bmp", 0
 boatBookPath    db      "source/textures/ship/book.bmp", 0
 eyeOpenPath     db      "source/textures/authentification/open.bmp", 0
 eyeClosePath    db      "source/textures/authentification/close.bmp", 0
+cupPath         db      "source/textures/leaderboard/cup.bmp", 0

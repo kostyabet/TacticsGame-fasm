@@ -9,13 +9,13 @@ Anim_MainPage_AboutButton_cl    dd  button_about_design,\
                                     about_button_color, milk_light_color, milk_color
 Anim_MainPage_SettingButton_cl  dd  button_stngs_design,\
                                     settings_button_color, milk_light_color, milk_color
-Anim_MainPage_ExitButton_cl  dd  button_exit_design,\
+Anim_MainPage_ExitButton_cl     dd  button_exit_design,\
                                     exit_button_color, milk_light_color, milk_color
 Anim_MainPage                   dd  4,\
                                     Anim_btn_cl,    Anim_MainPage_GameButton_cl,\
                                     Anim_btn_cl,   Anim_MainPage_AboutButton_cl,\
                                     Anim_btn_cl, Anim_MainPage_SettingButton_cl,\
-                                    Anim_btn_cl, Anim_MainPage_ExitButton_cl
+                                    Anim_btn_cl,    Anim_MainPage_ExitButton_cl
 
 Anim_LoadingPage                dd  1,\
                                     Anim_static, Animation.Static.LoadingPage.Bar
@@ -127,4 +127,13 @@ Anim_LoggingPage                dd  4,\
                                     Anim_btn_cl, Anim_SBFont_cl,\
                                     Anim_btn_cl, Anim_SBText_cl
 
-AnimsList                       dd  Anim_LoadingPage, Anim_MainPage, Anim_GamePage, Anim_AboutPage, Anim_SettingsPage, Anim_PausePage, Anim_WinnerPage, Anim_HotkeysPage, Anim_ExitPage, Anim_LoggingPage
+Anim_LbReturnFont_cl            dd  lbp_return_circle_desing,\
+                                    retbtn_font_color, pale_color, brown_text_color
+Anim_LbReturnHrst_cl            dd  lbp_return_circle_desing,\
+                                    retbtn_chrst_color, brown_text_color, pale_color
+Anim_LeadBoardPage              dd  2,\
+                                    Anim_btn_cl, Anim_LbReturnFont_cl,\
+                                    Anim_btn_cl, Anim_LbReturnHrst_cl
+
+AnimsList                       dd  Anim_LoadingPage, Anim_MainPage,    Anim_GamePage, Anim_AboutPage,   Anim_SettingsPage, Anim_PausePage,\
+                                    Anim_WinnerPage,  Anim_HotkeysPage, Anim_ExitPage, Anim_LoggingPage, Anim_LeadBoardPage

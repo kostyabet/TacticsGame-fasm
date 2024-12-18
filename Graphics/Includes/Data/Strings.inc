@@ -64,6 +64,8 @@ tg_logpas       =       5
 tg_error        =       5
 tg_pointstitle  =       5
 tg_winpos       =       10
+tg_ldbrdtitle   =       10
+tg_local        =       16
 
 ; ====== Interfaces ====== ;
 struct Points
@@ -314,7 +316,7 @@ str_loginshort      db      5, 13, 10, 15, 1, 44,\
                             5, 16, 13, 8, 15, 1, 44,\
                             19, 16, 19, 20, 1, 3, 13, 33, 20, 30, 44,\
                             15, 6, 44,\
-                            2, 16, 13, 6, 6, 44,\
+                            14, 6, 15, 6, 6, 44,\
                             37, 44,\
                             19, 10, 14, 3, 16, 13, 16, 3, 0 ; 'Длина логина должна составлять не менее 3 символов'
 str_passwordshort   db      5, 13, 10, 15, 1, 44,\
@@ -322,13 +324,19 @@ str_passwordshort   db      5, 13, 10, 15, 1, 44,\
                             5, 16, 13, 8, 15, 1, 44,\
                             19, 16, 19, 20, 1, 3, 13, 33, 20, 30, 44,\
                             15, 6, 44,\
-                            2, 16, 13, 6, 6, 44,\
+                            14, 6, 15, 6, 6, 44,\
                             42, 44,\
                             19, 10, 14, 3, 16, 13, 16, 3, 0 ; 'Длина пароля должна составлять не менее 8 символов'
 str_nullerror       db      0 ; 'Нет ошибки'
 str_error           dd      str_nullerror
 str_error_pos       dd      10, 1040
 str_points_pos      dd      956, 126
+str_ldbrdtitle      db      19, 17, 10, 19, 12, 10, 44, 13, 10, 5, 6, 18, 16, 3, 0 ; 'СПИСКИ ЛИДЕРОВ'
+str_ldbrdtitle_pos  dd      785, 315
+str_local           db      13, 16, 12, 1, 13, 30, 15, 29, 11, 0 ; 'ЛОКАЛЬНЫЙ'
+str_local_pos       dd      645, 393
+str_global          db      4, 13, 16, 2, 1, 13, 30, 15, 29, 11, 0 ; 'ГЛОБАЛЬНЫЙ'
+str_global_pos      dd      1006, 393
 ; ====== Program models ====== ;
 txt_headline        dd      ?
 txt_headline_bc     dd      ?
@@ -389,6 +397,9 @@ txt_error           dd      ?
 txt_points          dd      ?
 txt_pointstitle     dd      ?
 txt_winpoints       dd      ?
+txt_ldbrdtitle      dd      ?
+txt_local           dd      ?
+txt_global          dd      ?
 
 txts_array          dd      txt_headline,    txt_headline_bc, txt_play,         txt_about,      txt_settings,   txt_return,   txt_grtext,\
                             txt_Mexit,       txt_title,       txt_cost,         txt_info,       txt_watermark,  txt_R_hk,     txt_P_hk,\
@@ -398,7 +409,7 @@ txts_array          dd      txt_headline,    txt_headline_bc, txt_play,         
                             txt_von,         txt_hon,         txt_wantExit,     txt_yes,        txt_no,         txt_gamerool, txt_hkplay,\
                             txt_hkabout,     txt_hksettings,  txt_hkpause,      txt_hkexit,     txt_hkrestart,  txt_hkplayS,  txt_hkaboutS,\
                             txt_hksettingsS, txt_logging,     txt_lgpexit,      txt_submit,     txt_login,      txt_password, txt_error,\
-                            txt_points,      txt_pointstitle, txt_winpoints,    0
+                            txt_points,      txt_pointstitle, txt_winpoints,    txt_ldbrdtitle, txt_local,      txt_global,   0
 
 arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5,  ltr_RU_6,  ltr_RU_7,\ ; RU
                             ltr_RU_8,  ltr_RU_9,  ltr_RU_10, ltr_RU_11, ltr_RU_12, ltr_RU_13, ltr_RU_14,\
@@ -411,13 +422,7 @@ arr_of_letters      dd      ltr_RU_1,  ltr_RU_2,  ltr_RU_3,  ltr_RU_4,  ltr_RU_5
                             ltr_EN_61, ltr_EN_62, ltr_EN_63, ltr_EN_64, ltr_EN_65, ltr_EN_66, ltr_EN_67,\
                             ltr_EN_68, ltr_EN_69, ltr_EN_70, ltr_EN_71, ltr_EN_72, ltr_EN_73, ltr_EN_74,\
                             ltr_EN_75, ltr_EN_76, ltr_EN_77, ltr_EN_78, ltr_EN_79
-lettersModel        dd      'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё',\
-                            'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М',\
-                            'Н', 'О', 'П', 'Р', 'С', 'Т', 'У',\
-                            'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ',\
-                            'Ы', 'Ь', 'Э', 'Ю', 'Я',\
-                            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',\
-                            ' ', ',', '.', '?', '!', '-', '\n', '"', '', '',\
+lettersModel        dd      '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',\
                             'A', 'B', 'C', 'D', 'E', 'F', 'G',\
                             'H', 'I', 'J', 'K', 'L', 'M', 'N',\
                             'O', 'P', 'Q', 'R', 'S', 'T', 'U',\

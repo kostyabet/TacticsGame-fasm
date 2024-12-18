@@ -217,6 +217,7 @@ proc ConvertStringToOutputString uses ebx edi,\
         .EN:
             sub     al, 'A'
             add     al, 54
+            jmp     .RU
         .Digit:
         cmp     al, '0'
         jb      .RU

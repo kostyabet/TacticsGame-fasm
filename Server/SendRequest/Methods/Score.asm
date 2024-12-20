@@ -13,12 +13,18 @@ proc Server.Methods.Score.Add
     stdcall Log.Console, sendString, sendString.size
     stdcall Log.Console, scoreJSON.pointsStart, sizeof.ScoreJSON
     stdcall Server.SendRequest.PostAddScores, scoreJSON.pointsStart, sizeof.ScoreJSON, idResponseBuffer, [idResponseBufferLength]
+    cmp     eax, -1
+    je      .serverError
     stdcall Log.Console, serverAnswer, serverAnswer.size
     mov     ebx, eax
     stdcall File.IniFile.StrLen, eax
     stdcall Log.Console, ebx, eax
     xchg    eax, ebx
     mov     [jsonLink], eax
+    jmp     .exit
+    .serverError:
+        stdcall Log.Console, errorSignal, errorSignal.size
+        ; process error
     .exit:
     stdcall ClearBuffer, [jsonLink]
     ret
@@ -37,6 +43,8 @@ proc Server.Methods.Score.UserScores
     stdcall Log.Console, sendString, sendString.size
     stdcall Log.Console, idJSON.idStart, sizeof.IdJSON
     stdcall Server.SendRequest.GetAllUserScores, idJSON.idStart, sizeof.IdJSON, scoresUserRespBuffer, [scoresUserRespBufferLength]
+    cmp     eax, -1
+    je      .serverError
     stdcall Log.Console, serverAnswer, serverAnswer.size
     mov     ebx, eax
     stdcall File.IniFile.StrLen, eax
@@ -59,6 +67,10 @@ proc Server.Methods.Score.UserScores
     @@:
         stdcall Server.JSON.ParseUserScore, [jsonLink], [UserScores]
         mov     [UserScoresLen], eax
+        jmp     .exit
+    .serverError:
+        stdcall Log.Console, errorSignal, errorSignal.size
+        ; process error
     .exit:
         stdcall ClearBuffer, [jsonLink]
     ret
@@ -71,6 +83,8 @@ proc Server.Methods.Score.BestScores
     stdcall Log.Console, getBestScoreSignal, getBestScoreSignal.size
     stdcall Log.Console, sendString, sendString.size
     stdcall Server.SendRequest.GetBestScores, 0, 0, scoresGlobRespBuffer, [scoresGlobRespBufferLength]
+    cmp     eax, -1
+    je      .serverError
     stdcall Log.Console, serverAnswer, serverAnswer.size
     mov     ebx, eax
     stdcall File.IniFile.StrLen, eax
@@ -92,6 +106,10 @@ proc Server.Methods.Score.BestScores
     @@:
         stdcall Server.JSON.ParseBestScore, [jsonLink], [BestScores]
         mov     [BestScoresLen], eax
+        jmp     .exit
+    .serverError:
+        stdcall Log.Console, errorSignal, errorSignal.size        
+        ; process error
     .exit:
         stdcall ClearBuffer, [jsonLink]
     ret

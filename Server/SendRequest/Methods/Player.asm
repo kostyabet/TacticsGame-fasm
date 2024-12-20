@@ -13,6 +13,8 @@ proc Server.Methods.Player.IsExist uses eax ebx
     stdcall Log.Console, sendString, sendString.size
     stdcall Log.Console, playerJSON.loginStart, sizeof.PlayerJSON
     stdcall Server.SendRequest.GetIsPlayerExist, playerJSON.loginStart, sizeof.PlayerJSON, idResponseBuffer, [idResponseBufferLength]
+    cmp     eax, -1
+    je      .serverError
     stdcall Log.Console, serverAnswer, serverAnswer.size
     mov     ebx, eax
     stdcall File.IniFile.StrLen, eax
@@ -35,6 +37,10 @@ proc Server.Methods.Player.IsExist uses eax ebx
         jmp     .exit
     @@:
     mov     eax, 1
+    jmp     .exit
+    .serverError:
+        stdcall Log.Console, errorSignal, errorSignal.size
+        ; process error
     .exit:
     stdcall ClearBuffer, [jsonLink]
     ret
@@ -67,6 +73,8 @@ proc Server.Methods.Player.AddNewPlayer
     stdcall Log.Console, sendString, sendString.size
     stdcall Log.Console, playerJSON.loginStart, sizeof.PlayerJSON
     stdcall Server.SendRequest.PostAddPlayers, playerJSON.loginStart, sizeof.PlayerJSON, idResponseBuffer, [idResponseBufferLength]
+    cmp     eax, -1
+    je      .serverError
     stdcall Log.Console, serverAnswer, serverAnswer.size
     mov     ebx, eax
     stdcall File.IniFile.StrLen, eax
@@ -106,6 +114,10 @@ proc Server.Methods.Player.AddNewPlayer
         mov     [str_error], str_nullerror
         stdcall Server.ErrorPayloadUpdate ; null error
         stdcall Page.ChangePage, LoadingPage
+    jmp     .exit
+    .serverError:
+        stdcall Log.Console, errorSignal, errorSignal.size
+        ; process error
     .exit:
     stdcall ClearBuffer, [jsonLink]
     ret
@@ -124,6 +136,8 @@ proc Server.Methods.Player.ScoresCount
     stdcall Log.Console, sendString, sendString.size
     stdcall Log.Console, idJSON.idStart, sizeof.IdJSON
     stdcall Server.SendRequest.GetUserScoresCount, idJSON.idStart, sizeof.IdJSON, idResponseBuffer, [idResponseBufferLength]
+    cmp     eax, -1
+    je      .serverError
     stdcall Log.Console, serverAnswer, serverAnswer.size
     mov     ebx, eax
     stdcall File.IniFile.StrLen, eax
@@ -143,6 +157,10 @@ proc Server.Methods.Player.ScoresCount
         jmp     .exit
     @@:
         stdcall Server.JSON.GetScoresCount, [jsonLink]
+        jmp     .exit
+    .serverError:
+        stdcall Log.Console, errorSignal, errorSignal.size
+        ; process error
     .exit:
         stdcall ClearBuffer, [jsonLink]
     ret

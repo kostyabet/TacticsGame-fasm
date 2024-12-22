@@ -24,7 +24,6 @@ proc Server.Methods.Score.Add
     jmp     .exit
     .serverError:
         stdcall Log.Console, errorSignal, errorSignal.size
-        ; process error
     .exit:
     stdcall ClearBuffer, [jsonLink]
     ret
@@ -70,7 +69,6 @@ proc Server.Methods.Score.UserScores
         jmp     .exit
     .serverError:
         stdcall Log.Console, errorSignal, errorSignal.size
-        ; process error
     .exit:
         stdcall ClearBuffer, [jsonLink]
     ret
@@ -108,8 +106,7 @@ proc Server.Methods.Score.BestScores
         mov     [BestScoresLen], eax
         jmp     .exit
     .serverError:
-        stdcall Log.Console, errorSignal, errorSignal.size        
-        ; process error
+        stdcall Log.Console, errorSignal, errorSignal.size     
     .exit:
         stdcall ClearBuffer, [jsonLink]
     ret

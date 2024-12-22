@@ -39,7 +39,7 @@ proc Server.SendRequest.GET,\
     .error:
         mov     [result], -1
         invoke  GetLastError
-        invoke  MessageBox, 0, ErrorMessage, ErrorTitle, MB_OK
+        ;invoke  MessageBox, 0, ErrorMessage, ErrorTitle, MB_OK
     .exit:
         cmp     [hRequest], 0
         jz      .skipRequest

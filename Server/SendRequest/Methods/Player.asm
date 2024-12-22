@@ -40,7 +40,6 @@ proc Server.Methods.Player.IsExist uses eax ebx
     jmp     .exit
     .serverError:
         stdcall Log.Console, errorSignal, errorSignal.size
-        ; process error
     .exit:
     stdcall ClearBuffer, [jsonLink]
     ret
@@ -117,7 +116,6 @@ proc Server.Methods.Player.AddNewPlayer
     jmp     .exit
     .serverError:
         stdcall Log.Console, errorSignal, errorSignal.size
-        ; process error
     .exit:
     stdcall ClearBuffer, [jsonLink]
     ret
@@ -160,7 +158,6 @@ proc Server.Methods.Player.ScoresCount
         jmp     .exit
     .serverError:
         stdcall Log.Console, errorSignal, errorSignal.size
-        ; process error
     .exit:
         stdcall ClearBuffer, [jsonLink]
     ret

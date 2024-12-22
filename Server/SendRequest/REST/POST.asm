@@ -34,26 +34,26 @@ proc Server.SendRequest.POST,\
 
     mov     eax, [buffer]
     mov     [result], eax
-    ;invoke MessageBox, 0, eax, ErrorTitle, MB_OK
     
     jmp     .exit
     .error:
-        invoke GetLastError
-        invoke MessageBox, 0, ErrorMessage, ErrorTitle, MB_OK
+        mov     [result], -1
+        invoke  GetLastError
+        ;invoke  MessageBox, 0, ErrorMessage, ErrorTitle, MB_OK
     .exit:
-        cmp [hRequest], 0
-        jz .skipRequest
-        invoke WinHttpCloseHandle, [hRequest]
+        cmp     [hRequest], 0
+        jz      .skipRequest
+        invoke  WinHttpCloseHandle, [hRequest]
     .skipRequest:
 
-        cmp [hConnect], 0
-        jz .skipConnect
-        invoke WinHttpCloseHandle, [hConnect]
+        cmp     [hConnect], 0
+        jz      .skipConnect
+        invoke  WinHttpCloseHandle, [hConnect]
     .skipConnect:
 
-        cmp [hSession], 0
-        jz .skipSession
-        invoke WinHttpCloseHandle, [hSession]
+        cmp     [hSession], 0
+        jz      .skipSession
+        invoke  WinHttpCloseHandle, [hSession]
     .skipSession:
         mov     eax, [result]
         ret

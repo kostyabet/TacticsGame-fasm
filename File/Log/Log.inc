@@ -18,3 +18,4 @@ currentPointsSignal  LogString 10, 'Current Points = '
 addNewScoreSignal    LogString 10, '===================================', 10, 'Add new score', 10
 getUserScoreSignal   LogString 10, '===================================', 10, 'Get user scores', 10
 getBestScoreSignal   LogString 10, '===================================', 10, 'Get best scores', 10
+errorSignal          LogString 10, '===================================', 10, 'ERROR FROM SERVER!', 10

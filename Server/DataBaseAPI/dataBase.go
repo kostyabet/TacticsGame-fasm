@@ -67,7 +67,7 @@ func main() {
 		log.Fatal(err)
 	}
 	defer db.Close()
-	log.Println("CORRECT CONNECT TO DATA BASE CYKAAAAAAAAAAAAAAAAA")
+	log.Println("CORRECT CONNECT TO DATA BASE!!!")
 
 	//create the table if it doesn't exist
 	_, err = db.Exec("CREATE TABLE IF NOT EXISTS players (player_id SERIAL PRIMARY KEY, pl_login varchar(30) NOT NULL, pl_password varchar(30) NOT NULL)")

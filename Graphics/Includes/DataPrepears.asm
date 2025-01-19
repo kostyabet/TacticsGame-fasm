@@ -1,4 +1,3 @@
-; 375 44 485 32 86 Генадий Григорьевич
 proc Graphics.Draw.CoordsRectPrepears
     ; animation blocks
     stdcall Graphics.Draw.CoordsRectPrepears.ForAnimations
